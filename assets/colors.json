@@ -1,0 +1,48 @@
+{
+  "_note": "Collective Edge is monochromatic. Black CE block (the Collective) vs a light-grey skewed Edge shadow. All product color comes from partner co-brands, never from CE itself. White is the primary surface for documents; black is reserved for hero / section-divider / title surfaces.",
+  "brandCore": {
+    "black":    { "hex": "#000000", "role": "Primary brand black; hero / divider surfaces" },
+    "ink":      { "hex": "#111111", "role": "Near-black body text (--fg-1)" },
+    "graphite": { "hex": "#2A2A2A", "role": "Deep neutral; button hover" },
+    "slate":    { "hex": "#4A4A4A", "role": "Secondary text (--fg-2)" },
+    "steel":    { "hex": "#6E6E6E", "role": "Tertiary text / EDGE wordmark grey (--fg-3)" },
+    "mute":     { "hex": "#9A9A9A", "role": "Muted / 'Not This' labels (--fg-4)" },
+    "fog":      { "hex": "#C8C8C8", "role": "The iconic Edge shadow grey — the one unambiguous CE 'color'" },
+    "mist":     { "hex": "#E2E2E2", "role": "Hairlines, dividers (--border-1)" },
+    "paper":    { "hex": "#F4F4F4", "role": "Off-white surface" },
+    "bone":     { "hex": "#FAFAFA", "role": "Lightest surface (--bg-surface)" },
+    "white":    { "hex": "#FFFFFF", "role": "Primary brand white; primary document canvas" }
+  },
+  "foreground": {
+    "fg1": "#111111", "fg2": "#4A4A4A", "fg3": "#6E6E6E", "fg4": "#9A9A9A",
+    "onDark1": "#FFFFFF", "onDark2": "#D6D6D6", "onDark3": "#9E9E9E"
+  },
+  "background": {
+    "canvas": "#FFFFFF", "surface": "#FAFAFA", "elevated": "#FFFFFF",
+    "inverse": "#000000", "inverse2": "#0A0A0A"
+  },
+  "borders": {
+    "border1": "#E2E2E2", "border2": "#D0D0D0", "onDark": "rgba(255,255,255,0.12)"
+  },
+  "status": {
+    "_note": "Used sparingly — healthcare context. Not decorative accents.",
+    "go":   { "hex": "#1E7A4D", "role": "operational green" },
+    "warn": { "hex": "#B5821A", "role": "attention amber" },
+    "stop": { "hex": "#B0322B", "role": "alert red" },
+    "info": { "hex": "#2A5A8C", "role": "info blue" }
+  },
+  "partners": {
+    "_note": "'Powered by CE' co-brand accents. Used ONLY inside a partner's own co-brand surface — never as a CE accent.",
+    "apex":        "#F2C82F",
+    "royal":       "#5B2A8C",
+    "stadiumRed":  "#E0143C",
+    "stadiumBlue": "#1E4FA3",
+    "lifewest":    "#1E3A8A"
+  },
+  "font": {
+    "family": "Montserrat",
+    "fallback": "'Helvetica Neue', Arial, sans-serif",
+    "weights": { "regular": 400, "medium": 500, "semibold": 600, "bold": 700, "extrabold": 800, "black": 900 },
+    "cdnUrl": "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf"
+  }
+}

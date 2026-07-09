@@ -1,0 +1,156 @@
+/* ============================================================
+   COLLECTIVE EDGE — Brand base (drop-in)
+   Faithful, CDN-hosted mirror of the Design System's
+   colors_and_type.css. Pull into any HTML with:
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/brand-base.css">
+
+   Collective Edge is monochromatic by design: a black "CE" block
+   (the Collective) against a light-grey skewed "Edge" shadow.
+   All product color comes from partner co-brands, never from CE.
+   White is the primary surface for documents; black is reserved
+   for hero / section-divider / title surfaces.
+   ============================================================ */
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* —— BRAND CORE (grey ramp, no hue) —— */
+  --ce-black:    #000000;   /* primary brand black */
+  --ce-ink:      #111111;   /* near-black for body */
+  --ce-graphite: #2A2A2A;   /* deep neutral */
+  --ce-slate:    #4A4A4A;   /* secondary text */
+  --ce-steel:    #6E6E6E;   /* tertiary text / "EDGE" wordmark grey */
+  --ce-mute:     #9A9A9A;   /* muted / "Not This" labels */
+  --ce-fog:      #C8C8C8;   /* the iconic "Edge" shadow grey */
+  --ce-mist:     #E2E2E2;   /* hairlines, dividers */
+  --ce-paper:    #F4F4F4;   /* off-white surface */
+  --ce-bone:     #FAFAFA;   /* lightest surface */
+  --ce-white:    #FFFFFF;   /* primary brand white */
+
+  /* —— SEMANTIC FOREGROUND —— */
+  --fg-1: var(--ce-ink);    /* primary text on light */
+  --fg-2: var(--ce-slate);  /* secondary text */
+  --fg-3: var(--ce-steel);  /* tertiary / metadata */
+  --fg-4: var(--ce-mute);   /* labels, captions, dimmed */
+  --fg-on-dark-1: var(--ce-white);
+  --fg-on-dark-2: #D6D6D6;
+  --fg-on-dark-3: #9E9E9E;
+
+  /* —— SEMANTIC BACKGROUND —— */
+  --bg-canvas:    var(--ce-white);
+  --bg-surface:   var(--ce-bone);
+  --bg-elevated:  var(--ce-white);
+  --bg-inverse:   var(--ce-black);
+  --bg-inverse-2: #0A0A0A;
+
+  /* —— BORDERS —— */
+  --border-1: var(--ce-mist);
+  --border-2: #D0D0D0;
+  --border-on-dark: rgba(255,255,255,0.12);
+
+  /* —— STATUS (used sparingly — healthcare context) —— */
+  --status-go:   #1E7A4D;   /* operational green */
+  --status-warn: #B5821A;   /* attention amber */
+  --status-stop: #B0322B;   /* alert red */
+  --status-info: #2A5A8C;   /* info blue */
+
+  /* —— PARTNER CO-BRAND ACCENTS ("Powered by CE") ——
+     Used only inside a partner's own co-brand surface, never as a CE accent. */
+  --partner-apex:         #F2C82F;   /* Apex Paramedics yellow */
+  --partner-royal:        #5B2A8C;   /* Royal Ambulance purple */
+  --partner-stadium-red:  #E0143C;
+  --partner-stadium-blue: #1E4FA3;
+  --partner-lifewest:     #1E3A8A;
+
+  /* —— TYPE —— */
+  --font-sans:    "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --font-mono:    ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --weight-regular: 400; --weight-medium: 500; --weight-semibold: 600;
+  --weight-bold: 700; --weight-extrabold: 800; --weight-black: 900;
+
+  --fs-display-xl: 88px; --fs-display-lg: 64px; --fs-display-md: 48px; --fs-display-sm: 36px;
+  --fs-h1: 40px; --fs-h2: 32px; --fs-h3: 24px; --fs-h4: 20px;
+  --fs-body-lg: 18px; --fs-body: 16px; --fs-body-sm: 14px; --fs-caption: 12px; --fs-eyebrow: 12px;
+
+  --lh-tight: 1.05; --lh-snug: 1.2; --lh-normal: 1.45; --lh-relaxed: 1.6;
+  --tracking-display: 0.01em; --tracking-caps: 0.08em; --tracking-body: 0;
+
+  /* —— SPACING (4px base) —— */
+  --space-0: 0; --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px; --space-10: 128px;
+
+  /* —— RADII (mostly square) —— */
+  --radius-none: 0; --radius-sm: 2px; --radius-md: 6px; --radius-lg: 12px; --radius-pill: 999px;
+
+  /* —— SHADOW (elevation only; the brand is flat) —— */
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-2: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-3: 0 12px 32px rgba(0,0,0,0.12);
+  --shadow-glow-dark: 0 0 80px rgba(255,255,255,0.08);
+
+  /* —— MOTION (quiet, fast) —— */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 120ms; --dur-base: 200ms; --dur-slow: 360ms;
+}
+
+/* ============================================================
+   SEMANTIC TYPE STYLES — bold-italic display, clean sentence body.
+   ============================================================ */
+.ce-display-xl, .ce-display-lg, .ce-display-md, .ce-display-sm {
+  font-family: var(--font-display);
+  font-weight: var(--weight-extrabold);
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--lh-tight);
+  color: var(--fg-1);
+}
+.ce-display-xl { font-size: var(--fs-display-xl); }
+.ce-display-lg { font-size: var(--fs-display-lg); }
+.ce-display-md { font-size: var(--fs-display-md); }
+.ce-display-sm { font-size: var(--fs-display-sm); }
+
+.ce-h1, .ce-h2, .ce-h3, .ce-h4 {
+  font-family: var(--font-sans);
+  color: var(--fg-1);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-body);
+}
+.ce-h1 { font-size: var(--fs-h1); font-weight: var(--weight-bold); }
+.ce-h2 { font-size: var(--fs-h2); font-weight: var(--weight-bold); }
+.ce-h3 { font-size: var(--fs-h3); font-weight: var(--weight-semibold); }
+.ce-h4 { font-size: var(--fs-h4); font-weight: var(--weight-semibold); }
+
+.ce-eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--fg-3);
+}
+
+.ce-body-lg { font: var(--weight-regular) var(--fs-body-lg)/var(--lh-relaxed) var(--font-sans); color: var(--fg-1); }
+.ce-body    { font: var(--weight-regular) var(--fs-body)/var(--lh-relaxed) var(--font-sans);    color: var(--fg-1); }
+.ce-body-sm { font: var(--weight-regular) var(--fs-body-sm)/var(--lh-relaxed) var(--font-sans); color: var(--fg-2); }
+.ce-caption { font: var(--weight-regular) var(--fs-caption)/var(--lh-normal) var(--font-sans);  color: var(--fg-3); }
+
+.ce-lede     { font-style: italic; font-size: var(--fs-body-lg); color: var(--fg-3); line-height: var(--lh-relaxed); }
+.ce-emphasis { font-weight: var(--weight-bold); color: var(--fg-1); }
+
+html, body {
+  font-family: var(--font-sans);
+  color: var(--fg-1);
+  background: var(--bg-canvas);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
