@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collective Edge · Deck Template</title>
+
+<!-- Brand tokens + Montserrat + .ce-* type styles, from the kit CDN. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/brand-base.css">
+
+<style>
+  :root {
+    --cdn: "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main";
+    --grain: url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/imagery/CE_Background.jpeg");
+    --slide-pad: 96px;
+  }
+
+  html, body { background: #1a1a1a; }
+  .deck { display: flex; flex-direction: column; align-items: center; gap: 40px; padding: 40px 0; }
+
+  /* One 16:9 slide. 1280x720 base; each becomes one landscape page in print. */
+  .slide {
+    position: relative;
+    width: 1280px; height: 720px;
+    background: var(--bg-canvas);
+    overflow: hidden;
+    box-shadow: var(--shadow-3);
+    padding: var(--slide-pad);
+    display: flex; flex-direction: column;
+  }
+
+  /* ---- Dark grain slides (title + section divider) ---- */
+  .slide.dark { background: #000 var(--grain) center/cover no-repeat; color: var(--fg-on-dark-1); }
+  .slide.dark::before {             /* legibility scrim */
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.15) 55%, rgba(0,0,0,0.55) 100%);
+  }
+  .slide.dark > * { position: relative; z-index: 1; }
+
+  /* Slide corner meta (page number, kicker) */
+  .slide .corner { position: absolute; z-index: 1; bottom: var(--slide-pad); }
+  .slide .corner.left  { left: var(--slide-pad); }
+  .slide .corner.right { right: var(--slide-pad); text-align: right; }
+  .kicker-dark { font: 600 15px 'Montserrat'; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: rgba(255,255,255,0.5); }
+
+  /* ---- 1. Title slide ---- */
+  .title-slide { align-items: center; justify-content: center; text-align: center; }
+  .title-slide img { height: 96px; width: auto; }
+
+  /* ---- 2. Section divider ---- */
+  .divider-slide { justify-content: flex-end; }
+  .divider-slide img.block { position: absolute; top: var(--slide-pad); left: var(--slide-pad); height: 68px; z-index: 1; }
+  .divider-slide .num { font: 600 18px 'Montserrat'; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: rgba(255,255,255,0.55); margin: 0 0 12px; }
+  .divider-slide h1 {
+    font-family: var(--font-display); font-weight: var(--weight-extrabold); font-style: italic;
+    text-transform: uppercase; letter-spacing: var(--tracking-display); line-height: var(--lh-tight);
+    font-size: 88px; color: #fff; margin: 0; max-width: 16ch;
+  }
+  .divider-slide .meta { font: 600 15px 'Montserrat'; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: rgba(255,255,255,0.55); margin: 28px 0 0; }
+
+  /* ---- Header motif for light content slides ---- */
+  .head { padding-bottom: 20px; border-bottom: 1px solid var(--ce-mist); }
+  .head .ce-eyebrow { margin: 0 0 10px; }
+  .head h2 {
+    font: var(--weight-bold) var(--fs-h1)/var(--lh-snug) var(--font-sans);
+    color: var(--fg-1); margin: 0;
+  }
+  .head h2 .thin { font-weight: var(--weight-regular); color: var(--fg-3); }
+
+  /* ---- 3. Bold-explain slide ---- */
+  .rows { margin-top: 56px; display: flex; flex-direction: column; gap: 40px; }
+  .row { display: grid; grid-template-columns: 1fr; gap: 6px; }
+  .row .claim { font: var(--weight-extrabold) 34px/1.1 var(--font-sans); color: var(--fg-1); }
+  .row .explain { font: var(--weight-regular) 22px/1.4 var(--font-sans); color: var(--fg-2); }
+
+  /* ---- 4. Comparison slide ---- */
+  .compare { margin-top: 56px; flex: 1; display: grid; grid-template-columns: 1fr 1px 1fr; gap: 72px; }
+  .compare .rule { background: var(--ce-mist); }
+  .compare .col .label { margin: 0 0 24px; font-size: 28px; }
+  .compare .not  .label { color: var(--ce-mute); font-style: italic; }
+  .compare .this .label { font-weight: var(--weight-extrabold); font-style: italic; text-transform: uppercase; letter-spacing: var(--tracking-display); color: var(--fg-1); }
+  .compare p.item { margin: 0 0 18px; }
+  .compare .not  p.item { font: 400 20px/1.4 'Montserrat'; color: var(--ce-mute); }
+  .compare .this p.item { font: 500 22px/1.4 'Montserrat'; color: var(--fg-1); }
+
+  /* ---- Slide footer (light slides) ---- */
+  .slide-footer { position: absolute; left: var(--slide-pad); right: var(--slide-pad); bottom: 44px; display: flex; justify-content: space-between; align-items: center; }
+  .slide-footer .brand { font: 400 14px 'Montserrat'; color: var(--ce-mute); }
+  .slide-footer .pg { font: 700 14px 'Montserrat'; color: var(--ce-ink); }
+
+  /* ---- Print: one slide per landscape page ---- */
+  @media print {
+    html, body { background: #fff; }
+    .deck { gap: 0; padding: 0; }
+    .slide { box-shadow: none; width: 100%; height: 100vh; break-after: page; }
+    @page { size: landscape; margin: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- 1. TITLE -->
+  <section class="slide dark title-slide">
+    <img src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg" alt="Collective Edge">
+    <div class="corner right"><span class="kicker-dark">Strategic solutions · 2026</span></div>
+  </section>
+
+  <!-- 2. SECTION DIVIDER -->
+  <section class="slide dark divider-slide">
+    <img class="block" src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/mark-white.svg" alt="CE">
+    <p class="num">03</p>
+    <h1>Economic model.</h1>
+    <p class="meta">Facilitator: Ariana · 1:30 to 2:00</p>
+    <div class="corner right"><span class="kicker-dark">12</span></div>
+  </section>
+
+  <!-- 3. BOLD-EXPLAIN -->
+  <section class="slide">
+    <div class="head">
+      <p class="ce-eyebrow">Edge</p>
+      <h2>What we bring that others don't.</h2>
+    </div>
+    <div class="rows">
+      <div class="row"><span class="claim">Proven playbooks.</span><span class="explain">We understand what works and scale it.</span></div>
+      <div class="row"><span class="claim">Healthcare leaders.</span><span class="explain">We develop people.</span></div>
+      <div class="row"><span class="claim">Long-term builders.</span><span class="explain">We improve organizations for decades.</span></div>
+    </div>
+    <div class="slide-footer"><span class="brand">Collective Edge &nbsp;│&nbsp; Partner briefing</span><span class="pg">04</span></div>
+  </section>
+
+  <!-- 4. COMPARISON -->
+  <section class="slide">
+    <div class="head">
+      <p class="ce-eyebrow">What makes us different</p>
+      <h2>Not this. <span class="thin">This.</span></h2>
+    </div>
+    <div class="compare">
+      <div class="col not">
+        <p class="label">Not this</p>
+        <p class="item">Acquire and rebrand overnight.</p>
+        <p class="item">Financial extraction.</p>
+        <p class="item">Cut costs, then leave.</p>
+      </div>
+      <div class="rule"></div>
+      <div class="col this">
+        <p class="label">This</p>
+        <p class="item">Earn trust, then build together.</p>
+        <p class="item">Reinvestment in people and culture.</p>
+        <p class="item">Operate for decades.</p>
+      </div>
+    </div>
+    <div class="slide-footer"><span class="brand">Collective Edge &nbsp;│&nbsp; Partner briefing</span><span class="pg">05</span></div>
+  </section>
+
+</div>
+</body>
+</html>
