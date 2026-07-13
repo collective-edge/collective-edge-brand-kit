@@ -173,6 +173,20 @@ A ready-to-fill internal-document template lives at `templates/internal-doc.html
 
 ---
 
+## Verify before you ship
+
+A CE deliverable fails on details a spell-check cannot catch. Overlapping text, a clipped logo, an accent you cannot read, a font that quietly fell back to Arial. Before you call a CE deliverable done, verify the **rendered** result, not the source:
+
+1. **Render it and look.** Render the output to an image or PDF, or open the HTML in a browser, and visually inspect what actually renders. Text overlap, clipping, and overflow are invisible in the source and only show up in pixels. If your environment cannot render, say so plainly instead of claiming it looks clean.
+2. **No collisions.** Nothing overlapping, colliding, clipped, or overflowing. No text running past its container, off the page, or into the mark.
+3. **Legibility.** Contrast holds. Mid grays fail as body text on white, so keep body copy in ink or near black and reserve the light grays for hairlines and captions. Light text only on dark backgrounds.
+4. **Logo integrity.** Correct variant for the background, meaning the white variant on dark. Never stretched, skewed, or recolored. Clear space respected. Never on a busy area without a solid backing.
+5. **Type.** Montserrat actually rendered, not a system fallback. For PDFs, actually embedded in the file. Confirm it before you call the job done.
+6. **On-brand.** Every color comes from the palette above, no off-brand hues. Margins and alignment stay consistent. Page breaks stay clean for print.
+7. **State what you applied.** When you hand it back, name the brand choices you made (which treatment, which logo variant, how the font embedded) so the user can verify at a glance.
+
+---
+
 ## 7. Versioning & sign-off
 
 `@main` serves the latest; pin `@v1.0` for production. When you finish a CE deliverable, state the brand choices you applied (internal-doc vs hero treatment, which logo variant, font-embedding method) so the user can verify at a glance.
