@@ -4,9 +4,13 @@
    colors_and_type.css. Pull into any HTML with:
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/brand-base.css">
 
-   Collective Edge is monochromatic by design: a black "CE" block
-   (the Collective) against a light-grey skewed "Edge" shadow.
-   All product color comes from partner co-brands, never from CE.
+   Collective Edge is MOSTLY monochrome, not strictly: a black "CE"
+   block (the Collective) against a skewed "Edge" wedge, on a grey
+   ramp that carries documents, decks, UI chrome and body copy.
+   Two deliberate exceptions: the wedge may be rendered in CE gold
+   (--ce-gold), preferred wherever the mark must read small or sits
+   on a co-brand surface; and a partner's accent is expected on that
+   partner's own co-brand surface.
    White is the primary surface for documents; black is reserved
    for hero / section-divider / title surfaces.
    ============================================================ */
@@ -27,7 +31,10 @@
   --ce-slate:    #4A4A4A;   /* secondary text */
   --ce-steel:    #6E6E6E;   /* tertiary text / "EDGE" wordmark grey */
   --ce-mute:     #9A9A9A;   /* muted / "Not This" labels */
-  --ce-fog:      #C8C8C8;   /* the iconic "Edge" shadow grey */
+  --ce-fog:      #C8C8C8;   /* the "Edge" wedge, restrained treatment */
+  --ce-gold:     #FFD630;   /* the "Edge" wedge, color treatment. The one hue CE
+                               owns: wedge only, never the block, the letters,
+                               or a UI accent */
   --ce-mist:     #E2E2E2;   /* hairlines, dividers */
   --ce-paper:    #F4F4F4;   /* off-white surface */
   --ce-bone:     #FAFAFA;   /* lightest surface */

@@ -1,5 +1,5 @@
 {
-  "_note": "Collective Edge is monochromatic. Black CE block (the Collective) vs a light-grey skewed Edge shadow. All product color comes from partner co-brands, never from CE itself. White is the primary surface for documents; black is reserved for hero / section-divider / title surfaces.",
+  "_note": "Collective Edge is MOSTLY monochrome, not strictly. A black CE block (the Collective) against a skewed Edge wedge, on a grey ramp that carries documents, decks, UI chrome and body copy; that restraint is the brand. Two things are deliberately not grey. The Edge wedge may be rendered in CE gold #FFD630, which is preferred wherever the mark has to read small (favicons, tabs, avatars) and on co-brand surfaces. And on a partner co-brand surface the partner accent is expected to appear. White is the primary surface for documents; black is reserved for hero / section-divider / title surfaces.",
   "brandCore": {
     "black":    { "hex": "#000000", "role": "Primary brand black; hero / divider surfaces" },
     "ink":      { "hex": "#111111", "role": "Near-black body text (--fg-1)" },
@@ -7,7 +7,8 @@
     "slate":    { "hex": "#4A4A4A", "role": "Secondary text (--fg-2)" },
     "steel":    { "hex": "#6E6E6E", "role": "Tertiary text / EDGE wordmark grey (--fg-3)" },
     "mute":     { "hex": "#9A9A9A", "role": "Muted / 'Not This' labels (--fg-4)" },
-    "fog":      { "hex": "#C8C8C8", "role": "The iconic Edge shadow grey — the one unambiguous CE 'color'" },
+    "fog":      { "hex": "#C8C8C8", "role": "The Edge wedge in its restrained grey treatment; the quiet half of the pair with gold" },
+    "gold":     { "hex": "#FFD630", "role": "The Edge wedge in its color treatment. The one hue CE owns, used on the wedge only, never on the block, the letters or as a UI accent" },
     "mist":     { "hex": "#E2E2E2", "role": "Hairlines, dividers (--border-1)" },
     "paper":    { "hex": "#F4F4F4", "role": "Off-white surface" },
     "bone":     { "hex": "#FAFAFA", "role": "Lightest surface (--bg-surface)" },
@@ -32,7 +33,7 @@
     "info": { "hex": "#2A5A8C", "role": "info blue" }
   },
   "partners": {
-    "_note": "'Powered by CE' co-brand accents. Used ONLY inside a partner's own co-brand surface — never as a CE accent.",
+    "_note": "'Powered by CE' co-brand accents. Used inside that partner's own co-brand surface. They color the partner's side of the lockup, never the CE block or letters; CE's own hue is brandCore.gold on the wedge.",
     "apex":        "#F2C82F",
     "royal":       "#5B2A8C",
     "stadiumRed":  "#E0143C",

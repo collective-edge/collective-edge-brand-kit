@@ -1,6 +1,6 @@
 # Collective Edge Brand Kit
 
-Cloud-hosted brand assets and Claude skill for Collective Edge — a monochromatic black-to-white system, Montserrat bold-italic display type, the CE block mark + "CE | COLLECTIVE EDGE" wordmark, and the "Powered by CE" partner co-brand model. A `SKILL.md` teaches Claude to apply the brand to any document, slide, one-pager, or UI.
+Cloud-hosted brand assets and Claude skill for Collective Edge — a mostly-monochrome black-to-white system, Montserrat bold-italic display type, the CE block mark + "CE | COLLECTIVE EDGE" wordmark, and the "Powered by CE" partner co-brand model. A `SKILL.md` teaches Claude to apply the brand to any document, slide, one-pager, or UI.
 
 This kit is the CDN-hosted, agent-facing reflection of the **Collective Edge Design System** (source of truth: the "Collective Edge Design System" project on claude.ai/design). Its tokens mirror that system's `colors_and_type.css` exactly.
 
@@ -70,14 +70,15 @@ cd ~/.claude/skills/collective-edge-brand-guidelines && git pull
 
 ## Color reference
 
-Collective Edge is monochromatic — a single black-to-white grey ramp, no hue. Color enters only through a partner co-brand surface. White is the primary document canvas; black is reserved for hero / section-divider / title surfaces. See `assets/colors.json` for the full machine-readable token set (grey ramp, semantic fg/bg, borders, status, partner accents).
+Collective Edge is **mostly** monochrome, not strictly. A single black-to-white grey ramp carries documents, decks, UI chrome and body copy, and that restraint is the brand. Two deliberate exceptions: the Edge wedge in the mark may be gold `#FFD630` (preferred wherever the mark has to read small, and on co-brand surfaces), and a partner's accent is expected on that partner's own co-brand surface. White is the primary document canvas; black is reserved for hero / section-divider / title surfaces. See `assets/colors.json` for the full machine-readable token set (grey ramp, semantic fg/bg, borders, status, partner accents).
 
 | Name | Hex | Use |
 |---|---|---|
 | White | `#FFFFFF` | Primary document canvas |
 | Ink | `#111111` | Body text on light |
 | Steel | `#6E6E6E` | Tertiary text; the "EDGE" wordmark grey |
-| Fog | `#C8C8C8` | The iconic "Edge" shadow grey — the one unambiguous CE color |
+| Fog | `#C8C8C8` | The "Edge" wedge, restrained treatment |
+| Gold | `#FFD630` | The "Edge" wedge, color treatment. The one hue CE owns; wedge only |
 | Mist | `#E2E2E2` | Hairlines, dividers, card borders |
 | Black | `#000000` | Hero / section-divider / title surfaces |
 

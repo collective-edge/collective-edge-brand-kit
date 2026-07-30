@@ -1,13 +1,13 @@
 ---
 name: collective-edge-brand-guidelines
-description: Applies Collective Edge's brand standards — a monochromatic black-to-white system, Montserrat bold-italic display type, the CE block mark and "CE | COLLECTIVE EDGE" wordmark, and the "Powered by CE" partner co-brand model — to ANY output representing Collective Edge. Use whenever generating CE materials: internal documents, memos, one-pagers, reports, slides, emails, web content, product UI, tables, or any visual artifact. Also use when reviewing materials for brand compliance. Defaults to the restrained internal-document treatment; the flashy dark-grain hero treatment is reserved for marketing/title surfaces.
+description: Applies Collective Edge's brand standards — a mostly-monochrome black-to-white system, Montserrat bold-italic display type, the CE block mark and "CE | COLLECTIVE EDGE" wordmark, and the "Powered by CE" partner co-brand model — to ANY output representing Collective Edge. Use whenever generating CE materials: internal documents, memos, one-pagers, reports, slides, emails, web content, product UI, tables, or any visual artifact. Also use when reviewing materials for brand compliance. Defaults to the restrained internal-document treatment; the flashy dark-grain hero treatment is reserved for marketing/title surfaces.
 ---
 
 # Collective Edge — Brand Guidelines
 
 Collective Edge ("CE") is a holding/operating company that partners with regional healthcare-transportation providers and brings them shared systems, leadership, and long-term capital while preserving local ownership. The brand runs on a **"Powered by CE"** co-brand model: every partner keeps its own logo; CE shows up beside them as the connective tissue.
 
-**The brand in one line:** monochromatic, confident, operational, adult. Bold-italic display type used sparingly, generous whitespace, hairline dividers, no decorative flourish. It reads as a senior operator giving a direct briefing — the opposite of consumer-tech playfulness.
+**The brand in one line:** mostly monochrome, confident, operational, adult. Bold-italic display type used sparingly, generous whitespace, hairline dividers, no decorative flourish. It reads as a senior operator giving a direct briefing — the opposite of consumer-tech playfulness.
 
 **This skill is the authoritative reflection of the CE Design System** (source of truth lives in the "Collective Edge Design System" project on claude.ai/design). Tokens here mirror its `colors_and_type.css` exactly.
 
@@ -57,7 +57,12 @@ body { font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif; }
 
 ## 1. Color
 
-**Fundamentally monochromatic** — pure black, pure white, and a precise grey ramp between. CE itself never introduces a hue; color enters only through a partner co-brand surface.
+**Mostly monochrome, not strictly.** Pure black, pure white and a precise grey ramp between carry nearly everything: documents, decks, UI chrome, body copy. That restraint is the brand, and it is the default you should reach for.
+
+It is not an absolute rule, and the kit used to say it was. Two deliberate exceptions:
+
+1. **CE owns one hue.** The Edge wedge in the mark may be rendered in **CE gold `#FFD630`**. Prefer it wherever the mark has to read at small sizes (favicons, browser tabs, avatars) and on co-brand surfaces, where a grey wedge on a light tile is close to invisible. The grey wedge stays correct for restrained document and print work.
+2. **Partner accents belong on partner surfaces.** On a "Powered by CE" co-brand surface the partner's color is expected. CE is not required to stay grey there.
 
 | Token | Hex | Role |
 |---|---|---|
@@ -67,7 +72,8 @@ body { font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif; }
 | `--ce-slate` | `#4A4A4A` | Secondary text (`--fg-2`) |
 | `--ce-steel` | `#6E6E6E` | Tertiary text / "EDGE" grey (`--fg-3`) |
 | `--ce-mute` | `#9A9A9A` | Muted / "Not This" labels (`--fg-4`) |
-| `--ce-fog` | `#C8C8C8` | **The iconic "Edge" shadow grey** — the one unambiguous CE color |
+| `--ce-fog` | `#C8C8C8` | **The "Edge" wedge, restrained treatment.** The quiet half of the pair |
+| `--ce-gold` | `#FFD630` | **The "Edge" wedge, color treatment.** The one hue CE owns. Wedge only |
 | `--ce-mist` | `#E2E2E2` | Hairlines, dividers (`--border-1`) |
 | `--ce-paper` / `--ce-bone` | `#F4F4F4` / `#FAFAFA` | Off-white / lightest surfaces |
 | `--ce-white` | `#FFFFFF` | Brand white; **primary document canvas** |
@@ -75,7 +81,7 @@ body { font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif; }
 - **Text on light:** `#111` primary, `#4A4A4A` secondary, `#6E6E6E` metadata.
 - **Text on dark:** `#FFFFFF` primary, `#D6D6D6` secondary, `#9E9E9E` tertiary.
 - **Status colors** (`--status-go #1E7A4D`, `--status-warn #B5821A`, `--status-stop #B0322B`, `--status-info #2A5A8C`) exist for the healthcare/operational context. Use **sparingly and functionally** — never as decoration or theme.
-- **Partner accents** (`--partner-apex #F2C82F`, `--partner-royal #5B2A8C`, etc.) appear **only inside that partner's own co-brand surface** — never as a CE accent.
+- **Partner accents** (`--partner-apex #F2C82F`, `--partner-royal #5B2A8C`, etc.) belong on that partner's own co-brand surface. They color the partner's side of the lockup, not the CE block or its letters. CE's own hue is `--ce-gold` on the wedge, and the two can sit on the same surface.
 
 ---
 
@@ -98,9 +104,11 @@ Rules: no more than 3 weights per piece; uppercase always tracked; no italic bod
 ## 3. Logo
 
 - **Wordmark lockup** — "CE | COLLECTIVE EDGE" horizontal lockup. Primary logo where there's room. `horizontal-black.svg` on light, `horizontal-white.svg` on dark.
-- **CE block mark** — the iconic skewed parallelogram with the light-grey Edge shadow. Icon-only contexts (favicons, avatars, badges, the left half of a co-brand lockup). `mark-black.svg` on light, `mark-white.svg` on dark. Crisp 0px corners — it is a parallelogram, not a rounded badge.
+- **CE block mark** — the iconic skewed parallelogram with the Edge wedge. Icon-only contexts (favicons, avatars, badges, the left half of a co-brand lockup). `mark-black.svg` on light, `mark-white.svg` on dark. Crisp 0px corners — it is a parallelogram, not a rounded badge.
+  - The wedge takes either treatment: grey `#C8C8C8` for restrained document and print work, or **gold `#FFD630`** where the mark must read small or sits on a co-brand surface. **Every SVG and PNG shipped in this kit is currently the grey treatment**, so a gold wedge means recoloring that one path by hand until gold variants land here.
+  - **On a light tile, check the block is actually black.** The shipped `mark-black.svg` fills the block `#ffffff` and the letters `#000000`, which renders as white-on-white with only the letters visible. Dropped into a favicon this reads as broken. Invert it: block `#000000`, letters `#ffffff`.
 
-Rules: match the file to the background (don't CSS-recolor); keep clear space ≥ the height of the Edge shadow block; min lockup ~120px / 1in, min mark ~28px; never stretch, skew, rotate, add shadow/glow/gradient, recolor to a hue, or split the mark from the wordmark in the lockup. The **vertical bar `│` separator** in `CE | COLLECTIVE EDGE` is a brand signature — reuse it (as a 1px grey rule, not a literal glyph) whenever pairing CE with a partner or section name.
+Rules: match the file to the background (don't CSS-recolor); keep clear space ≥ the height of the Edge shadow block; min lockup ~120px / 1in, min mark ~28px; never stretch, skew, rotate, add shadow/glow/gradient, or split the mark from the wordmark in the lockup. Recoloring is limited to the wedge, and only to `#C8C8C8` or `#FFD630`; the block and the letters stay black or white. The **vertical bar `│` separator** in `CE | COLLECTIVE EDGE` is a brand signature — reuse it (as a 1px grey rule, not a literal glyph) whenever pairing CE with a partner or section name.
 
 ---
 
