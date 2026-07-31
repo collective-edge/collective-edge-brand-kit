@@ -1,6 +1,6 @@
 ---
 name: collective-edge-brand-guidelines
-description: Applies Collective Edge's brand standards to ANY output representing Collective Edge. A monochrome-by-default black-to-white system, Montserrat bold-italic display type, the CE block mark and "CE │ COLLECTIVE EDGE" wordmark, and the "Powered by Collective Edge" co-brand model, which is how CE appears on almost everything. Color is allowed and expected on co-brand surfaces, in data, and on the CE gold wedge. Use whenever generating CE materials: internal documents, memos, one-pagers, reports, slides, emails, web content, product UI, dashboards, tables, or any visual artifact, and when reviewing materials for brand compliance. Defaults to the restrained internal-document treatment; the dark-grain hero treatment is reserved for marketing and title surfaces.
+description: Applies Collective Edge's brand standards to ANY output representing Collective Edge. CE itself is monochrome, a black-to-white system with no brand hue of its own, set in Montserrat with the CE block mark and "CE │ COLLECTIVE EDGE" wordmark. It runs on the "Powered by Collective Edge" co-brand model, which is how CE appears on almost everything, and on a co-brand surface the color is the PARTNER's: the Edge wedge takes Royal purple or Apex gold. Use whenever generating CE materials: internal documents, memos, one-pagers, reports, slides, emails, web content, product UI, dashboards, tables, or any visual artifact, and when reviewing materials for brand compliance. Defaults to the restrained internal-document treatment; the dark-grain hero treatment is reserved for marketing and title surfaces.
 ---
 
 # Collective Edge, Brand Guidelines
@@ -9,7 +9,7 @@ Collective Edge ("CE") is a holding and operating company that partners with reg
 
 **The brand in one line:** restrained, confident, operational, adult. Bold-italic display type used sparingly, generous whitespace, hairline dividers, no decorative flourish. It reads as a senior operator giving a direct briefing, the opposite of consumer-tech playfulness.
 
-**Read this first.** CE's restraint is about *discipline*, not the absence of color. Most CE work is a co-brand, and a co-brand surface is expected to carry color. See section 2 before you assume a surface should be grey.
+**Read this first.** CE has no brand color. It is black, white, and grey, and that is final. But most CE work is a co-brand, and a co-brand surface does carry color: the partner's. So do not assume a CE surface is grey, and do not go looking for a CE hue to add. See section 2.
 
 **This skill is the authoritative reflection of the CE Design System** (source of truth lives in the "Collective Edge Design System" project on claude.ai/design). Tokens here mirror its `colors_and_type.css`.
 
@@ -35,8 +35,8 @@ This kit is cloud-hosted on a public CDN (jsDelivr, backed by GitHub). **Do not 
 | Montserrat (variable TTF) | `assets/fonts/Montserrat-VariableFont_wght.ttf` |
 | Wordmark lockup on light | `assets/logos/horizontal-black.svg` |
 | Wordmark lockup on dark | `assets/logos/horizontal-white.svg` |
-| **Block mark on light** (black block, white letters) | `assets/logos/mark-on-light-{grey,gold,royal}.svg` |
-| **Block mark on dark** (white block, black letters) | `assets/logos/mark-on-dark-{grey,gold,royal}.svg` |
+| **Block mark on light** (black block, white letters) | `assets/logos/mark-on-light-{grey,royal,apex}.svg` |
+| **Block mark on dark** (white block, black letters) | `assets/logos/mark-on-dark-{grey,royal,apex}.svg` |
 | Block mark, legacy names (see the warning in section 4) | `assets/logos/mark-black.svg`, `assets/logos/mark-white.svg` |
 | Brand colors (JSON) | `assets/colors.json` |
 | Base CSS (tokens plus type styles) | `snippets/brand-base.css` |
@@ -67,18 +67,21 @@ body { font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif; }
 
 ## 1. Color
 
-**Monochrome is CE's default, not a law.** Pure black, pure white, and a precise grey ramp between them carry CE's own material: documents, decks, chrome, body copy. That restraint is the brand and it is what you reach for when nothing tells you otherwise.
+**Collective Edge has no color of its own.** Pure black, pure white, and a precise grey ramp between them. That is the entire CE palette, and it is not going to grow.
 
-It is not a ban on color, and this kit used to read like one. The real rule is narrower and easier to hold:
+That is not the same as saying a CE surface is always grey, which is what this kit used to imply. CE almost never appears alone. It appears beside a partner, and on those surfaces there is color. The rule that holds both facts:
 
-> **Every hue on a CE surface has a job you can name.** Ownership, state, meaning, or data. Nothing is colored for decoration.
+> **CE stays monochrome. The color belongs to the partner.**
+
+So a co-branded surface carries the partner's hue, and CE's own contribution to it is still black, white, and grey. There is no CE gold, no CE accent, no CE brand hue waiting to be used.
 
 ### Where the color comes from
 
 | What you are making | What the palette is |
 |---|---|
 | CE's own documents, decks, memos, reports, one-pagers | The grey ramp. Monochrome. |
-| The CE mark, anywhere | Black or white block and letters, plus **one color on the Edge wedge**: grey, CE gold, or the partner's |
+| The CE mark, standing alone | Black or white block and letters, **grey** `#C8C8C8` wedge |
+| The CE mark, on a co-brand surface | Same black or white block and letters, wedge in **the partner's color** |
 | A partner-led co-brand surface (mode A, section 2) | **The partner's palette leads.** CE adds structure and finish, no hue |
 | A CE product delivered to a partner or their customer (mode B, section 2) | CE grey ramp, plus **the partner's accent** used functionally |
 | Anything carrying operational or clinical status | The four status colors, functionally, never as theme |
@@ -96,8 +99,7 @@ What stays true in every row: the CE block and its letters are black or white, n
 | `--ce-slate` | `#4A4A4A` | Secondary text (`--fg-2`) |
 | `--ce-steel` | `#6E6E6E` | Tertiary text, the "EDGE" grey (`--fg-3`) |
 | `--ce-mute` | `#9A9A9A` | Muted and "Not This" labels (`--fg-4`) |
-| `--ce-fog` | `#C8C8C8` | **The Edge wedge, restrained treatment.** The quiet half of the pair |
-| `--ce-gold` | `#FFD630` | **The Edge wedge, color treatment.** The one hue CE owns. Wedge only |
+| `--ce-fog` | `#C8C8C8` | **The Edge wedge** when CE stands alone |
 | `--ce-mist` | `#E2E2E2` | Hairlines, dividers (`--border-1`) |
 | `--ce-paper`, `--ce-bone` | `#F4F4F4`, `#FAFAFA` | Off-white and lightest surfaces |
 | `--ce-white` | `#FFFFFF` | Brand white; **primary document canvas** |
@@ -105,21 +107,23 @@ What stays true in every row: the CE block and its letters are black or white, n
 - **Text on light:** `#111` primary, `#4A4A4A` secondary, `#6E6E6E` metadata.
 - **Text on dark:** `#FFFFFF` primary, `#D6D6D6` secondary, `#9E9E9E` tertiary.
 
-### The wedge is where color lives
+### The wedge is where the partner enters
 
-**The Edge wedge is the one part of the mark that changes color, and it is how CE co-brands.** The block stays black or white, the letters stay the opposite, and the wedge carries the hue:
+**The Edge wedge is the one part of the mark that carries color, and that color is the partner's.** The block stays black or white, the letters stay the opposite, and only the wedge changes:
 
 | Wedge | Hex | When |
 |---|---|---|
-| Grey | `#C8C8C8` | Restrained document and print work. The quiet default |
-| **CE gold** | `#FFD630` | CE's own color treatment, and wherever the mark must read at small sizes (favicons, tabs, avatars) where grey on a light tile is close to invisible |
-| **Partner color** | their primary | **On a surface co-branded with that partner.** Royal Ambulance `#572E72` purple. Apex Paramedics `#FFD630` |
+| Grey | `#C8C8C8` | **CE standing alone.** The default, and the only treatment on a CE-only surface |
+| Royal purple | `#572E72` | A surface co-branded with **Royal Ambulance** |
+| Apex gold | `#f9ad16` | A surface co-branded with **Apex Paramedics** (Pantone 1235 C, their kit value) |
 
-This is the heart of the co-brand model. CE does not sit beside a partner unchanged, it takes their color into its own mark. The partner enters CE through the wedge, and nothing else about the mark moves. Ready-made files ship for every combination, so **never hand-recolor**: `mark-on-light-royal.svg`, `mark-on-dark-gold.svg`, and so on.
+This is the heart of the co-brand model, and it is worth stating plainly: **CE does not have a color, so when CE co-brands it takes the partner's into its own mark.** The partner enters CE through the wedge and nothing else about the mark moves. As CE takes on more operating companies, each one gets a wedge color and nothing else changes.
 
-Note that the Apex co-brand wedge is CE gold `#FFD630`, **not** Apex's own kit gold `#f9ad16`. That is deliberate in the approved artwork. Do not "correct" it to the Apex kit value.
+Every combination ships as a file, so **never hand-recolor**: `mark-on-light-royal.svg`, `mark-on-dark-apex.svg`, and so on. See section 4.
 
-Whatever the wedge color, it never moves off the wedge: not onto the block, not onto the letters, not into UI chrome. CE gold measures 1.41:1 against white, so it would fail as text or a thin line anyway. It works on the wedge because the wedge is a shape inside a mark, not something anyone has to read.
+The wedge color never moves off the wedge: not onto the block, not onto the letters, not into UI chrome. It works there because the wedge is a shape inside a mark, not something anyone has to read. Apex gold measures 1.91:1 against white and would fail as text or a thin line, which is fine on the wedge and not fine anywhere else.
+
+One honest limitation: on a CE-only surface the grey wedge nearly disappears at favicon sizes on a white tile. There is no CE color to reach for instead. Either give the mark a dark backing at small sizes, or accept it, but do not invent a hue to solve it.
 
 ### Status colors
 
@@ -178,8 +182,8 @@ The standing CE signature on any co-branded product. A slim strip with a 1px hai
    Stadium and LifeWest have **no kit yet**, so the hexes carried for them are unreconciled placeholders. Confirm with the partner before shipping, and publish a kit when one of them becomes real work.
 2. **Check contrast before a partner color becomes ink.** Bright brand colors usually fail as text or small UI on white. Apex gold `#f9ad16` fails 3:1 on white; the Apex kit ships the text-safe deep gold `#B77808` for exactly this. Use the darkened step the partner's kit provides. Do not invent your own darkening, and do not ship the bright value as body text or a thin chart line.
 3. **Partner color is functional in mode B.** It marks state and identity. It does not tint surfaces, fill cards, or become a theme.
-4. **The wedge takes the partner's color. Nothing else in the mark does.** This is the co-brand mechanism, not a violation of it. Royal `#572E72`, Apex `#FFD630`. The block stays black or white and the letters stay the opposite, on every surface. Use the ready-made file (`mark-on-light-royal.svg` and friends) rather than recoloring by hand.
-5. **CE gold and a partner hue may share a surface.** A gold CE wedge next to Apex gold is fine. They are two marks, and the hairline keeps them distinct.
+4. **The wedge takes the partner's color. Nothing else in the mark does.** This is the co-brand mechanism, not a violation of it. Royal `#572E72`, Apex `#f9ad16`. The block stays black or white and the letters stay the opposite, on every surface. Use the ready-made file (`mark-on-light-royal.svg` and friends) rather than recoloring by hand.
+5. **The wedge and the partner's own mark carry the same hue, and that is the point.** An Apex gold wedge beside the Apex logo reads as one system. They stay two separate marks, and the hairline keeps them distinct.
 
 ### Never, on a co-brand surface
 
@@ -212,11 +216,11 @@ Rules: no more than 3 weights per piece; uppercase always tracked; no italic bod
 
 - **Wordmark lockup.** "CE │ COLLECTIVE EDGE" horizontal lockup. Primary logo where there is room. `horizontal-black.svg` on light, `horizontal-white.svg` on dark.
 - **CE block mark.** The skewed parallelogram with the Edge wedge, its left corners softly rounded. Icon-only contexts (favicons, avatars, badges, the CE half of a co-brand lockup).
-  - **Use the `mark-on-light-*` and `mark-on-dark-*` files. The name says the background.** On light: black block, white letters. On dark: white block, black letters. Pick the wedge by surface: `grey` for restrained work, `gold` for CE's own color treatment and anything small, `royal` for a Royal co-brand. Apex co-brands use `gold`.
+  - **Use the `mark-on-light-*` and `mark-on-dark-*` files. The name says the background.** On light: black block, white letters. On dark: white block, black letters. Pick the wedge by surface: `grey` when CE stands alone, `royal` on a Royal co-brand, `apex` on an Apex co-brand.
   - **The two legacy files `mark-black.svg` and `mark-white.svg` are named after their letters, not their background, which is the reverse of every other file in this kit.** `mark-white.svg` (white letters on a black block) is the one that belongs on a **light** surface; `mark-black.svg` belongs on a dark one. Following the old "black on light" instruction is what produced a white-on-white favicon in a shipped product. They are kept only so existing links do not break. Prefer the `mark-on-*` files, which are also cleaned of a stray glyph the exporter left at the bottom edge of both legacy files.
   - Every wedge color ships as a file. **Never hand-recolor a mark.**
 
-Rules: match the file to the background, do not CSS-recolor; keep clear space at least the height of the Edge shadow block; minimum lockup about 120px or 1in, minimum mark about 28px; never stretch, skew, rotate, add shadow, glow, or gradient, or split the mark from the wordmark in the lockup. **Color is limited to the wedge**, which takes grey `#C8C8C8`, CE gold `#FFD630`, or the partner's primary on a co-brand surface. The block and the letters stay black or white on every surface, including co-brands. The **vertical bar `│` separator** is a brand signature: reuse it as a 1px grey rule whenever pairing CE with a partner, a customer, or a section name.
+Rules: match the file to the background, do not CSS-recolor; keep clear space at least the height of the Edge shadow block; minimum lockup about 120px or 1in, minimum mark about 28px; never stretch, skew, rotate, add shadow, glow, or gradient, or split the mark from the wordmark in the lockup. **Color is limited to the wedge**, which is grey `#C8C8C8` when CE stands alone and the partner's color on a co-brand surface. The block and the letters stay black or white on every surface, including co-brands. The **vertical bar `│` separator** is a brand signature: reuse it as a 1px grey rule whenever pairing CE with a partner, a customer, or a section name.
 
 ---
 

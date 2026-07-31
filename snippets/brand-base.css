@@ -4,13 +4,14 @@
    colors_and_type.css. Pull into any HTML with:
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/brand-base.css">
 
-   Monochrome is CE's DEFAULT, not a law: a black "CE" block (the
+   COLLECTIVE EDGE HAS NO COLOR OF ITS OWN: a black "CE" block (the
    Collective) against a skewed "Edge" wedge, on a grey ramp that
-   carries CE's own documents, decks, chrome and body copy. The real
-   rule is that every hue on a CE surface has a job you can name,
-   and nothing is colored for decoration. Color is expected on the
-   Edge wedge (--ce-gold), on co-brand surfaces (see the partner
-   tokens below and SKILL.md section 2), on status, and in charts.
+   carries CE's documents, decks, chrome and body copy. There is no
+   CE gold and no CE accent. That is not the same as saying a CE
+   surface is always grey. CE almost never appears alone, and on a
+   co-brand surface the color is the PARTNER's: the Edge wedge takes
+   their hue (--wedge-royal, --wedge-apex). CE stays monochrome, the
+   color belongs to the partner. See SKILL.md section 2.
    White is the primary surface for documents; black is reserved
    for hero, section-divider and title surfaces.
    ============================================================ */
@@ -31,10 +32,7 @@
   --ce-slate:    #4A4A4A;   /* secondary text */
   --ce-steel:    #6E6E6E;   /* tertiary text / "EDGE" wordmark grey */
   --ce-mute:     #9A9A9A;   /* muted / "Not This" labels */
-  --ce-fog:      #C8C8C8;   /* the "Edge" wedge, restrained treatment */
-  --ce-gold:     #FFD630;   /* the "Edge" wedge, color treatment. The one hue CE
-                               owns: wedge only, never the block, the letters,
-                               or a UI accent */
+  --ce-fog:      #C8C8C8;   /* the "Edge" wedge when CE stands alone */
   --ce-mist:     #E2E2E2;   /* hairlines, dividers */
   --ce-paper:    #F4F4F4;   /* off-white surface */
   --ce-bone:     #FAFAFA;   /* lightest surface */
@@ -66,6 +64,16 @@
   --status-warn: #B5821A;   /* attention amber */
   --status-stop: #B0322B;   /* alert red */
   --status-info: #2A5A8C;   /* info blue */
+
+  /* ---- THE EDGE WEDGE ----
+     The one part of the CE block mark that carries color, and that color is
+     the PARTNER's. Grey when CE stands alone; their hue when co-branding.
+     Block and letters stay black or white always. Every combination ships as
+     a file (assets/logos/mark-on-{light,dark}-{grey,royal,apex}.svg), so
+     never hand-recolor a mark. */
+  --wedge-standalone: #C8C8C8;  /* = --ce-fog. CE alone */
+  --wedge-royal:      #572E72;  /* Royal Ambulance co-brand */
+  --wedge-apex:       #f9ad16;  /* Apex Paramedics co-brand, Pantone 1235 C */
 
   /* ---- PARTNER CO-BRAND ACCENTS ("Powered by Collective Edge") ----
      A convenience mirror that goes stale. Each partner's own brand kit is

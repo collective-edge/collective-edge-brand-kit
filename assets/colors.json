@@ -1,5 +1,5 @@
 {
-  "_note": "Monochrome is Collective Edge's DEFAULT, not a law. A black CE block (the Collective) against a skewed Edge wedge, on a grey ramp that carries CE's own documents, decks, chrome and body copy. The real rule: every hue on a CE surface has a job you can name (ownership, state, meaning, or data), and nothing is colored for decoration. Color is expected in four places. (1) The Edge wedge may be rendered in CE gold #FFD630, preferred wherever the mark has to read small (favicons, tabs, avatars) and on co-brand surfaces. (2) On a partner-led co-brand surface the partner's palette leads and CE adds no hue. (3) On a CE-led product for a partner or their customer, the partner's accent is the one hue, used functionally (active nav, live state, one chart series). (4) Charts pick series colors for legibility and colorblind separation, not from this palette. White is the primary surface for documents; black is reserved for hero, section-divider and title surfaces. See SKILL.md section 2 for the co-brand rules.",
+  "_note": "COLLECTIVE EDGE HAS NO COLOR OF ITS OWN. Black, white, and a grey ramp, and that palette is not going to grow. There is no CE gold, no CE accent. That is not the same as saying a CE surface is always grey: CE almost never appears alone, and on a co-brand surface the color is the PARTNER's. The rule that holds both facts is 'CE stays monochrome, the color belongs to the partner.' Color appears in four places, none of them a CE hue. (1) The Edge wedge in the block mark, grey #C8C8C8 when CE stands alone and the partner's color on a co-brand surface (see the top-level 'wedge' block). (2) On a partner-led co-brand surface the partner's palette leads and CE adds no hue. (3) On a CE-led product for a partner or their customer, the partner's accent is the one hue, used functionally (active nav, live state, one chart series). (4) Charts pick series colors for legibility and colorblind separation, not from this palette. White is the primary surface for documents; black is reserved for hero, section-divider and title surfaces. See SKILL.md section 2 for the co-brand rules.",
   "brandCore": {
     "black":    { "hex": "#000000", "role": "Primary brand black; hero / divider surfaces" },
     "ink":      { "hex": "#111111", "role": "Near-black body text (--fg-1)" },
@@ -7,21 +7,19 @@
     "slate":    { "hex": "#4A4A4A", "role": "Secondary text (--fg-2)" },
     "steel":    { "hex": "#6E6E6E", "role": "Tertiary text / EDGE wordmark grey (--fg-3)" },
     "mute":     { "hex": "#9A9A9A", "role": "Muted / 'Not This' labels (--fg-4)" },
-    "fog":      { "hex": "#C8C8C8", "role": "The Edge wedge in its restrained grey treatment; the quiet half of the pair with gold" },
-    "gold":     { "hex": "#FFD630", "role": "The Edge wedge in CE's own color treatment. Used on the wedge only, never on the block, the letters or as a UI accent" },
+    "fog":      { "hex": "#C8C8C8", "role": "The Edge wedge when CE stands alone. On a co-brand surface the wedge takes the partner's color instead; see the top-level wedge block" },
     "mist":     { "hex": "#E2E2E2", "role": "Hairlines, dividers (--border-1)" },
     "paper":    { "hex": "#F4F4F4", "role": "Off-white surface" },
     "bone":     { "hex": "#FAFAFA", "role": "Lightest surface (--bg-surface)" },
     "white":    { "hex": "#FFFFFF", "role": "Primary brand white; primary document canvas" }
   },
   "wedge": {
-    "_note": "The Edge wedge is the ONE part of the block mark that changes color, and it is how CE co-brands: the partner enters the mark through the wedge and nothing else moves. Block and letters stay black or white always. Every combination ships as a file (assets/logos/mark-on-{light,dark}-{grey,gold,royal}.svg), so never hand-recolor.",
-    "grey":  { "hex": "#C8C8C8", "file": "grey",  "role": "Restrained document and print work. The quiet default" },
-    "gold":  { "hex": "#FFD630", "file": "gold",  "role": "CE's own color treatment, and anywhere the mark must read small (favicons, tabs, avatars) where grey on a light tile is close to invisible" },
+    "_note": "The Edge wedge is the ONE part of the block mark that carries color, and that color is the PARTNER's. CE has no hue of its own, so when CE co-brands it takes the partner's into its own mark; the partner enters through the wedge and nothing else moves. Block and letters stay black or white always. Every combination ships as a file (assets/logos/mark-on-{light,dark}-{grey,royal,apex}.svg), so never hand-recolor. As CE takes on more operating companies, each gets a wedge color here and nothing else changes.",
+    "standalone": { "hex": "#C8C8C8", "file": "grey", "role": "CE standing alone. The default, and the only treatment on a CE-only surface. Note it nearly disappears at favicon sizes on a white tile; give the mark a dark backing rather than inventing a CE hue" },
     "byPartner": {
-      "_note": "On a surface co-branded with that partner. Apex uses CE gold #FFD630, NOT Apex's own kit gold #f9ad16; that is deliberate in the approved artwork, do not 'correct' it.",
-      "royal": { "hex": "#572E72", "file": "royal" },
-      "apex":  { "hex": "#FFD630", "file": "gold" }
+      "_note": "On a surface co-branded with that partner. Values are the partner kit's own primary, so they stay in step with that brand.",
+      "royal": { "hex": "#572E72", "file": "royal", "role": "Royal Ambulance purple, from royal-brand-kit" },
+      "apex":  { "hex": "#f9ad16", "file": "apex",  "role": "Apex Paramedics gold, Pantone 1235 C, from apex-brand-kit" }
     }
   },
   "foreground": {
@@ -43,7 +41,7 @@
     "info": { "hex": "#2A5A8C", "role": "info blue" }
   },
   "partners": {
-    "_note": "'Powered by Collective Edge' co-brand accents. THIS IS A CONVENIENCE MIRROR AND IT GOES STALE. Each partner's own brand kit is the source of truth for its colors and logos; pull from there. A partner's color may run the whole surface (partner-led mode A) or act as the single functional accent on a CE surface (CE-led mode B). It never colors the CE block or its letters; CE's own hue is brandCore.gold on the wedge only.",
+    "_note": "'Powered by Collective Edge' co-brand accents. THIS IS A CONVENIENCE MIRROR AND IT GOES STALE. Each partner's own brand kit is the source of truth for its colors and logos; pull from there. A partner's color may run the whole surface (partner-led mode A) or act as the single functional accent on a CE surface (CE-led mode B). It never colors the CE block or its letters. It DOES color the Edge wedge, which is the co-brand mechanism; see the top-level wedge block.",
     "_sourceOfTruth": {
       "apex":  "https://cdn.jsdelivr.net/gh/collective-edge/apex-brand-kit@main/assets/colors.json",
       "royal": "https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/colors.json"
