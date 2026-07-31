@@ -69,8 +69,10 @@
      The one part of the CE block mark that carries color, and that color is
      the PARTNER's. Grey when CE stands alone; their hue when co-branding.
      Block and letters stay black or white always. Every combination ships as
-     a file (assets/logos/mark-on-{light,dark}-{grey,royal,apex}.svg), so
-     never hand-recolor a mark. */
+     a file: mark-black{,-royal,-apex}.svg are majority black for LIGHT
+     backgrounds, mark-white{,-royal,-apex}.svg majority white for DARK.
+     The name is the logo's own color, used on the opposite background.
+     Never hand-recolor a mark. */
   --wedge-standalone: #C8C8C8;  /* = --ce-fog. CE alone */
   --wedge-royal:      #572E72;  /* Royal Ambulance co-brand */
   --wedge-apex:       #f9ad16;  /* Apex Paramedics co-brand, Pantone 1235 C */

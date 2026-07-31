@@ -20,10 +20,12 @@ collective-edge-brand-kit/
 │   ├── logos/
 │   │   ├── horizontal-black.svg          # wordmark lockup, light backgrounds (doc default)
 │   │   ├── horizontal-white.svg          # wordmark lockup, dark backgrounds
-│   │   ├── mark-on-light-{grey,royal,apex}.svg   # block mark, light bg: black block, white letters
-│   │   ├── mark-on-dark-{grey,royal,apex}.svg    # block mark, dark bg: white block, black letters
-│   │   ├── mark-black.svg                # LEGACY. Named for its letters, belongs on DARK
-│   │   └── mark-white.svg                # LEGACY. Named for its letters, belongs on LIGHT
+│   │   ├── mark-black.svg                # block mark, majority black, USE ON LIGHT
+│   │   ├── mark-black-royal.svg          #   same, purple wedge (Royal co-brand)
+│   │   ├── mark-black-apex.svg           #   same, gold wedge (Apex co-brand)
+│   │   ├── mark-white.svg                # block mark, majority white, USE ON DARK
+│   │   ├── mark-white-royal.svg          #   same, purple wedge (Royal co-brand)
+│   │   └── mark-white-apex.svg           #   same, gold wedge (Apex co-brand)
 │   ├── png/                 # PNG fallbacks of the marks + lockups
 │   └── imagery/             # CE_Background (grain-wave hero), CE_Coach
 ├── snippets/
@@ -104,8 +106,8 @@ CE rarely stands alone. It comes in beside a partner and it says so in words: **
 **The wedge is the co-brand mechanism.** CE has no color of its own, so when CE co-brands it takes the partner's into its own mark. The Edge wedge is the one part that carries it: Royal `#572E72` purple, Apex `#f9ad16` gold. The block stays black or white and the letters stay the opposite, always. Every combination ships as a file, so never hand-recolor:
 
 ```
-assets/logos/mark-on-light-{grey,royal,apex}.svg   black block, white letters
-assets/logos/mark-on-dark-{grey,royal,apex}.svg    white block, black letters
+assets/logos/mark-black{,-royal,-apex}.svg   majority black  -> use on LIGHT
+assets/logos/mark-white{,-royal,-apex}.svg   majority white  -> use on DARK
 ```
 
 Constants in both modes: two marks, never merged, divided by the CE `│` rendered as a **1px rule**; the file matches the background (never CSS-recolor a lockup); the CE lockup stays at or above **120px** wide; the CE block and letters stay black or white, and the wedge is the only path that ever changes color. Partner hexes come from the partner's **own** brand kit ([apex-brand-kit](https://github.com/collective-edge/apex-brand-kit), [royal-brand-kit](https://github.com/collective-edge/royal-brand-kit)), and where a bright brand color fails 3:1 as text you use that kit's text-safe darkened step (Apex gold `#f9ad16` becomes `#B77808`). Full rules, snippets, and the "never" list are in section 2 of `SKILL.md`.

@@ -14,12 +14,12 @@
     "white":    { "hex": "#FFFFFF", "role": "Primary brand white; primary document canvas" }
   },
   "wedge": {
-    "_note": "The Edge wedge is the ONE part of the block mark that carries color, and that color is the PARTNER's. CE has no hue of its own, so when CE co-brands it takes the partner's into its own mark; the partner enters through the wedge and nothing else moves. Block and letters stay black or white always. Every combination ships as a file (assets/logos/mark-on-{light,dark}-{grey,royal,apex}.svg), so never hand-recolor. As CE takes on more operating companies, each gets a wedge color here and nothing else changes.",
-    "standalone": { "hex": "#C8C8C8", "file": "grey", "role": "CE standing alone. The default, and the only treatment on a CE-only surface. Note it nearly disappears at favicon sizes on a white tile; give the mark a dark backing rather than inventing a CE hue" },
+    "_note": "The Edge wedge is the ONE part of the block mark that carries color, and that color is the PARTNER's. CE has no hue of its own, so when CE co-brands it takes the partner's into its own mark; the partner enters through the wedge and nothing else moves. Block and letters stay black or white always. Every combination ships as a file: mark-black.svg / mark-black-royal.svg / mark-black-apex.svg are majority black for LIGHT backgrounds, mark-white*.svg are majority white for DARK. The name is the logo's own color, used on the opposite background, same as horizontal-black and horizontal-white. Never hand-recolor. As CE takes on more operating companies, each gets a wedge color here and nothing else changes.",
+    "standalone": { "hex": "#C8C8C8", "file": "mark-black.svg / mark-white.svg", "role": "CE standing alone. The default, and the only treatment on a CE-only surface. Note it nearly disappears at favicon sizes on a white tile; give the mark a dark backing rather than inventing a CE hue" },
     "byPartner": {
       "_note": "On a surface co-branded with that partner. Values are the partner kit's own primary, so they stay in step with that brand.",
-      "royal": { "hex": "#572E72", "file": "royal", "role": "Royal Ambulance purple, from royal-brand-kit" },
-      "apex":  { "hex": "#f9ad16", "file": "apex",  "role": "Apex Paramedics gold, Pantone 1235 C, from apex-brand-kit" }
+      "royal": { "hex": "#572E72", "file": "mark-black-royal.svg / mark-white-royal.svg", "role": "Royal Ambulance purple, from royal-brand-kit" },
+      "apex":  { "hex": "#f9ad16", "file": "mark-black-apex.svg / mark-white-apex.svg",  "role": "Apex Paramedics gold, Pantone 1235 C, from apex-brand-kit" }
     }
   },
   "foreground": {
