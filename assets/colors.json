@@ -8,11 +8,21 @@
     "steel":    { "hex": "#6E6E6E", "role": "Tertiary text / EDGE wordmark grey (--fg-3)" },
     "mute":     { "hex": "#9A9A9A", "role": "Muted / 'Not This' labels (--fg-4)" },
     "fog":      { "hex": "#C8C8C8", "role": "The Edge wedge in its restrained grey treatment; the quiet half of the pair with gold" },
-    "gold":     { "hex": "#FFD630", "role": "The Edge wedge in its color treatment. The one hue CE owns, used on the wedge only, never on the block, the letters or as a UI accent" },
+    "gold":     { "hex": "#FFD630", "role": "The Edge wedge in CE's own color treatment. Used on the wedge only, never on the block, the letters or as a UI accent" },
     "mist":     { "hex": "#E2E2E2", "role": "Hairlines, dividers (--border-1)" },
     "paper":    { "hex": "#F4F4F4", "role": "Off-white surface" },
     "bone":     { "hex": "#FAFAFA", "role": "Lightest surface (--bg-surface)" },
     "white":    { "hex": "#FFFFFF", "role": "Primary brand white; primary document canvas" }
+  },
+  "wedge": {
+    "_note": "The Edge wedge is the ONE part of the block mark that changes color, and it is how CE co-brands: the partner enters the mark through the wedge and nothing else moves. Block and letters stay black or white always. Every combination ships as a file (assets/logos/mark-on-{light,dark}-{grey,gold,royal}.svg), so never hand-recolor.",
+    "grey":  { "hex": "#C8C8C8", "file": "grey",  "role": "Restrained document and print work. The quiet default" },
+    "gold":  { "hex": "#FFD630", "file": "gold",  "role": "CE's own color treatment, and anywhere the mark must read small (favicons, tabs, avatars) where grey on a light tile is close to invisible" },
+    "byPartner": {
+      "_note": "On a surface co-branded with that partner. Apex uses CE gold #FFD630, NOT Apex's own kit gold #f9ad16; that is deliberate in the approved artwork, do not 'correct' it.",
+      "royal": { "hex": "#572E72", "file": "royal" },
+      "apex":  { "hex": "#FFD630", "file": "gold" }
+    }
   },
   "foreground": {
     "fg1": "#111111", "fg2": "#4A4A4A", "fg3": "#6E6E6E", "fg4": "#9A9A9A",

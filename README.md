@@ -18,10 +18,12 @@ collective-edge-brand-kit/
 │   ├── fonts/
 │   │   └── Montserrat-VariableFont_wght.ttf
 │   ├── logos/
-│   │   ├── horizontal-black.svg   # wordmark lockup → light backgrounds (doc default)
-│   │   ├── horizontal-white.svg   # wordmark lockup → dark backgrounds
-│   │   ├── mark-black.svg         # CE block mark → light backgrounds
-│   │   └── mark-white.svg         # CE block mark → dark backgrounds
+│   │   ├── horizontal-black.svg          # wordmark lockup, light backgrounds (doc default)
+│   │   ├── horizontal-white.svg          # wordmark lockup, dark backgrounds
+│   │   ├── mark-on-light-{grey,gold,royal}.svg   # block mark, light bg: black block, white letters
+│   │   ├── mark-on-dark-{grey,gold,royal}.svg    # block mark, dark bg: white block, black letters
+│   │   ├── mark-black.svg                # LEGACY. Named for its letters, belongs on DARK
+│   │   └── mark-white.svg                # LEGACY. Named for its letters, belongs on LIGHT
 │   ├── png/                 # PNG fallbacks of the marks + lockups
 │   └── imagery/             # CE_Background (grain-wave hero), CE_Coach
 ├── snippets/
@@ -76,7 +78,7 @@ Monochrome is CE's **default**, not a law. A single black-to-white grey ramp car
 
 > **Every hue on a CE surface has a job you can name.** Ownership, state, meaning, or data. Nothing is colored for decoration.
 
-Color is expected in four places: the Edge wedge in the mark may be gold `#FFD630` (preferred wherever the mark has to read small, and on co-brand surfaces); a partner's palette leads on a partner-led co-brand surface; a partner's accent is the one functional hue on a CE-led product for that partner; and charts pick series colors for legibility and colorblind separation rather than from this palette. White is the primary document canvas; black is reserved for hero, section-divider and title surfaces. See `assets/colors.json` for the full machine-readable token set (grey ramp, semantic foreground and background, borders, status, partner accents).
+Color is expected in four places: **the Edge wedge in the mark**, which takes grey `#C8C8C8`, CE gold `#FFD630`, or **the partner's color on a co-brand surface**; a partner's palette leads on a partner-led co-brand surface; a partner's accent is the one functional hue on a CE-led product for that partner; and charts pick series colors for legibility and colorblind separation rather than from this palette. White is the primary document canvas; black is reserved for hero, section-divider and title surfaces. See `assets/colors.json` for the full machine-readable token set (grey ramp, semantic foreground and background, borders, status, partner accents).
 
 | Name | Hex | Use |
 |---|---|---|
@@ -84,7 +86,7 @@ Color is expected in four places: the Edge wedge in the mark may be gold `#FFD63
 | Ink | `#111111` | Body text on light |
 | Steel | `#6E6E6E` | Tertiary text; the "EDGE" wordmark grey |
 | Fog | `#C8C8C8` | The "Edge" wedge, restrained treatment |
-| Gold | `#FFD630` | The "Edge" wedge, color treatment. The one hue CE owns; wedge only |
+| Gold | `#FFD630` | The "Edge" wedge, CE's own color treatment; wedge only |
 | Mist | `#E2E2E2` | Hairlines, dividers, card borders |
 | Black | `#000000` | Hero, section-divider and title surfaces |
 
@@ -99,6 +101,15 @@ CE rarely stands alone. It comes in beside a partner and it says so in words: **
 | What CE contributes | Structure and finish, no hue: Montserrat, hairlines, whitespace, tabular numerals, quiet motion | The whole system; partner color marks state (active nav, live data, one chart series) |
 | CE's presence | "Powered by" lockup under a hairline, plus the footer caption | The lockup leads the chain: `CE │ Operator │ Customer` |
 | Shipped reference | Apex internal dashboards | Apex customer dashboard |
+
+**The wedge is the co-brand mechanism.** The Edge wedge is the one part of the CE mark that changes color, and on a co-branded surface it carries the partner's: Royal `#572E72` purple, Apex `#FFD630`. The block stays black or white and the letters stay the opposite, always. Every combination ships as a file, so never hand-recolor:
+
+```
+assets/logos/mark-on-light-{grey,gold,royal}.svg   black block, white letters
+assets/logos/mark-on-dark-{grey,gold,royal}.svg    white block, black letters
+```
+
+Apex co-brands use the `gold` file. Its wedge is CE gold `#FFD630`, not Apex's own kit gold `#f9ad16`, which is deliberate in the approved artwork.
 
 Constants in both modes: two marks, never merged, divided by the CE `│` rendered as a **1px rule**; the file matches the background (never CSS-recolor a lockup); the CE lockup stays at or above **120px** wide; the CE block and letters stay black or white, and the wedge is the only path that ever changes color. Partner hexes come from the partner's **own** brand kit ([apex-brand-kit](https://github.com/collective-edge/apex-brand-kit), [royal-brand-kit](https://github.com/collective-edge/royal-brand-kit)), and where a bright brand color fails 3:1 as text you use that kit's text-safe darkened step (Apex gold `#f9ad16` becomes `#B77808`). Full rules, snippets, and the "never" list are in section 2 of `SKILL.md`.
 

@@ -35,8 +35,9 @@ This kit is cloud-hosted on a public CDN (jsDelivr, backed by GitHub). **Do not 
 | Montserrat (variable TTF) | `assets/fonts/Montserrat-VariableFont_wght.ttf` |
 | Wordmark lockup on light | `assets/logos/horizontal-black.svg` |
 | Wordmark lockup on dark | `assets/logos/horizontal-white.svg` |
-| CE block mark on light | `assets/logos/mark-black.svg` |
-| CE block mark on dark | `assets/logos/mark-white.svg` |
+| **Block mark on light** (black block, white letters) | `assets/logos/mark-on-light-{grey,gold,royal}.svg` |
+| **Block mark on dark** (white block, black letters) | `assets/logos/mark-on-dark-{grey,gold,royal}.svg` |
+| Block mark, legacy names (see the warning in section 4) | `assets/logos/mark-black.svg`, `assets/logos/mark-white.svg` |
 | Brand colors (JSON) | `assets/colors.json` |
 | Base CSS (tokens plus type styles) | `snippets/brand-base.css` |
 
@@ -77,7 +78,7 @@ It is not a ban on color, and this kit used to read like one. The real rule is n
 | What you are making | What the palette is |
 |---|---|
 | CE's own documents, decks, memos, reports, one-pagers | The grey ramp. Monochrome. |
-| The CE mark, anywhere | Grey ramp, plus **CE gold `#FFD630`** on the Edge wedge |
+| The CE mark, anywhere | Black or white block and letters, plus **one color on the Edge wedge**: grey, CE gold, or the partner's |
 | A partner-led co-brand surface (mode A, section 2) | **The partner's palette leads.** CE adds structure and finish, no hue |
 | A CE product delivered to a partner or their customer (mode B, section 2) | CE grey ramp, plus **the partner's accent** used functionally |
 | Anything carrying operational or clinical status | The four status colors, functionally, never as theme |
@@ -104,9 +105,21 @@ What stays true in every row: the CE block and its letters are black or white, n
 - **Text on light:** `#111` primary, `#4A4A4A` secondary, `#6E6E6E` metadata.
 - **Text on dark:** `#FFFFFF` primary, `#D6D6D6` secondary, `#9E9E9E` tertiary.
 
-### CE gold
+### The wedge is where color lives
 
-CE owns exactly one hue: **`#FFD630` on the Edge wedge.** Prefer gold wherever the mark has to read at small sizes (favicons, browser tabs, avatars) and on co-brand surfaces, where a grey wedge on a light tile is close to invisible. The grey wedge `#C8C8C8` stays correct for restrained document and print work. Gold never moves off the wedge: not onto the block, not onto the letters, not into UI chrome. It measures 1.41:1 against white, so it would fail as text or a thin line anyway. It works on the wedge because the wedge is a shape inside a mark, not something anyone has to read.
+**The Edge wedge is the one part of the mark that changes color, and it is how CE co-brands.** The block stays black or white, the letters stay the opposite, and the wedge carries the hue:
+
+| Wedge | Hex | When |
+|---|---|---|
+| Grey | `#C8C8C8` | Restrained document and print work. The quiet default |
+| **CE gold** | `#FFD630` | CE's own color treatment, and wherever the mark must read at small sizes (favicons, tabs, avatars) where grey on a light tile is close to invisible |
+| **Partner color** | their primary | **On a surface co-branded with that partner.** Royal Ambulance `#572E72` purple. Apex Paramedics `#FFD630` |
+
+This is the heart of the co-brand model. CE does not sit beside a partner unchanged, it takes their color into its own mark. The partner enters CE through the wedge, and nothing else about the mark moves. Ready-made files ship for every combination, so **never hand-recolor**: `mark-on-light-royal.svg`, `mark-on-dark-gold.svg`, and so on.
+
+Note that the Apex co-brand wedge is CE gold `#FFD630`, **not** Apex's own kit gold `#f9ad16`. That is deliberate in the approved artwork. Do not "correct" it to the Apex kit value.
+
+Whatever the wedge color, it never moves off the wedge: not onto the block, not onto the letters, not into UI chrome. CE gold measures 1.41:1 against white, so it would fail as text or a thin line anyway. It works on the wedge because the wedge is a shape inside a mark, not something anyone has to read.
 
 ### Status colors
 
@@ -165,7 +178,7 @@ The standing CE signature on any co-branded product. A slim strip with a 1px hai
    Stadium and LifeWest have **no kit yet**, so the hexes carried for them are unreconciled placeholders. Confirm with the partner before shipping, and publish a kit when one of them becomes real work.
 2. **Check contrast before a partner color becomes ink.** Bright brand colors usually fail as text or small UI on white. Apex gold `#f9ad16` fails 3:1 on white; the Apex kit ships the text-safe deep gold `#B77808` for exactly this. Use the darkened step the partner's kit provides. Do not invent your own darkening, and do not ship the bright value as body text or a thin chart line.
 3. **Partner color is functional in mode B.** It marks state and identity. It does not tint surfaces, fill cards, or become a theme.
-4. **Never recolor the CE mark to the partner's color.** The block stays black or white, the letters stay the opposite, and the only path that ever changes is the wedge.
+4. **The wedge takes the partner's color. Nothing else in the mark does.** This is the co-brand mechanism, not a violation of it. Royal `#572E72`, Apex `#FFD630`. The block stays black or white and the letters stay the opposite, on every surface. Use the ready-made file (`mark-on-light-royal.svg` and friends) rather than recoloring by hand.
 5. **CE gold and a partner hue may share a surface.** A gold CE wedge next to Apex gold is fine. They are two marks, and the hairline keeps them distinct.
 
 ### Never, on a co-brand surface
@@ -198,11 +211,12 @@ Rules: no more than 3 weights per piece; uppercase always tracked; no italic bod
 ## 4. Logo
 
 - **Wordmark lockup.** "CE │ COLLECTIVE EDGE" horizontal lockup. Primary logo where there is room. `horizontal-black.svg` on light, `horizontal-white.svg` on dark.
-- **CE block mark.** The skewed parallelogram with the Edge wedge. Icon-only contexts (favicons, avatars, badges, the CE half of a co-brand lockup). `mark-black.svg` on light, `mark-white.svg` on dark. Crisp 0px corners: it is a parallelogram, not a rounded badge.
-  - The wedge takes either treatment: grey `#C8C8C8` for restrained document and print work, or **gold `#FFD630`** where the mark must read small or sits on a co-brand surface. **Every SVG and PNG shipped in this kit is currently the grey treatment**, so a gold wedge means recoloring that one path by hand until gold variants land here.
-  - **On a light tile, check the block is actually black.** The shipped `mark-black.svg` fills the block `#ffffff` and the letters `#000000`, which renders as white-on-white with only the letters visible. Dropped into a favicon this reads as broken. Invert it: block `#000000`, letters `#ffffff`, wedge `#FFD630`.
+- **CE block mark.** The skewed parallelogram with the Edge wedge, its left corners softly rounded. Icon-only contexts (favicons, avatars, badges, the CE half of a co-brand lockup).
+  - **Use the `mark-on-light-*` and `mark-on-dark-*` files. The name says the background.** On light: black block, white letters. On dark: white block, black letters. Pick the wedge by surface: `grey` for restrained work, `gold` for CE's own color treatment and anything small, `royal` for a Royal co-brand. Apex co-brands use `gold`.
+  - **The two legacy files `mark-black.svg` and `mark-white.svg` are named after their letters, not their background, which is the reverse of every other file in this kit.** `mark-white.svg` (white letters on a black block) is the one that belongs on a **light** surface; `mark-black.svg` belongs on a dark one. Following the old "black on light" instruction is what produced a white-on-white favicon in a shipped product. They are kept only so existing links do not break. Prefer the `mark-on-*` files, which are also cleaned of a stray glyph the exporter left at the bottom edge of both legacy files.
+  - Every wedge color ships as a file. **Never hand-recolor a mark.**
 
-Rules: match the file to the background, do not CSS-recolor; keep clear space at least the height of the Edge shadow block; minimum lockup about 120px or 1in, minimum mark about 28px; never stretch, skew, rotate, add shadow, glow, or gradient, or split the mark from the wordmark in the lockup. **Recoloring is limited to the wedge, and only to `#C8C8C8` or `#FFD630`.** The block and the letters stay black or white on every surface, including co-brands. The **vertical bar `│` separator** is a brand signature: reuse it as a 1px grey rule whenever pairing CE with a partner, a customer, or a section name.
+Rules: match the file to the background, do not CSS-recolor; keep clear space at least the height of the Edge shadow block; minimum lockup about 120px or 1in, minimum mark about 28px; never stretch, skew, rotate, add shadow, glow, or gradient, or split the mark from the wordmark in the lockup. **Color is limited to the wedge**, which takes grey `#C8C8C8`, CE gold `#FFD630`, or the partner's primary on a co-brand surface. The block and the letters stay black or white on every surface, including co-brands. The **vertical bar `│` separator** is a brand signature: reuse it as a 1px grey rule whenever pairing CE with a partner, a customer, or a section name.
 
 ---
 
