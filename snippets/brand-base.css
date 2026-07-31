@@ -1,18 +1,18 @@
 /* ============================================================
-   COLLECTIVE EDGE — Brand base (drop-in)
+   COLLECTIVE EDGE, Brand base (drop-in)
    Faithful, CDN-hosted mirror of the Design System's
    colors_and_type.css. Pull into any HTML with:
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/brand-base.css">
 
-   Collective Edge is MOSTLY monochrome, not strictly: a black "CE"
-   block (the Collective) against a skewed "Edge" wedge, on a grey
-   ramp that carries documents, decks, UI chrome and body copy.
-   Two deliberate exceptions: the wedge may be rendered in CE gold
-   (--ce-gold), preferred wherever the mark must read small or sits
-   on a co-brand surface; and a partner's accent is expected on that
-   partner's own co-brand surface.
+   Monochrome is CE's DEFAULT, not a law: a black "CE" block (the
+   Collective) against a skewed "Edge" wedge, on a grey ramp that
+   carries CE's own documents, decks, chrome and body copy. The real
+   rule is that every hue on a CE surface has a job you can name,
+   and nothing is colored for decoration. Color is expected on the
+   Edge wedge (--ce-gold), on co-brand surfaces (see the partner
+   tokens below and SKILL.md section 2), on status, and in charts.
    White is the primary surface for documents; black is reserved
-   for hero / section-divider / title surfaces.
+   for hero, section-divider and title surfaces.
    ============================================================ */
 
 @font-face {
@@ -24,7 +24,7 @@
 }
 
 :root {
-  /* —— BRAND CORE (grey ramp, no hue) —— */
+  /* ---- BRAND CORE (grey ramp, no hue) ---- */
   --ce-black:    #000000;   /* primary brand black */
   --ce-ink:      #111111;   /* near-black for body */
   --ce-graphite: #2A2A2A;   /* deep neutral */
@@ -40,7 +40,7 @@
   --ce-bone:     #FAFAFA;   /* lightest surface */
   --ce-white:    #FFFFFF;   /* primary brand white */
 
-  /* —— SEMANTIC FOREGROUND —— */
+  /* ---- SEMANTIC FOREGROUND ---- */
   --fg-1: var(--ce-ink);    /* primary text on light */
   --fg-2: var(--ce-slate);  /* secondary text */
   --fg-3: var(--ce-steel);  /* tertiary / metadata */
@@ -49,33 +49,41 @@
   --fg-on-dark-2: #D6D6D6;
   --fg-on-dark-3: #9E9E9E;
 
-  /* —— SEMANTIC BACKGROUND —— */
+  /* ---- SEMANTIC BACKGROUND ---- */
   --bg-canvas:    var(--ce-white);
   --bg-surface:   var(--ce-bone);
   --bg-elevated:  var(--ce-white);
   --bg-inverse:   var(--ce-black);
   --bg-inverse-2: #0A0A0A;
 
-  /* —— BORDERS —— */
+  /* ---- BORDERS ---- */
   --border-1: var(--ce-mist);
   --border-2: #D0D0D0;
   --border-on-dark: rgba(255,255,255,0.12);
 
-  /* —— STATUS (used sparingly — healthcare context) —— */
+  /* ---- STATUS (used sparingly, healthcare context) ---- */
   --status-go:   #1E7A4D;   /* operational green */
   --status-warn: #B5821A;   /* attention amber */
   --status-stop: #B0322B;   /* alert red */
   --status-info: #2A5A8C;   /* info blue */
 
-  /* —— PARTNER CO-BRAND ACCENTS ("Powered by CE") ——
-     Used only inside a partner's own co-brand surface, never as a CE accent. */
-  --partner-apex:         #F2C82F;   /* Apex Paramedics yellow */
-  --partner-royal:        #5B2A8C;   /* Royal Ambulance purple */
+  /* ---- PARTNER CO-BRAND ACCENTS ("Powered by Collective Edge") ----
+     A convenience mirror that goes stale. Each partner's own brand kit is
+     the source of truth (apex-brand-kit, royal-brand-kit); pull from there
+     for anything shipping. Used on a co-brand surface only, never as a CE
+     accent on a CE-only surface, and never on the CE block or its letters.
+     The *-deep values are the text-safe steps: the bright brand colors fail
+     3:1 on white as text, small labels, or thin chart lines. */
+  --partner-apex:         #2c338e;   /* Apex Paramedics blue (primary) */
+  --partner-apex-gold:    #f9ad16;   /* Apex signature gold */
+  --partner-apex-deep:    #B77808;   /* Apex gold, text-safe on white */
+  --partner-royal:        #572e72;   /* Royal Ambulance purple */
+  --partner-royal-deep:   #2f193b;   /* Royal dark purple */
   --partner-stadium-red:  #E0143C;
   --partner-stadium-blue: #1E4FA3;
   --partner-lifewest:     #1E3A8A;
 
-  /* —— TYPE —— */
+  /* ---- TYPE ---- */
   --font-sans:    "Montserrat", "Helvetica Neue", Arial, sans-serif;
   --font-display: "Montserrat", "Helvetica Neue", Arial, sans-serif;
   --font-mono:    ui-monospace, "SF Mono", Menlo, Consolas, monospace;
@@ -90,27 +98,27 @@
   --lh-tight: 1.05; --lh-snug: 1.2; --lh-normal: 1.45; --lh-relaxed: 1.6;
   --tracking-display: 0.01em; --tracking-caps: 0.08em; --tracking-body: 0;
 
-  /* —— SPACING (4px base) —— */
+  /* ---- SPACING (4px base) ---- */
   --space-0: 0; --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
   --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px; --space-10: 128px;
 
-  /* —— RADII (mostly square) —— */
+  /* ---- RADII (mostly square) ---- */
   --radius-none: 0; --radius-sm: 2px; --radius-md: 6px; --radius-lg: 12px; --radius-pill: 999px;
 
-  /* —— SHADOW (elevation only; the brand is flat) —— */
+  /* ---- SHADOW (elevation only; the brand is flat) ---- */
   --shadow-1: 0 1px 2px rgba(0,0,0,0.06);
   --shadow-2: 0 4px 12px rgba(0,0,0,0.08);
   --shadow-3: 0 12px 32px rgba(0,0,0,0.12);
   --shadow-glow-dark: 0 0 80px rgba(255,255,255,0.08);
 
-  /* —— MOTION (quiet, fast) —— */
+  /* ---- MOTION (quiet, fast) ---- */
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-fast: 120ms; --dur-base: 200ms; --dur-slow: 360ms;
 }
 
 /* ============================================================
-   SEMANTIC TYPE STYLES — bold-italic display, clean sentence body.
+   SEMANTIC TYPE STYLES: bold-italic display, clean sentence body.
    ============================================================ */
 .ce-display-xl, .ce-display-lg, .ce-display-md, .ce-display-sm {
   font-family: var(--font-display);

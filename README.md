@@ -1,10 +1,12 @@
 # Collective Edge Brand Kit
 
-Cloud-hosted brand assets and Claude skill for Collective Edge — a mostly-monochrome black-to-white system, Montserrat bold-italic display type, the CE block mark + "CE | COLLECTIVE EDGE" wordmark, and the "Powered by CE" partner co-brand model. A `SKILL.md` teaches Claude to apply the brand to any document, slide, one-pager, or UI.
+Cloud-hosted brand assets and Claude skill for Collective Edge: a monochrome-by-default black-to-white system, Montserrat bold-italic display type, the CE block mark and "CE │ COLLECTIVE EDGE" wordmark, and the **"Powered by Collective Edge"** co-brand model, which is how CE appears on almost everything. A `SKILL.md` teaches Claude to apply the brand to any document, slide, one-pager, dashboard, or UI.
 
-This kit is the CDN-hosted, agent-facing reflection of the **Collective Edge Design System** (source of truth: the "Collective Edge Design System" project on claude.ai/design). Its tokens mirror that system's `colors_and_type.css` exactly.
+This kit is the CDN-hosted, agent-facing reflection of the **Collective Edge Design System** (source of truth: the "Collective Edge Design System" project on claude.ai/design). Its tokens mirror that system's `colors_and_type.css`.
 
-**It defaults to the restrained internal-document treatment** — white canvas, hairline dividers, sentence-case headings, sparing display type. The flashy dark-grain hero look is reserved for marketing / title surfaces. Anyone with this repo URL or the CDN links below can produce on-brand CE materials from any machine, with only a working Claude session.
+**It defaults to the restrained internal-document treatment:** white canvas, hairline dividers, sentence-case headings, sparing display type. The dark-grain hero look is reserved for marketing and title surfaces. Anyone with this repo URL or the CDN links below can produce on-brand CE materials from any machine, with only a working Claude session.
+
+**Monochrome is the default, not a law.** CE rarely stands alone. It comes in beside an operating company or a partner's customer, and a co-brand surface is expected to carry color. See "Co-branding" below and section 2 of `SKILL.md`.
 
 ## What's in here
 
@@ -32,7 +34,7 @@ collective-edge-brand-kit/
 
 ## CDN base URL
 
-All assets are served via [jsDelivr](https://www.jsdelivr.com/) from the `main` branch — fast, free, and globally cached:
+All assets are served via [jsDelivr](https://www.jsdelivr.com/) from the `main` branch. Fast, free, and globally cached:
 
 ```
 https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/
@@ -44,7 +46,7 @@ Append the path inside this repo to fetch any file. Example for the white horizo
 https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg
 ```
 
-## Quick start — using the brand in any HTML
+## Quick start: using the brand in any HTML
 
 Add this to the top of any HTML document and you have Montserrat plus all the brand color variables:
 
@@ -54,7 +56,7 @@ Add this to the top of any HTML document and you have Montserrat plus all the br
 
 For embedding Montserrat into a printed PDF, include the `@font-face` declaration inline so the font travels with the file. See `SKILL.md` for the snippet.
 
-## Quick start — installing the Claude skill
+## Quick start: installing the Claude skill
 
 So Claude automatically applies the brand whenever you ask for Collective Edge materials, install the skill into your local Claude skills folder:
 
@@ -70,7 +72,11 @@ cd ~/.claude/skills/collective-edge-brand-guidelines && git pull
 
 ## Color reference
 
-Collective Edge is **mostly** monochrome, not strictly. A single black-to-white grey ramp carries documents, decks, UI chrome and body copy, and that restraint is the brand. Two deliberate exceptions: the Edge wedge in the mark may be gold `#FFD630` (preferred wherever the mark has to read small, and on co-brand surfaces), and a partner's accent is expected on that partner's own co-brand surface. White is the primary document canvas; black is reserved for hero / section-divider / title surfaces. See `assets/colors.json` for the full machine-readable token set (grey ramp, semantic fg/bg, borders, status, partner accents).
+Monochrome is CE's **default**, not a law. A single black-to-white grey ramp carries CE's own documents, decks, chrome and body copy, and that restraint is the brand. The real rule is narrower:
+
+> **Every hue on a CE surface has a job you can name.** Ownership, state, meaning, or data. Nothing is colored for decoration.
+
+Color is expected in four places: the Edge wedge in the mark may be gold `#FFD630` (preferred wherever the mark has to read small, and on co-brand surfaces); a partner's palette leads on a partner-led co-brand surface; a partner's accent is the one functional hue on a CE-led product for that partner; and charts pick series colors for legibility and colorblind separation rather than from this palette. White is the primary document canvas; black is reserved for hero, section-divider and title surfaces. See `assets/colors.json` for the full machine-readable token set (grey ramp, semantic foreground and background, borders, status, partner accents).
 
 | Name | Hex | Use |
 |---|---|---|
@@ -80,7 +86,21 @@ Collective Edge is **mostly** monochrome, not strictly. A single black-to-white 
 | Fog | `#C8C8C8` | The "Edge" wedge, restrained treatment |
 | Gold | `#FFD630` | The "Edge" wedge, color treatment. The one hue CE owns; wedge only |
 | Mist | `#E2E2E2` | Hairlines, dividers, card borders |
-| Black | `#000000` | Hero / section-divider / title surfaces |
+| Black | `#000000` | Hero, section-divider and title surfaces |
+
+## Co-branding
+
+CE rarely stands alone. It comes in beside a partner and it says so in words: **"Powered by Collective Edge."** Treat the phrase as non-optional whenever CE's mark shares a surface with another brand. Two modes, picked by asking whose name is on the door:
+
+| | **Mode A. Partner led (default)** | **Mode B. CE led, partner accented** |
+|---|---|---|
+| Whose surface | The partner's own product or material | A CE product delivered to a partner or their customer |
+| Palette | The **partner's palette** runs everything | CE grey ramp, plus the partner's accent as the one hue |
+| What CE contributes | Structure and finish, no hue: Montserrat, hairlines, whitespace, tabular numerals, quiet motion | The whole system; partner color marks state (active nav, live data, one chart series) |
+| CE's presence | "Powered by" lockup under a hairline, plus the footer caption | The lockup leads the chain: `CE │ Operator │ Customer` |
+| Shipped reference | Apex internal dashboards | Apex customer dashboard |
+
+Constants in both modes: two marks, never merged, divided by the CE `│` rendered as a **1px rule**; the file matches the background (never CSS-recolor a lockup); the CE lockup stays at or above **120px** wide; the CE block and letters stay black or white, and the wedge is the only path that ever changes color. Partner hexes come from the partner's **own** brand kit ([apex-brand-kit](https://github.com/collective-edge/apex-brand-kit), [royal-brand-kit](https://github.com/collective-edge/royal-brand-kit)), and where a bright brand color fails 3:1 as text you use that kit's text-safe darkened step (Apex gold `#f9ad16` becomes `#B77808`). Full rules, snippets, and the "never" list are in section 2 of `SKILL.md`.
 
 ## Versioning
 
