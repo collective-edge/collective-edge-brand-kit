@@ -39,14 +39,27 @@
       "royal": "https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/colors.json"
     },
     "_textSafe": "Bright partner brand colors usually fail 3:1 on white as text, small labels, or thin chart lines. Use the darkened step the partner's own kit ships (Apex gold #f9ad16 -> #B77808). Never invent your own darkening.",
-    "apex":          "#2c338e",
-    "apexGold":      "#f9ad16",
-    "apexGoldDeep":  "#B77808",
-    "royal":         "#572e72",
-    "royalDeep":     "#2f193b",
-    "stadiumRed":    "#E0143C",
-    "stadiumBlue":   "#1E4FA3",
-    "lifewest":      "#1E3A8A"
+    "apex": {
+      "_kit":     "apex-brand-kit",
+      "primary":  { "hex": "#2c338e", "pantone": "Blue 072 C", "role": "Apex blue. The primary brand color: wordmark, headers, links, buttons" },
+      "deep":     { "hex": "#1D225E", "role": "Hero backgrounds, header bands, sidebars, section dividers, footers" },
+      "light":    { "hex": "#9699C7", "role": "Tertiary accents, hover states" },
+      "gold":     { "hex": "#f9ad16", "pantone": "1235 C", "role": "Signature accent. The arc, accent bars, kickers, stat numerals" },
+      "goldDeep": { "hex": "#B77808", "role": "Text-safe gold. Use for small or bold labels, icons, and thin chart lines on white; the bright gold fails contrast there" }
+    },
+    "royal": {
+      "_kit":     "royal-brand-kit",
+      "primary":  { "hex": "#572e72", "role": "Royal purple. Column headers, accent bars, contact labels, category badges" },
+      "deep":     { "hex": "#2f193b", "role": "Primary headers, hero backgrounds, section dividers" },
+      "light":    { "hex": "#8260a2", "role": "Tertiary accents, hover states" },
+      "logoFill": { "hex": "#43205b", "role": "Logo fill color, alternate dark accent" }
+    },
+    "_unverified": {
+      "_note": "No brand kit exists for these yet, so these hexes are inherited from the original design export and have NOT been reconciled against a source of truth. Confirm with the partner before shipping, and publish a kit when one of them becomes real work.",
+      "stadiumRed":  "#E0143C",
+      "stadiumBlue": "#1E4FA3",
+      "lifewest":    "#1E3A8A"
+    }
   },
   "font": {
     "family": "Montserrat",

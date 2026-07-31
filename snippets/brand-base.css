@@ -74,11 +74,18 @@
      accent on a CE-only surface, and never on the CE block or its letters.
      The *-deep values are the text-safe steps: the bright brand colors fail
      3:1 on white as text, small labels, or thin chart lines. */
-  --partner-apex:         #2c338e;   /* Apex Paramedics blue (primary) */
-  --partner-apex-gold:    #f9ad16;   /* Apex signature gold */
-  --partner-apex-deep:    #B77808;   /* Apex gold, text-safe on white */
-  --partner-royal:        #572e72;   /* Royal Ambulance purple */
-  --partner-royal-deep:   #2f193b;   /* Royal dark purple */
+  --partner-apex:            #2c338e;  /* Apex blue, the primary brand color */
+  --partner-apex-deep:       #1D225E;  /* Apex hero bands, sidebars, footers */
+  --partner-apex-light:      #9699C7;  /* Apex tertiary accents, hover */
+  --partner-apex-gold:       #f9ad16;  /* Apex signature gold */
+  --partner-apex-gold-deep:  #B77808;  /* Apex gold, text-safe on white */
+  --partner-royal:           #572e72;  /* Royal purple, the primary accent */
+  --partner-royal-deep:      #2f193b;  /* Royal headers, hero backgrounds */
+  --partner-royal-light:     #8260a2;  /* Royal tertiary accents, hover */
+  --partner-royal-logo:      #43205b;  /* Royal logo fill */
+
+  /* No brand kit exists for these yet. Inherited from the original design
+     export and NOT reconciled against a source of truth. Confirm before use. */
   --partner-stadium-red:  #E0143C;
   --partner-stadium-blue: #1E4FA3;
   --partner-lifewest:     #1E3A8A;

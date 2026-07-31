@@ -106,7 +106,7 @@ What stays true in every row: the CE block and its letters are black or white, n
 
 ### CE gold
 
-CE owns exactly one hue: **`#FFD630` on the Edge wedge.** Prefer gold wherever the mark has to read at small sizes (favicons, browser tabs, avatars) and on co-brand surfaces, where a grey wedge on a light tile is close to invisible. The grey wedge `#C8C8C8` stays correct for restrained document and print work. Gold never moves off the wedge: not onto the block, not onto the letters, not into UI chrome.
+CE owns exactly one hue: **`#FFD630` on the Edge wedge.** Prefer gold wherever the mark has to read at small sizes (favicons, browser tabs, avatars) and on co-brand surfaces, where a grey wedge on a light tile is close to invisible. The grey wedge `#C8C8C8` stays correct for restrained document and print work. Gold never moves off the wedge: not onto the block, not onto the letters, not into UI chrome. It measures 1.41:1 against white, so it would fail as text or a thin line anyway. It works on the wedge because the wedge is a shape inside a mark, not something anyone has to read.
 
 ### Status colors
 
@@ -155,7 +155,14 @@ The standing CE signature on any co-branded product. A slim strip with a 1px hai
 
 ### Partner color rules
 
-1. **Take the hex from the partner's own brand kit, never from a copy.** Values kept in this kit are a convenience mirror and they go stale. `apex-brand-kit` and `royal-brand-kit` are the source of truth for their own colors and logos.
+1. **Take the hex from the partner's own brand kit, never from a copy.** Values kept in this kit are a convenience mirror and they go stale. `apex-brand-kit` and `royal-brand-kit` are the source of truth for their own colors and logos. As of 2026-07-31 the mirror reads:
+
+| Partner | Primary | Deep (hero, bands, sidebars) | Light (hover) | Accent | Text-safe accent |
+|---|---|---|---|---|---|
+| Apex Paramedics | `#2c338e` blue | `#1D225E` | `#9699C7` | `#f9ad16` gold | `#B77808` |
+| Royal Ambulance | `#572e72` purple | `#2f193b` | `#8260a2` | (logo fill `#43205b`) | `#572e72` passes on white |
+
+   Stadium and LifeWest have **no kit yet**, so the hexes carried for them are unreconciled placeholders. Confirm with the partner before shipping, and publish a kit when one of them becomes real work.
 2. **Check contrast before a partner color becomes ink.** Bright brand colors usually fail as text or small UI on white. Apex gold `#f9ad16` fails 3:1 on white; the Apex kit ships the text-safe deep gold `#B77808` for exactly this. Use the darkened step the partner's kit provides. Do not invent your own darkening, and do not ship the bright value as body text or a thin chart line.
 3. **Partner color is functional in mode B.** It marks state and identity. It does not tint surfaces, fill cards, or become a theme.
 4. **Never recolor the CE mark to the partner's color.** The block stays black or white, the letters stay the opposite, and the only path that ever changes is the wedge.
