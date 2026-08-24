@@ -20,7 +20,7 @@
    What changed under those pages at v1.0:
      · No italic. `.ce-display-*` and `.ce-lede` were italic and
        are now roman. There is no italic face in this system.
-     · Weights 400, 600, 700, 800 only. The 100 900 @font-face
+     · Weights 400, 600, 700, 800 only. The @font-face
        range, `--weight-medium: 500` and `--weight-black: 900`
        admitted forbidden steps and are gone.
      · Tracking is always em and comes from the ladder.
