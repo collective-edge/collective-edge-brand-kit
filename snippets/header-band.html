@@ -1,15 +1,21 @@
-<!-- Collective Edge header band — drop-in markup.
-     Drop this into the top of any one-pager / report / deck header.
-     Edit the .h1 text. Logo loads from the CDN.
-     Make sure brand-base.css (or equivalent @font-face) is loaded for Montserrat.
-     CE runs dark-first: black band, white logo. -->
-<header style="background:#000000; color:#FFFFFF; padding:0.32in 0.5in; display:flex; align-items:center; justify-content:space-between; font-family:'Montserrat',sans-serif;">
-  <div class="h1" style="font-weight:800; font-size:18pt; letter-spacing:0.04em; text-transform:uppercase; line-height:1.05;">
-    YOUR TITLE HERE
+<!-- Collective Edge header band · type system v1.0
+     Drop into the top of any one-pager, report, deck or letterhead. Edit the eyebrow and the title.
+     Move the two link tags into <head> if the host document has one. Load order matters:
+     type-system.css is identical in every kit, palette.css is the only file that differs.
+     .bk-on-dark on the container drops display from 800 to 700 and adds 0.005em to every step
+     under it. Reversed type blooms optically, so the band sits one weight lighter than its
+     light-surface equivalent. Never restate the weight or the tracking inline.
+     Logo resolved by role: horizontal-on-dark. Never carry a filename across brands. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/palette.css">
+
+<header class="bk-on-dark"
+        style="background:var(--bg-band); padding:32px 48px; display:flex; align-items:center; justify-content:space-between; gap:48px;">
+  <div>
+    <p class="bk-eyebrow" style="margin:0 0 8px;">INTERNAL · CONFIDENTIAL</p>
+    <p class="bk-display-md bk-caps" style="margin:0;">HOW WE OPERATE TOGETHER</p>
   </div>
-  <img
-    src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg"
-    alt="Collective Edge"
-    style="width:1.7in; height:auto; display:block;"
-  />
+  <img src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg"
+       alt="Collective Edge"
+       style="width:204px; height:auto; display:block; flex:none;">
 </header>

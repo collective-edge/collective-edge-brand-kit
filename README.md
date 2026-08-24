@@ -1,120 +1,136 @@
-# Collective Edge Brand Kit
+# Collective Edge brand kit
 
-Cloud-hosted brand assets and Claude skill for Collective Edge: a monochrome black-to-white system with no brand hue of its own, Montserrat bold-italic display type, the CE block mark and "CE │ COLLECTIVE EDGE" wordmark, and the **"Powered by Collective Edge"** co-brand model, which is how CE appears on almost everything. A `SKILL.md` teaches Claude to apply the brand to any document, slide, one-pager, dashboard, or UI.
+Cloud-hosted brand assets and the Claude skill that applies them. Collective Edge is the parent of Apex Paramedics and Royal Ambulance. It runs monochrome, black to white with no hue of its own, sets everything in Montserrat with the CE block mark and the `CE │ COLLECTIVE EDGE` wordmark, and reaches most surfaces through the **“Powered by Collective Edge”** co-brand, where the Edge wedge takes the partner’s color.
 
-This kit is the CDN-hosted, agent-facing reflection of the **Collective Edge Design System** (source of truth: the "Collective Edge Design System" project on claude.ai/design). Its tokens mirror that system's `colors_and_type.css`.
+The kit runs on **house type system v1.0**, shared byte for byte with `apex-brand-kit` and `royal-brand-kit`. Type is the layer that makes the three read as one house. Only palette and logo differ between them.
 
-**It defaults to the restrained internal-document treatment:** white canvas, hairline dividers, sentence-case headings, sparing display type. The dark-grain hero look is reserved for marketing and title surfaces. Anyone with this repo URL or the CDN links below can produce on-brand CE materials from any machine, with only a working Claude session.
+The kit is the CDN-hosted, agent-facing reflection of the CE Design System. Source of truth for color: the “Collective Edge Design System” project on claude.ai/design. Source of truth for type: `reference/type-system.md` in this repo.
 
-**CE is monochrome. The color belongs to the partner.** CE rarely stands alone. It comes in beside an operating company or a partner's customer, and those surfaces do carry color, the partner's. There is no CE accent hue. See "Co-branding" below and section 2 of `SKILL.md`.
+**Default to the restrained white document treatment.** White canvas, hairline dividers, sentence-case headings, sparing display type. Black is a header band, a title slide or a section divider, never the reading surface of a document. The dark grain-wave hero belongs to marketing and title surfaces.
 
-## What's in here
+**CE is monochrome. The color belongs to the partner.** CE rarely stands alone. It appears beside an operating company or that partner’s customer, and those surfaces carry color, the partner’s. There is no CE accent hue. Full rules: [`reference/brand.md`](reference/brand.md) section 4.
+
+## What is in here
 
 ```
 collective-edge-brand-kit/
-├── SKILL.md                 # The brand skill Claude reads (design-system aligned)
-├── assets/
-│   ├── colors.json          # Full token set: grey ramp, semantic, status, partners
-│   ├── fonts/
-│   │   └── Montserrat-VariableFont_wght.ttf
-│   ├── logos/
-│   │   ├── horizontal-black.svg          # wordmark lockup, light backgrounds (doc default)
-│   │   ├── horizontal-white.svg          # wordmark lockup, dark backgrounds
-│   │   ├── mark-black.svg                # block mark, majority black, USE ON LIGHT
-│   │   ├── mark-black-royal.svg          #   same, purple wedge (Royal co-brand)
-│   │   ├── mark-black-apex.svg           #   same, gold wedge (Apex co-brand)
-│   │   ├── mark-white.svg                # block mark, majority white, USE ON DARK
-│   │   ├── mark-white-royal.svg          #   same, purple wedge (Royal co-brand)
-│   │   └── mark-white-apex.svg           #   same, gold wedge (Apex co-brand)
-│   ├── png/                 # PNG fallbacks of the marks + lockups
-│   └── imagery/             # CE_Background (grain-wave hero), CE_Coach
+├── SKILL.md                       The skill Claude reads. Everything an agent needs every time
+├── reference/
+│   ├── type-system.md             The house type standard. Identical in all three kits
+│   ├── brand.md                   Color, logo, co-brand, voice
+│   └── layout.md                  Copy-pasteable layout patterns
 ├── snippets/
-│   ├── brand-base.css       # Drop-in CSS: @font-face + every DS token + .ce-* type styles
-│   └── header-band.html     # Drop-in header markup
+│   ├── type-system.css            The type layer. Identical in all three kits
+│   ├── palette.css                The Collective Edge palette. The only file that differs by brand
+│   ├── type-tokens.json           Machine-readable type scale
+│   ├── header-band.html           Drop-in header band
+│   ├── hero-dark.css              The grain-wave hero and title surface
+│   └── brand-base.css             DEPRECATED, pre-v1.0. Now a shim over the two stylesheets above
 ├── templates/
-│   └── internal-doc.html    # Restrained, printable internal-document template
-└── examples/                # Approved on-brand collateral (reference library)
+│   ├── document.html              Printable multi-section report
+│   ├── internal-doc.html          Memo and one-pager
+│   └── deck.html                  Slides, title through closing
+├── Examples/
+│   └── ce-one-pager.html          A filled reference, not a starting point
+├── scripts/
+│   ├── validate.py                Mechanical check of generated HTML against the type standard
+│   └── check-sync.py              Confirms the shared files match across the three kits
+├── tokens.json                    Machine-readable color for python-pptx, python-docx, matplotlib, reportlab
+├── brands.json                    Registry resolving every brand in the house to its CDN root
+├── NEW-BRAND.md                   How to stand up a kit for a new operating company
+└── assets/
+    ├── fonts/                     Montserrat variable, woff2 and TTF
+    ├── logos/                     Six block marks and two horizontal lockups, SVG
+    ├── png/                       Raster derivatives. Never the master
+    ├── imagery/                   CE_Background, the grain wave. CE_Coach
+    └── colors.json                DEPRECATED, pre-v1.0. Superseded by tokens.json
 ```
 
 ## CDN base URL
 
-All assets are served via [jsDelivr](https://www.jsdelivr.com/) from the `main` branch. Fast, free, and globally cached:
+All assets serve from [jsDelivr](https://www.jsdelivr.com/) off the `main` branch.
 
 ```
 https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/
 ```
 
-Append the path inside this repo to fetch any file. Example for the white horizontal logo:
+Append the path inside this repo to fetch any file.
 
-```
-https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg
-```
+## Quick start, any HTML
 
-## Quick start: using the brand in any HTML
-
-Add this to the top of any HTML document and you have Montserrat plus all the brand color variables:
+Load the type layer first, the palette second. That order matters.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/brand-base.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/palette.css">
 ```
 
-For embedding Montserrat into a printed PDF, include the `@font-face` declaration inline so the font travels with the file. See `SKILL.md` for the snippet.
+For a PDF pipeline (weasyprint, wkhtmltopdf, Chrome print) inline the `@font-face` so the font embeds in the file. The snippet is in [`SKILL.md`](SKILL.md).
 
-## Quick start: installing the Claude skill
+Style through the `.bk-*` classes and the semantic `--fg-*`, `--bg-*` and `--border-*` variables. Reach for a raw `--ce-*` value only where the brand color is the point.
 
-So Claude automatically applies the brand whenever you ask for Collective Edge materials, install the skill into your local Claude skills folder:
+## Quick start, the Claude skill
 
 ```bash
 git clone https://github.com/collective-edge/collective-edge-brand-kit ~/.claude/skills/collective-edge-brand-guidelines
 ```
 
-Claude picks up `SKILL.md` and applies the brand standards automatically. To update:
+Claude picks up `SKILL.md` and applies the brand automatically. To update:
 
 ```bash
 cd ~/.claude/skills/collective-edge-brand-guidelines && git pull
 ```
 
+## Verify before shipping
+
+```bash
+python3 scripts/validate.py path/to/output.html
+```
+
+It checks no italic, the weight ladder, em tracking, body measure, text wrapping, codes in the mono face and micro-typography, and exits non-zero on a violation. `scripts/check-sync.py` confirms the shared files still match across the three kits.
+
 ## Color reference
 
-**Collective Edge has no color of its own.** A single black-to-white grey ramp carries CE's documents, decks, chrome and body copy, and that restraint is the brand. That is not the same as saying a CE surface is always grey:
+Collective Edge has no color of its own. A single black-to-white ramp carries its documents, decks, chrome and body copy, and that restraint is the brand.
 
 > **CE stays monochrome. The color belongs to the partner.**
 
-Color appears in four places, and none of them is a CE hue: **the Edge wedge in the mark**, which is grey `#C8C8C8` when CE stands alone and **the partner's color on a co-brand surface**; a partner's palette leads on a partner-led co-brand surface; a partner's accent is the one functional hue on a CE-led product for that partner; and charts pick series colors for legibility and colorblind separation rather than from this palette. White is the primary document canvas; black is reserved for hero, section-divider and title surfaces. See `assets/colors.json` for the full machine-readable token set (grey ramp, semantic foreground and background, borders, status, partner accents).
+Color reaches a CE surface in four ways, none of them a CE hue. The Edge wedge in the mark, `#C8C8C8` when CE stands alone and the partner’s color on a co-brand surface. A partner’s palette leading a partner-led surface. A partner’s accent as the one functional hue on a CE-led product. Chart series chosen for legibility. The full machine-readable set is `tokens.json`.
 
-| Name | Hex | Use |
-|---|---|---|
-| White | `#FFFFFF` | Primary document canvas |
-| Ink | `#111111` | Body text on light |
-| Steel | `#6E6E6E` | Tertiary text; the "EDGE" wordmark grey |
-| Fog | `#C8C8C8` | The "Edge" wedge when CE stands alone |
-| Mist | `#E2E2E2` | Hairlines, dividers, card borders |
-| Black | `#000000` | Hero, section-divider and title surfaces |
+| Token | Hex | Use | On `#FFFFFF` |
+|---|---|---|---|
+| `--ce-white` | `#FFFFFF` | Document canvas, the default surface | |
+| `--ce-black` | `#000000` | Header bands, title slides, section dividers | |
+| `--ce-ink` | `#111111` | Body text on light | 18.88:1 |
+| `--ce-slate` | `#4A4A4A` | Secondary text | 8.86:1 |
+| `--ce-steel` | `#6E6E6E` | Tertiary text, metadata. The floor for text on white | 5.10:1 |
+| `--ce-mute` | `#9A9A9A` | Dimmed non-text marks. Never text, at any size | 2.81:1 |
+| `--ce-fog` | `#C8C8C8` | The Edge wedge when CE stands alone | 1.67:1 |
+| `--ce-mist` | `#E2E2E2` | Hairlines, dividers | 1.30:1 |
 
 ## Co-branding
 
-CE rarely stands alone. It comes in beside a partner and it says so in words: **"Powered by Collective Edge."** Treat the phrase as non-optional whenever CE's mark shares a surface with another brand. Two modes, picked by asking whose name is on the door:
+CE rarely stands alone. Where its mark shares a surface with another brand, **“Powered by Collective Edge”** is on that surface too. Pick the mode by asking whose name is on the door.
 
-| | **Mode A. Partner led (default)** | **Mode B. CE led, partner accented** |
+| | Mode A, partner led. The default | Mode B, CE led, partner accented |
 |---|---|---|
-| Whose surface | The partner's own product or material | A CE product delivered to a partner or their customer |
-| Palette | The **partner's palette** runs everything | CE grey ramp, plus the partner's accent as the one hue |
-| What CE contributes | Structure and finish, no hue: Montserrat, hairlines, whitespace, tabular numerals, quiet motion | The whole system; partner color marks state (active nav, live data, one chart series) |
-| CE's presence | "Powered by" lockup under a hairline, plus the footer caption | The lockup leads the chain: `CE │ Operator │ Customer` |
-| Shipped reference | Apex internal dashboards | Apex customer dashboard |
+| Whose surface | The partner’s own product or material | A CE product delivered to a partner or their customer |
+| Palette | The partner’s palette runs everything | CE grey ramp, plus the partner’s accent as the one hue |
+| What CE contributes | Structure and finish, no hue. Montserrat, hairlines, whitespace, tabular figures, the type scale | The whole system. Partner color marks state: active nav, live data, one chart series |
+| CE’s presence | The “Powered by” lockup under a hairline, plus the footer caption | The lockup leads the chain, `CE │ Apex Paramedics │ {Customer}` |
 
-**The wedge is the co-brand mechanism.** CE has no color of its own, so when CE co-brands it takes the partner's into its own mark. The Edge wedge is the one part that carries it: Royal `#572E72` purple, Apex `#f9ad16` gold. The block stays black or white and the letters stay the opposite, always. Every combination ships as a file, so never hand-recolor:
+**The wedge is the co-brand mechanism.** CE has no color of its own, so when CE co-brands it takes the partner’s into its own mark. The wedge is the one part that carries it: Royal `#572E72`, Apex `#f9ad16`. The block stays black or white and the letters stay the opposite. Every combination ships as a file, so never hand-recolor.
 
 ```
-assets/logos/mark-black{,-royal,-apex}.svg   majority black  -> use on LIGHT
-assets/logos/mark-white{,-royal,-apex}.svg   majority white  -> use on DARK
+assets/logos/mark-black{,-royal,-apex}.svg   majority black, use on LIGHT
+assets/logos/mark-white{,-royal,-apex}.svg   majority white, use on DARK
 ```
 
-Constants in both modes: two marks, never merged, divided by the CE `│` rendered as a **1px rule**; the file matches the background (never CSS-recolor a lockup); the CE lockup stays at or above **120px** wide; the CE block and letters stay black or white, and the wedge is the only path that ever changes color. Partner hexes come from the partner's **own** brand kit ([apex-brand-kit](https://github.com/collective-edge/apex-brand-kit), [royal-brand-kit](https://github.com/collective-edge/royal-brand-kit)), and where a bright brand color fails 3:1 as text you use that kit's text-safe darkened step (Apex gold `#f9ad16` becomes `#B77808`). Full rules, snippets, and the "never" list are in section 2 of `SKILL.md`.
+Constants in both modes. Two marks, never merged, separated by the CE bar rendered as a 1px rule. The file matches the background on both sides, never a CSS recolor. The CE lockup stays at or above 120px wide. Partner hexes come from the partner’s own kit, [apex-brand-kit](https://github.com/collective-edge/apex-brand-kit) and [royal-brand-kit](https://github.com/collective-edge/royal-brand-kit), and where a bright brand color fails 3:1 as text you use that kit’s text-safe step. Apex gold `#f9ad16` measures 1.91:1 on white; its text-safe step `#B77808` measures 3.68:1 and holds only at 700 or at large sizes. Copy-pasteable lockups: [`reference/layout.md`](reference/layout.md) section 2.
 
 ## Versioning
 
-`@main` always serves the latest version. To pin to a stable release in production HTML, use a tag: `@v1.0`.
+`@main` serves the latest. Pin `@v1.0` in production HTML.
 
 ## License
 

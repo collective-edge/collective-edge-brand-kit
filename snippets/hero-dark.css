@@ -1,0 +1,137 @@
+/* ============================================================
+   COLLECTIVE EDGE · GRAIN-WAVE HERO
+   ------------------------------------------------------------
+   A Collective Edge signature. Apex and Royal do not use it;
+   their dark bands are flat brand color.
+
+   WHERE IT BELONGS. Title slides, section dividers, the
+   marketing hero. Once per deck. Never the reading surface of a
+   document, never behind body copy, never on an internal memo,
+   one-pager, SOP or table. The default Collective Edge surface
+   is white.
+
+   Load after type-system.css and palette.css:
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/hero-dark.css">
+
+   PLACEMENT IS NOT FREE. The wave puts its light in the upper
+   left. Measured against #FFFFFF on the shipped asset, worst
+   pixel per zone:
+
+     bottom-centre   15.3:1    safe
+     bottom-left     14.4:1    safe
+     top-right        8.6:1    safe
+     top-centre       6.8:1    safe
+     bottom-right     5.9:1    safe
+     middle-right     5.6:1    safe
+     centred block    2.9:1    FAILS
+     middle-left      2.0:1    FAILS
+     top-left         1.8:1    FAILS
+
+   So reversed type and white marks go bottom-left, bottom-centre
+   or the right half. The modifiers below place content in a safe
+   zone for you. Do not centre a white logo on this background:
+   that is what the pre-v1.0 title slide did, and it put the mark
+   at 2.9:1.
+   ============================================================ */
+
+:root {
+  --hero-grain:    url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/imagery/CE_Background_1920.jpg");
+  --hero-grain-2x: url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/imagery/CE_Background_3840.jpg");
+  --hero-pad: var(--space-9);
+}
+
+.bk-hero-dark {
+  position: relative;
+  isolation: isolate;
+  background: var(--ce-black) var(--hero-grain) center / cover no-repeat;
+  color: var(--fg-on-dark-1);
+  padding: var(--hero-pad);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  /* Rule 4. Display drops to 700 and every step opens 0.005em.
+     Inherited from type-system.css, so nothing here restates it. */
+  --tr-dark: var(--tr-bonus-on-dark);
+}
+
+/* The scrim. It is what makes the safe zones safe, so it is not
+   optional and not decorative. Darkens toward the foot, where the
+   type sits. */
+.bk-hero-dark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg,
+    rgba(0,0,0,0.15) 0%,
+    rgba(0,0,0,0.15) 38%,
+    rgba(0,0,0,0.72) 78%,
+    rgba(0,0,0,0.82) 100%);
+}
+
+@media (min-resolution: 1.5dppx), print {
+  .bk-hero-dark { background-image: var(--hero-grain-2x); }
+}
+
+.bk-hero-dark > * { position: relative; }
+
+.bk-hero-dark .bk-display-xl,
+.bk-hero-dark .bk-display-lg,
+.bk-hero-dark .bk-display-md,
+.bk-hero-dark .bk-h1,
+.bk-hero-dark .bk-h2 {
+  font-weight: var(--weight-display-on-dark);
+  color: var(--fg-on-dark-1);
+}
+/* The dimmed foreground steps do not survive this background. --fg-on-dark-3
+   is #9E9E9E, which holds on flat black and disappears where the wave is
+   bright. On the hero, labels go to --fg-on-dark-1, supporting copy goes to
+   --fg-on-dark-2, and nothing uses --fg-on-dark-3. */
+.bk-hero-dark .bk-eyebrow { color: var(--fg-on-dark-1); }
+.bk-hero-dark .bk-caption,
+.bk-hero-dark .bk-body,
+.bk-hero-dark .bk-body-lg,
+.bk-hero-dark .bk-body-sm,
+.bk-hero-dark .bk-hero-corner { color: var(--fg-on-dark-2); }
+
+
+/* ---- PLACEMENT ------------------------------------------------
+   Pick one. Each lands content in a measured-safe zone.        */
+
+.bk-hero--bottom-left   { justify-content: flex-end; align-items: flex-start; text-align: left; }
+.bk-hero--bottom-centre { justify-content: flex-end; align-items: center;     text-align: center; }
+.bk-hero--right         { justify-content: center;   align-items: flex-end;   text-align: right; }
+
+/* Corner metadata. Bottom corners are the darkest part of the
+   frame, so a kicker or page number always holds there. */
+.bk-hero-dark .bk-hero-corner {
+  position: absolute;
+  bottom: var(--hero-pad);
+}
+.bk-hero-dark .bk-hero-corner.left  { left:  var(--hero-pad); }
+.bk-hero-dark .bk-hero-corner.right { right: var(--hero-pad); text-align: right; }
+
+/* The mark. Top-left is the brightest zone, so the mark sits
+   top-right on this treatment, unlike the flat black band where
+   either corner works. */
+.bk-hero-dark .bk-hero-mark {
+  position: absolute;
+  top: var(--hero-pad);
+  right: var(--hero-pad);
+  height: 56px;
+  width: auto;
+}
+
+
+/* ---- PRINT ----------------------------------------------------
+   Without exact color a hero slide prints as white paper and its
+   reversed type disappears. type-system.css sets this globally;
+   repeated here so the snippet holds on its own.              */
+
+@media print {
+  .bk-hero-dark, .bk-hero-dark::before {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

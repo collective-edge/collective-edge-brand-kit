@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collective Edge · Second quarter operating review</title>
+
+<!-- WORKED EXAMPLE · house type system v1.0 · Collective Edge monochrome palette.
+     Copy from this file. Every value below comes from reference/type-system.md.
+     Load order: type-system.css is identical in every kit and is served from the
+     Collective Edge kit. palette.css is the only stylesheet that differs by brand. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/palette.css">
+
+<style>
+/* ---------- FONT ------------------------------------------------
+   The face and the rule that names it. Weight range is the house
+   ladder. No italic face exists at any weight. type-system.css binds
+   Montserrat through --font-sans, and a print engine that resolves
+   no network stylesheet leaves that token undefined, so the fallback
+   below is what names the face. */
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.woff2") format("woff2-variations"),
+       url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf")   format("truetype-variations");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+html, body { font-family: var(--font-sans, "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif); }
+
+/* ---------- PAGE ------------------------------------------------ */
+
+@page { size: letter; margin: 0.6in; }
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { background: var(--bg-surface); margin: 0; padding: 0; }
+
+.doc {
+  max-width: 8.5in;
+  margin: 32px auto;
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-1);
+}
+
+/* ---------- DARK BAND -------------------------------------------
+   .bk-on-dark on the container drops display from 800 to 700 and
+   adds 0.005em to every step under it. Reversed letterforms bloom,
+   so the band sits one weight lighter than its light-surface
+   equivalent. Never restate either value inline. */
+
+.doc-band {
+  background: var(--bg-band);
+  padding: 32px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+.doc-band-logo { width: 204px; height: auto; display: block; flex: none; }
+
+/* ---------- SUB-BANNER ------------------------------------------ */
+
+.doc-subbanner {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-1);
+  padding: 12px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+}
+
+/* ---------- BODY ------------------------------------------------
+   Every vertical value is a multiple of 4. Rule 11: 48px above a
+   head, 8px of padding plus 8px of margin below it. 48 = 3 x 16. */
+
+.doc-page { padding: 48px; }
+.doc-title { margin: 0 0 48px; }
+
+.doc-section-head {
+  margin: 48px 0 8px;
+  padding: 0 0 8px;
+  border-bottom: 1px solid var(--border-1);
+}
+.doc-stack > * { margin-top: 0; margin-bottom: 0; }
+.doc-stack > * + * { margin-top: 16px; }
+
+/* ---------- TABLE ------------------------------------------------
+   Hairlines, not boxes. No zebra fill. .bk-table sets the header
+   row to 600 uppercase with 0.080em tracking and puts tabular
+   figures on every cell. Its shipped size is --fs-caption, one
+   step under these cells, so th is sized here instead. */
+
+.doc-table { width: 100%; }
+.doc-table th { padding: 8px 16px 8px 0; border-bottom: 1px solid var(--border-2); color: var(--fg-2); font-size: var(--fs-body-sm); }
+.doc-table td {
+  padding: 8px 16px 8px 0;
+  border-bottom: 1px solid var(--border-1);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-body-sm);
+  letter-spacing: var(--tr-body-sm);
+  color: var(--fg-1);
+}
+.doc-table .num { text-align: right; padding-right: 0; padding-left: 16px; }
+.doc-table .sec { color: var(--fg-2); }
+
+/* ---------- STAT CALLOUT ---------------------------------------- */
+
+.doc-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  border-top: 1px solid var(--border-1);
+  padding-top: 24px;
+}
+
+/* ---------- FOOTER ----------------------------------------------- */
+
+.doc-footer {
+  border-top: 1px solid var(--border-1);
+  margin-top: 48px;
+  padding: 12px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+}
+
+/* ---------- NARROW VIEWPORT --------------------------------------
+   The band and the stat grid stack rather than crush the measure. */
+
+@media screen and (max-width: 720px) {
+  .doc { margin: 0; border: none; }
+  .doc-band { flex-direction: column; align-items: flex-start; gap: 24px; padding: 24px; }
+  .doc-band-logo { width: 168px; }
+  .doc-subbanner { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 24px; }
+  .doc-page { padding: 24px; }
+  .doc-stats { grid-template-columns: 1fr; }
+  .doc-footer { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
+
+/* ---------- PRINT -------------------------------------------------
+   Point sizes for paper. Nothing read at length drops below
+   10.5pt, nothing at all below 9pt. */
+
+@media print {
+  /* Without this the dark band prints white and its reversed type disappears. */
+  *, *::before, *::after { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  html, body { background: #FFFFFF; font-size: 12pt; line-height: var(--lh-body); }
+  .doc { max-width: none; margin: 0; border: none; }
+  .doc-band { padding: 24px 32px; }
+  .doc-subbanner { padding: 12px 32px; }
+  .doc-page { padding: 32px 32px 24px; }
+  .doc-band-logo { width: 168px; }
+
+  .bk-display-xl { font-size: 72pt; }
+  .bk-display-lg { font-size: 54pt; }
+  .bk-display-md { font-size: 42pt; }
+  .bk-h1      { font-size: 30pt; }
+  .bk-h2      { font-size: 24pt; }
+  .bk-h3      { font-size: 18pt; }
+  .bk-h4      { font-size: 15pt; }
+  .bk-body    { font-size: 12pt; }
+  .bk-body-sm { font-size: 10.5pt; }
+  .bk-caption,
+  .bk-eyebrow { font-size: 9pt; }
+  .bk-stat    { font-size: 42pt; }
+  .doc-table th,
+  .doc-table td { font-size: 10.5pt; }
+
+  p, li, dd, blockquote { orphans: 3; widows: 3; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; page-break-after: avoid; }
+  table, figure, .bk-keep { break-inside: avoid; page-break-inside: avoid; }
+  .doc-section-head { break-inside: avoid; page-break-inside: avoid; break-after: avoid; page-break-after: avoid; }
+  .doc-stats, .doc-footer { break-inside: avoid; page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<article class="doc">
+
+  <!-- DARK BAND -->
+  <header class="doc-band bk-on-dark">
+    <div>
+      <p class="bk-eyebrow" style="margin:0 0 8px;">INTERNAL · OPERATING REVIEW</p>
+      <p class="bk-display-md bk-caps" style="margin:0;">SECOND QUARTER REVIEW</p>
+    </div>
+    <img class="doc-band-logo"
+         src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg"
+         alt="Collective Edge">
+  </header>
+
+  <!-- SUB-BANNER -->
+  <div class="doc-subbanner">
+    <p class="bk-eyebrow" style="margin:0;">COLLECTIVE EDGE · APEX · ROYAL</p>
+    <p class="bk-caption" style="margin:0;">Operating committee, closed session</p>
+  </div>
+
+  <main class="doc-page">
+
+    <!-- TITLE -->
+    <div class="doc-title">
+      <p class="bk-eyebrow" style="margin:0 0 4px;">SHARED SERVICES</p>
+      <h1 class="bk-h1" style="margin:0 0 16px;">Both operating companies grew on one back office.</h1>
+      <p class="bk-body" style="margin:0;">Apex Paramedics and Royal Ambulance closed the quarter on one finance team, one dispatch platform and one credentialing pipeline. Run volume rose at both. Shared services headcount did not move.</p>
+    </div>
+
+    <!-- FINDINGS -->
+    <section>
+      <header class="doc-section-head">
+        <p class="bk-eyebrow" style="margin:0 0 4px;">QUARTER IN REVIEW</p>
+        <h2 class="bk-h2" style="margin:0;">Shared services held.</h2>
+      </header>
+      <div class="doc-stack">
+        <p class="bk-body"><span class="bk-emphasis">Billing runs on one connection.</span> Both companies clear through a single payer gateway. Days sales outstanding closed at 41&nbsp;days for Apex and 38&nbsp;days for Royal, against 54 and 47 a year ago.</p>
+        <p class="bk-body"><span class="bk-emphasis">Credentialing is the constraint.</span> A new medic waits 23&nbsp;days between signed offer and first shift. Nineteen of those days sit with county accreditation, which no shared service shortens.</p>
+        <p class="bk-body"><span class="bk-emphasis">Dispatch consolidated in May.</span> One platform now carries both companies. The committee recorded the remaining exposure as “one outage, two companies dark,” and moved failover design to the September agenda.</p>
+      </div>
+    </section>
+
+    <!-- DIVERGENCE · subheads carried as 700 lead-ins, not a fourth size -->
+    <section>
+      <header class="doc-section-head">
+        <p class="bk-eyebrow" style="margin:0 0 4px;">TWO BOOKS</p>
+        <h2 class="bk-h2" style="margin:0;">Where the two companies diverge.</h2>
+      </header>
+      <div class="doc-stack">
+        <p class="bk-body"><span class="bk-emphasis">Fleet age.</span> Apex runs a median vehicle age of 3.1&nbsp;years against Royal’s 6.4. Royal’s replacement schedule carries fourteen ambulances across 2026–2028 and is the larger call on group capital.</p>
+        <p class="bk-body"><span class="bk-emphasis">Payer mix.</span> Royal bills 61% commercial. Apex bills 68% government. The two books do not move together, so a bad rate year at one company does not compound at the other.</p>
+      </div>
+    </section>
+
+    <!-- TABLE · 600 uppercase header row -->
+    <section>
+      <header class="doc-section-head">
+        <p class="bk-eyebrow" style="margin:0 0 4px;">CONTRACT PERFORMANCE</p>
+        <h2 class="bk-h2" style="margin:0;">Runs by contract at quarter close.</h2>
+      </header>
+      <table class="bk-table doc-table">
+        <thead>
+          <tr>
+            <th>Operating company</th>
+            <th>Contract</th>
+            <th>Service line</th>
+            <th class="num">Runs</th>
+            <th class="num">Median wait</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Apex Paramedics</td>
+            <td><span class="bk-code">CE-OPS-0421</span></td>
+            <td class="sec">911 first response</td>
+            <td class="num">14,208</td>
+            <td class="num">9&nbsp;min</td>
+          </tr>
+          <tr>
+            <td>Royal Ambulance</td>
+            <td><span class="bk-code">CE-OPS-0308</span></td>
+            <td class="sec">Interfacility</td>
+            <td class="num">9,640</td>
+            <td class="num">22&nbsp;min</td>
+          </tr>
+          <tr>
+            <td>Royal Ambulance</td>
+            <td><span class="bk-code">CE-OPS-0512</span></td>
+            <td class="sec">Standby and event</td>
+            <td class="num">1,176</td>
+            <td class="num">4&nbsp;min</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- STAT CALLOUT · 700, tabular -->
+    <section>
+      <header class="doc-section-head">
+        <p class="bk-eyebrow" style="margin:0 0 4px;">GROUP TOTAL</p>
+        <h2 class="bk-h2" style="margin:0;">Where the group landed.</h2>
+      </header>
+      <div class="doc-stats">
+        <div>
+          <p class="bk-eyebrow" style="margin:0 0 4px;">COMBINED RUNS</p>
+          <p class="bk-stat" style="margin:0;">25,024</p>
+        </div>
+        <div>
+          <p class="bk-eyebrow" style="margin:0 0 4px;">DAYS TO FIRST SHIFT</p>
+          <p class="bk-stat" style="margin:0;">23</p>
+        </div>
+        <div>
+          <p class="bk-eyebrow" style="margin:0 0 4px;">SHARED HEADCOUNT</p>
+          <p class="bk-stat" style="margin:0;">31</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DECISIONS -->
+    <section>
+      <header class="doc-section-head">
+        <p class="bk-eyebrow" style="margin:0 0 4px;">NEXT QUARTER</p>
+        <h2 class="bk-h2" style="margin:0;">Credentialing moves to one desk.</h2>
+      </header>
+      <div class="doc-stack">
+        <p class="bk-body">Royal’s credentialing coordinator takes both companies’ county files on September 1. The target is 12&nbsp;days from signed offer to first shift by quarter close.</p>
+        <p class="bk-body"><span class="bk-emphasis">Failover is the open item.</span> One dispatch platform now carries every run in the group. The committee owns a written failover design before the December review, filed against <span class="bk-code">CE-OPS-0512</span>.</p>
+      </div>
+    </section>
+
+    <!-- FOOTER · revision marker in the mono face -->
+    <footer class="doc-footer">
+      <span class="bk-caption">Collective Edge · Second quarter operating review</span>
+      <span class="bk-code bk-caption bk-emphasis">Rev.&nbsp;08.26</span>
+    </footer>
+
+  </main>
+
+</article>
+
+</body>
+</html>

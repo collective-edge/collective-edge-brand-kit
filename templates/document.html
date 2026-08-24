@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collective Edge · Document template</title>
+
+<!-- Load order. type-system.css is identical in every kit and is served from the
+     Collective Edge kit. palette.css is the only stylesheet that differs by brand. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/palette.css">
+
+<style>
+/* ---------- FONT ------------------------------------------------
+   The face and the rule that names it. Weight range is the house
+   ladder. type-system.css binds Montserrat through --font-sans, and
+   a print engine that resolves no network stylesheet leaves that
+   token undefined, so the fallback below is what names the face. */
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.woff2") format("woff2-variations"),
+       url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf")   format("truetype-variations");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+html, body { font-family: var(--font-sans, "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif); }
+
+/* ---------- PAGE ----------------------------------------------- */
+
+@page { size: letter; margin: 0.6in; }
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { background: var(--bg-surface); margin: 0; padding: 0; }
+
+.doc {
+  max-width: 8.5in;
+  margin: 32px auto;
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-1);
+}
+
+/* ---------- HEADER BAND ---------------------------------------- */
+
+.doc-band {
+  background: var(--bg-band);
+  padding: 32px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+.doc-band-logo { width: 204px; height: auto; display: block; flex: none; }
+
+/* ---------- SUB-BANNER ----------------------------------------- */
+
+.doc-subbanner {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-1);
+  padding: 12px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+}
+
+/* ---------- PAGE BODY ------------------------------------------ */
+
+.doc-page { padding: 48px; }
+.doc-title { margin: 0 0 48px; }
+.doc-section { margin-top: 48px; }
+
+/* Rule 11. 48px above the head on .doc-section, 8px of padding plus 8px
+   of margin below it. 48 = 3 x 16. */
+.doc-section-head {
+  padding: 0 0 8px;
+  border-bottom: 1px solid var(--border-1);
+  margin: 0 0 8px;
+}
+.doc-section-body > * { margin-top: 0; margin-bottom: 0; }
+.doc-section-body > * + * { margin-top: 16px; }
+
+/* ---------- TABLE -----------------------------------------------
+   .bk-table th ships at --fs-caption, one step under these cells.
+   A caps header never sits below the body it labels, so it is
+   sized to --fs-body-sm here. */
+
+.doc-table { width: 100%; }
+.doc-table th { padding: 8px 16px 8px 0; border-bottom: 1px solid var(--border-2); color: var(--fg-2); font-size: var(--fs-body-sm); }
+.doc-table td {
+  padding: 8px 16px 8px 0;
+  border-bottom: 1px solid var(--border-1);
+  font-size: var(--fs-body-sm);
+  line-height: var(--lh-body-sm);
+  letter-spacing: var(--tr-body-sm);
+  color: var(--fg-1);
+}
+.doc-table .num { text-align: right; padding-right: 0; padding-left: 16px; }
+.doc-table .sec { color: var(--fg-2); }
+
+/* ---------- STAT CALLOUT ---------------------------------------- */
+
+.doc-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+
+/* ---------- FOOTER ---------------------------------------------- */
+
+.doc-footer {
+  border-top: 1px solid var(--border-1);
+  margin-top: 48px;
+  padding: 12px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+}
+
+/* ---------- NARROW VIEWPORT -------------------------------------
+   The band and the stat grid stack rather than crush the measure. */
+
+@media screen and (max-width: 720px) {
+  .doc { margin: 0; border: none; }
+  .doc-band { flex-direction: column; align-items: flex-start; gap: 24px; padding: 24px; }
+  .doc-band-logo { width: 168px; }
+  .doc-subbanner { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 24px; }
+  .doc-page { padding: 24px; }
+  .doc-stats { grid-template-columns: 1fr; }
+  .doc-footer { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
+
+/* ---------- PRINT ------------------------------------------------
+   Point sizes for paper, carried over from the shared type layer so
+   the file prints correctly on its own. */
+
+@media print {
+  /* Without this the dark band prints white and its reversed type disappears. */
+  *, *::before, *::after { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  html, body { background: #FFFFFF; font-size: 12pt; line-height: var(--lh-body); }
+  .doc { max-width: none; margin: 0; border: none; }
+  .doc-band { padding: 24px 32px; }
+  .doc-subbanner { padding: 12px 32px; }
+  .doc-page { padding: 32px 32px 24px; }
+  .doc-band-logo { width: 168px; }
+
+  .bk-display-xl { font-size: 72pt; }
+  .bk-display-lg { font-size: 54pt; }
+  .bk-display-md { font-size: 42pt; }
+  .bk-h1         { font-size: 30pt; }
+  .bk-h2         { font-size: 24pt; }
+  .bk-h3         { font-size: 18pt; }
+  .bk-h4         { font-size: 15pt; }
+  .bk-body-lg    { font-size: 15pt; }
+  .bk-body       { font-size: 12pt; }
+  .bk-body-sm    { font-size: 10.5pt; }
+  .bk-caption,
+  .bk-eyebrow    { font-size: 9pt; }
+  .bk-stat       { font-size: 42pt; }
+  .doc-table th,
+  .doc-table td  { font-size: 10.5pt; }
+
+  p, li, dd, blockquote { orphans: 3; widows: 3; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; page-break-after: avoid; }
+  table, figure, .bk-keep { break-inside: avoid; page-break-inside: avoid; }
+  .doc-section-head { break-inside: avoid; page-break-inside: avoid; break-after: avoid; page-break-after: avoid; }
+  .doc-stats, .doc-footer { break-inside: avoid; page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<article class="doc">
+
+  <!-- HEADER BAND -->
+  <header class="doc-band bk-on-dark">
+    <div>
+      <p class="bk-eyebrow" style="margin:0 0 8px;">OPERATIONS · CONFIDENTIAL</p>
+      <p class="bk-display-md bk-caps" style="margin:0;">TRANSPORT OPERATIONS</p>
+    </div>
+    <img class="doc-band-logo"
+         src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg"
+         alt="Collective Edge">
+  </header>
+
+  <!-- SUB-BANNER -->
+  <div class="doc-subbanner">
+    <p class="bk-eyebrow" style="margin:0;">QUARTERLY OPERATING REPORT</p>
+    <p class="bk-caption" style="margin:0;">Prepared for partner leadership</p>
+  </div>
+
+  <main class="doc-page">
+
+    <!-- TITLE -->
+    <div class="doc-title">
+      <p class="bk-eyebrow" style="margin:0 0 4px;">NETWORK PERFORMANCE</p>
+      <h1 class="bk-h1" style="margin:0 0 16px;">Interfacility volume moved into the discharge window.</h1>
+      <p class="bk-body" style="margin:0;">Three campuses now generate two thirds of the network’s discharge runs, and they generate them in a five-hour band. This report covers what shifted, what it cost in vehicle time, and the dispatch change that follows.</p>
+    </div>
+
+    <!-- PROSE SECTION -->
+    <section class="doc-section">
+      <header class="doc-section-head">
+        <p class="bk-eyebrow" style="margin:0 0 4px;">WHERE THE TIME GOES</p>
+        <h2 class="bk-h2" style="margin:0;">What the quarter shows.</h2>
+      </header>
+      <div class="doc-section-body">
+        <p class="bk-body"><span class="bk-emphasis">Volume moved late.</span> Sixty-one percent of runs now originate between 11:00 and 16:00. Crews staged at the three highest-volume campuses absorbed the shift without an added vehicle.</p>
+        <p class="bk-body"><span class="bk-emphasis">Wait time is the constraint.</span> Median call to wheels held at 18&nbsp;min while bed-hold minutes at receiving facilities rose. Fleet size is not the limit.</p>
+        <p class="bk-body"><span class="bk-emphasis">Payer approval drives downtime.</span> A run held for approval averages 34&nbsp;min of idle vehicle time. The pre-approval queue closes that gap when the referring case manager files before the discharge order posts.</p>
+      </div>
+    </section>
+
+    <!-- TABLE SECTION -->
+    <section class="doc-section">
+      <header class="doc-section-head">
+        <p class="bk-eyebrow" style="margin:0 0 4px;">ORIGIN VOLUME</p>
+        <h2 class="bk-h2" style="margin:0;">Runs by origin facility.</h2>
+      </header>
+      <div class="doc-section-body">
+        <table class="bk-table doc-table">
+          <thead>
+            <tr>
+              <th>Origin facility</th>
+              <th>Contract</th>
+              <th>Service line</th>
+              <th class="num">Runs</th>
+              <th class="num">Median wait</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mercy General</td>
+              <td><span class="bk-code">CE-IFT-0114</span></td>
+              <td class="sec">BLS discharge</td>
+              <td class="num">1,284</td>
+              <td class="num">22&nbsp;min</td>
+            </tr>
+            <tr>
+              <td>St. Vincent</td>
+              <td><span class="bk-code">CE-IFT-0227</span></td>
+              <td class="sec">Critical care</td>
+              <td class="num">412</td>
+              <td class="num">31&nbsp;min</td>
+            </tr>
+            <tr>
+              <td>Bayview Rehabilitation</td>
+              <td><span class="bk-code">CE-IFT-0338</span></td>
+              <td class="sec">Wheelchair</td>
+              <td class="num">968</td>
+              <td class="num">14&nbsp;min</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- STAT CALLOUT -->
+    <section class="doc-section">
+      <header class="doc-section-head">
+        <p class="bk-eyebrow" style="margin:0 0 4px;">QUARTER IN TOTAL</p>
+        <h2 class="bk-h2" style="margin:0;">Where the network landed.</h2>
+      </header>
+      <div class="doc-section-body">
+        <div class="doc-stats">
+          <div>
+            <p class="bk-eyebrow" style="margin:0 0 4px;">QUARTER RUNS</p>
+            <p class="bk-stat" style="margin:0;">2,664</p>
+          </div>
+          <div>
+            <p class="bk-eyebrow" style="margin:0 0 4px;">MEDIAN WAIT · MINUTES</p>
+            <p class="bk-stat" style="margin:0;">18</p>
+          </div>
+          <div>
+            <p class="bk-eyebrow" style="margin:0 0 4px;">ON-TIME ARRIVAL</p>
+            <p class="bk-stat" style="margin:0;">94%</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="doc-footer">
+      <span class="bk-caption">Collective Edge · Interfacility transport operations</span>
+      <span class="bk-caption bk-emphasis"><span class="bk-code">Rev.&nbsp;08.26</span></span>
+    </footer>
+
+  </main>
+
+</article>
+
+</body>
+</html>

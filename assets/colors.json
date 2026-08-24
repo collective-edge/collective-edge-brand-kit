@@ -1,5 +1,6 @@
 {
-  "_note": "COLLECTIVE EDGE HAS NO COLOR OF ITS OWN. Black, white, and a grey ramp, and that palette is not going to grow. There is no CE gold, no CE accent. That is not the same as saying a CE surface is always grey: CE almost never appears alone, and on a co-brand surface the color is the PARTNER's. The rule that holds both facts is 'CE stays monochrome, the color belongs to the partner.' Color appears in four places, none of them a CE hue. (1) The Edge wedge in the block mark, grey #C8C8C8 when CE stands alone and the partner's color on a co-brand surface (see the top-level 'wedge' block). (2) On a partner-led co-brand surface the partner's palette leads and CE adds no hue. (3) On a CE-led product for a partner or their customer, the partner's accent is the one hue, used functionally (active nav, live state, one chart series). (4) Charts pick series colors for legibility and colorblind separation, not from this palette. White is the primary surface for documents; black is reserved for hero, section-divider and title surfaces. See SKILL.md section 2 for the co-brand rules.",
+  "_deprecated": "DEPRECATED, pre-v1.0. REPLACED BY tokens.json for color and snippets/type-tokens.json for type. Read those two, not this file. It ships only because pre-v1.0 pipelines still fetch it from the CDN. Its font.weights object listed 500 and 900, which type system v1.0 forbids at document sizes; the object below now carries the 400/600/700/800 ladder. Its section references pointed at SKILL.md section 2, which no longer exists; brand detail is reference/brand.md and the type standard is reference/type-system.md.",
+  "_note": "COLLECTIVE EDGE HAS NO COLOR OF ITS OWN. Black, white, and a grey ramp, and that palette is not going to grow. There is no CE gold, no CE accent. That is not the same as saying a CE surface is always grey: CE almost never appears alone, and on a co-brand surface the color is the PARTNER's. The rule that holds both facts is 'CE stays monochrome, the color belongs to the partner.' Color appears in four places, none of them a CE hue. (1) The Edge wedge in the block mark, grey #C8C8C8 when CE stands alone and the partner's color on a co-brand surface (see the top-level 'wedge' block). (2) On a partner-led co-brand surface the partner's palette leads and CE adds no hue. (3) On a CE-led product for a partner or their customer, the partner's accent is the one hue, used functionally (active nav, live state, one chart series). (4) Charts pick series colors for legibility and colorblind separation, not from this palette. White is the primary surface for documents; black is reserved for hero, section-divider and title surfaces. Co-brand rules are in reference/brand.md section 4.",
   "brandCore": {
     "black":    { "hex": "#000000", "role": "Primary brand black; hero / divider surfaces" },
     "ink":      { "hex": "#111111", "role": "Near-black body text (--fg-1)" },
@@ -72,7 +73,8 @@
   "font": {
     "family": "Montserrat",
     "fallback": "'Helvetica Neue', Arial, sans-serif",
-    "weights": { "regular": 400, "medium": 500, "semibold": 600, "bold": 700, "extrabold": 800, "black": 900 },
+    "weights": { "regular": 400, "semibold": 600, "bold": 700, "extrabold": 800 },
+    "_weightsNote": "400 body, 600 subheads and caps labels, 700 headings and emphasis, 800 hero only. 100, 200, 300 and 900 never appear at document sizes.",
     "cdnUrl": "https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf"
   }
 }

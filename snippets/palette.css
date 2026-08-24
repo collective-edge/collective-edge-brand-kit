@@ -1,0 +1,106 @@
+/* ============================================================
+   COLLECTIVE EDGE · PALETTE  ·  type system v1.0
+   ------------------------------------------------------------
+   The ONLY file that differs between brands. Load it after
+   type-system.css, which is identical everywhere:
+
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/palette.css">
+
+   Two layers:
+     --ce-*   the raw brand palette. Brand-specific names.
+     --fg-* --bg-* --border-*   the semantic layer. IDENTICAL
+                 NAMES in every brand, so a component written for
+                 one brand renders correctly in another with only
+                 this file swapped.
+
+   Always style through the semantic layer. Reach for a raw
+   --ce-* value only where the brand color is the point:
+   a logo band, an accent rule, a chart series.
+   ============================================================ */
+
+:root {
+
+  /* ---- BRAND, GREY RAMP ----
+     Collective Edge has no hue of its own. White is the primary
+     document surface; black is reserved for hero, divider and
+     title surfaces. */
+  --ce-black:     #000000;
+  --ce-ink:       #111111;
+  --ce-graphite:  #2A2A2A;
+  --ce-slate:     #4A4A4A;
+  --ce-steel:     #6E6E6E;
+  --ce-mute:      #9A9A9A;
+  --ce-fog:       #C8C8C8;
+  --ce-mist:      #E2E2E2;
+  --ce-paper:     #F4F4F4;
+  --ce-bone:      #FAFAFA;
+  --ce-white:     #FFFFFF;
+
+  /* ---- THE EDGE WEDGE ----
+     The one part of the block mark that carries color, and that
+     color is the PARTNER's. Grey when CE stands alone. Every
+     combination ships as a file; never hand-recolor a mark.
+     Partner values are resolved from brands.json, which is the
+     source of truth. */
+  --wedge-standalone:  #C8C8C8;
+  --wedge-royal:       #572E72;
+  --wedge-apex:        #f9ad16;
+
+  /* ---- SEMANTIC FOREGROUND ---------------------------------
+     type-system.css styles through these. Same names everywhere. */
+  --fg-1: var(--ce-ink);   /* primary text on light   */
+  --fg-2: var(--ce-slate);   /* secondary text          */
+  --fg-3: var(--ce-steel);   /* tertiary, metadata      */
+  --fg-4: var(--ce-mute);   /* dimmed non-text. 2.81:1 */
+  --fg-accent: var(--ce-ink);   /* brand-colored text  */
+  --fg-on-dark-1: #FFFFFF;
+  --fg-on-dark-2: #D6D6D6;
+  --fg-on-dark-3: #9E9E9E;
+
+  /* ---- SEMANTIC BACKGROUND --------------------------------- */
+  --bg-canvas:   #FFFFFF;
+  --bg-surface:  var(--ce-bone);
+  --bg-elevated: #FFFFFF;
+  --bg-inverse:  var(--ce-black);
+  --bg-band:     var(--ce-black);
+
+  /* ---- BORDERS --------------------------------------------- */
+  --border-1: var(--ce-mist);
+  --border-2: #D0D0D0;
+  --border-on-dark: rgba(255,255,255,0.12);
+  --border-band-rule: transparent;
+
+  /* ---- STATUS ----------------------------------------------
+     Identical in every brand so an operational signal never
+     changes meaning between documents. A brand accent is never
+     a status color. */
+  --status-go:   #1E7A4D;
+  --status-warn: #B5821A;
+  --status-stop: #B0322B;
+  --status-info: #2A5A8C;
+
+  /* ---- DIAGRAM ROLES ---------------------------------------
+     Identical in every brand. Rectangles, 6px radius. Role is
+     communicated by fill, never by shape. */
+  --diagram-decision:        #4a8e3a;
+  --diagram-decision-border: #3a7029;
+  --diagram-warning:         #f57c00;
+  --diagram-warning-border:  #cc6600;
+  --diagram-process:         #3e3e3e;
+  --diagram-process-border:  #2a2a2a;
+  --diagram-connector:       #3e3e3e;
+
+  /* ---- RADII / ELEVATION -----------------------------------
+     The house is flat. Shadow signals elevation, never decoration. */
+  --radius-none: 0;   --radius-sm: 2px;  --radius-md: 6px;
+  --radius-lg: 12px;  --radius-pill: 999px;
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-2: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-3: 0 12px 32px rgba(0,0,0,0.12);
+
+  /* ---- MOTION ---------------------------------------------- */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 120ms; --dur-base: 200ms; --dur-slow: 360ms;
+}

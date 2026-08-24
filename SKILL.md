@@ -1,359 +1,135 @@
 ---
 name: collective-edge-brand-guidelines
-description: Applies Collective Edge's brand standards to ANY output representing Collective Edge. CE itself is monochrome, a black-to-white system with no brand hue of its own, set in Montserrat with the CE block mark and "CE │ COLLECTIVE EDGE" wordmark. It runs on the "Powered by Collective Edge" co-brand model, which is how CE appears on almost everything, and on a co-brand surface the color is the PARTNER's: the Edge wedge takes Royal purple or Apex gold. Use whenever generating CE materials: internal documents, memos, one-pagers, reports, slides, emails, web content, product UI, dashboards, tables, or any visual artifact, and when reviewing materials for brand compliance. Defaults to the restrained internal-document treatment; the dark-grain hero treatment is reserved for marketing and title surfaces.
+description: Applies the Collective Edge brand standard to any artifact carrying the CE name, covering palette, logo, layout and the shared house type system. Collective Edge is the parent of Apex Paramedics and Royal Ambulance, runs monochrome black to white with no hue of its own, sets everything in Montserrat, and reaches most surfaces through the “Powered by Collective Edge” co-brand where the Edge wedge takes the partner’s color. Use when producing or reviewing a Collective Edge email, slide, deck, one-pager, report, letterhead, flyer, document, web page, table, diagram, dashboard or PDF. Defaults to the restrained white document treatment and keeps the black band for headers, title slides and section dividers.
 ---
 
-# Collective Edge, Brand Guidelines
+# Collective Edge
 
-Collective Edge ("CE") is a holding and operating company that partners with regional healthcare-transportation providers and brings them shared systems, leadership, and long-term capital while preserving local ownership. The brand runs on a **"Powered by Collective Edge"** co-brand model: every partner keeps its own logo, and CE shows up beside them as the connective tissue.
+Collective Edge is a holding and operating company that partners with regional healthcare-transportation providers and brings them shared systems, leadership and long-term capital while local ownership stays in place. It is the parent of Apex Paramedics and Royal Ambulance, it owns the house type system both operating companies inherit unchanged, and it carries no hue of its own: black, white and a grey ramp, with color arriving only from a partner.
 
-**The brand in one line:** restrained, confident, operational, adult. Bold-italic display type used sparingly, generous whitespace, hairline dividers, no decorative flourish. It reads as a senior operator giving a direct briefing, the opposite of consumer-tech playfulness.
+Default to the restrained white document treatment. Black is a header band, a title slide or a section divider. It is never the reading surface of a document. Most of what you generate is an internal document. The hero treatment, black `#000000` under the `CE_Background.jpeg` grain wave, belongs on a title or section-divider surface, and even there, once. The two treatments are set side by side in [reference/brand.md](reference/brand.md).
 
-**Read this first.** CE has no brand color. It is black, white, and grey, and that is final. But most CE work is a co-brand, and a co-brand surface does carry color: the partner's. So do not assume a CE surface is grey, and do not go looking for a CE hue to add. See section 2.
+Full color, logo, co-brand and voice detail: [reference/brand.md](reference/brand.md).
 
-**This skill is the authoritative reflection of the CE Design System** (source of truth lives in the "Collective Edge Design System" project on claude.ai/design). Tokens here mirror its `colors_and_type.css`.
+## Asset loading
 
-## Two treatments, pick the restrained one by default
+Load in this order. `type-system.css` is identical in every kit and is served from this repo because the type layer belongs to Collective Edge. `palette.css` is the only stylesheet that differs between brands.
 
-| | **Internal documents (DEFAULT)** | Hero and marketing |
-|---|---|---|
-| Surface | **White `#FFFFFF`** canvas | Black `#000000` plus grain-wave background |
-| Display type | Small, sparing; sentence-case headings do most work | Big bold-italic ALL-CAPS statements |
-| Feel | Quiet, dense, legible, printable | Cinematic, full-bleed, declarative |
-| Use for | Memos, one-pagers, reports, SOPs, tables, internal comms | Title slides, section dividers, the marketing site |
-
-**Most of what you generate is an internal document.** The marketing-site look (dark, big italic, full-bleed hero) is overkill for internal material. Reach for it only on a title or section-divider surface, and even then, once.
-
-## CRITICAL: Asset loading
-
-This kit is cloud-hosted on a public CDN (jsDelivr, backed by GitHub). **Do not look for local files.** Use these URLs directly in generated HTML, CSS, or markdown.
-
-**Base CDN URL:** `https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/`
-
-| Asset | URL (prefix with the base above) |
-|---|---|
-| Montserrat (variable TTF) | `assets/fonts/Montserrat-VariableFont_wght.ttf` |
-| Wordmark lockup on light | `assets/logos/horizontal-black.svg` |
-| Wordmark lockup on dark | `assets/logos/horizontal-white.svg` |
-| Block mark, **on light** | `assets/logos/mark-black.svg`, `-royal.svg`, `-apex.svg` |
-| Block mark, **on dark** | `assets/logos/mark-white.svg`, `-royal.svg`, `-apex.svg` |
-| Brand colors (JSON) | `assets/colors.json` |
-| Base CSS (tokens plus type styles) | `snippets/brand-base.css` |
-
-**Drop-in base CSS** (Montserrat @font-face, every design-system token, and the `.ce-*` type styles):
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/brand-base.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/palette.css">
 ```
 
-**For PDF rendering** (weasyprint, wkhtmltopdf, Chrome print), inline the @font-face so the font embeds in the file:
+For PDF pipelines (weasyprint, wkhtmltopdf, Chrome print) inline the face so it embeds in the file:
+
 ```css
 @font-face {
   font-family: "Montserrat";
   src: url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf") format("truetype-variations");
-  font-weight: 100 900;
+  font-weight: 400 800;
+  font-style: normal;
 }
 body { font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif; }
 ```
 
-**Partner brand kits** (the source of truth for any partner's color and logos, never a copy kept here). Same layout as this kit, but **the logo filenames differ**, so check before you hardcode a path:
+Ask for a logo by role. Partner kits map the same five roles to different filenames, so never carry a filename across brands.
 
-| Partner | Kit base URL (jsDelivr, same shape as above) | Lockup on light | Lockup on dark |
-|---|---|---|---|
-| Apex Paramedics | `https://cdn.jsdelivr.net/gh/collective-edge/apex-brand-kit@main/` | `assets/logos/horizontal-color.svg` | `assets/logos/horizontal-white.svg` |
-| Royal Ambulance | `https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/` | `assets/logos/horizontal-purple.svg` | `assets/logos/horizontal-white.svg` |
-
----
-
-## 1. Color
-
-**Collective Edge has no color of its own.** Pure black, pure white, and a precise grey ramp between them. That is the entire CE palette, and it is not going to grow.
-
-That is not the same as saying a CE surface is always grey, which is what this kit used to imply. CE almost never appears alone. It appears beside a partner, and on those surfaces there is color. The rule that holds both facts:
-
-> **CE stays monochrome. The color belongs to the partner.**
-
-So a co-branded surface carries the partner's hue, and CE's own contribution to it is still black, white, and grey. There is no CE gold, no CE accent, no CE brand hue waiting to be used.
-
-### Where the color comes from
-
-| What you are making | What the palette is |
-|---|---|
-| CE's own documents, decks, memos, reports, one-pagers | The grey ramp. Monochrome. |
-| The CE mark, standing alone | Black or white block and letters, **grey** `#C8C8C8` wedge |
-| The CE mark, on a co-brand surface | Same black or white block and letters, wedge in **the partner's color** |
-| A partner-led co-brand surface (mode A, section 2) | **The partner's palette leads.** CE adds structure and finish, no hue |
-| A CE product delivered to a partner or their customer (mode B, section 2) | CE grey ramp, plus **the partner's accent** used functionally |
-| Anything carrying operational or clinical status | The four status colors, functionally, never as theme |
-| Charts and data visualization, on any surface | **Series colors chosen for legibility**, not pulled from the brand palette |
-
-What stays true in every row: the CE block and its letters are black or white, never a partner's color; nothing is tinted for decoration; and contrast is checked before a color becomes text.
-
-### The CE ramp
-
-| Token | Hex | Role |
+| Role | URL | Use |
 |---|---|---|
-| `--ce-black` | `#000000` | Brand black; hero and divider surfaces |
-| `--ce-ink` | `#111111` | Body text on light (`--fg-1`) |
-| `--ce-graphite` | `#2A2A2A` | Deep neutral; button hover |
-| `--ce-slate` | `#4A4A4A` | Secondary text (`--fg-2`) |
-| `--ce-steel` | `#6E6E6E` | Tertiary text, the "EDGE" grey (`--fg-3`) |
-| `--ce-mute` | `#9A9A9A` | Muted and "Not This" labels (`--fg-4`) |
-| `--ce-fog` | `#C8C8C8` | **The Edge wedge** when CE stands alone |
-| `--ce-mist` | `#E2E2E2` | Hairlines, dividers (`--border-1`) |
-| `--ce-paper`, `--ce-bone` | `#F4F4F4`, `#FAFAFA` | Off-white and lightest surfaces |
-| `--ce-white` | `#FFFFFF` | Brand white; **primary document canvas** |
+| horizontal-on-light | `https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg` | Primary lockup on white and light greys |
+| horizontal-on-dark | `https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg` | Primary lockup on the black band |
+| mark-on-light | `https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/mark-black.svg` | Favicon, avatar, badge, the CE half of a lockup, on light |
+| mark-on-dark | `https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/mark-white.svg` | Same, on dark |
+| stacked-on-dark | none | Collective Edge ships no stacked lockup. Use horizontal-on-dark. |
 
-- **Text on light:** `#111` primary, `#4A4A4A` secondary, `#6E6E6E` metadata.
-- **Text on dark:** `#FFFFFF` primary, `#D6D6D6` secondary, `#9E9E9E` tertiary.
+The horizontal lockup reads `CE │ COLLECTIVE EDGE`. That vertical bar is drawn geometry inside the artwork, not typed punctuation, and it is reused as a 1px rule wherever CE is paired with a partner, a customer or a section name.
 
-### The wedge is where the partner enters
+Co-brand marks carry the partner’s hue in the Edge wedge and ship as files: `mark-black-royal.svg`, `mark-white-royal.svg`, `mark-black-apex.svg`, `mark-white-apex.svg`, same base URL. Never hand-recolor a mark.
 
-**The Edge wedge is the one part of the mark that carries color, and that color is the partner's.** The block stays black or white, the letters stay the opposite, and only the wedge changes:
+Machine-readable color for python-pptx, python-docx, matplotlib and reportlab: `tokens.json`. Machine-readable type: `snippets/type-tokens.json`. `assets/colors.json` and `snippets/brand-base.css` are the pre-v1.0 files. Both still ship for pages already fetching them from the CDN. Never read either one for a new artifact.
 
-| Wedge | Hex | When |
+## Color
+
+| Token | Hex | Use |
 |---|---|---|
-| Grey | `#C8C8C8` | **CE standing alone.** The default, and the only treatment on a CE-only surface |
-| Royal purple | `#572E72` | A surface co-branded with **Royal Ambulance** |
-| Apex gold | `#f9ad16` | A surface co-branded with **Apex Paramedics** (Pantone 1235 C, their kit value) |
+| `--ce-white` | `#FFFFFF` | Document canvas. The default surface. |
+| `--ce-black` | `#000000` | Header bands, title slides, section dividers. |
+| `--ce-ink` | `#111111` | Body text on light. `--fg-1` |
+| `--ce-graphite` | `#2A2A2A` | Deep neutral, button hover. |
+| `--ce-slate` | `#4A4A4A` | Secondary text. `--fg-2` |
+| `--ce-steel` | `#6E6E6E` | Tertiary text, metadata. `--fg-3` |
+| `--ce-mute` | `#9A9A9A` | Dimmed non-text marks. Never text. `--fg-4` |
+| `--ce-fog` | `#C8C8C8` | The Edge wedge when CE stands alone. |
+| `--ce-mist` | `#E2E2E2` | Hairlines and dividers. `--border-1` |
+| `--ce-paper` | `#F4F4F4` | Off-white surface tint. |
+| `--ce-bone` | `#FAFAFA` | Lightest surface. `--bg-surface` |
 
-This is the heart of the co-brand model, and it is worth stating plainly: **CE does not have a color, so when CE co-brands it takes the partner's into its own mark.** The partner enters CE through the wedge and nothing else about the mark moves. As CE takes on more operating companies, each one gets a wedge color and nothing else changes.
+On dark: `#FFFFFF` primary, `#D6D6D6` secondary, `#9E9E9E` tertiary.
 
-Every combination ships as a file, so **never hand-recolor**: `mark-black-royal.svg`, `mark-white-apex.svg`, and so on. See section 4.
+Three rules agents break most often.
 
-The wedge color never moves off the wedge: not onto the block, not onto the letters, not into UI chrome. It works there because the wedge is a shape inside a mark, not something anyone has to read. Apex gold measures 1.91:1 against white and would fail as text or a thin line, which is fine on the wedge and not fine anywhere else.
+1. **There is no CE accent hue and there never will be.** Do not add a blue, a gold or a teal to a CE surface. Color on a CE surface belongs to a partner and enters through the Edge wedge or a functional accent, never as decoration.
+2. **`#C8C8C8`, `#E2E2E2` and `#9A9A9A` are never text.** They measure 1.67:1, 1.30:1 and 2.81:1 on white. `#9A9A9A` fails at every size, large included, so it never sets a footer, a caption or a column label. The floor for text on white is `#6E6E6E` at 5.10:1. Body text is `#111111` on white and `#FFFFFF` on black.
+3. **A bright partner color is never ink.** Apex gold `#f9ad16` measures 1.91:1 on white and fails as text or a thin chart line. Use the partner kit’s text-safe step, `#B77808` at 3.68:1, and only at 700 or at large sizes. A brand accent is never a status color.
 
-One honest limitation: on a CE-only surface the grey wedge nearly disappears at favicon sizes on a white tile. There is no CE color to reach for instead. Either give the mark a dark backing at small sizes, or accept it, but do not invent a hue to solve it.
+## Co-brand
 
-### Status colors
+CE rarely stands alone. It comes in beside an operating company or a partner and says so in words. If CE’s mark is on a surface with another brand, “Powered by Collective Edge” is on it too. Pick the mode by asking whose name is on the door.
 
-`--status-go #1E7A4D`, `--status-warn #B5821A`, `--status-stop #B0322B`, `--status-info #2A5A8C`. These exist because CE works in healthcare operations and some things genuinely mean go, watch, and stop. Use them **functionally and sparingly**, always paired with text or an arrow so meaning never rides on color alone. Never as decoration or theme.
-
-### Data visualization
-
-Charts are the one place where the grey ramp is not enough, and forcing them monochrome makes them worse. Choose series colors for **legibility and colorblind separation first**, then keep them stable so a color means the same thing across every surface in a system. Practices proven on the shipped CE dashboards:
-
-- Give each series a fixed identity and reuse it everywhere in the product.
-- Verify contrast (3:1 minimum against the surface) and colorblind separation before shipping a palette. A bright brand color often fails as a chart line on white; use the partner kit's text-safe darkened step instead.
-- **Target and reference rules are neutral dashed lines with a label, never green.** Green on a red series fails deuteranopia badly.
-- Two or more series always carry a legend or direct labels. Identity never rides on color alone.
-
----
-
-## 2. Co-branding: "Powered by Collective Edge"
-
-**This is how CE appears on almost everything.** CE rarely stands alone. It comes in beside an operating company, a partner, or that partner's customer, and it says so in words: **"Powered by Collective Edge."** Treat the phrase as non-optional. If CE's mark is on a surface with another brand, the phrase is on it too.
-
-### Pick the mode by asking whose name is on the door
-
-**Mode A. Partner led.** The partner's brand owns the surface. Their logo heads it, their palette runs the chrome, their color carries the accents. CE contributes **structure and finish, not hue**: Montserrat, hairline dividers, generous whitespace, tabular numerals, square-ish corners, quiet fast motion, a disciplined type scale. CE's visible presence is the "Powered by" lockup and the footer caption.
-
-*Shipped reference: the Apex internal dashboards. The sidebar is Apex deep blue `#1D225E` with a gold `#f9ad16` right rule, the whole palette locked to the Apex kit. CE adds zero color and is unmistakably there anyway.*
-
-**Mode B. CE led, partner accented.** CE's system owns the surface: white canvas, grey ramp, hairlines, the CE type scale. The partner's color is **the only hue on the page** and it is functional: active nav, live-data indicator, active filter, one chart series. Reach for this when the artifact is a CE product delivered to a partner or their customer.
-
-*Shipped reference: the Apex customer dashboard. Every surface is the CE ramp; Apex gold marks exactly the live and active states and one chart series, nothing else.*
-
-When in doubt, mode A. CE does not take over a partner's surface.
-
-### Building the lockup
-
-- **Two marks, never merged.** CE and the partner stay separate marks that happen to share a surface. Never combine them into one logo, never nest CE's mark inside a partner's, never build a "CE x Partner" glyph.
-- **Separate them with the CE `│`.** The vertical bar from `CE │ COLLECTIVE EDGE` is a brand signature. Render it between marks as a **1px rule at roughly the height of the marks**, in `--ce-mist` on light or `rgba(255,255,255,0.12)` on dark. A rule, not a typed glyph.
-- **Order follows ownership.** On a partner-led surface the partner's mark sits first (or above), and the CE lockup sits beneath it, under a hairline, so the two read as two brands rather than one. On a CE-led product the chain reads left to right in order of who built it and who it is for: `CE │ Apex Paramedics │ {Customer}`. Never stack more than three marks in one lockup.
-- **The eyebrow.** "POWERED BY" sits above or beside the CE lockup: SemiBold 600, ALL CAPS, tracked 0.08em to 0.16em, roughly 9px to 11px, in the surface's tertiary grey. Where no lockup fits, spell out **"Powered by Collective Edge"** as text at the same weight and tracking.
-- **Match the file to the background, on both sides.** CE uses `horizontal-white.svg` on dark and `horizontal-black.svg` on light. The partner uses whatever their kit calls the same two things, and the names differ: Apex ships `horizontal-white.svg` and `horizontal-color.svg` (there is no black variant), Royal ships `horizontal-white.svg` and `horizontal-purple.svg`. **On a light surface the partner appears in their own color logo while CE appears in black.** That asymmetry is correct. It is the partner's brand and CE's restraint, side by side. Never CSS-recolor a lockup to fake a variant, and never drop a lockup on a busy area without a solid backing.
-- **Size it to be read.** Keep the CE lockup at or above its **120px** minimum width, and on a panel or sidebar let it fill the available content width rather than hiding in a corner. Clear space stays at least the height of the Edge block.
-- **One CE lockup per surface.** Header or footer, not both. The footer caption below is text, not a mark, so it may accompany a header lockup.
-
-### The footer caption
-
-The standing CE signature on any co-branded product. A slim strip with a 1px hairline top rule. Left: `Collective Edge │ {Surface Name}` in the tertiary grey at 600 or 700 weight with slight caps tracking. Right: a revision marker or a scope note.
-
-### Partner color rules
-
-1. **Take the hex from the partner's own brand kit, never from a copy.** Values kept in this kit are a convenience mirror and they go stale. `apex-brand-kit` and `royal-brand-kit` are the source of truth for their own colors and logos. As of 2026-07-31 the mirror reads:
-
-| Partner | Primary | Deep (hero, bands, sidebars) | Light (hover) | Accent | Text-safe accent |
-|---|---|---|---|---|---|
-| Apex Paramedics | `#2c338e` blue | `#1D225E` | `#9699C7` | `#f9ad16` gold | `#B77808` |
-| Royal Ambulance | `#572e72` purple | `#2f193b` | `#8260a2` | (logo fill `#43205b`) | `#572e72` passes on white |
-
-   Stadium and LifeWest have **no kit yet**, so the hexes carried for them are unreconciled placeholders. Confirm with the partner before shipping, and publish a kit when one of them becomes real work.
-2. **Check contrast before a partner color becomes ink.** Bright brand colors usually fail as text or small UI on white. Apex gold `#f9ad16` fails 3:1 on white; the Apex kit ships the text-safe deep gold `#B77808` for exactly this. Use the darkened step the partner's kit provides. Do not invent your own darkening, and do not ship the bright value as body text or a thin chart line.
-3. **Partner color is functional in mode B.** It marks state and identity. It does not tint surfaces, fill cards, or become a theme.
-4. **The wedge takes the partner's color. Nothing else in the mark does.** This is the co-brand mechanism, not a violation of it. Royal `#572E72`, Apex `#f9ad16`. The block stays black or white and the letters stay the opposite, on every surface. Use the ready-made file (`mark-black-royal.svg` and friends) rather than recoloring by hand.
-5. **The wedge and the partner's own mark carry the same hue, and that is the point.** An Apex gold wedge beside the Apex logo reads as one system. They stay two separate marks, and the hairline keeps them distinct.
-
-### Never, on a co-brand surface
-
-- Drop "Powered by Collective Edge."
-- Lead with CE on a partner's own surface.
-- Merge, nest, or recolor either mark to match the other.
-- Use a partner's accent on a CE-only surface.
-- Put CE's grey ramp over a partner's palette in mode A, or a partner's palette over CE's chrome in mode B. Pick one mode and hold it.
-
----
-
-## 3. Typography, Montserrat only
-
-The entire brand is built on weight and italic contrast within one typeface.
-
-- **Display.** ExtraBold (800) **Italic, ALL CAPS**, tracked about 0.01em. Slide titles, section dividers, page-level statements. Use sparingly, especially in documents. (`.ce-display-*`)
-- **Headings.** Bold (700) or SemiBold (600) Roman, sentence case. This is what carries internal documents. (`.ce-h1` through `.ce-h4`)
-- **Body.** Regular (400) Roman, sentence case, line-height 1.5 to 1.6. (`.ce-body`, `.ce-body-sm`)
-- **Emphasis in body.** Bold (700) Roman: `**Proven playbooks.**` then a regular-weight explanation.
-- **Eyebrows and labels.** SemiBold (600), ALL CAPS, tracked 0.08em, grey. (`.ce-eyebrow`)
-- **Numbers in product UI.** Tabular figures (`font-feature-settings: "tnum" 1`) so columns align. A CE dashboard is read by column.
-
-**The COLLECTIVE and EDGE duality is the signature.** The wordmark sets COLLECTIVE in heavy black italic and EDGE in light-grey (`#C8C8C8`) thin italic. Any headline echoing that heavy-plus-thin, black-plus-grey pairing reads on-brand instantly. Keep "EDGE" grey, never force it to full black or white.
-
-Rules: no more than 3 weights per piece; uppercase always tracked; no italic body text (italics are for display and the `.ce-lede` only); Montserrat everywhere.
-
----
-
-## 4. Logo
-
-- **Wordmark lockup.** "CE │ COLLECTIVE EDGE" horizontal lockup. Primary logo where there is room. `horizontal-black.svg` on light, `horizontal-white.svg` on dark.
-- **CE block mark.** The skewed parallelogram with the Edge wedge, its left corners softly rounded. Icon-only contexts (favicons, avatars, badges, the CE half of a co-brand lockup).
-  - **The name is the logo's own color. Use it on the opposite background.** Same convention as `horizontal-black` and `horizontal-white`, and as the `CE_Block_Dark` and `CE_Block_Light` PNGs.
-
-| File | The logo is | Put it on |
+| Mode | Whose surface | What CE contributes |
 |---|---|---|
-| `mark-black.svg` | majority **black**, white letters, grey wedge | a **light** background |
-| `mark-black-royal.svg` | majority black, **purple** wedge | a light background, Royal co-brand |
-| `mark-black-apex.svg` | majority black, **gold** wedge | a light background, Apex co-brand |
-| `mark-white.svg` | majority **white**, black letters, grey wedge | a **dark** background |
-| `mark-white-royal.svg` | majority white, **purple** wedge | a dark background, Royal co-brand |
-| `mark-white-apex.svg` | majority white, **gold** wedge | a dark background, Apex co-brand |
+| A, partner led | The partner’s logo heads it, their palette runs the chrome | Structure and finish, no hue. Montserrat, hairlines, whitespace, tabular figures, the type scale. CE shows as the “Powered by” lockup. |
+| B, CE led | White canvas, CE grey ramp, CE type scale | The partner’s color is the only hue on the page and it is functional. Active nav, live indicator, one chart series. |
 
-  - Two axes, and they are independent: **black or white picks the background, the suffix picks the co-brand.** Six files is the whole set.
-  - Every combination ships. **Never hand-recolor a mark.**
+When in doubt, mode A. Lockup construction, order, the “POWERED BY” eyebrow and the partner color rules are in [reference/brand.md](reference/brand.md).
 
-Rules: match the file to the background, do not CSS-recolor; keep clear space at least the height of the Edge shadow block; minimum lockup about 120px or 1in, minimum mark about 28px; never stretch, skew, rotate, add shadow, glow, or gradient, or split the mark from the wordmark in the lockup. **Color is limited to the wedge**, which is grey `#C8C8C8` when CE stands alone and the partner's color on a co-brand surface. The block and the letters stay black or white on every surface, including co-brands. The **vertical bar `│` separator** is a brand signature: reuse it as a 1px grey rule whenever pairing CE with a partner, a customer, or a section name.
+## Type
 
----
+Type is shared, identical across Collective Edge, Apex and Royal, and never forked for one brand. Read [reference/type-system.md](reference/type-system.md) and follow the fifteen rules in its section 10. The scale, leading, tracking, measure and spacing tables live there. Do not restate them from memory.
 
-## 5. Voice and content
+Three things that are never correct.
 
-CE sounds like a senior operator giving a direct briefing: confident, plainspoken, operational. Not a consultant pitching, not a startup hyping.
+- **No italic.** Not at any weight, not in any brand. The heavy-italic Collective Edge signature exists only inside the drawn wordmark SVG, where the letterforms are real.
+- **No weight outside 400, 600, 700, 800.** Never 100, 200, 300 or 900 at document sizes. Maximum three weights in one piece.
+- **No px tracking.** Tracking is always em. Large type negative, small caps positive.
 
-- **Plain words over jargon.** "We understand what works and scale it." Not "operationalize evidence-based frameworks." Avoid leverage, synergize, unlock.
-- **Short sentences, full stops.** Deck headlines run 2 to 4 words. Body rarely exceeds about 12 words per sentence.
-- **First person plural** ("we") addressing **"you," the partner.** Never "the customer" or "users."
-- **Active verbs:** build, earn, operate, scale, reinvest, develop.
-- **Bold-then-explain.** A two-word claim, a period, then a one-line proof:
-  > **Proven playbooks.** We understand what works and scale it.
-  > **Long-term builders.** We improve organizations for decades.
-- **Not this. This.** CE defines itself by what it refuses to be:
-  > Not this: Acquire and rebrand overnight.
-  > This: Earn trust, then build together.
-- **Headlines often end in a period.** It makes claims feel settled, not promotional: "How we operate together."
-- **Anti-extraction, long-horizon.** Reinvestment in people and culture. Decades, not quarters.
-- **No emoji. No exclamation points. No rhetorical questions.** The voice does not perform enthusiasm.
+## Layout
 
-### Punctuation: no em dashes, no slashes
+Patterns, all copy-pasteable: [reference/layout.md](reference/layout.md). It carries the header band, sub-banner, co-brand lockup, flowchart nodes, stat callouts, tables and footer, plus the hairline, card, button and motion conventions.
 
-**Do not use em dashes (`—`), en dashes (`–`), or forward slashes (`/`) in CE copy.** They read as hurried. Recast instead:
+Ready-to-fill files: `templates/document.html` for a printable report, `templates/internal-doc.html` for a memo, `templates/deck.html` for slides. `Examples/ce-one-pager.html` is a filled reference.
 
-- Where you would reach for a dash, use a **period** (two short sentences), a **comma**, a **colon**, or **parentheses**. Write "Confident, plainspoken, operational." Write "We do one thing. We do it for decades." Never join those clauses with a dash.
-- Where you would pair or list with a slash, use **"and," "or," a comma,** or a **middot `·`**. "Systems, leadership, capital." Not "systems/leadership/capital." "Internal · Confidential," not "Internal / Confidential."
-- The **only** vertical stroke that stays is the **`│` lockup separator** in `CE │ COLLECTIVE EDGE` and `CE │ PARTNER NAME`. That is the logo, not punctuation.
+The header band opens nearly every deliverable. `.bk-on-dark` on the container drops display from 800 to 700 and adds 0.005em to every step under it. Do not restate either value inline. The band title is a masthead, not the document heading, so it is a `<p>` and the one `<h1>` stays on the page title.
 
----
-
-## 6. Layout conventions (internal documents)
-
-- **White canvas, generous margins.** Content lives well inside the page edge. CE breathes, so do not fill every pixel.
-- **The header motif:** a title (sentence-case `.ce-h*` or a small display line), an optional `.ce-eyebrow` above it, and a **1px `--ce-mist` horizontal rule underneath.** This under-header hairline is a fixed brand motif and it appears under nearly every section title.
-- **Hairlines, not boxes.** Prefer a single 1px `#E2E2E2` rule or a 1px vertical column divider over bordered cards. Cards, when used, are flat: `--bg-surface` fill, `--radius-md` (6px) or square, `--shadow-1` only if in a list of equal elevations, 24px to 32px padding.
-- **Comparison layouts ("Not this. This."):** split 50 50 with a centered vertical rule. Secondary label in mute grey, primary label in heavy black italic.
-- **Corners mostly square** (0px to 6px). No squircles, no pills except tag chips.
-- **Buttons:** primary is solid black with white text, 2px or square corners, 600 weight, slight caps tracking, hover to graphite; secondary is white fill with a 1px black border, hover inverts. No gradients, no drop-shadow buttons, no emoji.
-- **Footer:** slim strip, 1px `--ce-mist` top rule. Left: "Collective Edge │ {Document Title}" in `--fg-4`. Right: revision marker (for example "Rev. 07.26") in `#111`, Montserrat 700.
-- **Motion (if any):** quiet and fast. 200ms, `cubic-bezier(0.2,0,0,1)`, fades and short translates only. No spring, no bounce.
-- **Forbidden:** UI gradients, glassmorphism, blurred orbs, illustration systems, brand patterns, drop-shadow decoration.
-
-A ready-to-fill internal-document template lives at `templates/internal-doc.html` (and `examples/` holds rendered references).
-
----
-
-## 7. Quick-reference snippets
-
-**Under-header motif (the signature):**
 ```html
-<header style="padding:0 0 var(--space-4); border-bottom:1px solid var(--ce-mist);">
-  <p class="ce-eyebrow">SECTION · CATEGORY</p>
-  <h1 class="ce-h1">How we operate together.</h1>
+<header class="bk-on-dark" style="background:var(--bg-band); padding:32px 48px; display:flex; align-items:center; justify-content:space-between; gap:48px;">
+  <div>
+    <p class="bk-eyebrow" style="margin:0 0 8px;">INTERNAL · CONFIDENTIAL</p>
+    <p class="bk-display-md bk-caps" style="margin:0;">HOW WE OPERATE TOGETHER</p>
+  </div>
+  <img src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg"
+       alt="Collective Edge" style="width:204px; height:auto; display:block; flex:none;">
 </header>
 ```
 
-**Bold-then-explain line:**
-```html
-<p class="ce-body"><span class="ce-emphasis">Proven playbooks.</span> We understand what works and scale it.</p>
+## Verify before shipping
+
+```bash
+python3 scripts/validate.py path/to/output.html
 ```
 
-**Co-brand lockup, mode A (partner leads, CE beneath a hairline, dark surface):**
-```html
-<div class="brand-head">
-  <img alt="Apex Paramedics" width="158"
-       src="https://cdn.jsdelivr.net/gh/collective-edge/apex-brand-kit@main/assets/logos/horizontal-white.svg">
-  <div class="ce-powered">
-    <span>Powered by</span>
-    <img alt="CE │ Collective Edge" width="132"
-         src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg">
-  </div>
-</div>
-<style>
-  .ce-powered {
-    display: grid; gap: 6px; margin-top: 16px; padding-top: 15px;
-    border-top: 1px solid rgba(255,255,255,0.12);
-  }
-  .ce-powered span {
-    font: 600 9px/1 "Montserrat"; letter-spacing: 0.08em;
-    text-transform: uppercase; color: #9AA0C9;
-  }
-  .ce-powered img { width: 100%; max-width: 204px; display: block; }
-</style>
-```
+It checks rules 1, 2, 5, 9, 10, 13 and 14 mechanically and exits non-zero on a violation. Then confirm by eye.
 
-**Co-brand lockup, mode B (CE leads, marks divided by the `│` rule, light surface):**
-```html
-<div style="display:flex; align-items:center; gap:14px;">
-  <img alt="Collective Edge" style="height:40px; display:block;"
-       src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg">
-  <span style="width:1px; height:40px; background:rgba(17,17,17,0.14);"></span>
-  <img alt="Apex Paramedics" style="height:38px; display:block;"
-       src="https://cdn.jsdelivr.net/gh/collective-edge/apex-brand-kit@main/assets/logos/horizontal-color.svg">
-</div>
-<div style="font:700 9px/1 'Montserrat'; letter-spacing:0.16em; text-transform:uppercase;
-            color:var(--fg-4); margin-top:14px;">Powered by Collective Edge</div>
-```
+- [ ] Rendered, not just written. Open it and look. Overlap, clipping and overflow are invisible in source. If your environment cannot render, say so plainly instead of claiming it looks clean.
+- [ ] Montserrat actually rendered, not a fallback. For PDF, actually embedded.
+- [ ] No italic anywhere.
+- [ ] The dark band is one weight lighter than its light-surface equivalent.
+- [ ] Body text sits at `#111111` on white, `#FFFFFF` on black, and clears 4.5:1.
+- [ ] Correct logo role for the background. Not stretched, not skewed, not recolored past the wedge.
+- [ ] On a co-brand surface, “Powered by Collective Edge” is present, the two marks are separate, and the CE block and letters are still black or white.
+- [ ] Every hue on the surface has a job you can name. No decorative tints, no invented hexes.
+- [ ] No helper text, no caption restating the thing above it, no parenthetical after a heading.
 
-**Footer:**
-```html
-<footer style="border-top:1px solid var(--ce-mist); padding:8px 0; display:flex; justify-content:space-between;">
-  <span class="ce-caption">Collective Edge &nbsp;│&nbsp; Document Title</span>
-  <span style="font:700 12px 'Montserrat'; color:#111;">Rev. MM.YY</span>
-</footer>
-```
+State which brand choices you applied when you hand the work back: treatment, co-brand mode, logo role, font-embedding method.
 
----
-
-## Verify before you ship
-
-A CE deliverable fails on details a spell-check cannot catch. Overlapping text, a clipped logo, an accent you cannot read, a font that quietly fell back to Arial. Before you call a CE deliverable done, verify the **rendered** result, not the source:
-
-1. **Render it and look.** Render the output to an image or PDF, or open the HTML in a browser, and visually inspect what actually renders. Text overlap, clipping, and overflow are invisible in the source and only show up in pixels. If your environment cannot render, say so plainly instead of claiming it looks clean.
-2. **No collisions.** Nothing overlapping, colliding, clipped, or overflowing. No text running past its container, off the page, or into the mark.
-3. **Legibility.** Contrast holds. Mid greys fail as body text on white, so keep body copy in ink or near black and reserve the light greys for hairlines and captions. Light text only on dark backgrounds. Any partner or chart color used as text or a thin line clears 3:1 against its surface.
-4. **Logo integrity.** Correct variant for the background, meaning the white variant on dark. Never stretched, skewed, or recolored beyond the wedge. Clear space respected. Never on a busy area without a solid backing.
-5. **Co-brand check.** "Powered by Collective Edge" is present. The two marks are separate, divided by the `│` rule, in the right order for the mode. The CE block and letters are still black or white.
-6. **Type.** Montserrat actually rendered, not a system fallback. For PDFs, actually embedded in the file. Confirm it before you call the job done.
-7. **On-brand color.** Every hue on the surface has a job you can name, and every one is either CE's, the partner's own kit value, a status color, or a chart series. No decorative tints, no invented hexes.
-8. **State what you applied.** When you hand it back, name the brand choices you made (which treatment, which co-brand mode, which logo variant, how the font embedded) so the user can verify at a glance.
-
----
-
-## 8. Versioning and sign-off
-
-`@main` serves the latest; pin `@v1.0` for production. When you finish a CE deliverable, state the brand choices you applied (internal-doc or hero treatment, co-brand mode A or B, which logo variant, font-embedding method) so the user can verify at a glance.
+`@main` serves the latest. Pin `@v1.0` for production.

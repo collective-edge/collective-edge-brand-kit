@@ -1,67 +1,90 @@
-# How to push this to GitHub (one-time, ~3 minutes)
+# Publishing this kit
 
-Everything is already prepared in this folder. You just need to push it. The CDN (jsDelivr) only works against a **public** GitHub repo, so the repo must be public.
+The repo exists and `origin` is already set:
 
-## Step 1. Create the empty repo on GitHub
+```
+https://github.com/collective-edge/collective-edge-brand-kit
+```
 
-Go to **https://github.com/organizations/collective-edge/repositories/new** and create:
+It is public because jsDelivr serves public repos only. Do not make it private.
 
-- **Repository name:** `collective-edge-brand-kit`
-- **Visibility:** **Public** (required for the jsDelivr CDN to work)
-- **Do NOT** initialize with a README, .gitignore, or license — this folder already has those.
+The CDN serves the `main` branch. Work lands on a branch, so nothing is live until that branch merges to `main`.
 
-Click **Create repository**.
+## 1. Verify
 
-## Step 2. Push from terminal
+Both scripts pass before anything is pushed.
 
 ```bash
 cd ~/collective-edge/collective-edge-brand-kit
-git init
+python3 scripts/check-sync.py
+python3 scripts/validate.py $(find snippets templates Examples -name '*.html' ! -name '*.before.html')
+```
+
+`check-sync.py` exits non-zero when a shared file drifts from the sibling kits, when `snippets/palette.css` is missing a semantic-contract variable, or when `snippets/type-tokens.json` and `snippets/type-system.css` disagree on a scale value.
+
+`validate.py` exits non-zero on rules 1, 2, 5, 9, 10, 13 and 14 of `reference/type-system.md`. It reads its allowed values from `snippets/type-tokens.json`, so nothing about the ladder is hardcoded in it.
+
+Seven files are shared byte for byte with `apex-brand-kit` and `royal-brand-kit`:
+
+```
+reference/type-system.md
+NEW-BRAND.md
+brands.json
+snippets/type-system.css
+snippets/type-tokens.json
+scripts/validate.py
+scripts/check-sync.py
+```
+
+Never edit one of them for a single brand. Change it here, copy it into the other two kits, then run `check-sync.py` inside all three before any of them is pushed.
+
+## 2. Push the branch
+
+```bash
 git add .
-git commit -m "Initial Collective Edge brand kit"
-git branch -M main
-git remote add origin https://github.com/collective-edge/collective-edge-brand-kit.git
-git push -u origin main
+git commit -m "Describe what changed"
+git push -u origin HEAD
 ```
 
-If prompted to authenticate, the easiest path is the [GitHub CLI](https://cli.github.com/): `gh auth login` once, then re-run the push.
-
-## Step 3. Verify the CDN is live
-
-After pushing, hit this URL in a browser (give jsDelivr 30–60 seconds the first time):
-
-```
-https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg
-```
-
-You should see the white Collective Edge lockup. The font, colors.json, and snippets are all at the same base URL.
-
-## Step 4. Tell teammates
-
-Share this single line. They run it once and Claude on their machine applies the brand automatically:
+## 3. Merge to publish
 
 ```bash
-git clone https://github.com/collective-edge/collective-edge-brand-kit ~/.claude/skills/collective-edge-brand-guidelines
+git checkout main
+git merge --no-ff type-system-v1
+git push
 ```
 
-## Updating later
+## 4. Confirm the CDN
 
-Edit any file in this folder, then:
+Give jsDelivr a minute, then load:
 
-```bash
-cd ~/collective-edge/collective-edge-brand-kit
-git add . && git commit -m "Describe what changed" && git push
+```
+https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css
 ```
 
-Changes go live on the CDN within a minute or two. Anyone with the skill installed pulls updates with `git pull`.
+Every other file serves from the same base URL with its repo path appended. jsDelivr caches an `@main` path for up to twelve hours. To force a refresh, load the same path once under `https://purge.jsdelivr.net/gh/...`.
 
-## Versioning (optional, for production safety)
+## 5. Tag a version
 
-Once stable, tag a release so production materials can pin to a fixed version:
+Production materials pin to a tag rather than to `@main`:
 
 ```bash
 git tag v1.0
 git push --tags
 ```
 
-Then in CDN URLs, replace `@main` with `@v1.0`. Bump the tag on breaking changes (logo redesign, palette shift).
+In a pinned URL, replace `@main` with `@v1.0`. Bump the minor version for an additive change. Bump the major version when a value in section 3, 4 or 5 of `reference/type-system.md` changes, or when the palette or the marks change.
+
+## 6. Teammates
+
+Install once:
+
+```bash
+git clone https://github.com/collective-edge/collective-edge-brand-kit ~/.claude/skills/collective-edge-brand-guidelines
+```
+
+Update:
+
+```bash
+git -C ~/.claude/skills/collective-edge-brand-guidelines pull
+```
