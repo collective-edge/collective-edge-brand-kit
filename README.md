@@ -119,14 +119,14 @@ CE rarely stands alone. Where its mark shares a surface with another brand, **�
 | What CE contributes | Structure and finish, no hue. Montserrat, hairlines, whitespace, tabular figures, the type scale | The whole system. Partner color marks state: active nav, live data, one chart series |
 | CE’s presence | The “Powered by” lockup under a hairline, plus the footer caption | The lockup leads the chain, `CE │ Apex Paramedics │ {Customer}` |
 
-**The wedge is the co-brand mechanism.** CE has no color of its own, so when CE co-brands it takes the partner’s into its own mark. The wedge is the one part that carries it: Royal `#572E72`, Apex `#f9ad16`. The block stays black or white and the letters stay the opposite. Every combination ships as a file, so never hand-recolor.
+**The wedge is the co-brand mechanism.** CE has no color of its own, so when CE co-brands it takes the partner’s into its own mark. The wedge is the one part that carries it: Royal `#572E72`, Apex `#FDB61C`. The block stays black or white and the letters stay the opposite. Every combination ships as a file, so never hand-recolor.
 
 ```
 assets/logos/mark-black{,-royal,-apex}.svg   majority black, use on LIGHT
 assets/logos/mark-white{,-royal,-apex}.svg   majority white, use on DARK
 ```
 
-Constants in both modes. Two marks, never merged, separated by the CE bar rendered as a 1px rule. The file matches the background on both sides, never a CSS recolor. The CE lockup stays at or above 120px wide. Partner hexes come from the partner’s own kit, [apex-brand-kit](https://github.com/collective-edge/apex-brand-kit) and [royal-brand-kit](https://github.com/collective-edge/royal-brand-kit), and where a bright brand color fails 3:1 as text you use that kit’s text-safe step. Apex gold `#f9ad16` measures 1.91:1 on white; its text-safe step `#B77808` measures 3.68:1 and holds only at 700 or at large sizes. Copy-pasteable lockups: [`reference/layout.md`](reference/layout.md) section 2.
+Constants in both modes. Two marks, never merged, separated by the CE bar rendered as a 1px rule. The file matches the background on both sides, never a CSS recolor. The CE lockup stays at or above 120px wide. Partner hexes come from the partner’s own kit, [apex-brand-kit](https://github.com/collective-edge/apex-brand-kit) and [royal-brand-kit](https://github.com/collective-edge/royal-brand-kit), and where a bright brand color fails 3:1 as text you use that kit’s text-safe step. Apex gold `#FDB61C` measures 1.77:1 on white; its text-safe step `#B77808` measures 3.68:1 and holds only at 700 or at large sizes. Copy-pasteable lockups: [`reference/layout.md`](reference/layout.md) section 2.
 
 ## Versioning
 

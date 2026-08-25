@@ -20,7 +20,7 @@
     "byPartner": {
       "_note": "On a surface co-branded with that partner. Values are the partner kit's own primary, so they stay in step with that brand.",
       "royal": { "hex": "#572E72", "file": "mark-black-royal.svg / mark-white-royal.svg", "role": "Royal Ambulance purple, from royal-brand-kit" },
-      "apex":  { "hex": "#f9ad16", "file": "mark-black-apex.svg / mark-white-apex.svg",  "role": "Apex Paramedics gold, Pantone 1235 C, from apex-brand-kit" }
+      "apex":  { "hex": "#FDB61C", "file": "mark-black-apex.svg / mark-white-apex.svg",  "role": "Apex Paramedics gold, Pantone 1235 C, from apex-brand-kit" }
     }
   },
   "foreground": {
@@ -47,13 +47,13 @@
       "apex":  "https://cdn.jsdelivr.net/gh/collective-edge/apex-brand-kit@main/assets/colors.json",
       "royal": "https://cdn.jsdelivr.net/gh/collective-edge/royal-brand-kit@main/assets/colors.json"
     },
-    "_textSafe": "Bright partner brand colors usually fail 3:1 on white as text, small labels, or thin chart lines. Use the darkened step the partner's own kit ships (Apex gold #f9ad16 -> #B77808). Never invent your own darkening.",
+    "_textSafe": "Bright partner brand colors usually fail 3:1 on white as text, small labels, or thin chart lines. Use the darkened step the partner's own kit ships (Apex gold #FDB61C -> #B77808). Never invent your own darkening.",
     "apex": {
       "_kit":     "apex-brand-kit",
-      "primary":  { "hex": "#2c338e", "pantone": "Blue 072 C", "role": "Apex blue. The primary brand color: wordmark, headers, links, buttons" },
+      "primary":  { "hex": "#2B338D", "pantone": "Blue 072 C", "role": "Apex blue. The primary brand color: wordmark, headers, links, buttons" },
       "deep":     { "hex": "#1D225E", "role": "Hero backgrounds, header bands, sidebars, section dividers, footers" },
       "light":    { "hex": "#9699C7", "role": "Tertiary accents, hover states" },
-      "gold":     { "hex": "#f9ad16", "pantone": "1235 C", "role": "Signature accent. The arc, accent bars, kickers, stat numerals" },
+      "gold":     { "hex": "#FDB61C", "pantone": "1235 C", "role": "Signature accent. The arc, accent bars, kickers, stat numerals" },
       "goldDeep": { "hex": "#B77808", "role": "Text-safe gold. Use for small or bold labels, icons, and thin chart lines on white; the bright gold fails contrast there" }
     },
     "royal": {

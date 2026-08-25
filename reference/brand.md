@@ -68,11 +68,11 @@ Reversed text, on any dark ground:
 | `#C8C8C8` | 1.67:1 | Never text |
 | `#E2E2E2` | 1.30:1 | Never text |
 | `#572E72` Royal purple | 10.30:1 | Passes as text |
-| `#2c338e` Apex blue | 10.65:1 | Passes as text |
+| `#2B338D` Apex blue | 10.71:1 | Passes as text |
 | `#B77808` Apex text-safe gold | 3.68:1 | Bold or large only. Never body copy |
 | `#B5821A` status amber | 3.40:1 | Bold or large only. Never running copy |
 | `#9699C7` Apex light | 2.74:1 | Never text |
-| `#f9ad16` Apex gold | 1.91:1 | Never text, never a thin line |
+| `#FDB61C` Apex gold | 1.77:1 | Never text, never a thin line |
 
 ### What each color must never do
 
@@ -141,11 +141,11 @@ The Edge wedge is the one part of the block mark that carries color, and that co
 |---|---|---|
 | Grey | `#C8C8C8` | CE standing alone. The default, and the only treatment on a CE-only surface |
 | Royal purple | `#572E72` | A surface co-branded with Royal Ambulance |
-| Apex gold | `#F9AD16` | A surface co-branded with Apex Paramedics, Pantone 1235 C, their kit value |
+| Apex gold | `#FDB61C` | A surface co-branded with Apex Paramedics, Pantone 1235 C, their kit value |
 
 CE does not have a color, so when CE co-brands it takes the partner’s into its own mark. The partner enters CE through the wedge and nothing else about the mark moves. As CE takes on more operating companies, each one gets a wedge color and nothing else changes.
 
-The wedge color never moves off the wedge. Not onto the block, not onto the letters, not into UI chrome. It works there because the wedge is a shape inside a mark, not something anyone has to read. Apex gold at 1.91:1 against white is fine on the wedge and not fine anywhere else.
+The wedge color never moves off the wedge. Not onto the block, not onto the letters, not into UI chrome. It works there because the wedge is a shape inside a mark, not something anyone has to read. Apex gold at 1.77:1 against white is fine on the wedge and not fine anywhere else.
 
 One honest limitation. On a CE-only surface the grey wedge nearly disappears at favicon sizes on a white tile. There is no CE color to reach for instead. Give the mark a dark backing at small sizes, or accept it. Do not invent a hue to solve it.
 
@@ -168,9 +168,9 @@ Co-brand marks. Two axes, and they are independent: black or white picks the bac
 | File | The logo is | Put it on |
 |---|---|---|
 | `assets/logos/mark-black-royal.svg` | Majority black, `#572E72` wedge | A light background, Royal co-brand |
-| `assets/logos/mark-black-apex.svg` | Majority black, `#F9AD16` wedge | A light background, Apex co-brand |
+| `assets/logos/mark-black-apex.svg` | Majority black, `#FDB61C` wedge | A light background, Apex co-brand |
 | `assets/logos/mark-white-royal.svg` | Majority white, `#572E72` wedge | A dark background, Royal co-brand |
-| `assets/logos/mark-white-apex.svg` | Majority white, `#F9AD16` wedge | A dark background, Apex co-brand |
+| `assets/logos/mark-white-apex.svg` | Majority white, `#FDB61C` wedge | A dark background, Apex co-brand |
 
 The drawn files carry their own fills and those fills are final. The horizontal lockup sets EDGE at `#666666` and its wedge at `#CCCCCC`; the block mark sets its wedge at `#C8C8C8`. These are the artwork values, not palette tokens. Read them, do not override them.
 
@@ -210,7 +210,7 @@ The vertical bar in `CE │ COLLECTIVE EDGE` is a brand signature. Reuse it as a
 
 This is how CE appears on almost everything. CE rarely stands alone. It comes in beside an operating company, a partner or that partner’s customer, and it says so in words. Treat the phrase as non-optional. If CE’s mark is on a surface with another brand, the phrase is on it too.
 
-**Mode A, partner led.** The partner’s brand owns the surface. Their logo heads it, their palette runs the chrome, their color carries the accents. CE contributes structure and finish, not hue: Montserrat, hairline dividers, generous whitespace, tabular numerals, square-ish corners, quiet fast motion, a disciplined type scale. CE’s visible presence is the “Powered by” lockup and the footer caption. Shipped reference: the Apex internal dashboards. The sidebar is Apex deep blue `#1D225E` with a gold `#F9AD16` right rule, the whole palette locked to the Apex kit, and CE adds zero color and is unmistakably there anyway.
+**Mode A, partner led.** The partner’s brand owns the surface. Their logo heads it, their palette runs the chrome, their color carries the accents. CE contributes structure and finish, not hue: Montserrat, hairline dividers, generous whitespace, tabular numerals, square-ish corners, quiet fast motion, a disciplined type scale. CE’s visible presence is the “Powered by” lockup and the footer caption. Shipped reference: the Apex internal dashboards. The sidebar is Apex deep blue `#1D225E` with a gold `#FDB61C` right rule, the whole palette locked to the Apex kit, and CE adds zero color and is unmistakably there anyway.
 
 **Mode B, CE led, partner accented.** CE’s system owns the surface: white canvas, grey ramp, hairlines, the CE type scale. The partner’s color is the only hue on the page and it is functional: active nav, live-data indicator, active filter, one chart series. Reach for this when the artifact is a CE product delivered to a partner or their customer. Shipped reference: the Apex customer dashboard. Every surface is the CE ramp, and Apex gold marks exactly the live and active states and one chart series, nothing else.
 
@@ -239,11 +239,11 @@ The standing CE signature on any co-branded product. A slim strip with a 1px `--
 
 ### Partner values
 
-Take the hex from the partner’s own brand kit, never from a copy. `apex-brand-kit` and `royal-brand-kit` are the source of truth, and `brands.json` in this repo resolves each brand to its CDN root. The mirror below is a convenience and it goes stale. As of 2026-07-31 it reads:
+Take the hex from the partner’s own brand kit, never from a copy. `apex-brand-kit` and `royal-brand-kit` are the source of truth, and `brands.json` in this repo resolves each brand to its CDN root. The mirror below is a convenience and it goes stale. As of 2026-08-24 it reads:
 
 | Partner | Primary | Deep | Light | Accent | Text-safe accent |
 |---|---|---|---|---|---|
-| Apex Paramedics | `#2c338e` | `#1D225E` | `#9699C7` | `#f9ad16` | `#B77808` |
+| Apex Paramedics | `#2B338D` | `#1D225E` | `#9699C7` | `#FDB61C` | `#B77808` |
 | Royal Ambulance | `#572e72` | `#2f193b` | `#8260a2` | `#43205b` logo fill | `#572e72` passes on white |
 
 Stadium and LifeWest have no kit. `#E0143C`, `#1E4FA3` and `#1E3A8A` are unreconciled placeholders inherited from an original design export. Confirm with the partner before shipping, and publish a kit when one of them becomes real work.

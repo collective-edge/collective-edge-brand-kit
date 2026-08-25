@@ -80,12 +80,12 @@
   /* Partner mirror. It goes stale. `apex-brand-kit` and
      `royal-brand-kit` are the source of truth for their own
      colors, and `brands.json` resolves each brand to its CDN
-     root. The -deep gold is the text-safe step: `#f9ad16`
+     root. The -deep gold is the text-safe step: `#FDB61C`
      measures 1.91:1 on white and is never text or a thin line. */
-  --partner-apex:           #2c338e;
+  --partner-apex:           #2B338D;
   --partner-apex-deep:      #1D225E;
   --partner-apex-light:     #9699C7;
-  --partner-apex-gold:      #f9ad16;
+  --partner-apex-gold:      #FDB61C;
   --partner-apex-gold-deep: #B77808;
   --partner-royal:          #572e72;
   --partner-royal-deep:     #2f193b;

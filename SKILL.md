@@ -70,7 +70,7 @@ Three rules agents break most often.
 
 1. **There is no CE accent hue and there never will be.** Do not add a blue, a gold or a teal to a CE surface. Color on a CE surface belongs to a partner and enters through the Edge wedge or a functional accent, never as decoration.
 2. **`#C8C8C8`, `#E2E2E2` and `#9A9A9A` are never text.** They measure 1.67:1, 1.30:1 and 2.81:1 on white. `#9A9A9A` fails at every size, large included, so it never sets a footer, a caption or a column label. The floor for text on white is `#6E6E6E` at 5.10:1. Body text is `#111111` on white and `#FFFFFF` on black.
-3. **A bright partner color is never ink.** Apex gold `#f9ad16` measures 1.91:1 on white and fails as text or a thin chart line. Use the partner kit’s text-safe step, `#B77808` at 3.68:1, and only at 700 or at large sizes. A brand accent is never a status color.
+3. **A bright partner color is never ink.** Apex gold `#FDB61C` measures 1.77:1 on white and fails as text or a thin chart line. Use the partner kit’s text-safe step, `#B77808` at 3.68:1, and only at 700 or at large sizes. A brand accent is never a status color.
 
 ## Co-brand
 
