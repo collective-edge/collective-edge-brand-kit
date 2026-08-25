@@ -81,7 +81,7 @@
      `royal-brand-kit` are the source of truth for their own
      colors, and `brands.json` resolves each brand to its CDN
      root. The -deep gold is the text-safe step: `#FDB61C`
-     measures 1.91:1 on white and is never text or a thin line. */
+     measures 1.77:1 on white and is never text or a thin line. */
   --partner-apex:           #2B338D;
   --partner-apex-deep:      #1D225E;
   --partner-apex-light:     #9699C7;

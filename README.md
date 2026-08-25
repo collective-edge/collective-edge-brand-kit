@@ -130,7 +130,7 @@ Constants in both modes. Two marks, never merged, separated by the CE bar render
 
 ## Versioning
 
-`@main` serves the latest. Pin `@v1.0` in production HTML.
+`@main` serves the latest. Pin `@v1.1` in production HTML.
 
 ## License
 

@@ -73,7 +73,7 @@ git tag v1.0
 git push --tags
 ```
 
-In a pinned URL, replace `@main` with `@v1.0`. Bump the minor version for an additive change. Bump the major version when a value in section 3, 4 or 5 of `reference/type-system.md` changes, or when the palette or the marks change.
+In a pinned URL, replace `@main` with `@v1.1`. Bump the minor version for an additive change. Bump the major version when a value in section 3, 4 or 5 of `reference/type-system.md` changes, or when the palette or the marks change.
 
 ## 6. Teammates
 

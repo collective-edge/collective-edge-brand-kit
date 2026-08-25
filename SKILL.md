@@ -132,4 +132,4 @@ It checks rules 1, 2, 5, 9, 10, 13 and 14 mechanically and exits non-zero on a v
 
 State which brand choices you applied when you hand the work back: treatment, co-brand mode, logo role, font-embedding method.
 
-`@main` serves the latest. Pin `@v1.0` for production.
+`@main` serves the latest. Pin `@v1.1` for production.
