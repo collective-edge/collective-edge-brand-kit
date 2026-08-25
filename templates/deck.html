@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/palette.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/hero-dark.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/cobrand.css">
 
 <style>
 /* ---------- FONT ------------------------------------------------
@@ -106,6 +107,18 @@ html, body { background: var(--bg-surface); margin: 0; padding: 0; }
    reversed lands in the bottom third, the darkest part of the frame. */
 .slide-closing { justify-content: flex-end; gap: var(--space-6); }
 .slide-closing .slide-logo { margin-bottom: auto; }
+
+/* The mirror of "Powered by Collective Edge". The CE mark already heads
+   this slide, so the slot beneath the hairline holds the operating
+   company. Same 204px slot, same hairline, and the two marks ride beside
+   each other rather than merging into one. cobrand.css owns the
+   geometry. The label sits at --fg-on-dark-3 #9E9E9E on the black
+   ground, 7.84:1. align-self holds the hairline to the width of the
+   lockup instead of letting it stretch across the slide, and the flex
+   gap above it is already --space-6, so the block's own margin-top
+   comes off. Swap the partner file for whichever brand the deck is
+   about, resolved from brands.json. */
+.slide-closing .ce-powered { align-self: flex-start; margin-top: 0; }
 
 /* ---------- SECTION HEAD, LIGHT SLIDES -------------------------- */
 
@@ -289,6 +302,11 @@ html, body { background: var(--bg-surface); margin: 0; padding: 0; }
       <h2 class="bk-display-md bk-caps" style="margin:0;">CONFIRM THE BED FIRST</h2>
     </div>
     <p class="bk-caption slide-meta">Dispatch confirms the receiving bed before it assigns a crew.</p>
+    <div class="ce-powered">
+      <span>Operating company</span>
+      <img src="https://cdn.jsdelivr.net/gh/collective-edge/apex-brand-kit@main/assets/logos/horizontal-white.svg"
+           alt="Apex Paramedics" width="204" height="86">
+    </div>
   </section>
 
 </div>

@@ -9,6 +9,7 @@
      Collective Edge kit. palette.css is the only stylesheet that differs by brand. -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/palette.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/cobrand.css">
 
 <style>
 /* ---------- FONT ------------------------------------------------
@@ -117,6 +118,17 @@ html, body { background: var(--bg-surface); margin: 0; padding: 0; }
   gap: 24px;
 }
 
+/* ---------- CO-BRAND ---------------------------------------------
+   The mirror of "Powered by Collective Edge". This document already
+   carries the CE mark in the band, so the slot beneath the hairline
+   holds the operating company instead. Same class, same 204px, same
+   rule: the two marks ride beside each other, never inside each
+   other, and the hairline keeps them distinct. cobrand.css owns the
+   geometry. Swap the Apex lockup for whichever brand the document is
+   about, resolved from brands.json, never by guessing a filename. */
+
+.doc-cobrand { margin-bottom: 0; }
+
 /* ---------- NARROW VIEWPORT -------------------------------------
    The band and the stat grid stack rather than crush the measure. */
 
@@ -166,6 +178,9 @@ html, body { background: var(--bg-surface); margin: 0; padding: 0; }
   table, figure, .bk-keep { break-inside: avoid; page-break-inside: avoid; }
   .doc-section-head { break-inside: avoid; page-break-inside: avoid; break-after: avoid; page-break-after: avoid; }
   .doc-stats, .doc-footer { break-inside: avoid; page-break-inside: avoid; }
+  /* The lockup is a mark, not decoration. It does not split. */
+  .ce-powered { break-inside: avoid; page-break-inside: avoid; }
+  .ce-powered span { font-size: 9pt; }
 }
 </style>
 </head>
@@ -285,6 +300,15 @@ html, body { background: var(--bg-surface); margin: 0; padding: 0; }
       <span class="bk-caption">Collective Edge · Interfacility transport operations</span>
       <span class="bk-caption bk-emphasis"><span class="bk-code">Rev.&nbsp;08.26</span></span>
     </footer>
+
+    <!-- CO-BRAND, PARTNER SIDE · light ground, so the --border-1 hairline
+         and the partner's own on-light file. Label is --fg-3 #6E6E6E on
+         --bg-canvas #FFFFFF, 5.10:1. -->
+    <div class="ce-powered ce-powered-light doc-cobrand">
+      <span>Operating company</span>
+      <img src="https://cdn.jsdelivr.net/gh/collective-edge/apex-brand-kit@main/assets/logos/horizontal-color.svg"
+           alt="Apex Paramedics" width="204" height="86">
+    </div>
 
   </main>
 

@@ -27,29 +27,23 @@ On a co-brand surface, swap the single logo for the partner mark above the CE lo
 
 The most common Collective Edge surface. Two marks, never merged, separated by a 1px rule at roughly the height of the marks. Mode A when the partner’s name is on the door, mode B when the artifact is a CE product delivered to them. Filenames differ between partner kits, so read the role table in `reference/brand.md` section 4 rather than carrying a path across brands.
 
-**Mode A, partner led.** The partner’s mark heads the surface, the CE lockup sits beneath it under a hairline. Dark ground.
+**Mode A, partner led.** The partner’s mark heads the surface, the CE lockup sits beneath it under a hairline. Dark ground. The CSS is [`snippets/cobrand.css`](../snippets/cobrand.css), shared and byte-identical in every kit. Load it after the palette. Do not restate the geometry inline.
 
 ```html
-<div class="brand-head">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/cobrand.css">
+
+<div class="brand-head bk-on-dark">
   <img alt="Apex Paramedics" width="158"
        src="https://cdn.jsdelivr.net/gh/collective-edge/apex-brand-kit@main/assets/logos/horizontal-white.svg">
   <div class="ce-powered">
-    <span class="bk-eyebrow">POWERED BY</span>
-    <img alt="CE │ Collective Edge" width="132"
+    <span>Powered by</span>
+    <img alt="CE · Collective Edge" width="204" height="34"
          src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg">
   </div>
 </div>
-<style>
-  .ce-powered {
-    display: grid; gap: 6px; margin-top: 16px; padding-top: 15px;
-    border-top: 1px solid rgba(255,255,255,0.12);
-  }
-  .ce-powered .bk-eyebrow { margin: 0; color: #9AA0C9; }
-  .ce-powered img { width: 100%; max-width: 204px; display: block; }
-</style>
 ```
 
-`#9AA0C9` is the eyebrow grey from the shipped Apex dashboards. It clears 5.72:1 on the Apex deep ground `#1D225E` and belongs nowhere else: on white it measures 2.55:1 and is never text. On a black band use `--fg-on-dark-3` `#9E9E9E`, which reads 7.84:1 there.
+The label takes the surface’s tertiary grey from `--fg-on-dark-3`, which each palette supplies. On the black CE band that resolves to `#9E9E9E` at 7.84:1. On the Apex deep ground `#1D225E` it resolves to `#9EA5C4` at 5.98:1. The pre-v1.0 dashboards hardcoded `#9AA0C9` there, which measures 5.72:1 on the same ground and 2.55:1 on white; it is never text on light and there is no reason to type it now that the token exists.
 
 **Mode B, CE led.** CE first, the partner second, the bar between them. Light ground, so the partner appears in their own color file while CE appears in black.
 
@@ -65,6 +59,56 @@ The most common Collective Edge surface. Two marks, never merged, separated by a
 ```
 
 The caption is `.bk-eyebrow`: 600 uppercase at `--fs-eyebrow` with `--tr-caps-small`, on `--fg-3`. CE sits at 40px and the partner at 38px so the two optical heights match. Three marks read `CE │ Apex Paramedics │ {Customer}`, left to right by who built it and who it is for. Never a fourth.
+
+### The shipped lockup, “Powered by Collective Edge”
+
+This is the pattern the operating companies are asked to apply, and it is already running in three places: the Apex website footer, the Apex internal dashboard sidebar, and the Apex partner page. The parent book carries it so the parent and the partners agree.
+
+The rule, and it is the whole rule: **the CE lockup rides beside the partner brand, never inside it, so a hairline keeps the two marks distinct.** The two read as two brands rather than one combined mark.
+
+204px is the shipped width in both the footer and the sidebar. The lockup is sized to read at a glance rather than sit quietly in a corner, which is why it runs wider than the partner mark above it: 204px of CE under 158px of Apex. The 120px minimum in section 4 of `reference/brand.md` is a floor, not a target. The artwork is 450 x 75, a 6:1 ratio, so 204px wide renders 34px tall.
+
+**Light ground.** The shipped lockup only ever ran on dark. A white one-pager or report footer needs the other half: the black lockup, the label in `--fg-3`, the hairline in `--border-1`. Same geometry, same 204px.
+
+```html
+<div class="ce-powered ce-powered-light">
+  <span>Powered by</span>
+  <img alt="CE · Collective Edge" width="204" height="34"
+       src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg">
+</div>
+```
+
+**Text only.** Where no lockup fits, `.ce-powered-text` sets the phrase at `.bk-eyebrow` values: `--fs-eyebrow` 12px web and 9pt print, weight 600, `--tr-caps-small` 0.080em. The Apex customer dashboard ships it at 9px and 700, under the 9pt floor and heavier than the caps-label step. Use the class.
+
+```html
+<p class="ce-powered-text">Powered by Collective Edge</p>
+```
+
+**The mirror, on a CE-led surface.** `templates/document.html` and `templates/deck.html` already carry the CE mark, so the slot beneath the hairline holds the partner instead. Same class, same 204px slot, same hairline. The label names the relationship rather than repeating it. Height changes with the partner: the Apex horizontal lockup is 687.72 x 289.25, so 204px wide renders 86px tall, and the Royal horizontal lockup is 735.76 x 179.54, so 204px wide renders 50px tall.
+
+```html
+<div class="ce-powered ce-powered-light">
+  <span>Operating company</span>
+  <img alt="Apex Paramedics" width="204" height="86"
+       src="https://cdn.jsdelivr.net/gh/collective-edge/apex-brand-kit@main/assets/logos/horizontal-color.svg">
+</div>
+```
+
+| Part | Value on CE’s own ground |
+|---|---|
+| Lockup width | 204px, rendering 34px tall |
+| Label | `--fs-caption` 12px web and 9pt print, weight 600, `--tr-caps-small` 0.080em, uppercase |
+| Label on dark | `--fg-on-dark-3` `#9E9E9E` on `--bg-band` `#000000`, 7.84:1 |
+| Label on light | `--fg-3` `#6E6E6E` on `--bg-canvas` `#FFFFFF`, 5.10:1 |
+| Hairline on dark | 1px `--border-on-dark` `rgba(255,255,255,0.12)` |
+| Hairline on light | 1px `--border-1` `#E2E2E2` |
+| Spacing | 24px above the hairline and 24px below it, 12px between label and lockup |
+
+The light lockup goes on `--bg-canvas`. On `--bg-surface` `#FAFAFA` the same grey measures 4.89:1, which still clears 4.5:1 for CE but not for Apex, where the tint takes it to 4.31:1. Keep the whole house on the canvas so one block serves all three.
+
+**Where it belongs.** The footer of any site or printed document. The sidebar header of any dashboard. The closing slide of a deck. The foot of a report. A data page or a methodology page. Anywhere a number was computed rather than typed.
+
+**Where it does not.** On the partner’s own mark or inside their lockup. On a clinical instruction. On a patient-facing consent or safety document. Twice on one surface. Set as type where the mark fits.
 
 ## 3. Sub-banner
 

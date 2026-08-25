@@ -13,11 +13,12 @@ Full color, logo, co-brand and voice detail: [reference/brand.md](reference/bran
 
 ## Asset loading
 
-Load in this order. `type-system.css` is identical in every kit and is served from this repo because the type layer belongs to Collective Edge. `palette.css` is the only stylesheet that differs between brands.
+Load in this order. `type-system.css` is identical in every kit and is served from this repo because the type layer belongs to Collective Edge. `palette.css` is the only stylesheet that differs between brands. `cobrand.css` is the “Powered by Collective Edge” lockup, identical in every kit, served from here, and it reads the palette, so it loads last.
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/palette.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/cobrand.css">
 ```
 
 For PDF pipelines (weasyprint, wkhtmltopdf, Chrome print) inline the face so it embeds in the file:
@@ -83,6 +84,8 @@ CE rarely stands alone. It comes in beside an operating company or a partner and
 
 When in doubt, mode A. Lockup construction, order, the “POWERED BY” eyebrow and the partner color rules are in [reference/brand.md](reference/brand.md).
 
+The shipped implementation of the model is [`snippets/cobrand.css`](snippets/cobrand.css), byte-identical in all three kits, and it is what the operating companies are told to use. `.ce-powered` on a dark ground, `.ce-powered ce-powered-light` on white, `.ce-powered-text` where no mark fits. The CE lockup rides beside the partner brand, never inside it, so a hairline keeps the two marks distinct: the two read as two brands rather than one combined mark. 204px, wider than the partner mark above it, because it is sized to read at a glance rather than sit quietly in a corner. The 120px minimum in `reference/brand.md` is a floor, not a target. It runs today in the Apex website footer, the Apex internal dashboard sidebar and the Apex partner page. The mirror case, a partner riding beneath the CE mark on a CE-led surface, is in [reference/layout.md](reference/layout.md) section 2, and `brands.json` carries the same values machine-readable under `cobrand`.
+
 ## Type
 
 Type is shared, identical across Collective Edge, Apex and Royal, and never forked for one brand. Read [reference/type-system.md](reference/type-system.md) and follow the fifteen rules in its section 10. The scale, leading, tracking, measure and spacing tables live there. Do not restate them from memory.
@@ -126,7 +129,7 @@ It checks rules 1, 2, 5, 9, 10, 13 and 14 mechanically and exits non-zero on a v
 - [ ] The dark band is one weight lighter than its light-surface equivalent.
 - [ ] Body text sits at `#111111` on white, `#FFFFFF` on black, and clears 4.5:1.
 - [ ] Correct logo role for the background. Not stretched, not skewed, not recolored past the wedge.
-- [ ] On a co-brand surface, “Powered by Collective Edge” is present, the two marks are separate, and the CE block and letters are still black or white.
+- [ ] On a co-brand surface, “Powered by Collective Edge” is present once, from `cobrand.css` and not restated inline, the two marks are separate behind a hairline, and the CE block and letters are still black or white.
 - [ ] Every hue on the surface has a job you can name. No decorative tints, no invented hexes.
 - [ ] No helper text, no caption restating the thing above it, no parenthetical after a heading.
 
