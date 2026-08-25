@@ -115,10 +115,13 @@ The header band opens nearly every deliverable. `.bk-on-dark` on the container d
 </header>
 ```
 
+**UI controls.** Buttons, links, form controls, status badges and the focus ring are shared and identical in all three brands: [`snippets/ui.css`](snippets/ui.css), loaded third after `palette.css`, with the standard in [reference/ui.md](reference/ui.md). Cards, tables, dashboard shells, navigation and heroes are not shared; each site builds its own on those tokens. `Examples/ui-controls.html` renders every control in every state.
+
 ## Verify before shipping
 
 ```bash
 python3 scripts/validate.py path/to/output.html
+python3 scripts/ui-audit.py path/to/page.html --width 375 --width 768 --width 1440
 ```
 
 It checks rules 1, 2, 5, 9, 10, 13 and 14 mechanically and exits non-zero on a violation. Then confirm by eye.
