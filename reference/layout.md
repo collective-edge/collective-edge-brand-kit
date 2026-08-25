@@ -245,16 +245,16 @@ Do not write a caption under a stat restating what the number is. The label alre
 </table>
 ```
 
-A dark table header row takes `.bk-on-dark` on the `<thead>` and `--bg-inverse` as its fill. The header weight stays 600 there. Any run number, unit ID or authorization number inside a cell goes in `.bk-code`, never Montserrat.
+A dark table header row takes `.bk-on-dark` on the `<thead>` and `--bg-inverse` as its fill. The header weight stays 600 there. Any run number, unit ID or authorization number inside a cell goes in `.bk-code`, never Montserrat. A count, a percentage and a median are measurements and stay Montserrat, with `.bk-tnum` so they align down the column.
 
 ## 10. Footer
 
-Slim strip, 1px `--border-1` top rule. Left: the document signature in `--fg-3`. A footer signature sets at 12px web and 9pt print, the smallest step on the ladder, so it takes the 5.10:1 grey and never `--fg-4`. Right: the revision marker at 700 in `--fg-1`, wrapped in `.bk-code`. A revision marker is a code a person retypes, so it goes in the mono face, not Montserrat. That is a v1.0 change. The separator in text is a middot. The vertical bar belongs to the logo, not to typed copy.
+Slim strip, 1px `--border-1` top rule. Left: the document signature in `--fg-3`. A footer signature sets at 12px web and 9pt print, the smallest step on the ladder, so it takes the 5.10:1 grey and never `--fg-4`. Right: the revision marker at 700 in `--fg-1`, wrapped in `.bk-code`. A revision marker is dictated, so it is a record identifier and takes the mono face. It is one of the four kinds the face is whitelisted for. The separator in text is a middot. The vertical bar belongs to the logo, not to typed copy.
 
 ```html
 <footer style="border-top:1px solid var(--border-1); margin-top:48px; padding:12px 0; display:flex; justify-content:space-between; align-items:baseline; gap:24px;">
   <span class="bk-caption">Collective Edge · How we operate together</span>
-  <span class="bk-code bk-caption bk-emphasis">Rev.&nbsp;08.26</span>
+  <span class="bk-caption bk-emphasis"><span class="bk-code">Rev.&nbsp;08.26</span></span>
 </footer>
 ```
 
