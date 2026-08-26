@@ -142,27 +142,7 @@ The house claim line. A two-word claim at 700, a period, then a regular-weight p
 <p class="bk-body"><span class="bk-emphasis">Proven playbooks.</span> We understand what works and scale it.</p>
 ```
 
-## 6. Not this. This.
-
-Split 50 50 with a centered vertical rule. Secondary label in `--fg-3`, primary label in `--fg-1`. The secondary label is dimmer, not unreadable: `--fg-4` `#9A9A9A` measures 2.81:1 on white and fails at every size, so `--fg-3` `#6E6E6E` at 5.10:1 is the dim end of the ramp for anything anyone reads.
-
-```html
-<div style="display:grid; grid-template-columns:1fr 1px 1fr; gap:32px; align-items:start;">
-  <div>
-    <p class="bk-h4" style="margin:0 0 12px; color:var(--fg-3);">Not this</p>
-    <p class="bk-body-sm" style="margin:0 0 8px;">Acquire and rebrand overnight.</p>
-    <p class="bk-body-sm" style="margin:0;">Financial extraction.</p>
-  </div>
-  <div style="background:var(--border-1); align-self:stretch;"></div>
-  <div>
-    <p class="bk-h4" style="margin:0 0 12px;">This</p>
-    <p class="bk-body" style="margin:0 0 8px;">Earn trust, then build together.</p>
-    <p class="bk-body" style="margin:0;">Reinvestment in people and culture.</p>
-  </div>
-</div>
-```
-
-## 7. Flowchart nodes
+## 6. Flowchart nodes
 
 Rectangles, 6px radius. Role is communicated by fill, never by shape. The three role colors and the connector are identical across every brand and come from `brands.json`. Node text sits on a dark fill, so the label is 600, not 700 or 800.
 
@@ -192,7 +172,7 @@ Rectangles, 6px radius. Role is communicated by fill, never by shape. The three 
 
 Node roles: `#4a8e3a` on `#3a7029` for decisions, questions and branch points. `#f57c00` on `#cc6600` for warnings and advisories. `#3e3e3e` on `#2a2a2a` for neutral process steps and context. Connector stroke `#3e3e3e` at 1.8pt. Never invent a fourth hue for a fourth role.
 
-## 8. Stat callouts
+## 7. Stat callouts
 
 The numeral is `.bk-stat`, which is 700 and tabular. It was 800 before v1.0. ExtraBold at that size reads as a slab rather than a number. The label above it is `.bk-eyebrow`, 600 uppercase. A label, a value, and nothing between them.
 
@@ -213,7 +193,7 @@ The unit goes in the label. Setting it in a heading class beside the numeral add
 
 Do not write a caption under a stat restating what the number is. The label already did that.
 
-## 9. Tables
+## 8. Tables
 
 `.bk-table` sets the header row to 600 uppercase with 0.080em tracking, and puts tabular figures on every cell. Hairlines, not boxes. No zebra fill.
 
@@ -247,7 +227,7 @@ Do not write a caption under a stat restating what the number is. The label alre
 
 A dark table header row takes `.bk-on-dark` on the `<thead>` and `--bg-inverse` as its fill. The header weight stays 600 there. Any run number, unit ID or authorization number inside a cell goes in `.bk-code`, never Montserrat. A count, a percentage and a median are measurements and stay Montserrat, with `.bk-tnum` so they align down the column.
 
-## 10. Footer
+## 9. Footer
 
 Slim strip, 1px `--border-1` top rule. Left: the document signature in `--fg-3`. A footer signature sets at 12px web and 9pt print, the smallest step on the ladder, so it takes the 5.10:1 grey and never `--fg-4`. Right: the revision marker at 700 in `--fg-1`, wrapped in `.bk-code`. A revision marker is dictated, so it is a record identifier and takes the mono face. It is one of the four kinds the face is whitelisted for. The separator in text is a middot. The vertical bar belongs to the logo, not to typed copy.
 
@@ -269,7 +249,7 @@ Slim strip, 1px `--border-1` top rule. Left: the document signature in `--fg-3`.
 - **Buttons.** Primary is `--ce-black` fill with `#FFFFFF` text, 2px or square corners, 600 weight, 0.080em caps tracking, hover to `--ce-graphite`. Secondary is white fill with a 1px `--ce-black` border, hover inverts. No gradients, no drop-shadow buttons, no emoji.
 - **Measure.** Body never runs the full width of a wide container. 54ch. Captions 40ch. Headings 28ch.
 - **Motion.** Quiet and fast. `--dur-base` 200ms on `--ease-standard`. Fades and short translates only. No spring, no bounce.
-- **Forbidden.** UI gradients, glassmorphism, blurred orbs, illustration systems, brand patterns, drop-shadow decoration.
+- **Forbidden.** UI gradients, glassmorphism, blurred orbs, illustration systems, brand patterns, drop-shadow decoration, and the split “Not this / This” panel.
 
 Ready-to-fill starting points.
 
@@ -281,6 +261,10 @@ Ready-to-fill starting points.
 | `Examples/ce-one-pager.html` | A filled reference, not a starting point |
 
 ---
+
+## Withdrawn patterns
+
+**“Not this. This.”** was pattern 6 in this file and a voice bullet in `reference/brand.md`. It is withdrawn and it is not to be used. A claim built out of a refusal and its correction reads as performance, which is the one thing this brand’s writing cannot afford. Where you meet it in an existing document, cut the refusal and keep the claim: the split panel becomes a single column, and “It is not X, it is Y” becomes “Y.” The sections after it were renumbered, so a link to pattern 7 through 10 now points one number lower.
 
 ## Legacy classes, `.ce-*`
 

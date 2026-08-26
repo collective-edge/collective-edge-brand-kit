@@ -274,10 +274,10 @@ CE sounds like a senior operator giving a direct briefing. Confident, plainspoke
 - **First person plural, addressing the partner.** “We” and “you.” Never “the customer” or “users.”
 - **Active verbs.** Build, earn, operate, scale, reinvest, develop.
 - **Bold-then-explain.** A two-word claim, a period, then a one-line proof. “**Proven playbooks.** We understand what works and scale it.” “**Long-term builders.** We improve organizations for decades.”
-- **Not this. This.** CE defines itself by what it refuses to be. “Not this: acquire and rebrand overnight.” “This: earn trust, then build together.”
 - **Headlines often end in a period.** It makes a claim feel settled rather than promotional. “How we operate together.”
 - **Anti-extraction, long-horizon.** Reinvestment in people and culture. Decades, not quarters.
 - **No emoji, no exclamation points, no rhetorical questions.** The voice does not perform enthusiasm.
+- **Never define by negation.** Do not build a claim out of a refusal and its correction, in copy or in layout. “It is not X. It is Y.” is out, and so is the paired “Not this / This” panel. Say the thing you mean, once. A plain negation inside a single sentence is fine: “You do not pay any of it.” The construction reads as performance, and a document that performs stops being a briefing.
 
 ### Punctuation
 
