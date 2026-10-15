@@ -82,7 +82,7 @@ Reversed text, on any dark ground:
 - A partner’s hue never colors the CE block or the CE letters. It colors the Edge wedge and nothing else in the mark.
 - A status color is never a theme, a fill, or a decorative accent.
 - A brand accent is never a status color, in either direction.
-- No color is introduced that is not in this file, a partner kit, the status set or a chart series.
+- No color is introduced that is not in this file, a partner kit, the status set or the house data layer in [data-color.md](data-color.md). Chart series come from that layer and never from the grey ramp: the ramp measures ΔE 10.7 between its first two steps under normal vision against a floor of 15, and every step has zero chroma, so no step can carry identity.
 
 ### Where the color comes from
 
@@ -212,7 +212,7 @@ This is how CE appears on almost everything. CE rarely stands alone. It comes in
 
 **Mode A, partner led.** The partner’s brand owns the surface. Their logo heads it, their palette runs the chrome, their color carries the accents. CE contributes structure and finish, not hue: Montserrat, hairline dividers, generous whitespace, tabular numerals, square-ish corners, quiet fast motion, a disciplined type scale. CE’s visible presence is the “Powered by” lockup and the footer caption. Shipped reference: the Apex internal dashboards. The sidebar is Apex deep blue `#1D225E` with a gold `#FDB61C` right rule, the whole palette locked to the Apex kit, and CE adds zero color and is unmistakably there anyway.
 
-**Mode B, CE led, partner accented.** CE’s system owns the surface: white canvas, grey ramp, hairlines, the CE type scale. The partner’s color is the only hue on the page and it is functional: active nav, live-data indicator, active filter, one chart series. Reach for this when the artifact is a CE product delivered to a partner or their customer. Shipped reference: the Apex customer dashboard. Every surface is the CE ramp, and Apex gold marks exactly the live and active states and one chart series, nothing else.
+**Mode B, CE led, partner accented.** CE’s system owns the surface: white canvas, grey ramp, hairlines, the CE type scale. The partner’s color is the only hue on the page and it is functional: active nav, live-data indicator, active filter. It is not a chart series; charts on a CE-led surface take the house series order. Reach for this when the artifact is a CE product delivered to a partner or their customer. Shipped reference: the Apex customer dashboard. Every surface is the CE ramp, and Apex gold marks exactly the live and active states, nothing else.
 
 When in doubt, mode A. CE does not take over a partner’s surface.
 

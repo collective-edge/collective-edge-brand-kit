@@ -16,10 +16,12 @@ The kit is the CDN-hosted, agent-facing reflection of the CE Design System. Sour
 collective-edge-brand-kit/
 ├── SKILL.md                       The skill Claude reads. Everything an agent needs every time
 ├── reference/
+│   ├── data-color.md         # Chart and reporting colour. Series, magnitude, polarity, direction. Shared
 │   ├── type-system.md             The house type standard. Identical in all three kits
 │   ├── brand.md                   Color, logo, co-brand, voice
 │   └── layout.md                  Copy-pasteable layout patterns
 ├── snippets/
+│   ├── data-color.css        # The data colour layer. Shared
 │   ├── type-system.css            The type layer. Identical in all three kits
 │   ├── palette.css                The Collective Edge palette. The only file that differs by brand
 │   ├── type-tokens.json           Machine-readable type scale

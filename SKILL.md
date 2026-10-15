@@ -13,12 +13,13 @@ Full color, logo, co-brand and voice detail: [reference/brand.md](reference/bran
 
 ## Asset loading
 
-Load in this order. `type-system.css` is identical in every kit and is served from this repo because the type layer belongs to Collective Edge. `palette.css` is the only stylesheet that differs between brands. `cobrand.css` is the “Powered by Collective Edge” lockup, identical in every kit, served from here, and it reads the palette, so it loads last.
+Load in this order. `type-system.css` is identical in every kit and is served from this repo because the type layer belongs to Collective Edge. `palette.css` is the only stylesheet that differs between brands. `cobrand.css` is the “Powered by Collective Edge” lockup, identical in every kit, served from here, and it reads the palette, so it loads after it. `data-color.css` is the data layer, identical everywhere, and loads last. Add it on anything with a chart, a dashboard tile or a reported number.
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/palette.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/cobrand.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/data-color.css">
 ```
 
 For PDF pipelines (weasyprint, wkhtmltopdf, Chrome print) inline the face so it embeds in the file:
@@ -85,6 +86,34 @@ CE rarely stands alone. It comes in beside an operating company or a partner and
 When in doubt, mode A. Lockup construction, order, the “POWERED BY” eyebrow and the partner color rules are in [reference/brand.md](reference/brand.md).
 
 The shipped implementation of the model is [`snippets/cobrand.css`](snippets/cobrand.css), byte-identical in all three kits, and it is what the operating companies are told to use. `.ce-powered` on a dark ground, `.ce-powered ce-powered-light` on white, `.ce-powered-text` where no mark fits. The CE lockup rides beside the partner brand, never inside it, so a hairline keeps the two marks distinct: the two read as two brands rather than one combined mark. 204px, wider than the partner mark above it, because it is sized to read at a glance rather than sit quietly in a corner. The 120px minimum in `reference/brand.md` is a floor, not a target. It runs today in the Apex website footer, the Apex internal dashboard sidebar and the Apex partner page. The mirror case, a partner riding beneath the CE mark on a CE-led surface, is in [reference/layout.md](reference/layout.md) section 2, and `brands.json` carries the same values machine-readable under `cobrand`.
+
+## Data colour
+
+The brand palette is monochromatic. For a band and a letterhead that is correct. For a chart it is a defect: the grey ramp measures ΔE 10.7 between its first two steps under normal vision, against a floor of 15, and every step has zero chroma, so no step can carry identity at all. A grey ramp is a magnitude scale wearing a series costume.
+
+**When there is data on the page, the job of colour is to separate and to signal.** The brand is carried by the band, the mark and the type, not by the bars. A brand accent is never a series colour. CE is the one kit where this is unambiguous: there is no CE hue to spend, so the data layer is the only source of chart colour. Load `data-color.css` and style through it. Full standard in [reference/data-color.md](reference/data-color.md).
+
+Every colour in a chart does exactly one of four jobs. If you cannot say which, the chart is not finished.
+
+| Job | Question | Tokens |
+|---|---|---|
+| Identity | which series is this | `--series-1` to `--series-8`, in order, never cycled |
+| Magnitude | how much | `--seq-100` to `--seq-700` |
+| Polarity | which side of a baseline | `--div-neg-3` to `--div-pos-3` |
+| Direction | is this good news | `--dir-favourable`, `--dir-unfavourable`, `--dir-caution`, `--dir-neutral` |
+
+Four things that get broken most:
+
+1. **Direction is not the sign of the number.** A metric rising and a cost falling can both be good news. Colour follows favourable against unfavourable, never the arithmetic sign and never the direction of the arrow. A red "−38.8%" on a cost saving tells the reader the programme made things worse.
+2. **Never two tints of one hue for two different things.** The before-and-after chart takes an inert grey baseline `--data-baseline` against `--series-1`.
+3. **Diverging poles are red and teal, never red and green.** Red against green measures ΔE 5.5 under simulated deuteranopia and collapses into one colour.
+4. **Every direction colour carries an arrow or icon and a word.** Colour is never the only thing holding the meaning.
+
+Series cap is three on scatter, bubble and map charts, eight everywhere else. There is no ninth colour: fold the tail into "Other" or split the chart. Amber `#dca821` and orange `#e6811c` sit below 3:1 on white, so those series carry a direct label or a table beside them.
+
+On a dark ground put `.bk-on-dark` on the container and every token takes its dark step, exactly as the type layer already works.
+
+**Co-brand mode B.** Where a partner accent is the one functional hue on a CE-led surface, that accent marks live and active states. It is still not a series colour. A chart on that surface takes the house series order like any other.
 
 ## Type
 
