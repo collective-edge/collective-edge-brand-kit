@@ -4,7 +4,7 @@ Cloud-hosted brand assets plus the `collective-edge-brand-guidelines` skill. Wri
 
 The kit runs on **house type system v1.0**, shared byte for byte with `apex-brand-kit` and `royal-brand-kit`. Type is the layer that makes the three read as one house. Only palette and logo differ between them.
 
-The kit is the CDN-hosted, agent-facing reflection of the CE Design System. Source of truth for color: the “Collective Edge Design System” project on claude.ai/design. Source of truth for type: `reference/type-system.md` in this repo.
+The kit is the CDN-hosted reflection of the CE Design System, written for agents and humans alike. Source of truth for the brand palette: the “Collective Edge Design System” project (claude.ai/design). Source of truth for type: `reference/type-system.md` in this repo. Source of truth for data color: `reference/data-color.md` and `snippets/data-color.css` in this repo, which originate here and are shared unchanged with Apex and Royal.
 
 **Default to the restrained white document treatment.** White canvas, hairline dividers, sentence-case headings, sparing display type. Black is a header band, a title slide or a section divider, never the reading surface of a document. The dark grain-wave hero belongs to marketing and title surfaces.
 

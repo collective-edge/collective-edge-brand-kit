@@ -4,7 +4,12 @@ Everything about this brand that does not fit in `SKILL.md`. Color, logo, co-bra
 
 **The brand in one line.** Restrained, confident, operational, adult. Sparing display type, generous whitespace, hairline dividers, no decorative flourish. It reads as a senior operator giving a direct briefing, the opposite of consumer-tech playfulness.
 
-**Provenance.** This kit is the authoritative reflection of the CE Design System. The source of truth lives in the “Collective Edge Design System” project on claude.ai/design, and the color tokens here mirror its `colors_and_type.css`. Type is the exception: the type layer is `reference/type-system.md` and `snippets/type-system.css`, shared unchanged with Apex and Royal, and it supersedes anything the design system says about type.
+**Provenance.** This kit is the authoritative reflection of the CE Design System. The source of truth for the brand palette lives in the “Collective Edge Design System” project (claude.ai/design), and the brand color tokens here mirror its `colors_and_type.css`.
+
+Two layers are exceptions and originate in this repo, shared unchanged with Apex and Royal. Both supersede anything the design system says on their subject:
+
+- **Type.** `reference/type-system.md` and `snippets/type-system.css`.
+- **Data color.** `reference/data-color.md` and `snippets/data-color.css`. The design system has no equivalent, and chart color is deliberately not drawn from the brand palette.
 
 ---
 
