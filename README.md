@@ -1,6 +1,6 @@
 # Collective Edge brand kit
 
-Cloud-hosted brand assets and the Claude skill that applies them. Collective Edge is the parent of Apex Paramedics and Royal Ambulance. It runs monochrome, black to white with no hue of its own, sets everything in Montserrat with the CE block mark and the `CE │ COLLECTIVE EDGE` wordmark, and reaches most surfaces through the **“Powered by Collective Edge”** co-brand, where the Edge wedge takes the partner’s color.
+Cloud-hosted brand assets plus the `collective-edge-brand-guidelines` skill. Written for agents and humans: an agent loads `SKILL.md` and applies the brand on its own, and a person reads the same file start to finish and gets the same standard. Collective Edge is the parent of Apex Paramedics and Royal Ambulance. It runs monochrome, black to white with no hue of its own, sets everything in Montserrat with the CE block mark and the `CE │ COLLECTIVE EDGE` wordmark, and reaches most surfaces through the **“Powered by Collective Edge”** co-brand, where the Edge wedge takes the partner’s color.
 
 The kit runs on **house type system v1.0**, shared byte for byte with `apex-brand-kit` and `royal-brand-kit`. Type is the layer that makes the three read as one house. Only palette and logo differ between them.
 
@@ -14,14 +14,14 @@ The kit is the CDN-hosted, agent-facing reflection of the CE Design System. Sour
 
 ```
 collective-edge-brand-kit/
-├── SKILL.md                       The skill Claude reads. Everything an agent needs every time
+├── SKILL.md                       The brand standard. Everything an agent or a person needs every time
 ├── reference/
-│   ├── data-color.md         # Chart and reporting colour. Series, magnitude, polarity, direction. Shared
+│   ├── data-color.md         # Chart and reporting color. Series, magnitude, polarity, direction. Shared
 │   ├── type-system.md             The house type standard. Identical in all three kits
 │   ├── brand.md                   Color, logo, co-brand, voice
 │   └── layout.md                  Copy-pasteable layout patterns
 ├── snippets/
-│   ├── data-color.css        # The data colour layer. Shared
+│   ├── data-color.css        # The data color layer. Shared
 │   ├── type-system.css            The type layer. Identical in all three kits
 │   ├── palette.css                The Collective Edge palette. The only file that differs by brand
 │   ├── type-tokens.json           Machine-readable type scale
@@ -65,22 +65,25 @@ Load the type layer first, the palette second. That order matters.
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/palette.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/data-color.css">
 ```
 
 For a PDF pipeline (weasyprint, wkhtmltopdf, Chrome print) inline the `@font-face` so the font embeds in the file. The snippet is in [`SKILL.md`](SKILL.md).
 
 Style through the `.bk-*` classes and the semantic `--fg-*`, `--bg-*` and `--border-*` variables. Reach for a raw `--ce-*` value only where the brand color is the point.
 
-## Quick start, the Claude skill
+## Install the skill
+
+Clone the kit into the skills directory your agent reads. The directory name differs by tool, so substitute your own.
 
 ```bash
-git clone https://github.com/collective-edge/collective-edge-brand-kit ~/.claude/skills/collective-edge-brand-guidelines
+git clone https://github.com/collective-edge/collective-edge-brand-kit ~/skills/collective-edge-brand-guidelines
 ```
 
-Claude picks up `SKILL.md` and applies the brand automatically. To update:
+The agent picks up `SKILL.md` and applies the brand from then on. Working without one, open `SKILL.md` and follow it in order. To update:
 
 ```bash
-cd ~/.claude/skills/collective-edge-brand-guidelines && git pull
+cd ~/skills/collective-edge-brand-guidelines && git pull
 ```
 
 ## Verify before shipping
@@ -117,8 +120,8 @@ CE rarely stands alone. Where its mark shares a surface with another brand, **�
 | | Mode A, partner led. The default | Mode B, CE led, partner accented |
 |---|---|---|
 | Whose surface | The partner’s own product or material | A CE product delivered to a partner or their customer |
-| Palette | The partner’s palette runs everything | CE grey ramp, plus the partner’s accent as the one hue |
-| What CE contributes | Structure and finish, no hue. Montserrat, hairlines, whitespace, tabular figures, the type scale | The whole system. Partner color marks state: active nav, live data, one chart series |
+| Palette | The partner’s palette runs everything | CE gray ramp, plus the partner’s accent as the one hue |
+| What CE contributes | Structure and finish, no hue. Montserrat, hairlines, whitespace, tabular figures, the type scale | The whole system. Partner color marks state: active nav, live data, active filter. Not a chart series |
 | CE’s presence | The “Powered by” lockup under a hairline, plus the footer caption | The lockup leads the chain, `CE │ Apex Paramedics │ {Customer}` |
 
 **The wedge is the co-brand mechanism.** CE has no color of its own, so when CE co-brands it takes the partner’s into its own mark. The wedge is the one part that carries it: Royal `#572E72`, Apex `#FDB61C`. The block stays black or white and the letters stay the opposite. Every combination ships as a file, so never hand-recolor.

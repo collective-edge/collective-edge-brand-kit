@@ -80,11 +80,11 @@ In a pinned URL, replace `@main` with `@v1.1`. Bump the minor version for an add
 Install once:
 
 ```bash
-git clone https://github.com/collective-edge/collective-edge-brand-kit ~/.claude/skills/collective-edge-brand-guidelines
+git clone https://github.com/collective-edge/collective-edge-brand-kit ~/skills/collective-edge-brand-guidelines
 ```
 
 Update:
 
 ```bash
-git -C ~/.claude/skills/collective-edge-brand-guidelines pull
+git -C ~/skills/collective-edge-brand-guidelines pull
 ```

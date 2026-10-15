@@ -43,7 +43,7 @@ The most common Collective Edge surface. Two marks, never merged, separated by a
 </div>
 ```
 
-The label takes the surface’s tertiary grey from `--fg-on-dark-3`, which each palette supplies. On the black CE band that resolves to `#9E9E9E` at 7.84:1. On the Apex deep ground `#1D225E` it resolves to `#9EA5C4` at 5.98:1. The pre-v1.0 dashboards hardcoded `#9AA0C9` there, which measures 5.72:1 on the same ground and 2.55:1 on white; it is never text on light and there is no reason to type it now that the token exists.
+The label takes the surface’s tertiary gray from `--fg-on-dark-3`, which each palette supplies. On the black CE band that resolves to `#9E9E9E` at 7.84:1. On the Apex deep ground `#1D225E` it resolves to `#9EA5C4` at 5.98:1. The pre-v1.0 dashboards hardcoded `#9AA0C9` there, which measures 5.72:1 on the same ground and 2.55:1 on white; it is never text on light and there is no reason to type it now that the token exists.
 
 **Mode B, CE led.** CE first, the partner second, the bar between them. Light ground, so the partner appears in their own color file while CE appears in black.
 
@@ -104,7 +104,7 @@ The rule, and it is the whole rule: **the CE lockup rides beside the partner bra
 | Hairline on light | 1px `--border-1` `#E2E2E2` |
 | Spacing | 24px above the hairline and 24px below it, 12px between label and lockup |
 
-The light lockup goes on `--bg-canvas`. On `--bg-surface` `#FAFAFA` the same grey measures 4.89:1, which still clears 4.5:1 for CE but not for Apex, where the tint takes it to 4.31:1. Keep the whole house on the canvas so one block serves all three.
+The light lockup goes on `--bg-canvas`. On `--bg-surface` `#FAFAFA` the same gray measures 4.89:1, which still clears 4.5:1 for CE but not for Apex, where the tint takes it to 4.31:1. Keep the whole house on the canvas so one block serves all three.
 
 **Where it belongs.** The footer of any site or printed document. The sidebar header of any dashboard. The closing slide of a deck. The foot of a report. A data page or a methodology page. Anywhere a number was computed rather than typed.
 
@@ -229,7 +229,7 @@ A dark table header row takes `.bk-on-dark` on the `<thead>` and `--bg-inverse` 
 
 ## 9. Footer
 
-Slim strip, 1px `--border-1` top rule. Left: the document signature in `--fg-3`. A footer signature sets at 12px web and 9pt print, the smallest step on the ladder, so it takes the 5.10:1 grey and never `--fg-4`. Right: the revision marker at 700 in `--fg-1`, wrapped in `.bk-code`. A revision marker is dictated, so it is a record identifier and takes the mono face. It is one of the four kinds the face is whitelisted for. The separator in text is a middot. The vertical bar belongs to the logo, not to typed copy.
+Slim strip, 1px `--border-1` top rule. Left: the document signature in `--fg-3`. A footer signature sets at 12px web and 9pt print, the smallest step on the ladder, so it takes the 5.10:1 gray and never `--fg-4`. Right: the revision marker at 700 in `--fg-1`, wrapped in `.bk-code`. A revision marker is dictated, so it is a record identifier and takes the mono face. It is one of the four kinds the face is whitelisted for. The separator in text is a middot. The vertical bar belongs to the logo, not to typed copy.
 
 ```html
 <footer style="border-top:1px solid var(--border-1); margin-top:48px; padding:12px 0; display:flex; justify-content:space-between; align-items:baseline; gap:24px;">

@@ -23,9 +23,9 @@ Most of what you generate is an internal document. The marketing-site look, dark
 
 ## 1. Color
 
-Collective Edge has no color of its own. Pure black, pure white and a precise grey ramp between them. That is the entire CE palette and it is not going to grow.
+Collective Edge has no color of its own. Pure black, pure white and a precise gray ramp between them. That is the entire CE palette and it is not going to grow.
 
-That is not the same as saying a CE surface is always grey. CE almost never appears alone. It appears beside a partner, and those surfaces carry color. The rule that holds both facts:
+That is not the same as saying a CE surface is always gray. CE almost never appears alone. It appears beside a partner, and those surfaces carry color. The rule that holds both facts:
 
 > **CE stays monochrome. The color belongs to the partner.**
 
@@ -39,7 +39,7 @@ There is no CE gold, no CE accent, no CE brand hue waiting to be used.
 | `--ce-ink` | `#111111` | 17, 17, 17 | `--fg-1`, `--fg-accent` | Body text on light |
 | `--ce-graphite` | `#2A2A2A` | 42, 42, 42 | | Deep neutral, button hover |
 | `--ce-slate` | `#4A4A4A` | 74, 74, 74 | `--fg-2` | Secondary text |
-| `--ce-steel` | `#6E6E6E` | 110, 110, 110 | `--fg-3` | Tertiary text, metadata. The palette equivalent of the EDGE grey |
+| `--ce-steel` | `#6E6E6E` | 110, 110, 110 | `--fg-3` | Tertiary text, metadata. The palette equivalent of the EDGE gray |
 | `--ce-mute` | `#9A9A9A` | 154, 154, 154 | `--fg-4` | Dimmed non-text marks only. At 2.81:1 it is never text |
 | `--ce-fog` | `#C8C8C8` | 200, 200, 200 | `--wedge-standalone` | The Edge wedge when CE stands alone |
 | `--ce-mist` | `#E2E2E2` | 226, 226, 226 | `--border-1` | Hairlines, dividers |
@@ -82,17 +82,17 @@ Reversed text, on any dark ground:
 - A partner’s hue never colors the CE block or the CE letters. It colors the Edge wedge and nothing else in the mark.
 - A status color is never a theme, a fill, or a decorative accent.
 - A brand accent is never a status color, in either direction.
-- No color is introduced that is not in this file, a partner kit, the status set or the house data layer in [data-color.md](data-color.md). Chart series come from that layer and never from the grey ramp: the ramp measures ΔE 10.7 between its first two steps under normal vision against a floor of 15, and every step has zero chroma, so no step can carry identity.
+- No color is introduced that is not in this file, a partner kit, the status set or the house data layer in [data-color.md](data-color.md). Chart series come from that layer and never from the gray ramp: the ramp measures ΔE 10.7 between its first two steps under normal vision against a floor of 15, and every step has zero chroma, so no step can carry identity.
 
 ### Where the color comes from
 
 | What you are making | What the palette is |
 |---|---|
-| CE’s own documents, decks, memos, reports, one-pagers | The grey ramp. Monochrome. |
-| The CE mark, standing alone | Black or white block and letters, grey `#C8C8C8` wedge |
+| CE’s own documents, decks, memos, reports, one-pagers | The gray ramp. Monochrome. |
+| The CE mark, standing alone | Black or white block and letters, gray `#C8C8C8` wedge |
 | The CE mark, on a co-brand surface | Same black or white block and letters, wedge in the partner’s color |
 | A partner-led co-brand surface, mode A | The partner’s palette leads. CE adds structure and finish, no hue |
-| A CE product delivered to a partner or their customer, mode B | CE grey ramp, plus the partner’s accent used functionally |
+| A CE product delivered to a partner or their customer, mode B | CE gray ramp, plus the partner’s accent used functionally |
 | Anything carrying operational or clinical status | The four status colors, functionally, never as theme |
 | Charts and data visualization, on any surface | Series colors chosen for legibility, not pulled from the brand palette |
 
@@ -124,7 +124,7 @@ Identical across every brand so a diagram reads the same regardless of whose doc
 
 ### Data visualization
 
-Charts are the one place where the grey ramp is not enough, and forcing them monochrome makes them worse.
+Charts are the one place where the gray ramp is not enough, and forcing them monochrome makes them worse.
 
 - Give each series a fixed identity and reuse it everywhere in the product.
 - Verify 3:1 minimum against the surface and colorblind separation before shipping a palette. A bright brand color often fails as a chart line on white. Use the partner kit’s darkened step.
@@ -139,7 +139,7 @@ The Edge wedge is the one part of the block mark that carries color, and that co
 
 | Wedge | Hex | When |
 |---|---|---|
-| Grey | `#C8C8C8` | CE standing alone. The default, and the only treatment on a CE-only surface |
+| Gray | `#C8C8C8` | CE standing alone. The default, and the only treatment on a CE-only surface |
 | Royal purple | `#572E72` | A surface co-branded with Royal Ambulance |
 | Apex gold | `#FDB61C` | A surface co-branded with Apex Paramedics, Pantone 1235 C, their kit value |
 
@@ -147,7 +147,7 @@ CE does not have a color, so when CE co-brands it takes the partner’s into its
 
 The wedge color never moves off the wedge. Not onto the block, not onto the letters, not into UI chrome. It works there because the wedge is a shape inside a mark, not something anyone has to read. Apex gold at 1.77:1 against white is fine on the wedge and not fine anywhere else.
 
-One honest limitation. On a CE-only surface the grey wedge nearly disappears at favicon sizes on a white tile. There is no CE color to reach for instead. Give the mark a dark backing at small sizes, or accept it. Do not invent a hue to solve it.
+One honest limitation. On a CE-only surface the gray wedge nearly disappears at favicon sizes on a white tile. There is no CE color to reach for instead. Give the mark a dark backing at small sizes, or accept it. Do not invent a hue to solve it.
 
 ---
 
@@ -196,7 +196,7 @@ The name is the logo’s own color, used on the opposite background. Same conven
 - Do not color anything but the wedge. The block and the letters stay black or white on every surface, co-brands included.
 - Do not split the mark from the wordmark inside the horizontal lockup.
 - Do not place a lockup over a busy area without a solid backing.
-- Do not force EDGE to full black or full white. It is grey, and the heavy-plus-thin, black-plus-grey pairing is the signature.
+- Do not force EDGE to full black or full white. It is gray, and the heavy-plus-thin, black-plus-gray pairing is the signature.
 - Do not merge, nest or combine the CE mark with a partner’s into one glyph.
 - Do not put two CE lockups on one surface. Header or footer, not both.
 
@@ -212,7 +212,7 @@ This is how CE appears on almost everything. CE rarely stands alone. It comes in
 
 **Mode A, partner led.** The partner’s brand owns the surface. Their logo heads it, their palette runs the chrome, their color carries the accents. CE contributes structure and finish, not hue: Montserrat, hairline dividers, generous whitespace, tabular numerals, square-ish corners, quiet fast motion, a disciplined type scale. CE’s visible presence is the “Powered by” lockup and the footer caption. Shipped reference: the Apex internal dashboards. The sidebar is Apex deep blue `#1D225E` with a gold `#FDB61C` right rule, the whole palette locked to the Apex kit, and CE adds zero color and is unmistakably there anyway.
 
-**Mode B, CE led, partner accented.** CE’s system owns the surface: white canvas, grey ramp, hairlines, the CE type scale. The partner’s color is the only hue on the page and it is functional: active nav, live-data indicator, active filter. It is not a chart series; charts on a CE-led surface take the house series order. Reach for this when the artifact is a CE product delivered to a partner or their customer. Shipped reference: the Apex customer dashboard. Every surface is the CE ramp, and Apex gold marks exactly the live and active states, nothing else.
+**Mode B, CE led, partner accented.** CE’s system owns the surface: white canvas, gray ramp, hairlines, the CE type scale. The partner’s color is the only hue on the page and it is functional: active nav, live-data indicator, active filter. It is not a chart series; charts on a CE-led surface take the house series order. Reach for this when the artifact is a CE product delivered to a partner or their customer. Shipped reference: the Apex customer dashboard. Every surface is the CE ramp, and Apex gold marks exactly the live and active states, nothing else.
 
 When in doubt, mode A. CE does not take over a partner’s surface.
 
@@ -221,7 +221,7 @@ When in doubt, mode A. CE does not take over a partner’s surface.
 - **Two marks, never merged.** CE and the partner stay separate marks that happen to share a surface.
 - **Separate them with the CE bar.** Render it between marks as a 1px rule at roughly the height of the marks, in `--border-1` on light or `--border-on-dark` on dark. A rule, not a typed glyph.
 - **Order follows ownership.** On a partner-led surface the partner’s mark sits first or above, and the CE lockup sits beneath it under a hairline, so the two read as two brands rather than one. On a CE-led product the chain reads left to right in order of who built it and who it is for: `CE │ Apex Paramedics │ {Customer}`. Never stack more than three marks in one lockup.
-- **The eyebrow.** “POWERED BY” sits above or beside the CE lockup. Use `.bk-eyebrow`, which is 600 uppercase at 12px web and 9pt print with 0.080em tracking, in the surface’s tertiary grey. Where no lockup fits, spell out “Powered by Collective Edge” as text at 700 and open the tracking to 0.160em. That wide step is lockup artwork standing in for a mark, not a type-scale eyebrow, and 0.080em to 0.160em is its whole range.
+- **The eyebrow.** “POWERED BY” sits above or beside the CE lockup. Use `.bk-eyebrow`, which is 600 uppercase at 12px web and 9pt print with 0.080em tracking, in the surface’s tertiary gray. Where no lockup fits, spell out “Powered by Collective Edge” as text at 700 and open the tracking to 0.160em. That wide step is lockup artwork standing in for a mark, not a type-scale eyebrow, and 0.080em to 0.160em is its whole range.
 - **Match the file to the background, on both sides.** CE uses horizontal-on-dark on dark and horizontal-on-light on light. The partner uses whatever their kit maps to the same two roles, and the filenames differ, so never carry a filename across brands.
 
 | Partner | Kit base URL | Lockup on light | Lockup on dark |
@@ -235,7 +235,7 @@ When in doubt, mode A. CE does not take over a partner’s surface.
 
 ### The footer caption
 
-The standing CE signature on any co-branded product. A slim strip with a 1px `--border-1` top rule. Left: `Collective Edge · {Surface Name}` in `--fg-3`. It sets at 9pt, so it takes the 5.10:1 grey and never `--fg-4`. Right: a revision marker or a scope note in `--fg-1` at 700.
+The standing CE signature on any co-branded product. A slim strip with a 1px `--border-1` top rule. Left: `Collective Edge · {Surface Name}` in `--fg-3`. It sets at 9pt, so it takes the 5.10:1 gray and never `--fg-4`. Right: a revision marker or a scope note in `--fg-1` at 700.
 
 ### Partner values
 
@@ -261,7 +261,7 @@ Rules that hold on every partner value:
 - Lead with CE on a partner’s own surface.
 - Merge, nest or recolor either mark to match the other.
 - Use a partner’s accent on a CE-only surface.
-- Put CE’s grey ramp over a partner’s palette in mode A, or a partner’s palette over CE’s chrome in mode B. Pick one mode and hold it.
+- Put CE’s gray ramp over a partner’s palette in mode A, or a partner’s palette over CE’s chrome in mode B. Pick one mode and hold it.
 
 ---
 
