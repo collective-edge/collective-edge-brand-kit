@@ -1,0 +1,156 @@
+{
+  "_comment": "Input to scripts/build-handoff.py. It lists what goes in this folder and the script renders it. Edit here, rerun the script, never hand-export a PNG.",
+  "brand": "Collective Edge",
+  "filePrefix": "Collective-Edge",
+  "grounds": {
+    "light": "#FFFFFF",
+    "dark": "#000000"
+  },
+  "previewBorder": "#E2E2E2",
+  "logos": [
+    {
+      "name": "horizontal-black",
+      "source": "assets/logos/horizontal-black.svg",
+      "ground": "light",
+      "png": [
+        1200,
+        2400
+      ],
+      "preview": {
+        "plate": [
+          960,
+          320
+        ],
+        "logoWidth": 720
+      }
+    },
+    {
+      "name": "horizontal-white",
+      "source": "assets/logos/horizontal-white.svg",
+      "ground": "dark",
+      "png": [
+        1200,
+        2400
+      ],
+      "preview": {
+        "plate": [
+          960,
+          320
+        ],
+        "logoWidth": 720
+      }
+    },
+    {
+      "name": "mark-black",
+      "source": "assets/logos/mark-black.svg",
+      "ground": "light",
+      "png": [
+        512,
+        1024
+      ],
+      "preview": {
+        "plate": [
+          600,
+          480
+        ],
+        "logoWidth": 300
+      }
+    },
+    {
+      "name": "mark-white",
+      "source": "assets/logos/mark-white.svg",
+      "ground": "dark",
+      "png": [
+        512,
+        1024
+      ],
+      "preview": {
+        "plate": [
+          600,
+          480
+        ],
+        "logoWidth": 300
+      }
+    },
+    {
+      "name": "mark-black-royal",
+      "source": "assets/logos/mark-black-royal.svg",
+      "ground": "light",
+      "png": [
+        512,
+        1024
+      ],
+      "preview": {
+        "plate": [
+          600,
+          480
+        ],
+        "logoWidth": 300
+      }
+    },
+    {
+      "name": "mark-white-royal",
+      "source": "assets/logos/mark-white-royal.svg",
+      "ground": "dark",
+      "png": [
+        512,
+        1024
+      ],
+      "preview": {
+        "plate": [
+          600,
+          480
+        ],
+        "logoWidth": 300
+      }
+    },
+    {
+      "name": "mark-black-apex",
+      "source": "assets/logos/mark-black-apex.svg",
+      "ground": "light",
+      "png": [
+        512,
+        1024
+      ],
+      "preview": {
+        "plate": [
+          600,
+          480
+        ],
+        "logoWidth": 300
+      }
+    },
+    {
+      "name": "mark-white-apex",
+      "source": "assets/logos/mark-white-apex.svg",
+      "ground": "dark",
+      "png": [
+        512,
+        1024
+      ],
+      "preview": {
+        "plate": [
+          600,
+          480
+        ],
+        "logoWidth": 300
+      }
+    }
+  ],
+  "swatches": [
+    "#000000",
+    "#111111",
+    "#4A4A4A",
+    "#6E6E6E",
+    "#9A9A9A",
+    "#C8C8C8",
+    "#E2E2E2",
+    "#FAFAFA",
+    "#FFFFFF",
+    "#572E72",
+    "#FDB61C"
+  ],
+  "fonts": [
+    "assets/fonts/Montserrat-VariableFont_wght.ttf"
+  ]
+}

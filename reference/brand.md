@@ -188,7 +188,7 @@ The name is the logo’s own color, used on the opposite background. Same conven
 | Horizontal lockup viewBox | `0 0 450 74.999997` |
 | Block mark viewBox | `0 0 375 262.499992` |
 | Minimum lockup width | 120px, or 1in in print |
-| Minimum mark width | 28px. `brands.json` carries no CE entry; it sets 32px for Apex and Royal, so a shared component sized from the registry lands at 32px |
+| Minimum mark width | 28px. `brands.json` carries no CE entry; it sets 32px for the Royal crown and none for Apex, which has no mark, so a shared component sized from the registry lands at 32px |
 | Clear space | At least the height of the Edge shadow block on every side |
 | Vector master | The SVGs in `assets/logos/`. There is no separate .eps or .ai in this kit |
 | Raster derivatives | `assets/png/CE.png`, `CE_Block_Dark.png`, `CE_Block_Light.png`, `CE_Block_Lockup.png`, `CE_Word_Mark.png`. Never the master, never the file you ship to web |

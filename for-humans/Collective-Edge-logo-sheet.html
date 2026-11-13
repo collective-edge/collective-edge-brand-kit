@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collective Edge · Logo sheet</title>
+
+<!-- Visual reference for an outside design partner. Every mark, every color,
+     on screen. The logo images are local relative paths, so this page still
+     shows the marks with no network. The stylesheets and the font come from
+     the public CDN and need a connection to render in brand type. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/palette.css">
+
+<style>
+@font-face {
+  font-family: "Montserrat";
+  src: url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.woff2") format("woff2-variations"),
+       url("https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/fonts/Montserrat-VariableFont_wght.ttf")   format("truetype-variations");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--bg-surface);
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+}
+
+.sheet {
+  width: 8.5in;
+  margin: var(--space-6) auto;
+  background: var(--bg-canvas);
+  box-shadow: var(--shadow-2);
+  padding-bottom: var(--space-7);
+}
+
+header {
+  background: var(--bg-band);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding: var(--space-6) 0.5in;
+}
+
+.block { padding: var(--space-7) 0.5in 0; }
+
+.eyebrow {
+  color: var(--fg-3);
+  margin: 0 0 var(--space-2);
+}
+
+/* Logo plates. Light plate for the black marks, dark plate for the white
+   ones, so each mark is shown on the ground it is actually for. */
+.plates {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.plate {
+  border: 1px solid var(--border-1);
+  border-radius: 6px;
+  padding: var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.5in;
+}
+
+.plate.light { background: var(--bg-canvas); }
+.plate.dark  { background: var(--bg-inverse); border-color: var(--bg-inverse); }
+
+.plate img { display: block; max-width: 100%; height: auto; }
+.plate.horizontal img { width: 2.9in; }
+.plate.mark img { width: 1.1in; }
+
+.caption {
+  color: var(--fg-3);
+  margin: var(--space-2) 0 0;
+}
+
+/* Color chips */
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.swatch { border: 1px solid var(--border-1); border-radius: 6px; overflow: hidden; }
+.swatch .fill { height: 0.7in; }
+.swatch .meta { padding: var(--space-3) var(--space-4) var(--space-4); }
+.swatch .name { margin: 0 0 2px; }
+.swatch .hex  { color: var(--fg-3); margin: 0; }
+
+table { width: 100%; border-collapse: collapse; margin-top: var(--space-4); }
+th {
+  text-align: left;
+  background: var(--bg-band);
+  color: var(--fg-on-dark-1);
+  padding: var(--space-3) var(--space-4);
+}
+td { padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--border-1); color: var(--fg-1); }
+tbody tr:nth-child(even) { background: var(--bg-surface); }
+
+ul { margin: var(--space-4) 0 0; padding-left: 1.1em; color: var(--fg-1); }
+li { margin-bottom: var(--space-2); }
+
+footer {
+  margin-top: var(--space-7);
+  padding: var(--space-5) 0.5in 0;
+  border-top: 1px solid var(--border-1);
+  color: var(--fg-3);
+}
+
+@media print {
+  body { background: #fff; }
+  .sheet { width: auto; margin: 0; box-shadow: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <header class="bk-on-dark">
+    <div class="bk-h2 bk-caps" style="margin:0;">Logo sheet</div>
+    <img src="logos/svg/Collective-Edge-horizontal-white.svg" alt="Collective Edge" style="width:2.1in; height:auto; display:block; flex:none;">
+  </header>
+
+  <div class="block">
+    <p class="bk-eyebrow eyebrow bk-caps">The marks</p>
+    <h1 class="bk-h1" style="margin:0;">One lockup, one block mark</h1>
+    <p class="bk-body" style="color:var(--fg-2);">
+      Pick by the background. The file named <strong>black</strong> goes on light. The file named <strong>white</strong> goes on dark. The name is the ink, not the ground.
+    </p>
+
+    <div class="plates">
+      <div>
+        <div class="plate light horizontal"><img src="logos/svg/Collective-Edge-horizontal-black.svg" alt="Collective Edge horizontal logo in black"></div>
+        <p class="bk-caption caption">Horizontal · black · on light</p>
+      </div>
+      <div>
+        <div class="plate dark horizontal"><img src="logos/svg/Collective-Edge-horizontal-white.svg" alt="Collective Edge horizontal logo in white"></div>
+        <p class="bk-caption caption">Horizontal · white · on dark</p>
+      </div>
+      <div>
+        <div class="plate light mark"><img src="logos/svg/Collective-Edge-mark-black.svg" alt="Collective Edge block mark in black"></div>
+        <p class="bk-caption caption">Block mark · black · on light</p>
+      </div>
+      <div>
+        <div class="plate dark mark"><img src="logos/svg/Collective-Edge-mark-white.svg" alt="Collective Edge block mark in white"></div>
+        <p class="bk-caption caption">Block mark · white · on dark</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <p class="bk-eyebrow eyebrow bk-caps">Co-brand marks</p>
+    <h2 class="bk-h2" style="margin:0;">The wedge takes the partner’s color</h2>
+    <p class="bk-body" style="color:var(--fg-2);">
+      Collective Edge has no color of its own. Beside Royal Ambulance the wedge is purple. Beside Apex Paramedics it is gold.
+      Nothing else in the mark changes. Every combination ships as a file, so never recolor one by hand.
+    </p>
+    <div class="plates">
+      <div>
+        <div class="plate light mark"><img src="logos/svg/Collective-Edge-mark-black-royal.svg" alt="Collective Edge block mark, black, Royal purple wedge"></div>
+        <p class="bk-caption caption">Royal · black · on light</p>
+      </div>
+      <div>
+        <div class="plate dark mark"><img src="logos/svg/Collective-Edge-mark-white-royal.svg" alt="Collective Edge block mark, white, Royal purple wedge"></div>
+        <p class="bk-caption caption">Royal · white · on dark</p>
+      </div>
+      <div>
+        <div class="plate light mark"><img src="logos/svg/Collective-Edge-mark-black-apex.svg" alt="Collective Edge block mark, black, Apex gold wedge"></div>
+        <p class="bk-caption caption">Apex · black · on light</p>
+      </div>
+      <div>
+        <div class="plate dark mark"><img src="logos/svg/Collective-Edge-mark-white-apex.svg" alt="Collective Edge block mark, white, Apex gold wedge"></div>
+        <p class="bk-caption caption">Apex · white · on dark</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2 class="bk-h2" style="margin:0;">Sizes and spacing</h2>
+    <table>
+      <thead>
+        <tr><th class="bk-table-head bk-caps">Rule</th><th class="bk-table-head bk-caps">Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="bk-body">Clear space on all four sides</td><td class="bk-body">Height of the wedge</td></tr>
+        <tr><td class="bk-body">Horizontal lockup, minimum</td><td class="bk-body">120 px on screen · 1 inch in print</td></tr>
+        <tr><td class="bk-body">Block mark, minimum</td><td class="bk-body">28 px on screen</td></tr>
+        <tr><td class="bk-body">“Powered by” lockup, standard width</td><td class="bk-body">204 px</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block">
+    <h2 class="bk-h2" style="margin:0;">Color</h2>
+    <p class="bk-body" style="color:var(--fg-2);">Hex and RGB are authoritative. Everything else converts from these.</p>
+    <div class="swatches">
+      <div class="swatch">
+        <div class="fill" style="background:#000000;"></div>
+        <div class="meta"><p class="bk-label name">Black</p><p class="bk-caption hex bk-code">#000000</p></div>
+      </div>
+      <div class="swatch">
+        <div class="fill" style="background:#111111;"></div>
+        <div class="meta"><p class="bk-label name">Ink</p><p class="bk-caption hex bk-code">#111111</p></div>
+      </div>
+      <div class="swatch">
+        <div class="fill" style="background:#4A4A4A;"></div>
+        <div class="meta"><p class="bk-label name">Slate</p><p class="bk-caption hex bk-code">#4A4A4A</p></div>
+      </div>
+      <div class="swatch">
+        <div class="fill" style="background:#6E6E6E;"></div>
+        <div class="meta"><p class="bk-label name">Steel</p><p class="bk-caption hex bk-code">#6E6E6E</p></div>
+      </div>
+      <div class="swatch">
+        <div class="fill" style="background:#9A9A9A;"></div>
+        <div class="meta"><p class="bk-label name">Mute</p><p class="bk-caption hex bk-code">#9A9A9A</p></div>
+      </div>
+      <div class="swatch">
+        <div class="fill" style="background:#C8C8C8;"></div>
+        <div class="meta"><p class="bk-label name">Fog</p><p class="bk-caption hex bk-code">#C8C8C8</p></div>
+      </div>
+      <div class="swatch">
+        <div class="fill" style="background:#E2E2E2;"></div>
+        <div class="meta"><p class="bk-label name">Mist</p><p class="bk-caption hex bk-code">#E2E2E2</p></div>
+      </div>
+      <div class="swatch">
+        <div class="fill" style="background:#FAFAFA;"></div>
+        <div class="meta"><p class="bk-label name">Bone</p><p class="bk-caption hex bk-code">#FAFAFA</p></div>
+      </div>
+      <div class="swatch">
+        <div class="fill" style="background:#FFFFFF;"></div>
+        <div class="meta"><p class="bk-label name">White</p><p class="bk-caption hex bk-code">#FFFFFF</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2 class="bk-h2" style="margin:0;">Three traps, all measured</h2>
+    <ul>
+      <li class="bk-body">Steel <span class="bk-code">#6E6E6E</span> is the lightest gray that may carry text on white. It measures 5.10:1.</li>
+      <li class="bk-body">Mute <span class="bk-code">#9A9A9A</span> is never text, at any size. It measures 2.81:1 on white.</li>
+      <li class="bk-body">Black is a band, a title or a divider. It is never the page a document is read on. On black use <span class="bk-code">#D6D6D6</span> for body text and <span class="bk-code">#9E9E9E</span> for captions.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <h2 class="bk-h2" style="margin:0;">Type</h2>
+    <p class="bk-body" style="color:var(--fg-2);">
+      Montserrat throughout. There is no secondary typeface and no italic. The four weights are in
+      <span class="bk-code">fonts/static/</span>, and the variable file is in <span class="bk-code">fonts/</span>.
+    </p>
+    <p class="bk-display-md bk-caps" style="margin:var(--space-5) 0 0;">Display caps</p>
+    <h3 class="bk-h3" style="margin:var(--space-4) 0 0;">Heading in sentence case</h3>
+    <p class="bk-body" style="margin:var(--space-2) 0 0;">Body copy sits at this size and weight. Short declarative sentences, active verbs, nothing before the point.</p>
+    <p class="bk-caption" style="margin:var(--space-2) 0 0;">Caption and metadata sit here.</p>
+  </div>
+
+  <div class="block">
+    <h2 class="bk-h2" style="margin:0;">Do not</h2>
+    <ul>
+      <li class="bk-body">Stretch, squash, skew or rotate the logo.</li>
+      <li class="bk-body">Recolor it. Pick the file that matches the background.</li>
+      <li class="bk-body">Color anything but the wedge.</li>
+      <li class="bk-body">Force EDGE to full black or full white. It is gray.</li>
+      <li class="bk-body">Add a drop shadow, glow, outline or gradient.</li>
+      <li class="bk-body">Split the block mark from the wordmark in the horizontal lockup.</li>
+      <li class="bk-body">Merge the mark with a partner’s logo into one shape.</li>
+      <li class="bk-body">Put two Collective Edge lockups on one page.</li>
+      <li class="bk-body">Render it below the minimum sizes above.</li>
+    </ul>
+  </div>
+
+  <footer>
+    <p class="bk-caption" style="margin:0;">Collective Edge · brand assets are property of Collective Edge and are for Collective Edge and partner work only.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>

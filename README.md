@@ -1,5 +1,38 @@
 # Collective Edge brand kit
 
+<p><img src="for-humans/previews/horizontal-black.png" width="400" alt="Collective Edge logo on white"> <img src="for-humans/previews/horizontal-white.png" width="400" alt="Collective Edge logo on black"></p>
+
+The public source for the Collective Edge brand, and the home of the type system its operating companies share. Logos, colors, type and the rules for using them. Pick your door.
+
+| | **[For humans →](for-humans/)** | **[For agents →](for-agents/)** |
+|---|---|---|
+| Who | Designers, agencies, printers, teammates | AI agents, and developers generating branded output |
+| What you get | Logos in SVG and PNG, the fonts, the colors, the rules. No install, no account, no git | CDN URLs, logo roles, color tokens, the full standard, validators |
+| Start with | [Download the pack](https://github.com/collective-edge/collective-edge-brand-kit/archive/refs/heads/main.zip), then open `for-humans` | [`for-agents/README.md`](for-agents/README.md), then [`SKILL.md`](SKILL.md) |
+
+## Grab a logo
+
+The file named for its ink goes on the opposite background. Full set, sizes and rules are in [`for-humans/`](for-humans/).
+
+| | For light backgrounds | For dark backgrounds |
+|---|---|---|
+| Horizontal | [SVG](for-humans/logos/svg/Collective-Edge-horizontal-black.svg) · [PNG](for-humans/logos/png/Collective-Edge-horizontal-black-1200w.png) | [SVG](for-humans/logos/svg/Collective-Edge-horizontal-white.svg) · [PNG](for-humans/logos/png/Collective-Edge-horizontal-white-1200w.png) |
+| Block mark | [SVG](for-humans/logos/svg/Collective-Edge-mark-black.svg) · [PNG](for-humans/logos/png/Collective-Edge-mark-black-512w.png) | [SVG](for-humans/logos/svg/Collective-Edge-mark-white.svg) · [PNG](for-humans/logos/png/Collective-Edge-mark-white-512w.png) |
+| Block mark · Royal co-brand | [SVG](for-humans/logos/svg/Collective-Edge-mark-black-royal.svg) · [PNG](for-humans/logos/png/Collective-Edge-mark-black-royal-512w.png) | [SVG](for-humans/logos/svg/Collective-Edge-mark-white-royal.svg) · [PNG](for-humans/logos/png/Collective-Edge-mark-white-royal-512w.png) |
+| Block mark · Apex co-brand | [SVG](for-humans/logos/svg/Collective-Edge-mark-black-apex.svg) · [PNG](for-humans/logos/png/Collective-Edge-mark-black-apex-512w.png) | [SVG](for-humans/logos/svg/Collective-Edge-mark-white-apex.svg) · [PNG](for-humans/logos/png/Collective-Edge-mark-white-apex-512w.png) |
+
+## The house
+
+Three brands, one type system, the same layout in every kit.
+
+| Brand | Kit | People | Agents |
+|---|---|---|---|
+| **Collective Edge · the parent** | this kit | [for-humans](for-humans/) | [for-agents](for-agents/) |
+| Apex Paramedics | [`apex-brand-kit`](https://github.com/collective-edge/apex-brand-kit) | [for-humans](https://github.com/collective-edge/apex-brand-kit/tree/main/for-humans) | [for-agents](https://github.com/collective-edge/apex-brand-kit/tree/main/for-agents) |
+| Royal Ambulance | [`royal-brand-kit`](https://github.com/collective-edge/royal-brand-kit) | [for-humans](https://github.com/collective-edge/royal-brand-kit/tree/main/for-humans) | [for-agents](https://github.com/collective-edge/royal-brand-kit/tree/main/for-agents) |
+
+## About this kit
+
 Cloud-hosted brand assets plus the `collective-edge-brand-guidelines` skill. Written for agents and humans: an agent loads `SKILL.md` and applies the brand on its own, and a person reads the same file start to finish and gets the same standard. Collective Edge is the parent of Apex Paramedics and Royal Ambulance. It runs monochrome, black to white with no hue of its own, sets everything in Montserrat with the CE block mark and the `CE │ COLLECTIVE EDGE` wordmark, and reaches most surfaces through the **“Powered by Collective Edge”** co-brand, where the Edge wedge takes the partner’s color.
 
 The kit runs on **house type system v1.0**, shared byte for byte with `apex-brand-kit` and `royal-brand-kit`. Type is the layer that makes the three read as one house. Only palette and logo differ between them.
@@ -14,6 +47,9 @@ The kit is the CDN-hosted reflection of the CE Design System, written for agents
 
 ```
 collective-edge-brand-kit/
+├── for-humans/                    Start here if you are a person. Logos, fonts, colors, rules. No install
+├── for-agents/                    Start here if you are an agent. URLs, roles, tokens, rules, on one page
+├── AGENTS.md                      Entry point an agent finds on its own. Points at the two files below it
 ├── SKILL.md                       The brand standard. Everything an agent or a person needs every time
 ├── reference/
 │   ├── data-color.md         # Chart and reporting color. Series, magnitude, polarity, direction. Shared
@@ -35,11 +71,13 @@ collective-edge-brand-kit/
 ├── Examples/
 │   └── ce-one-pager.html          A filled reference, not a starting point
 ├── scripts/
+│   ├── build-handoff.py           Renders the PNG logos, previews and color chips in for-humans/
 │   ├── validate.py                Mechanical check of generated HTML against the type standard
 │   └── check-sync.py              Confirms the shared files match across the three kits
 ├── tokens.json                    Machine-readable color for python-pptx, python-docx, matplotlib, reportlab
 ├── brands.json                    Registry resolving every brand in the house to its CDN root
 ├── NEW-BRAND.md                   How to stand up a kit for a new operating company
+├── CONTRIBUTING.md                How to change this kit without breaking live work
 └── assets/
     ├── fonts/                     Montserrat variable, woff2 and TTF
     ├── logos/                     Six block marks and two horizontal lockups, SVG
