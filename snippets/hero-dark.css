@@ -85,7 +85,7 @@
   color: var(--fg-on-dark-1);
 }
 /* The dimmed foreground steps do not survive this background. --fg-on-dark-3
-   is #9E9E9E, which holds on flat black and disappears where the wave is
+   is #A3A4AC, which holds on flat black and disappears where the wave is
    bright. On the hero, labels go to --fg-on-dark-1, supporting copy goes to
    --fg-on-dark-2, and nothing uses --fg-on-dark-3. */
 .bk-hero-dark .bk-eyebrow { color: var(--fg-on-dark-1); }

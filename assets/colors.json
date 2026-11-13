@@ -3,15 +3,15 @@
   "_note": "COLLECTIVE EDGE HAS NO COLOR OF ITS OWN. Black, white, and a gray ramp, and that palette is not going to grow. There is no CE gold, no CE accent. That is not the same as saying a CE surface is always gray: CE almost never appears alone, and on a co-brand surface the color is the PARTNER's. The rule that holds both facts is 'CE stays monochrome, the color belongs to the partner.' Color appears in four places, none of them a CE hue. (1) The Edge wedge in the block mark, gray #C8C8C8 when CE stands alone and the partner's color on a co-brand surface (see the top-level 'wedge' block). (2) On a partner-led co-brand surface the partner's palette leads and CE adds no hue. (3) On a CE-led product for a partner or their customer, the partner's accent is the one hue, used functionally (active nav, live state, one chart series). (4) Charts pick series colors for legibility and colorblind separation, not from this palette. White is the primary surface for documents; black is reserved for hero, section-divider and title surfaces. Co-brand rules are in reference/brand.md section 4.",
   "brandCore": {
     "black":    { "hex": "#000000", "role": "Primary brand black; hero / divider surfaces" },
-    "ink":      { "hex": "#111111", "role": "Near-black body text (--fg-1)" },
-    "graphite": { "hex": "#2A2A2A", "role": "Deep neutral; button hover" },
-    "slate":    { "hex": "#4A4A4A", "role": "Secondary text (--fg-2)" },
-    "steel":    { "hex": "#6E6E6E", "role": "Tertiary text / EDGE wordmark gray (--fg-3)" },
-    "mute":     { "hex": "#9A9A9A", "role": "Muted / 'Not This' labels (--fg-4)" },
+    "ink":      { "hex": "#23232A", "role": "Body text (--fg-1)" },
+    "graphite": { "hex": "#23232A", "role": "Header band (--bg-band)" },
+    "slate":    { "hex": "#565860", "role": "Secondary text (--fg-2)" },
+    "steel":    { "hex": "#6D6D77", "role": "Tertiary text / EDGE wordmark gray (--fg-3)" },
+    "mute":     { "hex": "#8A8B93", "role": "Muted / 'Not This' labels (--fg-4)" },
     "fog":      { "hex": "#C8C8C8", "role": "The Edge wedge when CE stands alone. On a co-brand surface the wedge takes the partner's color instead; see the top-level wedge block" },
-    "mist":     { "hex": "#E2E2E2", "role": "Hairlines, dividers (--border-1)" },
-    "paper":    { "hex": "#F4F4F4", "role": "Off-white surface" },
-    "bone":     { "hex": "#FAFAFA", "role": "Lightest surface (--bg-surface)" },
+    "mist":     { "hex": "#E4E4E9", "role": "Hairlines, dividers (--border-1)" },
+    "paper":    { "hex": "#E5E6EA", "role": "Stronger surface tint (--bg-surface-2)" },
+    "bone":     { "hex": "#F0F1F4", "role": "Surface tint (--bg-surface)" },
     "white":    { "hex": "#FFFFFF", "role": "Primary brand white; primary document canvas" }
   },
   "wedge": {
@@ -24,15 +24,15 @@
     }
   },
   "foreground": {
-    "fg1": "#111111", "fg2": "#4A4A4A", "fg3": "#6E6E6E", "fg4": "#9A9A9A",
-    "onDark1": "#FFFFFF", "onDark2": "#D6D6D6", "onDark3": "#9E9E9E"
+    "fg1": "#23232A", "fg2": "#565860", "fg3": "#6D6D77", "fg4": "#8A8B93",
+    "onDark1": "#FFFFFF", "onDark2": "#DDDDE3", "onDark3": "#A3A4AC"
   },
   "background": {
-    "canvas": "#FFFFFF", "surface": "#FAFAFA", "elevated": "#FFFFFF",
+    "canvas": "#FFFFFF", "surface": "#F0F1F4", "elevated": "#FFFFFF",
     "inverse": "#000000", "inverse2": "#0A0A0A"
   },
   "borders": {
-    "border1": "#E2E2E2", "border2": "#D0D0D0", "onDark": "rgba(255,255,255,0.12)"
+    "border1": "#E4E4E9", "border2": "#D0D0D6", "onDark": "rgba(255,255,255,0.12)"
   },
   "status": {
     "_note": "Used sparingly and functionally, healthcare context. Never decorative accents, and always paired with text or an arrow so meaning does not ride on color alone.",

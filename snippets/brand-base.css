@@ -147,7 +147,7 @@
 .ce-caption { font-size: var(--fs-caption); line-height: var(--lh-caption); letter-spacing: var(--tr-caption); font-weight: var(--weight-regular); color: var(--fg-3); max-width: var(--measure-caption); }
 
 /* Was italic at `--fg-3`. Roman now, and one step darker, because
-   `#6E6E6E` at 5.10:1 is the floor for body-size copy and a lede
+   `#6D6D77` at 5.12:1 is the floor for body-size copy and a lede
    is read at length. */
 .ce-lede {
   font-size: var(--fs-body-lg);
