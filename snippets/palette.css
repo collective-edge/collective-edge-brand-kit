@@ -19,24 +19,59 @@
    a logo band or an accent rule. NEVER a chart series:
    data color comes from data-color.css, and a brand accent
    is never a series color.
+
+   Three families below are IDENTICAL IN EVERY BRAND and are the
+   one source for every functional color in the house:
+
+     --neutral-*   the shared neutral family. Text, hairlines,
+                   on-dark text. One gray for all three brands.
+     --alert-*     the alert family. go, warn, stop, info, each
+                   with five steps: base, -text, -tint, -on-tint,
+                   -on-dark. CANONICAL. These never change with
+                   the ground; pick the step for the ground.
+     --status-*    ALIASES of the alert base. They follow the
+                   ground: under .bk-on-dark they resolve to the
+                   -on-dark step, so a status reads on a band.
+     --diagram-*   ALIASES of the alert and neutral families.
+
+   --dir-* in data-color.css are aliases of the same family.
    ============================================================ */
 
 :root {
 
-  /* ---- BRAND, GRAY RAMP ----
-     Collective Edge has no hue of its own. White is the primary
-     document surface; black is reserved for hero, divider and
-     title surfaces. */
-  --ce-black:     #000000;
-  --ce-ink:       #111111;
-  --ce-graphite:  #2A2A2A;
-  --ce-slate:     #4A4A4A;
-  --ce-steel:     #6E6E6E;
-  --ce-mute:      #9A9A9A;
-  --ce-fog:       #C8C8C8;
-  --ce-mist:      #E2E2E2;
-  --ce-paper:     #F4F4F4;
-  --ce-bone:      #FAFAFA;
+  /* ---- NEUTRALS · shared family ----------------------------
+     Identical in every brand. One neutral, OKLCH hue 280 and
+     chroma under 0.016, so it sits between the Apex and Royal
+     hues and leans toward neither. Measured on #FFFFFF. */
+  --neutral-ink:             #23232A;   /* 15.61:1 */
+  --neutral-secondary:       #565860;   /*  7.09:1 */
+  --neutral-tertiary:        #6D6D77;   /*  5.12:1. The dimmest text */
+  --neutral-dimmed:          #8A8B93;   /*  3.39:1. Non-text marks only */
+  --neutral-border:          #D0D0D6;   /*  1.54:1 */
+  --neutral-hairline:        #E4E4E9;   /*  1.27:1 */
+  --neutral-tint-2:          #E5E6EA;
+  --neutral-tint:            #F0F1F4;
+  --neutral-mid:             #4E4F58;   /* white on it 8.13:1 */
+  --neutral-on-dark-body:    #DDDDE3;
+  --neutral-on-dark-caption: #A3A4AC;
+
+  /* ---- BRAND, TIERS ----
+     Collective Edge has no hue of its own. It reads as tiers:
+     black is the hero and the accent, graphite is the band and
+     the body ink, iron is the mid tone, and two tints step the
+     page. White is the primary document surface. The values are
+     the shared neutral family above, under the brand's names. */
+  --ce-black:     #000000;                    /* hero, accent */
+  --ce-graphite:  var(--neutral-ink);         /* #23232A · band */
+  --ce-ink:       var(--neutral-ink);         /* #23232A · body ink */
+  --ce-iron:      var(--neutral-mid);         /* #4E4F58 · mid tone */
+  --ce-slate:     var(--neutral-secondary);   /* #565860 */
+  --ce-steel:     var(--neutral-tertiary);    /* #6D6D77 */
+  --ce-mute:      var(--neutral-dimmed);      /* #8A8B93 */
+  --ce-fog:       #C8C8C8;                    /* the standalone wedge gray */
+  --ce-mist:      var(--neutral-hairline);    /* #E4E4E9 */
+  --ce-paper:     var(--neutral-tint-2);      /* #E5E6EA · stronger tint */
+  --ce-bone:      var(--neutral-tint);        /* #F0F1F4 · surface */
   --ce-white:     #FFFFFF;
 
   /* ---- THE EDGE WEDGE ----
@@ -50,51 +85,129 @@
   --wedge-apex:        #FDB61C;
 
   /* ---- SEMANTIC FOREGROUND ---------------------------------
-     type-system.css styles through these. Same names everywhere. */
-  --fg-1: var(--ce-ink);   /* primary text on light   */
-  --fg-2: var(--ce-slate);   /* secondary text          */
-  --fg-3: var(--ce-steel);   /* tertiary, metadata      */
-  --fg-4: var(--ce-mute);   /* dimmed non-text. 2.81:1 */
-  --fg-accent: var(--ce-ink);   /* brand-colored text  */
-  --fg-on-dark-1: #FFFFFF;
-  --fg-on-dark-2: #D6D6D6;
-  --fg-on-dark-3: #9E9E9E;
+     type-system.css styles through these. Same names everywhere.
+     Ratios are the worst of #FFFFFF and --bg-surface. */
+  --fg-1: var(--neutral-ink);         /* primary text on light. 13.82:1 */
+  --fg-2: var(--neutral-secondary);   /* secondary text. 6.28:1 */
+  --fg-3: var(--neutral-tertiary);    /* tertiary, metadata. 4.53:1 */
+  --fg-4: var(--neutral-dimmed);      /* dimmed non-text. 3.00:1, never text */
+  --fg-accent: var(--ce-black);   /* brand-colored text. 18.59:1. 1.35:1 against --fg-1, so it separates at display size only */
+  --fg-on-dark-1: #FFFFFF;                          /* 15.61:1 on --bg-band */
+  --fg-on-dark-2: var(--neutral-on-dark-body);      /* 11.54:1 */
+  --fg-on-dark-3: var(--neutral-on-dark-caption);   /* 6.29:1 */
 
-  /* ---- SEMANTIC BACKGROUND --------------------------------- */
-  --bg-canvas:   #FFFFFF;
-  --bg-surface:  var(--ce-bone);
-  --bg-elevated: #FFFFFF;
-  --bg-inverse:  var(--ce-black);
-  --bg-band:     var(--ce-black);
+  /* ---- SEMANTIC BACKGROUND ---------------------------------
+     Collective Edge runs on tiers, not on a hue. Black is the
+     hero, graphite is the band, the mid tone is a filled block,
+     and two tints step the page: --bg-surface measures 1.13:1
+     against white and --bg-surface-2 1.25:1, enough to read as
+     a step. A table header sits on --bg-surface-2, with a 2px
+     --fg-accent rule under the header row. --fg-3 measures 4.10:1 on --bg-surface-2;
+     set --fg-2 there. --fg-on-dark-3 measures 3.28:1 on --bg-mid;
+     set --fg-on-dark-2 there, 6.01:1 */
+  --bg-canvas:    #FFFFFF;
+  --bg-surface:   var(--ce-bone);
+  --bg-surface-2: var(--ce-paper);
+  --bg-elevated:  #FFFFFF;
+  --bg-mid:       var(--ce-iron);
+  --bg-inverse:   var(--ce-black);
+  --bg-band:      var(--ce-graphite);
 
   /* ---- BORDERS --------------------------------------------- */
-  --border-1: var(--ce-mist);
-  --border-2: #D0D0D0;
+  --border-1: var(--neutral-hairline);
+  --border-2: var(--neutral-border);
   --border-on-dark: rgba(255,255,255,0.12);
-  --border-band-rule: transparent;
+  --border-band-rule: var(--ce-fog);
 
-  /* ---- STATUS ----------------------------------------------
+  /* ---- FOCUS RING ------------------------------------------
+     Black, the accent tier. 21.00:1 on white, 18.59:1 on
+     --bg-surface. ui.css reads this name into --ui-focus-ring
+     and swaps to white under .ui-on-dark. */
+  --focus-ring: var(--ce-black);
+
+  /* ---- ALERT · canonical -----------------------------------
      Identical in every brand so an operational signal never
      changes meaning between documents. A brand accent is never
-     a status color. */
-  --status-go:   #1E7A4D;
-  --status-warn: #B5821A;
-  --status-stop: #B0322B;
-  --status-info: #2A5A8C;
+     an alert color. Always paired with an icon or a word.
 
-  /* ---- DIAGRAM ROLES ---------------------------------------
+       base      fills, rules, dots on a light ground. 3:1 or
+                 better; white text on it where noted.
+       -text     text on #FFFFFF and on every --bg-surface.
+       -tint     the pill and callout fill.
+       -on-tint  text on the matching tint.
+       -on-dark  text, dots and rules on a band.
+
+     Worst measured ratio across the three brands:
+       -text on white and surfaces  go 4.71  warn 4.51  stop 5.57  info 6.33
+       -on-tint on -tint            go 4.68  warn 4.52  stop 5.39  info 6.18
+       -on-dark on the bands        go 5.76  warn 7.72  stop 4.62  info 4.69
+     The base warn #B5821A measures 3.40:1 on white: a fill, a
+     rule or a dot, never text. Warn text is #926603.
+     On --bg-surface-2 the -text step of go measures 4.27:1 and
+     warn 4.08:1. Bare go or warn text does not sit on that tier;
+     carry it in a -tint pill there. Stop and info hold. */
+  --alert-go:           #1E7A4D;   /* white on it 5.32:1 */
+  --alert-go-text:      #1E7A4D;
+  --alert-go-tint:      #DAF8DF;
+  --alert-go-on-tint:   #1E7A4D;
+  --alert-go-on-dark:   #56B580;
+  --alert-warn:         #B5821A;   /* ink on it 4.59:1. White fails at 3.40:1 */
+  --alert-warn-text:    #926603;
+  --alert-warn-tint:    #FFEFDD;
+  --alert-warn-on-tint: #926603;
+  --alert-warn-on-dark: #E9B457;
+  --alert-stop:         #B0322B;   /* white on it 6.29:1 */
+  --alert-stop-text:    #B0322B;
+  --alert-stop-tint:    #FDE9E6;
+  --alert-stop-on-tint: #B0322B;
+  --alert-stop-on-dark: #EB685C;
+  --alert-info:         #2A5A8C;   /* white on it 7.14:1 */
+  --alert-info-text:    #2A5A8C;
+  --alert-info-tint:    #E3F0FF;
+  --alert-info-on-tint: #2A5A8C;
+  --alert-info-on-dark: #5796D9;
+
+  /* ---- STATUS · aliases of the alert base ------------------
+     Kept so every page already using them resolves. They follow
+     the ground: the .bk-on-dark block at the foot of this file
+     points them at the -on-dark step. For warn as TEXT use
+     --alert-warn-text; --status-warn is the base and is a fill. */
+  --status-go:   var(--alert-go);
+  --status-warn: var(--alert-warn);
+  --status-stop: var(--alert-stop);
+  --status-info: var(--alert-info);
+
+  /* ---- DIAGRAM ROLES · aliases -----------------------------
      Identical in every brand. Rectangles, 6px radius. Role is
-     communicated by fill, never by shape. */
-  --diagram-decision:        #4a8e3a;
-  --diagram-decision-text:   #FFFFFF;   /* 4.02:1, large or bold only */
-  --diagram-decision-border: #3a7029;
-  --diagram-warning:         #f57c00;
-  --diagram-warning-text:    #111111;   /* 6.98:1. White measures 2.70:1 and fails */
-  --diagram-warning-border:  #cc6600;
-  --diagram-process:         #3e3e3e;
-  --diagram-process-text:    #FFFFFF;   /* 10.70:1 */
-  --diagram-process-border:  #2a2a2a;
-  --diagram-connector:       #3e3e3e;
+     communicated by fill, never by shape. Fills come from the
+     alert and neutral families; a node carries its own ground,
+     so these do not change on a band. */
+  --diagram-decision:        var(--alert-go);
+  --diagram-decision-text:   #FFFFFF;   /* 5.32:1, any size */
+  --diagram-decision-border: #036139;
+  --diagram-warning:         var(--alert-warn);
+  --diagram-warning-text:    var(--neutral-ink);   /* 4.59:1. White measures 3.40:1 and fails */
+  --diagram-warning-border:  var(--alert-warn-text);
+  --diagram-process:         var(--neutral-mid);
+  --diagram-process-text:    #FFFFFF;   /* 8.13:1 */
+  --diagram-process-border:  var(--neutral-ink);
+  --diagram-connector:       var(--neutral-mid);
+
+  /* ---- SEQUENTIAL RAMP · brand hue -------------------------
+     Magnitude in the brand's own hue. data-color.css reads
+     these into --seq-100 through --seq-700; chart code uses the
+     --seq-* names, never these. Step 700 is --fg-accent for a hued
+     brand; Collective Edge has no hue, so its ramp is the
+     neutral and lands on --fg-1. On a
+     band the anchor flips: the lightest step is the largest
+     value. */
+  --brand-seq-100: #EEEEF2;   --brand-seq-dark-100: #37383C;
+  --brand-seq-200: #D3D4D9;   --brand-seq-dark-200: #4C4D52;
+  --brand-seq-300: #B6B7BD;   --brand-seq-dark-300: #626369;
+  --brand-seq-400: #97989F;   --brand-seq-dark-400: #7C7D84;
+  --brand-seq-500: #76777F;   --brand-seq-dark-500: #9698A0;
+  --brand-seq-600: #51525A;   --brand-seq-dark-600: #B6B7BE;
+  --brand-seq-700: #23232A;   --brand-seq-dark-700: #DCDDE4;
 
   /* ---- RADII / ELEVATION -----------------------------------
      The house is flat. Shadow signals elevation, never decoration. */
@@ -108,4 +221,22 @@
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-fast: 120ms; --dur-base: 200ms; --dur-slow: 360ms;
+}
+
+/* ============================================================
+   DARK GROUNDS
+   Put .bk-on-dark on the band, the same class the type layer
+   and data-color.css already use. The status aliases move to
+   the -on-dark step, so a status word, dot or rule reads on
+   every band: worst case 4.62:1, stop on the Apex band.
+
+   Only the aliases move. The canonical --alert-* steps and the
+   diagram roles keep one value on every ground.
+   ============================================================ */
+
+.bk-on-dark {
+  --status-go:   var(--alert-go-on-dark);
+  --status-warn: var(--alert-warn-on-dark);
+  --status-stop: var(--alert-stop-on-dark);
+  --status-info: var(--alert-info-on-dark);
 }

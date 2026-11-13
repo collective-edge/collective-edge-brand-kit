@@ -1,283 +1,872 @@
-# Collective Edge, layout patterns
+# Collective Edge · layout standard
 
-House patterns for Collective Edge, on type system v1.0. Every block below is copy-pasteable and assumes `type-system.css` and `palette.css` are loaded. Style through `.bk-*` classes and the semantic `--fg-*` / `--bg-*` / `--border-*` variables. Reach for a raw `--ce-*` value only where the brand color is the point.
+How to build a working document, a sheet, a deck, a one-pager, a report or a memo for Collective Edge. The rules are the same in the Collective Edge, Apex Paramedics and Royal Ambulance kits. Only the values in section 2 differ.
 
-**What changed at v1.0.** Uppercase caps labels and table headers moved from 800 to 600. Stat numerals moved from 800 to 700. Dark bands drop one weight, so display sets at 700 there, not 800. Every letter-spacing is em, never px. Every size comes from the scale table in `reference/type-system.md`. Every vertical value is a multiple of 4.
+This file is written so a page can be built from it without seeing one. [`documents.json`](../documents.json) holds the same values as data, and the two agree exactly. Type steps come from [`snippets/type-tokens.json`](../snippets/type-tokens.json). Colors come from [`tokens.json`](../tokens.json).
+
+**Units.** Page geometry is in inches. Type and space are in points. On screen, 1pt is 4/3px, so 12pt is 16px and 1in is 96px. Slide positions are measured from the top left corner of the slide.
 
 ---
 
-## 1. Header band
+## 1. Choose a type
 
-Opens nearly every deliverable. Black ground, white logo. `.bk-on-dark` on the container drops display from 800 to 700 and adds 0.005em to every step under it. Never restate either value inline: the container already resolved it, and an inline copy goes stale the moment a token moves. The band title is a masthead, not the document heading. Set it as a `<p>` and leave the one `<h1>` for the page title.
+**Start here.**
 
-```html
-<header class="bk-on-dark" style="background:var(--bg-band); padding:32px 48px; display:flex; align-items:center; justify-content:space-between; gap:48px;">
-  <div>
-    <p class="bk-eyebrow" style="margin:0 0 8px;">INTERNAL · CONFIDENTIAL</p>
-    <p class="bk-display-md bk-caps" style="margin:0;">HOW WE OPERATE TOGETHER</p>
-  </div>
-  <img src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg"
-       alt="Collective Edge" style="width:204px; height:auto; display:block; flex:none;">
-</header>
-```
+1. Is there an existing file? Follow the editing rules. Do not restyle it.
+2. Did they point at a document to imitate? Copy it.
+3. Otherwise pick a type from the table below. The first row that fits wins.
+4. Keep it short. Follow the wording budget.
 
-On a co-brand surface, swap the single logo for the partner mark above the CE lockup under a `--border-on-dark` rule, and keep “Powered by Collective Edge” in a `.bk-eyebrow`.
+### Editing rules
 
-## 2. Co-brand lockup
+Most requests change a file that already exists. These eight rules come before every other rule in this file.
 
-The most common Collective Edge surface. Two marks, never merged, separated by a 1px rule at roughly the height of the marks. Mode A when the partner’s name is on the door, mode B when the artifact is a CE product delivered to them. Filenames differ between partner kits, so read the role table in `reference/brand.md` section 4 rather than carrying a path across brands.
+1. **Edit in place.** Asked to edit, update, fix or add to an existing file: keep its layout, styles, fonts, sizes, colors, column order and wording. Change only what was asked. Same file, same link. Do not convert its format, move it or make a copy unless asked.
+2. **Match the neighbors.** New content inside an existing file takes the style of the nearest existing content of the same kind. A new row looks like the rows around it. A new slide uses the deck’s own layout.
+3. **A named example is the template.** Asked to make it look like another document: copy that document’s structure, styles and order. This kit does not override it.
+4. **Restyle only when asked.** “Brand this”, “clean up the formatting”, “make it consistent”. Then apply the working-doc styles to what is there: font, sizes, heading colors, table style, logo, footer. Do not reorder, rewrite or shorten the words. Do not add a band. Where the file has a band, take it out: the logo goes top left and the band’s words go only if they are not already the title.
+5. **An accepted format is fixed.** A recurring report or an agenda a person approved is reused exactly next time. Never improve it unprompted.
+6. **Leave the words alone.** Shorten or rewrite only when asked. Asked to tighten: keep every fact, name, number and date, and cut every other word you can. Aim for half.
+7. **Delete nothing that is not yours.** Never delete someone else’s content, comments, formulas, data validation or tabs. Before a large change, say what will change. After, list what changed in three bullets or fewer.
+8. **Never resize to fit.** Never change the spacing, sizes or margins of an existing file to make an edit fit a page. If an edit pushes content onto a new page, leave it there and say so when you hand the work back.
 
-**Mode A, partner led.** The partner’s mark heads the surface, the CE lockup sits beneath it under a hairline. Dark ground. The CSS is [`snippets/cobrand.css`](../snippets/cobrand.css), shared and byte-identical in every kit. Load it after the palette. Do not restate the geometry inline.
+### Types
 
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/cobrand.css">
+| Type | Use it when | Section |
+|---|---|---|
+| sheet | Rows and columns people will sort, filter or fill in, in Google Sheets or Excel. Words: tracker, list, log, roster, budget, workbook, spreadsheet. | 14 |
+| deck | Anything presented on a screen, in Google Slides or PowerPoint. One slide and a graphic for a slide count. Words: deck, slides, slide, presentation, pitch. | 8 |
+| working-doc | The default. Anything in Google Docs or Word that people will keep editing. Words: agenda, meeting guide, prep packet, status report, plan, charter, brief, notes, job description, scorecard, policy draft, proposal draft. | 7 |
+| one-pager | A designed single page for an outside reader, delivered as a PDF. Words: one-pager, fact sheet, flyer, leave-behind, case study, handout. | 5 |
+| report | A designed document of three pages or more for an outside reader, delivered as a PDF. Words: report, proposal, review, analysis, white paper. | 6 |
+| memo | Only when the request asks for a memo by name. | 4 |
 
-<div class="brand-head bk-on-dark">
-  <img alt="Apex Paramedics" width="158"
-       src="https://cdn.jsdelivr.net/gh/collective-edge/apex-brand-kit@main/assets/logos/horizontal-white.svg">
-  <div class="ce-powered">
-    <span>Powered by</span>
-    <img alt="CE · Collective Edge" width="204" height="34"
-         src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg">
-  </div>
-</div>
-```
+- **Default.** A request that matches nothing is a working-doc. The earlier generic type is now working-doc.
+- **The band.** The band is for PDF, print and slides. A document that will live in Google Docs is a working-doc unless the person asks for a designed one-pager.
+- **Wording budget.** It applies to every type. The first line states the decision, the ask or the status. In an agenda it states what the meeting is for. No paragraph restates the title. No closing summary. No sentence about the document itself. A sentence runs 20 words at most. Items that share the same fields go in a table. Parallel items go in bullets.
 
-The label takes the surface’s tertiary gray from `--fg-on-dark-3`, which each palette supplies. On the black CE band that resolves to `#9E9E9E` at 7.84:1. On the Apex deep ground `#1D225E` it resolves to `#9EA5C4` at 5.98:1. The pre-v1.0 dashboards hardcoded `#9AA0C9` there, which measures 5.72:1 on the same ground and 2.55:1 on white; it is never text on light and there is no reason to type it now that the token exists.
+### Page setup
 
-**Mode B, CE led.** CE first, the partner second, the bar between them. Light ground, so the partner appears in their own color file while CE appears in black.
+| Type | Page | Orientation | Margins | Text block | Body measure | Columns | Pages |
+|---|---|---|---|---|---|---|---|
+| memo | US Letter, 8.5 x 11in | portrait | 0.75in on all four sides | 7.0in wide | 5.96in, 70 characters | 1 | 1, 2 at most |
+| one-pager | US Letter, 8.5 x 11in | portrait | 0.6in on all four sides | 7.3in wide | 5.96in, 70 characters | 1 | exactly 1 |
+| report | US Letter, 8.5 x 11in | portrait | 0.75in on all four sides | 7.0in wide | 5.96in, 70 characters | 1 | 3 or more |
+| working-doc | US Letter, 8.5 x 11in | portrait | 0.75in on all four sides | 7.0in wide | 7.0in, the text block | 1 | 1 for an agenda or a status report. Otherwise as short as the content allows |
+| deck | 16:9, 13.333 x 7.5in | landscape | 0.67in top, 0.83in left and right, 0.42in bottom | 11.67in wide | 7.45in, 70 characters | 1 or 2 | any |
 
-```html
-<div style="display:flex; align-items:center; gap:14px;">
-  <img alt="Collective Edge" style="height:40px; display:block;"
-       src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg">
-  <span style="width:1px; height:40px; background:rgba(17,17,17,0.14);"></span>
-  <img alt="Apex Paramedics" style="height:38px; display:block;"
-       src="https://cdn.jsdelivr.net/gh/collective-edge/apex-brand-kit@main/assets/logos/horizontal-color.svg">
-</div>
-<p class="bk-eyebrow" style="margin:16px 0 0;">POWERED BY COLLECTIVE EDGE</p>
-```
-
-The caption is `.bk-eyebrow`: 600 uppercase at `--fs-eyebrow` with `--tr-caps-small`, on `--fg-3`. CE sits at 40px and the partner at 38px so the two optical heights match. Three marks read `CE │ Apex Paramedics │ {Customer}`, left to right by who built it and who it is for. Never a fourth.
-
-### The shipped lockup, “Powered by Collective Edge”
-
-This is the pattern the operating companies are asked to apply, and it is already running in three places: the Apex website footer, the Apex internal dashboard sidebar, and the Apex partner page. The parent book carries it so the parent and the partners agree.
-
-The rule, and it is the whole rule: **the CE lockup rides beside the partner brand, never inside it, so a hairline keeps the two marks distinct.** The two read as two brands rather than one combined mark.
-
-204px is the shipped width in both the footer and the sidebar. The lockup is sized to read at a glance rather than sit quietly in a corner, which is why it runs wider than the partner mark above it: 204px of CE under 158px of Apex. The 120px minimum in section 4 of `reference/brand.md` is a floor, not a target. The artwork is 450 x 75, a 6:1 ratio, so 204px wide renders 34px tall.
-
-**Light ground.** The shipped lockup only ever ran on dark. A white one-pager or report footer needs the other half: the black lockup, the label in `--fg-3`, the hairline in `--border-1`. Same geometry, same 204px.
-
-```html
-<div class="ce-powered ce-powered-light">
-  <span>Powered by</span>
-  <img alt="CE · Collective Edge" width="204" height="34"
-       src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg">
-</div>
-```
-
-**Text only.** Where no lockup fits, `.ce-powered-text` sets the phrase at `.bk-eyebrow` values: `--fs-eyebrow` 12px web and 9pt print, weight 600, `--tr-caps-small` 0.080em. The Apex customer dashboard ships it at 9px and 700, under the 9pt floor and heavier than the caps-label step. Use the class.
-
-```html
-<p class="ce-powered-text">Powered by Collective Edge</p>
-```
-
-**The mirror, on a CE-led surface.** `templates/document.html` and `templates/deck.html` already carry the CE mark, so the slot beneath the hairline holds the partner instead. Same class, same 204px slot, same hairline. The label names the relationship rather than repeating it. Height changes with the partner: the Apex horizontal lockup is 687.72 x 289.25, so 204px wide renders 86px tall, and the Royal horizontal lockup is 735.76 x 179.54, so 204px wide renders 50px tall.
-
-```html
-<div class="ce-powered ce-powered-light">
-  <span>Operating company</span>
-  <img alt="Apex Paramedics" width="204" height="86"
-       src="https://cdn.jsdelivr.net/gh/collective-edge/apex-brand-kit@main/assets/logos/horizontal-color.svg">
-</div>
-```
-
-| Part | Value on CE’s own ground |
-|---|---|
-| Lockup width | 204px, rendering 34px tall |
-| Label | `--fs-caption` 12px web and 9pt print, weight 600, `--tr-caps-small` 0.080em, uppercase |
-| Label on dark | `--fg-on-dark-3` `#9E9E9E` on `--bg-band` `#000000`, 7.84:1 |
-| Label on light | `--fg-3` `#6E6E6E` on `--bg-canvas` `#FFFFFF`, 5.10:1 |
-| Hairline on dark | 1px `--border-on-dark` `rgba(255,255,255,0.12)` |
-| Hairline on light | 1px `--border-1` `#E2E2E2` |
-| Spacing | 24px above the hairline and 24px below it, 12px between label and lockup |
-
-The light lockup goes on `--bg-canvas`. On `--bg-surface` `#FAFAFA` the same gray measures 4.89:1, which still clears 4.5:1 for CE but not for Apex, where the tint takes it to 4.31:1. Keep the whole house on the canvas so one block serves all three.
-
-**Where it belongs.** The footer of any site or printed document. The sidebar header of any dashboard. The closing slide of a deck. The foot of a report. A data page or a methodology page. Anywhere a number was computed rather than typed.
-
-**Where it does not.** On the partner’s own mark or inside their lockup. On a clinical instruction. On a patient-facing consent or safety document. Twice on one surface. Set as type where the mark fits.
-
-## 3. Sub-banner
-
-The strip under the header band. Carries scope, date and audience. Light ground, hairline bottom rule, no color.
-
-```html
-<div style="background:var(--bg-surface); border-bottom:1px solid var(--border-1); padding:12px 48px; display:flex; justify-content:space-between; align-items:baseline; gap:24px;">
-  <p class="bk-eyebrow" style="margin:0;">OPERATING BRIEF · Q3 2026</p>
-  <p class="bk-caption" style="margin:0;">Prepared for partner leadership</p>
-</div>
-```
-
-## 4. Section head, the under-header hairline
-
-The signature motif. An eyebrow, a sentence-case heading, a 1px `--border-1` rule underneath. It appears under nearly every section title.
-
-```html
-<header style="padding:0 0 12px; border-bottom:1px solid var(--border-1); margin:48px 0 16px;">
-  <p class="bk-eyebrow" style="margin:0 0 4px;">EDGE</p>
-  <h2 class="bk-h2" style="margin:0;">What we bring.</h2>
-</header>
-```
-
-Space above a heading is three times the space below it. 48px above, 16px below.
-
-## 5. Bold-then-explain
-
-The house claim line. A two-word claim at 700, a period, then a regular-weight proof.
-
-```html
-<p class="bk-body"><span class="bk-emphasis">Proven playbooks.</span> We understand what works and scale it.</p>
-```
-
-## 6. Flowchart nodes
-
-Rectangles, 6px radius. Role is communicated by fill, never by shape. The three role colors and the connector are identical across every brand and come from `brands.json`. Node text sits on a dark fill, so the label is 600, not 700 or 800.
-
-**Two of these fills do not hold white text.** `#FFFFFF` measures 2.70:1 on `#f57c00` and 4.02:1 on `#4a8e3a`. The green passes as large or bold text only, the orange fails outright, and the labels below sit at 14px 600, which is neither. The fills and their white text are inherited from the original kits and are frozen pending an owner decision, so do not recolor them here. Carry the meaning in the connector label or the prose beside the figure as well, never in the node label alone. `#3e3e3e` is the only fill in the set that holds white body-size text.
-
-```html
-<div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
-
-  <div class="bk-on-dark" style="background:#3e3e3e; border:1px solid #2a2a2a; border-radius:6px; padding:16px 24px;">
-    <p class="bk-body-sm" style="margin:0; max-width:28ch; font-weight:600; color:var(--fg-on-dark-1);">Intake received</p>
-  </div>
-
-  <svg width="48" height="12" aria-hidden="true"><line x1="0" y1="6" x2="40" y2="6" stroke="#3e3e3e" stroke-width="1.8"/><path d="M40 2 L48 6 L40 10 Z" fill="#3e3e3e"/></svg>
-
-  <div class="bk-on-dark" style="background:#4a8e3a; border:1px solid #3a7029; border-radius:6px; padding:16px 24px;">
-    <p class="bk-body-sm" style="margin:0; max-width:28ch; font-weight:600; color:var(--fg-on-dark-1);">Coverage confirmed?</p>
-  </div>
-
-  <svg width="48" height="12" aria-hidden="true"><line x1="0" y1="6" x2="40" y2="6" stroke="#3e3e3e" stroke-width="1.8"/><path d="M40 2 L48 6 L40 10 Z" fill="#3e3e3e"/></svg>
-
-  <div class="bk-on-dark" style="background:#f57c00; border:1px solid #cc6600; border-radius:6px; padding:16px 24px;">
-    <p class="bk-body-sm" style="margin:0; max-width:28ch; font-weight:600; color:var(--fg-on-dark-1);">Hold for authorization</p>
-  </div>
-
-</div>
-```
-
-Node roles: `#4a8e3a` on `#3a7029` for decisions, questions and branch points. `#f57c00` on `#cc6600` for warnings and advisories. `#3e3e3e` on `#2a2a2a` for neutral process steps and context. Connector stroke `#3e3e3e` at 1.8pt. Never invent a fourth hue for a fourth role.
-
-## 7. Stat callouts
-
-The numeral is `.bk-stat`, which is 700 and tabular. It was 800 before v1.0. ExtraBold at that size reads as a slab rather than a number. The label above it is `.bk-eyebrow`, 600 uppercase. A label, a value, and nothing between them.
-
-The unit goes in the label. Setting it in a heading class beside the numeral adds a fourth size above body and breaks rule 3.
-
-```html
-<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:32px; border-top:1px solid var(--border-1); padding-top:24px;">
-  <div>
-    <p class="bk-eyebrow" style="margin:0 0 4px;">RESPONSE · MINUTES</p>
-    <p class="bk-stat" style="margin:0;">12</p>
-  </div>
-  <div>
-    <p class="bk-eyebrow" style="margin:0 0 4px;">FACILITIES SERVED</p>
-    <p class="bk-stat" style="margin:0;">148</p>
-  </div>
-</div>
-```
-
-Do not write a caption under a stat restating what the number is. The label already did that.
-
-## 8. Tables
-
-`.bk-table` sets the header row to 600 uppercase with 0.080em tracking, and puts tabular figures on every cell. Hairlines, not boxes. No zebra fill.
-
-**Size the header to the body it labels.** The shared `.bk-table th` rule ships at `--fs-caption`, 12px web and 9pt print. Where cells set at `--fs-body-sm`, as they do below, that puts an uppercase header one step under the copy it heads, which is the failure the caps-label rule in `reference/type-system.md` section 4 exists to prevent. Set `th` to the cell size explicitly until the shared rule changes.
-
-```html
-<table class="bk-table" style="width:100%;">
-  <!-- th matches the cell size. The shared rule ships one step smaller. -->
-  <caption class="bk-eyebrow" style="margin:0 0 8px;">WHERE THE VALUE GOES</caption>
-  <thead>
-    <tr style="border-bottom:1px solid var(--border-2);">
-      <th style="padding:8px 16px 8px 0; font-size:var(--fs-body-sm);">Line</th>
-      <th style="padding:8px 16px 8px 0; font-size:var(--fs-body-sm);">Owner</th>
-      <th style="padding:8px 0 8px 16px; text-align:right; font-size:var(--fs-body-sm);">Share</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr style="border-bottom:1px solid var(--border-1);">
-      <td style="padding:8px 16px 8px 0; font-size:var(--fs-body-sm); line-height:var(--lh-body-sm); color:var(--fg-1);">Crew wages</td>
-      <td style="padding:8px 16px 8px 0; font-size:var(--fs-body-sm); line-height:var(--lh-body-sm); color:var(--fg-2);">Operating company</td>
-      <td style="padding:8px 0 8px 16px; font-size:var(--fs-body-sm); line-height:var(--lh-body-sm); color:var(--fg-1); text-align:right;">62%</td>
-    </tr>
-    <tr style="border-bottom:1px solid var(--border-1);">
-      <td style="padding:8px 16px 8px 0; font-size:var(--fs-body-sm); line-height:var(--lh-body-sm); color:var(--fg-1);">Fleet and equipment</td>
-      <td style="padding:8px 16px 8px 0; font-size:var(--fs-body-sm); line-height:var(--lh-body-sm); color:var(--fg-2);">Shared</td>
-      <td style="padding:8px 0 8px 16px; font-size:var(--fs-body-sm); line-height:var(--lh-body-sm); color:var(--fg-1); text-align:right;">21%</td>
-    </tr>
-  </tbody>
-</table>
-```
-
-A dark table header row takes `.bk-on-dark` on the `<thead>` and `--bg-inverse` as its fill. The header weight stays 600 there. Any run number, unit ID or authorization number inside a cell goes in `.bk-code`, never Montserrat. A count, a percentage and a median are measurements and stay Montserrat, with `.bk-tnum` so they align down the column.
-
-## 9. Footer
-
-Slim strip, 1px `--border-1` top rule. Left: the document signature in `--fg-3`. A footer signature sets at 12px web and 9pt print, the smallest step on the ladder, so it takes the 5.10:1 gray and never `--fg-4`. Right: the revision marker at 700 in `--fg-1`, wrapped in `.bk-code`. A revision marker is dictated, so it is a record identifier and takes the mono face. It is one of the four kinds the face is whitelisted for. The separator in text is a middot. The vertical bar belongs to the logo, not to typed copy.
-
-```html
-<footer style="border-top:1px solid var(--border-1); margin-top:48px; padding:12px 0; display:flex; justify-content:space-between; align-items:baseline; gap:24px;">
-  <span class="bk-caption">Collective Edge · How we operate together</span>
-  <span class="bk-caption bk-emphasis"><span class="bk-code">Rev.&nbsp;08.26</span></span>
-</footer>
-```
+Body text never runs wider than the body measure, even where the text block is wider. A working-doc is the exception: its body runs the full text block. A sheet has no page: section 14. Tables, callouts, the meta row and the footer span the full text block.
 
 ---
 
-## Conventions that hold across every pattern
+## 2. Brand values
 
-- **White canvas, generous margins.** Content lives well inside the page edge. CE breathes. Do not fill every pixel.
-- **Hairlines, not boxes.** Prefer a single 1px `--border-1` rule or a 1px vertical column divider over bordered cards.
-- **Cards are flat.** `--bg-surface` fill, `--radius-md` 6px or square, `--shadow-1` only when in a list of equal elevations, 24px to 32px padding.
-- **Corners mostly square.** 0px to 6px. No squircles, no pills except tag chips.
-- **Buttons.** Primary is `--ce-black` fill with `#FFFFFF` text, 2px or square corners, 600 weight, 0.080em caps tracking, hover to `--ce-graphite`. Secondary is white fill with a 1px `--ce-black` border, hover inverts. No gradients, no drop-shadow buttons, no emoji.
-- **Measure.** Body never runs the full width of a wide container. 54ch. Captions 40ch. Headings 28ch.
-- **Motion.** Quiet and fast. `--dur-base` 200ms on `--ease-standard`. Fades and short translates only. No spring, no bounce.
-- **Forbidden.** UI gradients, glassmorphism, blurred orbs, illustration systems, brand patterns, drop-shadow decoration, and the split “Not this / This” panel.
+The values that belong to Collective Edge. Every other value in this file is shared by all three brands.
 
-Ready-to-fill starting points.
-
-| File | What it is |
+| Value | Collective Edge |
 |---|---|
-| `templates/document.html` | Printable multi-section report. Header band, sub-banner, prose, table, stat row, footer |
-| `templates/internal-doc.html` | Memo and one-pager |
-| `templates/deck.html` | Slides, title through closing |
-| `Examples/ce-one-pager.html` | A filled reference, not a starting point |
+| Band fill | `--bg-band` #23232A |
+| Band rule | `--border-band-rule` #C8C8C8, the bottom 0.03in (2.25pt) of the band |
+| Dark slide fill | `--bg-inverse` #000000 |
+| Dark slide rule | `--border-band-rule` #C8C8C8, 0.05in tall, at y 7.45in, full width |
+| Accent, for subheads, slide headlines, action numbers and the callout rule | `--fg-accent` #000000 |
+| Callout fill | `--bg-surface` #F0F1F4 |
+| Table header | Fill `--bg-surface-2` #E5E6EA. Text `--fg-1` #23232A. A 1.5pt `--fg-accent` #000000 rule under the header row |
+| Band logo | Role `horizontal-on-dark`, 2.125in wide |
+| Title and closing slide logo | Role `horizontal-on-dark`, 2.7in wide |
+| Slide footer logo | Role `horizontal-on-light`, 2.1in wide, 0.35in tall |
+| Working-doc logo | Role `horizontal-on-light`, 1.7in wide. Section 7 |
+| Working-doc and sheet table header | Fill `--bg-surface-2` #E5E6EA. Text `--fg-1` #23232A |
+| Working-doc footer line | `Collective Edge · Page N` |
+| Powered by Collective Edge lockup | None. A Collective Edge document never carries the lockup |
+
+Shared by every brand: text `--fg-1` #23232A, secondary text `--fg-2` #565860, captions and footers `--fg-3` #6D6D77, hairline `--border-1` #E4E4E9, stronger rule `--border-2` #D0D0D6, page `--bg-canvas` #FFFFFF. On a dark ground: `--fg-on-dark-1` #FFFFFF, `--fg-on-dark-2` #DDDDE3, `--fg-on-dark-3` #A3A4AC, and the rule `--border-on-dark`, white at 12 percent, which is #1F1F1F on #000000.
+
+Resolve a logo by role from [`brands.json`](../brands.json), never by filename: `logos` holds the SVG and `logosPng` the PNG. Use the file for the ground. Never recolor one.
+
+Collective Edge has no accent hue. Never add one. The accent is black over graphite.
 
 ---
 
-## Withdrawn patterns
+## 3. Parts
 
-**“Not this. This.”** was pattern 6 in this file and a voice bullet in `reference/brand.md`. It is withdrawn and it is not to be used. A claim built out of a refusal and its correction reads as performance, which is the one thing this brand’s writing cannot afford. Where you meet it in an existing document, cut the refusal and keep the claim: the split panel becomes a single column, and “It is not X, it is Y” becomes “Y.” The sections after it were renumbered, so a link to pattern 7 through 10 now points one number lower.
+Every document is built from these parts. Sections 4 to 7 say which parts a type uses and in what order.
 
-## Legacy classes, `.ce-*`
+### 3.1 Band
 
-Anything written before type system v1.0 styles through `.ce-*` from `snippets/brand-base.css`. That file is deprecated and is now a shim over `type-system.css` and `palette.css`, so an old page keeps rendering and picks up the corrected type. Write `.bk-*` in new work. When you meet a legacy document, translate it:
-
-| Legacy | Current |
+| | |
 |---|---|
-| `.ce-display-xl` `.ce-display-lg` `.ce-display-md` | `.bk-display-xl` `.bk-display-lg` `.bk-display-md`, add `.bk-caps` for uppercase |
-| `.ce-display-sm` | No v1.0 step between display-md and h1. Use `.bk-h1` |
-| `.ce-h1` `.ce-h2` `.ce-h3` `.ce-h4` | `.bk-h1` `.bk-h2` `.bk-h3` `.bk-h4` |
-| `.ce-body-lg` `.ce-body` `.ce-body-sm` `.ce-caption` | `.bk-body-lg` `.bk-body` `.bk-body-sm` `.bk-caption` |
-| `.ce-eyebrow` | `.bk-eyebrow` |
-| `.ce-emphasis` | `.bk-emphasis` |
-| `.ce-lede` | `.bk-body-lg` |
+| Where | Top of page 1, edge to edge. No band on later pages |
+| Size | 8.5in wide, 1.11in tall |
+| Fill | `--bg-band` #23232A |
+| Rule | `--border-band-rule` #C8C8C8, the bottom 0.03in (2.25pt) of the band |
+| Title | Left, on the left margin, centered vertically. The band-title slot: h2, 24pt, weight 600, uppercase, tracking 0.045em, `--fg-on-dark-1` #FFFFFF. One line, 4 words and 18 characters at most |
+| Logo | Right, on the right margin, centered vertically. Role `horizontal-on-dark`, 2.125in wide. Once |
+| Padding | Left and right padding is the page margin |
 
-Two things changed under those names and both are corrections, not style preferences. `.ce-display-*` and `.ce-lede` were italic and there is no italic face in this system. The old token set carried `--weight-medium: 500` and `--weight-black: 900`, neither of which the ladder admits.
+- The band title names the document kind or the topic: Memo, Coverage plan, Operations report.
+- The logo appears once in a document, in the band. Never repeat it in the body or the footer.
+- The band is for PDF, print and slides: the memo, the one-pager and the report. A working-doc has no band and carries its logo top left of page 1. Section 7.
+- The body starts 18pt under the band.
+
+### 3.2 To block
+
+Memo only. Four rows in this order: To, From, Date, Re.
+
+| | |
+|---|---|
+| Width | The text block |
+| Label column | 1.0in wide. body, 12pt, `--fg-3` #6D6D77 |
+| Value | body, 12pt, weight 400, `--fg-1` #23232A. The Re value is weight 700. 60 characters at most, one line |
+| Date | Day, month, year: 13 November 2026 |
+| Rules | 0.75pt `--border-1` #E4E4E9 above the first row and under every row |
+| Row padding | 6pt above and under the text |
+| Space after | 18pt |
+
+### 3.3 Title block
+
+| | |
+|---|---|
+| Headline | h1, 30pt, weight 700, `--fg-1` #23232A. Sentence case, ends with a period. 2 lines and 56 characters at most |
+| Lead | 12pt under the headline. body-lg, 15pt, weight 400, `--fg-1` #23232A, 6.67in wide at most |
+
+The headline states the finding. It is a sentence, not a label.
+
+### 3.4 Meta row
+
+| | |
+|---|---|
+| Where | 12pt under the lead |
+| Columns | 3 equal columns, 0.25in apart. 3 items at most |
+| Label | caption, 9pt, `--fg-3` #6D6D77. 12 characters at most |
+| Value | Under the label. body-sm, 10.5pt, weight 600, `--fg-1` #23232A. One line, 24 characters at most |
+| Rules | 0.75pt `--border-1` #E4E4E9 above and under the row |
+| Padding | 6pt above and under the text |
+
+### 3.5 Headings
+
+| Level | Step | Style | Space above | Space under | Limit |
+|---|---|---|---|---|---|
+| Section heading, report only | h2, 24pt | weight 700, `--fg-1` #23232A | 36pt | 12pt | 1 line, 40 characters |
+| Subhead | h3, 18pt | weight 600, `--fg-accent` #000000 | 18pt | 6pt | 1 line, 32 characters |
+
+- Sentence case. A heading ends with a period.
+- A heading stays with the block under it. It never sits on the last line of a page.
+- No label, number or rule above or under a heading.
+
+### 3.6 Body
+
+body, 12pt, weight 400, `--fg-1` #23232A. Flush left, ragged right. 12pt between paragraphs. 5.96in wide at most, about 70 characters a line. Emphasis is weight 700. No italic.
+
+### 3.7 Table
+
+| | |
+|---|---|
+| Width | The text block. Column widths follow the content and sum to the text block. The first column is the widest. A status column is 1.2in in a document and 1.9in on a slide. Fixed layout, autofit off |
+| Caption | Above the table, 6pt gap. caption, 9pt, `--fg-3` #6D6D77. One line, 80 characters at most |
+| Header row | Fill `--bg-surface-2` #E5E6EA. Text `--fg-1` #23232A. A 1.5pt `--fg-accent` #000000 rule under the header row. Weight 600, sentence case, 10.5pt. Padding 6pt above and under, 9pt left and right |
+| Body cells | body-sm, 10.5pt, weight 400, `--fg-1` #23232A. Padding 6pt above and under, 9pt left and right |
+| Row rule | 0.75pt `--border-1` #E4E4E9 under every body row |
+| Frame | No outer frame, no vertical rules, no zebra fill |
+| Text | Left-aligned |
+| Numbers | Right-aligned, tabular lining figures. The header of a number column is right-aligned too |
+| Totals row | Weight 700, with a 0.75pt `--border-2` #D0D0D6 rule above it |
+| Space above | 6pt under a subhead, 12pt under a paragraph |
+
+**Status cells.** A square, then the word at weight 600, both in the alert text color: good `--alert-go-text` #1E7A4D, caution `--alert-warn-text` #926603, bad `--alert-stop-text` #B0322B, notice `--alert-info-text` #2A5A8C. The word carries the meaning. Green means good only. A brand color is never a status color. A status that is neither good, caution nor bad takes the notice color #2A5A8C. The mark is stated once, here. In HTML and PDF it is a drawn square, 6pt in a document and 9pt on a slide. In Word, PowerPoint and Google files it is the character U+25A0, which Montserrat contains, set at 9pt in a document and 12pt on a slide, followed by one no-break space, in the same color as the word. In a working-doc the mark and the word share one run at 10.5pt, weight 700.
+
+**Charts.** Chart colors come from the house data set in [`reference/data-color.md`](data-color.md), never from the brand palette.
+
+### 3.8 Callout
+
+| | |
+|---|---|
+| Width | The text block |
+| Fill | `--bg-surface` #F0F1F4 |
+| Rule | 1.5pt `--fg-accent` #000000 on the top edge |
+| Padding | 12pt above and under, 15pt left and right |
+| Text | body, 12pt, `--fg-1` #23232A |
+| Space above | 12pt |
+| Limit | One per page |
+
+No border, no rounded corners, no icon. A callout holds the one instruction the reader must act on.
+
+### 3.9 Actions
+
+A numbered list, one action per row.
+
+| | |
+|---|---|
+| Width | 5.96in, the body measure |
+| Number | In a 0.33in column. body, 12pt, weight 600, `--fg-accent` #000000 |
+| Text | body, 12pt, `--fg-1` #23232A. 90 characters at most |
+| Rules | 0.75pt `--border-1` #E4E4E9 above every row and under the last |
+| Row padding | 6pt above and under the text |
+
+### 3.10 Sign-off
+
+Memo only. 24pt under the last block. The sender name in body, 12pt, weight 600, `--fg-1` #23232A. Under it the address or extension in body-sm, 10.5pt, `--fg-3` #6D6D77.
+
+### 3.11 Footer
+
+| | |
+|---|---|
+| Where | Bottom of every page, inside the margins. The last line sits on the bottom margin |
+| Rule | 0.75pt `--border-1` #E4E4E9 on the top edge, the width of the text block |
+| Padding | 9pt between the rule and the text |
+| Left | The signature: the brand name, a middle dot, then the classification or the document title: Collective Edge · Internal. Use Internal only when every reader is staff. Otherwise the document title, 40 characters at most |
+| Right | Page X of Y |
+| Text | caption, 9pt, `--fg-3` #6D6D77. One line |
+| Space above | At least 12pt between the last body block and the rule |
+
+Nothing sits under the footer. Nothing but the band crosses a margin. A working-doc footer is one left-aligned line with no rule. Section 7.
+
+### 3.12 Powered by Collective Edge
+
+Apex Paramedics and Royal Ambulance carry “Powered by Collective Edge” once on every PDF, deck and image. A Collective Edge document never carries it. The rule is stated here so all three kits agree.
+
+| | |
+|---|---|
+| Carries it | Everything delivered as a PDF, a deck or an image: memo, one-pager, report, proposal, deck, and a chart or data graphic made on its own |
+| Never carries it | A working-doc and a sheet, as a lockup or as words. The rule follows the type, not the file format: a working-doc exported to PDF stays as it is. A Collective Edge document. A clinical instruction. A patient-facing consent or safety document |
+| Lockup | One line. The words, then the logo to their right, 6pt apart, centered on the line. No rule of its own |
+| Words | `Powered by`. caption, 9pt, weight 400, `--fg-3` #6D6D77. On the closing slide: body, 12pt, `--fg-on-dark-3` #A3A4AC |
+| Logo | The Collective Edge `horizontal-on-light` logo on white, `horizontal-on-dark` on a dark slide, at its minimum width: 1.25in (120px) wide, 0.208in (20px) tall. Never larger in a document. Never smaller anywhere |
+| Memo and one-pager | In the footer row of page 1, at left. The signature and the page number move to the right, joined by a middle dot, on the same line. A second page carries the plain footer |
+| Report | The last line of the body on the last page, at left. A 0.75pt `--border-1` #E4E4E9 rule above it, with 18pt above the rule and 9pt under it. It never sits alone on a page |
+| Deck | The closing slide, in the footer row, at left. Section 8 |
+| Chart or data graphic made on its own | No logo. One line of words, `Powered by Collective Edge`, bottom right: caption, 9pt, weight 400, `--fg-3` #6D6D77. On a 1920 x 1080 graphic for a slide the line is 24px |
+
+- Once. Never twice in one document.
+- Never inside or touching the operating company logo.
+- Never set as type where the logo fits. A chart or data graphic made on its own is the one place the words stand alone.
+- The 204px lockup in `cobrand.lockup` in [`brands.json`](../brands.json) is for sites and dashboards. A document, a deck and an image never use that size.
+- The files are in `cobrand.lockup` in [`brands.json`](../brands.json). On white: `https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/for-humans/logos/png/Collective-Edge-horizontal-black-1200w.png`. On a dark slide: `https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/for-humans/logos/png/Collective-Edge-horizontal-white-1200w.png`.
+
+---
+
+## 4. Memo
+
+A message from a named sender to named readers. The band title is the word Memo. Use it only when the request asks for a memo by name.
+
+| | |
+|---|---|
+| Page | US Letter, 8.5 x 11in, portrait |
+| Margins | 0.75in on all four sides |
+| Text block | 7.0in wide, one column |
+| Body measure | 5.96in, 70 characters |
+| Pages | 1. 2 at most |
+| Parts, top to bottom | band, to-block, body, table, subhead, actions, sign-off, footer |
+| Lockup | None |
+| Template | [`templates/memo.html`](../templates/memo.html) |
+
+| Slot | What it holds | Step | Print | Screen | Weight | Color | Limit | Floor |
+|---|---|---|---|---|---|---|---|---|
+| band-title | Names the document kind or the topic. Uppercase, tracking 0.045em | h2 | 24pt | 32px | 600 | `--fg-on-dark-1` #FFFFFF | 4 words, 18 characters, 1 line | h3 18pt |
+| to-value | To, From, Date and Re values | body | 12pt | 16px | 400 | `--fg-1` #23232A | 60 characters, 1 line | body 12pt |
+| body | Running text. Four paragraphs and 520 characters in all on one page | body | 12pt | 16px | 400 | `--fg-1` #23232A | 520 characters, 4 paragraphs | body-sm 10.5pt |
+| table-text | Table cells. Header cells take weight 600. Optional. One table under the last paragraph | body-sm | 10.5pt | 14px | 400 | `--fg-1` #23232A | 4 rows, 4 columns | caption 9pt |
+| subhead | Heading inside the body | h3 | 18pt | 24px | 600 | `--fg-accent` #000000 | 32 characters, 1 line | h3 18pt |
+| action | One numbered action per row. The number is weight 600 in --fg-accent. Three actions on one page | body | 12pt | 16px | 400 | `--fg-1` #23232A | 90 characters, 3 actions | body-sm 10.5pt |
+| sign-name | Sender name | body | 12pt | 16px | 600 | `--fg-1` #23232A | 40 characters | body 12pt |
+| sign-contact | Sender address or extension | body-sm | 10.5pt | 14px | 400 | `--fg-3` #6D6D77 | 48 characters | body-sm 10.5pt |
+| footer | Signature at left, page number at right | caption | 9pt | 12px | 400 | `--fg-3` #6D6D77 | 60 characters, 1 line | caption 9pt |
+
+- No headline. The Re row is the subject.
+- Band, To block, body, sign-off and footer are required. Table, subhead and actions are optional. A closing line is the last body paragraph.
+- One table at most, 4 body rows and 4 columns, under the last paragraph, built to section 3.7. A one-page memo with a table holds 1 paragraph of 130 characters, the table and 3 actions. Without a table it holds 4 paragraphs of 520 characters in all and 3 actions. Actions never count as paragraphs. A memo that needs more is a report.
+- Past one page, the memo runs to a second page with the same margins and footer and no band. Past two pages it is a report.
+
+## 5. One-pager
+
+One finding on exactly one page. The headline states it. A designed document for an outside reader, delivered as a PDF.
+
+| | |
+|---|---|
+| Page | US Letter, 8.5 x 11in, portrait |
+| Margins | 0.6in on all four sides |
+| Text block | 7.3in wide, one column |
+| Body measure | 5.96in, 70 characters |
+| Pages | Exactly 1 |
+| Parts, top to bottom | band, title-block, meta-row, subhead, body, table, callout, footer |
+| Lockup | None |
+| Template | [`templates/one-pager.html`](../templates/one-pager.html) |
+
+| Slot | What it holds | Step | Print | Screen | Weight | Color | Limit | Floor |
+|---|---|---|---|---|---|---|---|---|
+| band-title | Names the document kind or the topic. Uppercase, tracking 0.045em | h2 | 24pt | 32px | 600 | `--fg-on-dark-1` #FFFFFF | 4 words, 18 characters, 1 line | h3 18pt |
+| headline | States the finding in one sentence | h1 | 30pt | 40px | 700 | `--fg-1` #23232A | 56 characters, 2 lines | h2 24pt |
+| lead | One or two sentences under the headline | body-lg | 15pt | 20px | 400 | `--fg-1` #23232A | 110 characters, 2 lines | body 12pt |
+| meta-label | Label in the meta row | caption | 9pt | 12px | 400 | `--fg-3` #6D6D77 | 12 characters | caption 9pt |
+| meta-value | Value in the meta row | body-sm | 10.5pt | 14px | 600 | `--fg-1` #23232A | 24 characters, 1 line | body-sm 10.5pt |
+| subhead | Heading inside the body | h3 | 18pt | 24px | 600 | `--fg-accent` #000000 | 32 characters, 1 line, 2 subheads | h3 18pt |
+| body | Running text. One paragraph of three lines under the first subhead | body | 12pt | 16px | 400 | `--fg-1` #23232A | 210 characters, 1 paragraph | body-sm 10.5pt |
+| table-text | Table cells. Header cells take weight 600. One table under the second subhead. Four body rows and five columns. Six rows when the page has no callout | body-sm | 10.5pt | 14px | 400 | `--fg-1` #23232A | 4 rows, 5 columns | caption 9pt |
+| callout | The one instruction the reader must act on | body | 12pt | 16px | 400 | `--fg-1` #23232A | 140 characters, 1 callout | body-sm 10.5pt |
+| footer | Signature at left, page number at right | caption | 9pt | 12px | 400 | `--fg-3` #6D6D77 | 60 characters, 1 line | caption 9pt |
+
+- Exactly one page. Never a second.
+- One table or one chart, never both.
+- One callout at most.
+- The page holds two subheads. The first sits over one paragraph. The second sits over the table.
+- A chart takes the place of the table and its height: 2.2in at most.
+
+## 6. Report
+
+A designed document of three pages or more, in sections, for an outside reader, delivered as a PDF. Page 1 opens with the band, the title block and the meta row. The first section follows on the same page.
+
+| | |
+|---|---|
+| Page | US Letter, 8.5 x 11in, portrait |
+| Margins | 0.75in on all four sides |
+| Text block | 7.0in wide, one column |
+| Body measure | 5.96in, 70 characters |
+| Pages | 3 or more |
+| Parts, top to bottom | band, title-block, meta-row, section-heading, subhead, body, table, callout, actions, lockup, footer |
+| Lockup | None |
+| Template | [`templates/document.html`](../templates/document.html) |
+
+| Slot | What it holds | Step | Print | Screen | Weight | Color | Limit | Floor |
+|---|---|---|---|---|---|---|---|---|
+| band-title | Names the document kind or the topic. Uppercase, tracking 0.045em | h2 | 24pt | 32px | 600 | `--fg-on-dark-1` #FFFFFF | 4 words, 18 characters, 1 line | h3 18pt |
+| headline | States the finding in one sentence | h1 | 30pt | 40px | 700 | `--fg-1` #23232A | 56 characters, 2 lines | h2 24pt |
+| lead | Two or three sentences under the headline | body-lg | 15pt | 20px | 400 | `--fg-1` #23232A | 180 characters, 3 lines | body 12pt |
+| meta-label | Label in the meta row | caption | 9pt | 12px | 400 | `--fg-3` #6D6D77 | 12 characters | caption 9pt |
+| meta-value | Value in the meta row | body-sm | 10.5pt | 14px | 600 | `--fg-1` #23232A | 24 characters, 1 line | body-sm 10.5pt |
+| section-heading | Opens a section | h2 | 24pt | 32px | 700 | `--fg-1` #23232A | 40 characters, 1 line | h2 24pt |
+| subhead | Heading inside the body | h3 | 18pt | 24px | 600 | `--fg-accent` #000000 | 32 characters, 1 line | h3 18pt |
+| body | Running text | body | 12pt | 16px | 400 | `--fg-1` #23232A | none | body-sm 10.5pt |
+| table-text | Table cells. Header cells take weight 600. Twelve body rows and six columns at most per table | body-sm | 10.5pt | 14px | 400 | `--fg-1` #23232A | 12 rows, 6 columns | caption 9pt |
+| caption | Line above a table or figure | caption | 9pt | 12px | 400 | `--fg-3` #6D6D77 | 80 characters, 1 line | caption 9pt |
+| callout | The one instruction the reader must act on | body | 12pt | 16px | 400 | `--fg-1` #23232A | 200 characters, 1 callout | body-sm 10.5pt |
+| action | One numbered action per row. The number is weight 600 in --fg-accent | body | 12pt | 16px | 400 | `--fg-1` #23232A | 90 characters, 7 actions | body-sm 10.5pt |
+| footer | Signature at left, page number at right | caption | 9pt | 12px | 400 | `--fg-3` #6D6D77 | 60 characters, 1 line | caption 9pt |
+
+- The band is on page 1 only.
+- Every page carries the footer.
+- A heading never sits on the last line of a page.
+- A table stays whole on one page, with its caption.
+
+## 7. Working document
+
+The default type, `working-doc`. Anything people will keep editing in Google Docs or Word: agenda, meeting guide, prep packet, status report, plan, charter, brief, notes, job description, scorecard, policy draft, proposal draft. It is plain on purpose, so it survives conversion to Google Docs untouched. It replaces the generic branded document. `types.generic` in `documents.json` repeats `types.working-doc`.
+
+| | |
+|---|---|
+| Page | US Letter, 8.5 x 11in, portrait |
+| Margins | 0.75in on all four sides |
+| Text block | 7.0in wide, one column. Body text runs the full width |
+| Pages | An agenda and a status report fit 1 page. Anything else is as short as the content allows. Budget to 90 percent of a page in a Google file |
+| Parts, top to bottom | logo, title, meta-line, heading-1, heading-2, body, bullets, table, footer |
+| Weights | 400 and 700 only. Bold off and bold on. `Montserrat SemiBold` is not needed |
+| Never | Band, callout box, card, shadow, tinted panel, icon, emoji, uppercase label, sub-banner, stat numeral, justified text, text box, floating image, section break, columns |
+| Logo | Role `horizontal-on-light`, PNG, 1.7in wide. Once, top left of page 1, inline, as its own paragraph, 12pt after |
+| Footer | The document footer, on every page. One left-aligned line: `Collective Edge · Page N`, where N is the page number field. No rule, no logo, no table |
+| Lockup | None. A working-doc never carries “Powered by Collective Edge”, as words or as a lockup. The rule follows the type, not the file format: a working-doc exported to PDF stays as it is |
+| Template | [`templates/working-doc.html`](../templates/working-doc.html) |
+
+| Slot | Named style | What it holds | Step | Print | Screen | Weight | Color | Line spacing | Space before, after | Limit |
+|---|---|---|---|---|---|---|---|---|---|---|
+| title | Title | Names the document. Sentence case, no period | h2 | 24pt | 32px | 700 | `--fg-1` #23232A | 1.15 | 0, 3pt | 60 characters |
+| meta-line | Normal | Directly under the title. Owner or team · date as 13 November 2026 · audience or status if needed. A 0.75pt `--border-1` #E4E4E9 bottom border on the paragraph, 6pt under the text | body-sm | 10.5pt | 14px | 400 | `--fg-3` #6D6D77 | 1.35 | 0, 12pt | 1 line |
+| heading-1 | Heading 1 | A plain label. Sentence case, no colon, no period | h4 | 15pt | 20px | 700 | `--fg-1` #23232A | 1.15 | 18pt, 6pt | 6 words |
+| heading-2 | Heading 2 | A plain label. Sentence case, no colon, no period | body | 12pt | 16px | 700 | `--fg-accent` #000000 | 1.15 | 12pt, 3pt | 6 words |
+| body | Normal | Running text. Flush left, never justified | body-sm | 10.5pt | 14px | 400 | `--fg-1` #23232A | 1.35 | 0, 6pt | 20 words a sentence |
+| bullet | List Bullet, List Number | The standard bullet list of the application. Hanging indent 0.25in | body-sm | 10.5pt | 14px | 400 | `--fg-1` #23232A | 1.35 | 0, 3pt | 1 line each, 2 at most. 6 in a group. 1 nesting level |
+| table-header | Normal | Header row. Fill `--bg-surface-2` #E5E6EA. A 0.75pt `--fg-1` #23232A bottom border | body-sm | 10.5pt | 14px | 700 | `--fg-1` #23232A | 1.35 | 0, 0 | none |
+| table-text | Normal | Body cells. A 0.75pt `--border-1` #E4E4E9 bottom border. Numbers right-aligned | body-sm | 10.5pt | 14px | 400 | `--fg-1` #23232A | 1.35 | 0, 0 | none |
+| status | Normal | U+25A0, a no-break space, then the word, in one run | body-sm | 10.5pt | 14px | 700 | The alert text color | 1.35 | 0, 0 | 2 words |
+| footer | Normal | The footer line | caption | 9pt | 12px | 400 | `--fg-3` #6D6D77 | 1.35 | 0, 0 | 1 line |
+
+- **Headings.** Two levels at most. No label, number or rule above or under a heading.
+- **Lists.** A numbered list only for steps in order or agenda items.
+- **Table.** The full text width, the left edge of the table on the left margin. In a Word or Google file that takes a table indent equal to the left cell padding, 6pt, and column widths that sum to the text block less 6pt. Cell padding 4pt top and bottom, 6pt left and right. No vertical rules, no zebra, no frame, no dark header fill. The dark header of section 3.7 is for the one-pager, the report and the deck. One empty paragraph between two adjacent tables.
+- **Status.** The alert text colors of section 3.7: good #1E7A4D, caution #926603, bad #B0322B, notice #2A5A8C.
+- **Agenda.** A 3-column table: Time or minutes, Topic, Owner. Or a numbered list with the owner and the minutes at the end of each line. Never both.
+- **Status report.** One line of overall status. Then a table: Item, Owner, Due, Status. Then bullets under the heading Needs a decision, if any.
+- **Line spacing.** A multiple, as Word and Google Docs state it: 1.15 for headings, 1.35 for body. Never an exact point value. In CSS the same lines are a line-height of 1.4 and 1.65, since the natural line of Montserrat is 1.219.
+- **Restyling an existing file.** Only when asked. Apply these styles to what is there. Do not reorder, rewrite or shorten the words. Do not add a band. Where the file has a band, take it out: the logo goes top left and the band’s words go only if they are not already the title.
+- **Build.** Section 11, Google Docs.
+
+---
+
+## 8. Deck
+
+| | |
+|---|---|
+| Slide | 13.333 x 7.5in, 16:9. 12192000 x 6858000 EMU |
+| Padding | 0.67in top, 0.83in left and right, 0.42in bottom |
+| Content width | 11.67in. Two columns are 5.5in each, 0.67in apart |
+| White slides | Fill `--bg-canvas` #FFFFFF: statement, text, two-column, chart, table, comparison, timeline, quote, summary |
+| Dark slides | Fill `--bg-inverse` #000000: title, divider, closing |
+| Dark slide rule | `--border-band-rule` #C8C8C8, 0.05in tall, at y 7.45in, full width |
+| Body size | 15pt. Floor 12pt |
+| Template | [`templates/deck.html`](../templates/deck.html) |
+
+- One message per slide. The headline states it as a sentence.
+- Body text is 15pt. Nothing on a slide is under 12pt.
+- Content slides are white. Only title, divider and closing are dark.
+- Dark slides are flat `--bg-inverse` #000000. No picture background. Do not use the hero image from `brands.json`.
+- Uppercase is for the title slide title only. Four words at most.
+- A headline that takes one line still reserves two. The body zone starts at y 2.53in on every white slide.
+- One chart or one table per slide.
+- A chart of one quantity is one series, in series color 1. Two series only when comparing two things.
+- No stat card and no big-number panel.
+- No logo on a dark slide except title and closing.
+
+### Editing a deck
+
+The common case, often one slide. Use that deck’s own layouts, fonts, colors and positions, even where they are not this kit’s. Combine, split or reword slides without restyling the rest. Deliver the change inside the same deck. “Combine these two slides” means one slide that carries the content of both in the layout of the first, then delete the second. If the two say the same thing, say so and ask before deleting one.
+
+### A graphic for a slide
+
+A 1920 x 1080 PNG on a white ground. The same type rules as a slide, no band. Text is 48px or larger, which is 24pt on the slide. An Apex Paramedics or Royal Ambulance graphic or chart made on its own carries one line of words, bottom right: `Powered by Collective Edge`, 24px, weight 400, `--fg-3` #6D6D77. No logo. A Collective Edge graphic carries none.
+
+### Zones
+
+| Zone | x | y | Width | Height |
+|---|---|---|---|---|
+| Headline | 0.83in | 0.67in | 10.0in | 1.28in |
+| Body zone | 0.83in | 2.53in | 11.67in | 3.78in |
+| Left column | 0.83in | 2.53in | 5.5in | 3.78in |
+| Right column | 7.0in | 2.53in | 5.5in | 3.78in |
+| Footer row | 0.83in | 6.73in | 11.67in | 0.35in |
+| Footer rule | 0.83in | 6.55in | 11.67in | 0.75pt |
+
+**Footer.** On a white slide: the rule is `--border-1` #E4E4E9. The logo sits at left on the footer row, role `horizontal-on-light`, 2.1in wide, centered on the row. The page number sits at right, ending at x 12.5in, in body, 12pt, `--fg-3` #6D6D77. It is the slide’s position in the deck as a bare numeral, in a box at 10.5in, 6.73in, 2.0in by 0.35in, right-aligned, anchored middle. The title slide is 1 and shows no number. On a dark slide: the rule is `--border-on-dark` #1F1F1F, the text is `--fg-on-dark-3` #A3A4AC, and there is no footer logo.
+
+### Type on a slide
+
+| Slot | What it holds | Step | Print | Screen | Weight | Color | Limit | Floor |
+|---|---|---|---|---|---|---|---|---|
+| headline | The one message of the slide, as a sentence | display-md | 42pt | 56px | 800 | `--fg-accent` #000000 | 60 characters, 2 lines | h1 30pt |
+| body | Paragraphs and bullets | body-lg | 15pt | 20px | 400 | `--fg-1` #23232A | none | body 12pt |
+| key-point | A short statement between hairlines | h3 | 18pt | 24px | 600 | `--fg-1` #23232A | 60 characters, 2 lines | h4 15pt |
+| table-text | Table cells. Header cells take weight 600 | body-lg | 15pt | 20px | 400 | `--fg-1` #23232A | none | body 12pt |
+| caption | Line above a table or chart, and the source line | body | 12pt | 16px | 400 | `--fg-3` #6D6D77 | 60 characters, 1 line | body 12pt |
+| footer | Page number, and the meta row on dark slides | body | 12pt | 16px | 400 | `--fg-3` #6D6D77 | none | body 12pt |
+
+- **Bullets.** A round bullet in `--fg-accent` #000000, text indented 0.33in, 9pt between bullets.
+- **Key points.** Each point sits between 0.75pt `--border-1` #E4E4E9 rules, with 12pt above and under the text.
+- **Tables.** The table rules of section 3.7 at 15pt. Header padding 6pt above and under, 12pt left and right. Cell padding 9pt above and under, 12pt left and right. The status square is 9pt: U+25A0 set at 12pt.
+
+### Layouts
+
+Twelve layouts. Use these names.
+
+| Layout | Ground | Purpose |
+|---|---|---|
+| title | dark | Opens the deck |
+| divider | dark | Opens a section |
+| statement | white | One sentence that stands alone |
+| text | white | A headline and one column of text |
+| two-column | white | Key points beside one table, image or block of text |
+| chart | white | One chart |
+| table | white | One table |
+| comparison | white | Two options or two states side by side |
+| timeline | white | Three to five dated steps in a row |
+| quote | white | One quotation with its source |
+| summary | white | The takeaways, numbered |
+| closing | dark | Ends the deck |
+
+**title**
+
+| Slot | Style | Limit | x, y | Width, height | Notes |
+|---|---|---|---|---|---|
+| logo | Logo, role `horizontal-on-dark` |  | 0.83in, 0.67in | 2.7in wide |  |
+| title | display-lg, 54pt, weight 700, `--fg-on-dark-1` #FFFFFF. uppercase, tracking 0.025em | 4 words, 28 characters, 2 lines, floor display-md 42pt | 0.83in, 3.85in | 11.67in, 1.62in | Text sits on the bottom of the box |
+| subtitle | h3, 18pt, weight 600, `--fg-on-dark-2` #DDDDE3 | 60 characters, 1 line, floor h4 15pt | 0.83in, 5.64in | 11.67in, 0.34in |  |
+| rule | 0.75pt `--border-on-dark` #1F1F1F |  | 0.83in, 6.55in | 11.67in | Above the meta row |
+| meta-left | body, 12pt, weight 400, `--fg-on-dark-3` #A3A4AC | 40 characters | 0.83in, 6.73in | 5.5in, 0.35in | Brand or presenter |
+| meta-right | body, 12pt, weight 400, `--fg-on-dark-3` #A3A4AC | 24 characters | 7.0in, 6.73in | 5.5in, 0.35in | Date. Right-aligned |
+
+**divider**
+
+| Slot | Style | Limit | x, y | Width, height | Notes |
+|---|---|---|---|---|---|
+| number | h3, 18pt, weight 600, `--fg-on-dark-3` #A3A4AC | 2 characters | 0.83in, 4.19in | 11.67in, 0.34in | Two digits, tabular figures |
+| title | display-md, 42pt, weight 700, `--fg-on-dark-1` #FFFFFF | 40 characters, 2 lines, floor h1 30pt | 0.83in, 4.7in | 10.0in, 1.28in | Text sits on the bottom of the box |
+| rule | 0.75pt `--border-on-dark` #1F1F1F |  | 0.83in, 6.55in | 11.67in | Above the meta row |
+| meta-left | body, 12pt, weight 400, `--fg-on-dark-3` #A3A4AC | 40 characters | 0.83in, 6.73in | 5.5in, 0.35in | Brand name |
+| page-number | body, 12pt, weight 400, `--fg-on-dark-3` #A3A4AC |  | 7.0in, 6.73in | 5.5in, 0.35in | Right-aligned |
+
+**statement**
+
+| Slot | Style | Limit | x, y | Width, height | Notes |
+|---|---|---|---|---|---|
+| statement | display-md, 42pt, weight 800, `--fg-accent` #000000 | 120 characters, 4 lines, floor h1 30pt | 0.83in, 0.67in | 10.0in, 2.57in |  |
+| support | body-lg, 15pt, weight 400, `--fg-1` #23232A | 140 characters, 2 lines, floor body 12pt | 0.83in, 3.57in | 7.45in, 0.65in | Optional |
+| footer | body, 12pt, `--fg-3` #6D6D77 | | 0.83in, 6.73in | 11.67in, 0.35in | Logo left, page number right |
+
+**text**
+
+| Slot | Style | Limit | x, y | Width, height | Notes |
+|---|---|---|---|---|---|
+| headline | display-md, 42pt, weight 800, `--fg-accent` #000000 | 60 characters, 2 lines | 0.83in, 0.67in | 10.0in, 1.28in | The message, as a sentence |
+| body | body-lg, 15pt, weight 400, `--fg-1` #23232A | 80 characters, 5 bullets, floor body 12pt | 0.83in, 2.53in | 7.45in, 3.78in | Up to five bullets of 80 characters, or up to three paragraphs of 420 characters in all |
+| footer | body, 12pt, `--fg-3` #6D6D77 | | 0.83in, 6.73in | 11.67in, 0.35in | Logo left, page number right |
+
+**two-column**
+
+| Slot | Style | Limit | x, y | Width, height | Notes |
+|---|---|---|---|---|---|
+| headline | display-md, 42pt, weight 800, `--fg-accent` #000000 | 60 characters, 2 lines | 0.83in, 0.67in | 10.0in, 1.28in | The message, as a sentence |
+| key-points | h3, 18pt, weight 600, `--fg-1` #23232A | 60 characters, 3 points, floor h4 15pt | 0.83in, 2.53in | 5.5in, 3.78in | Each point sits between 0.75pt --border-1 rules with 12pt above and under the text |
+| right | body-lg, 15pt, weight 400, `--fg-1` #23232A | floor body 12pt | 7.0in, 2.53in | 5.5in, 3.78in | One table of four rows by three columns at most, or three bullets, or one image. A caption may sit above it |
+| footer | body, 12pt, `--fg-3` #6D6D77 | | 0.83in, 6.73in | 11.67in, 0.35in | Logo left, page number right |
+
+**chart**
+
+| Slot | Style | Limit | x, y | Width, height | Notes |
+|---|---|---|---|---|---|
+| headline | display-md, 42pt, weight 800, `--fg-accent` #000000 | 60 characters, 2 lines | 0.83in, 0.67in | 10.0in, 1.28in | The message, as a sentence |
+| chart |  | 1 chart, 4 series | 0.83in, 2.53in | 7.5in, 3.78in | One chart. Colors from reference/data-color.md. Caption above, source line under, both in the caption slot. One quantity is one series, in series color 1. Two series only when comparing two things. A bar chart holds four categories |
+| notes | body-lg, 15pt, weight 400, `--fg-1` #23232A | 60 characters, 3 points, floor body 12pt | 8.67in, 2.53in | 3.83in, 3.78in | Optional. Without notes the chart takes the full 11.67in |
+| footer | body, 12pt, `--fg-3` #6D6D77 | | 0.83in, 6.73in | 11.67in, 0.35in | Logo left, page number right |
+
+**table**
+
+| Slot | Style | Limit | x, y | Width, height | Notes |
+|---|---|---|---|---|---|
+| headline | display-md, 42pt, weight 800, `--fg-accent` #000000 | 60 characters, 2 lines | 0.83in, 0.67in | 10.0in, 1.28in | The message, as a sentence |
+| table | body-lg, 15pt, weight 400, `--fg-1` #23232A | 5 rows, 6 columns, floor body 12pt | 0.83in, 2.53in | 11.67in, 3.78in | Five body rows at 15pt. Six at the 12pt floor. Cell padding 9pt top and bottom, 12pt left and right |
+| footer | body, 12pt, `--fg-3` #6D6D77 | | 0.83in, 6.73in | 11.67in, 0.35in | Logo left, page number right |
+
+**comparison**
+
+| Slot | Style | Limit | x, y | Width, height | Notes |
+|---|---|---|---|---|---|
+| headline | display-md, 42pt, weight 800, `--fg-accent` #000000 | 60 characters, 2 lines | 0.83in, 0.67in | 10.0in, 1.28in | The message, as a sentence |
+| left | body-lg, 15pt, weight 400, `--fg-1` #23232A | 60 characters, 4 bullets, floor body 12pt | 0.83in, 2.53in | 5.5in, 3.78in | A label in the key-point slot, 24 characters at most, over a 1.5pt --fg-accent rule, then up to four bullets |
+| right | body-lg, 15pt, weight 400, `--fg-1` #23232A | 60 characters, 4 bullets, floor body 12pt | 7.0in, 2.53in | 5.5in, 3.78in | The same as the left column |
+| footer | body, 12pt, `--fg-3` #6D6D77 | | 0.83in, 6.73in | 11.67in, 0.35in | Logo left, page number right |
+
+**timeline**
+
+| Slot | Style | Limit | x, y | Width, height | Notes |
+|---|---|---|---|---|---|
+| headline | display-md, 42pt, weight 800, `--fg-accent` #000000 | 60 characters, 2 lines | 0.83in, 0.67in | 10.0in, 1.28in | The message, as a sentence |
+| steps | body-lg, 15pt, weight 400, `--fg-1` #23232A | 3 to 5 steps, floor body 12pt | 0.83in, 2.53in | 11.67in, 3.78in | Equal columns, 0.33in apart. Each step: a 1.5pt --fg-accent rule, the date at 15pt weight 600 in --fg-accent and 14 characters at most, a title in the key-point slot and 24 characters at most, a description at 15pt and 60 characters at most |
+| footer | body, 12pt, `--fg-3` #6D6D77 | | 0.83in, 6.73in | 11.67in, 0.35in | Logo left, page number right |
+
+**quote**
+
+| Slot | Style | Limit | x, y | Width, height | Notes |
+|---|---|---|---|---|---|
+| quote | display-md, 42pt, weight 800, `--fg-1` #23232A | 120 characters, 4 lines, floor h1 30pt | 0.83in, 0.67in | 10.0in, 2.57in | Curly quotation marks |
+| attribution | body-lg, 15pt, weight 400, `--fg-2` #565860 | 80 characters, 1 line, floor body 12pt | 0.83in, 3.57in | 10.0in, 0.33in | Name at weight 700 in --fg-1, a comma, then the role |
+| footer | body, 12pt, `--fg-3` #6D6D77 | | 0.83in, 6.73in | 11.67in, 0.35in | Logo left, page number right |
+
+**summary**
+
+| Slot | Style | Limit | x, y | Width, height | Notes |
+|---|---|---|---|---|---|
+| headline | display-md, 42pt, weight 800, `--fg-accent` #000000 | 60 characters, 2 lines | 0.83in, 0.67in | 10.0in, 1.28in | The message, as a sentence |
+| takeaways | h3, 18pt, weight 600, `--fg-1` #23232A | 70 characters, 4 takeaways, floor h4 15pt | 0.83in, 2.53in | 11.67in, 3.78in | One row each between 0.75pt --border-1 rules. The number sits in a 0.5in column at weight 600 in --fg-accent |
+| footer | body, 12pt, `--fg-3` #6D6D77 | | 0.83in, 6.73in | 11.67in, 0.35in | Logo left, page number right |
+
+**closing**
+
+| Slot | Style | Limit | x, y | Width, height | Notes |
+|---|---|---|---|---|---|
+| logo | Logo, role `horizontal-on-dark` |  | 0.83in, 0.67in | 2.7in wide |  |
+| closing-line | display-md, 42pt, weight 700, `--fg-on-dark-1` #FFFFFF | 60 characters, 2 lines, floor h1 30pt | 0.83in, 3.14in | 10.0in, 1.28in | Text sits on the bottom of the box |
+| contact | body-lg, 15pt, weight 400, `--fg-on-dark-2` #DDDDE3 | 48 characters, 3 lines, floor body 12pt | 0.83in, 4.59in | 10.0in, 1.0in |  |
+| meta row | body, 12pt, `--fg-on-dark-3` #A3A4AC | 40 characters left, 24 right | 0.83in, 6.73in | 11.67in, 0.35in | The title slide meta row: brand left, date right, under a 0.75pt `--border-on-dark` #1F1F1F rule at y 6.55in. Collective Edge carries no lockup |
+
+---
+
+## 9. Type by role
+
+One face, Montserrat. Four weights: 400, 600, 700, 800. No italic. Sizes come from the house scale in [`snippets/type-tokens.json`](../snippets/type-tokens.json). Leading is given in points so it can be set exactly. In a file that will become a Google file, set line spacing as a multiple instead: section 11.
+
+| Step | Print | Screen | Leading | Used for in a document | Used for on a slide |
+|---|---|---|---|---|---|
+| display-lg | 54pt | 72px | 58.3pt |  | Title slide title |
+| display-md | 42pt | 56px | 46.2pt |  | Headline, statement, quote, divider title, closing line |
+| h1 | 30pt | 40px | 35.4pt | Headline | Floor for display-md |
+| h2 | 24pt | 32px | 30pt | Band title, section heading, working-doc title |  |
+| h3 | 18pt | 24px | 24.3pt | Subhead | Key points, subtitle, column labels |
+| h4 | 15pt | 20px | 21.8pt | Working-doc heading 1 | Floor for h3 |
+| body-lg | 15pt | 20px | 23.3pt | Lead | Body, bullets, tables |
+| body | 12pt | 16px | 19.2pt | Body, To block, actions, callout, working-doc heading 2 | Caption, source line, footer, page number. The floor |
+| body-sm | 10.5pt | 14px | 16.3pt | Table text, meta value, sign-off contact, working-doc body and tables | Not used |
+| caption | 9pt | 12px | 13.1pt | Caption, meta label, footer, the words Powered by | Not used |
+| eyebrow | 9pt | 12px | 13.1pt | Not used | Not used |
+
+- **Weights.** 400 for running text. 600 for subheads, table headers, labels and key points. 700 for headlines, section headings and emphasis. 800 for a slide headline on white only. Three weights at most in a document. A deck is the one piece that uses all four. A working-doc uses 400 and 700.
+- **On a dark ground.** A step at 700 or 800 drops one weight: the band title is 600, a dark slide title is 700. Every step gains 0.005em of tracking. In Word and PowerPoint, skip that gain under 24pt.
+- **Tracking.** Band title 0.045em. Title slide title 0.025em. Document headline -0.012em. Slide headline -0.015em. Subhead -0.004em. No other slot is tracked. Section 11 gives each in points.
+- **Color.** Text is `--fg-1` #23232A. `--fg-accent` #000000 is for subheads, slide headlines, action numbers and bullets. `--fg-3` #6D6D77 is the lightest text color.
+- **Uppercase.** The band title and the title slide title. Nowhere else. Always tracked, never past four words.
+- **Office fonts.** Word and PowerPoint need the static files installed: Montserrat for 400 and 700, Montserrat SemiBold for 600, Montserrat ExtraBold for 800. Name the family, not a synthetic bold.
+
+---
+
+## 10. When content does not fit
+
+Work down this list and stop at the first step that fits.
+
+1. **Tighten.** Set the overflowing slot one step down the scale, to its floor and no further.
+2. **Shorten.** Cut the text to the limit of the slot.
+3. **Split.** Move the overflow to another page or slide. A one-pager cannot split.
+4. **Switch.** Rebuild in the denser sibling type or layout.
+
+| Type or layout | Denser sibling |
+|---|---|
+| memo | report |
+| one-pager | report |
+| text slide | two-column slide |
+| two-column slide | table slide |
+| statement slide | text slide |
+| quote slide | text slide |
+| summary slide | text slide |
+| comparison slide | table slide |
+| timeline slide | table slide |
+
+- Never set type under its floor.
+- Never rely on auto-fit or shrink-on-overflow.
+- Never narrow a margin.
+- Never tighten leading or tracking to make text fit.
+- A table past its row limit splits into two tables with the header row repeated.
+- A working-doc never tightens. It shortens.
+
+---
+
+## 11. Tools
+
+The same page in each tool. A value not listed here comes from the section named.
+
+### Word, with python-docx
+
+| Rule | How |
+|---|---|
+| Page and margins | `section.page_width = Inches(8.5)`, `section.page_height = Inches(11)`. All four margins `Inches(0.75)`, or `Inches(0.6)` for a one-pager |
+| Body | Style `Normal`: Montserrat, 12pt, color #23232A, line spacing exactly 19.2pt, space after 0, no indent, left-aligned. Body paragraphs add space after 12pt and right indent 1.04in, or 1.34in on a one-pager, so a line is 5.96in wide. Every paragraph in a table cell, the band, the To block, the meta row, the callout and the footer sets right indent 0, space before 0, space after 0, and line spacing exactly at its own step from section 9. Exact line spacing is for a file that stays in Word or becomes a PDF. A file that becomes a Google Doc takes multiples: see Google Docs below |
+| Fonts in XML | On every style and run, replace `w:rFonts` with one element carrying `w:ascii`, `w:hAnsi`, `w:cs` and `w:eastAsia`, all set to the font name. Remove every `w:asciiTheme`, `w:hAnsiTheme`, `w:cstheme` and `w:eastAsiaTheme`. Remove `w:pBdr` from `Title`. Set the color on every style |
+| Tracking | Tracking in points is em times the size. `w:spacing w:val` on the run, in twentieths of a point. Band title 1.08pt, `w:val="22"`. Headline -0.36pt, `w:val="-7"`. Subhead -0.07pt, `w:val="-1"`. Set no other tracking. Type the capitals of the band title. Do not use the all-caps attribute |
+| Headline | Style `Title`: Montserrat, 30pt, bold, line spacing exactly 35.4pt, space after 12pt |
+| Lead | Style `Subtitle`: Montserrat, 15pt, line spacing exactly 23.3pt, right indent 0.33in, or 0.63in on a one-pager, so a line is 6.67in wide |
+| Section heading | Style `Heading 1`: Montserrat, 24pt, bold, #23232A, space before 36pt, after 12pt, keep with next |
+| Subhead | Style `Heading 2`: font `Montserrat SemiBold`, 18pt, not bold, #000000, space before 18pt, after 6pt, keep with next |
+| Caption and footer | Style `Caption`: Montserrat, 9pt, #6D6D77, line spacing exactly 13.1pt |
+| Band | A one-row, two-cell table in the first-page header. `section.different_first_page_header_footer = True`, `section.header_distance = 0`. Table indent minus the left margin, width 8.5in, row height exactly 1.08in, cell shading #23232A, no borders but a 2.25pt #C8C8C8 bottom border. Left cell: the band title, vertically centered, left cell margin equal to the page margin. Right cell: the logo, right-aligned, right cell margin equal to the page margin. Word starts the body under a header that is taller than the top margin. Move the header’s empty paragraph to after the table and set its line spacing to exactly 18pt, space before and after 0. It is the 18pt gap under the band. Leave no paragraph above the table |
+| To block | A 4-row, 2-column table, no table style, columns 1.0in and the rest of the text block. Top border 0.75pt #E4E4E9 on row 1, bottom border 0.75pt #E4E4E9 on every row, no other border. Cell margins 6pt top and bottom, 0 left and right. Labels To, From, Date, Re, weight 400, no colon. An empty paragraph after it, line spacing exactly 18pt |
+| Meta row | A 1-row, 3-column table the width of the text block. Top and bottom border 0.75pt #E4E4E9, no other border. Cell margins 6pt top and bottom, 0 left, 0.25in right on the first two cells. In each cell the label paragraph, then the value paragraph |
+| Table | `doc.add_table` with no table style. Header cells shaded #E5E6EA, text #23232A, bottom border 1.5pt #000000. Every body cell: bottom border 0.75pt #E4E4E9, no other border. Cell margins 6pt top and bottom, 9pt left and right. Number cells `WD_ALIGN_PARAGRAPH.RIGHT` |
+| Callout | A one-cell table the width of the text block. Shading #F0F1F4, top border 1.5pt #000000, cell margins 12pt top and bottom, 15pt left and right |
+| Actions | A 2-column table, no table style, columns 0.33in and 5.63in. Top border 0.75pt #E4E4E9 on every row and a bottom border on the last. Cell margins 6pt top and bottom, 0 left and right. The number in the first cell, `Montserrat SemiBold`, #000000 |
+| Sign-off | Two paragraphs. The first, the name, has space before 24pt |
+| Footer | `section.footer_distance` equal to the bottom margin. A paragraph with a 0.75pt #E4E4E9 top border, 9pt between border and text, and a right tab stop at the text block width. Page numbers are `PAGE` and `NUMPAGES` fields. Build the footer twice, in `section.first_page_footer` and in `section.footer`. With a different first page switched on, page 1 shows only the first-page footer |
+| Logo | `add_picture(path, width=Inches(2.125))`. PNG from `for-humans/logos/png/`, by role, from `logosPng` in `brands.json`, since Word does not place SVG through python-docx |
+
+### PowerPoint, with python-pptx
+
+| Rule | How |
+|---|---|
+| Slide size | `prs.slide_width = Emu(12192000)`, `prs.slide_height = Emu(6858000)` |
+| Layout | Start every slide from the blank layout. Place each slot as a text box at the x, y, width and height in section 8 |
+| Text boxes | `word_wrap = True`, `auto_size = MSO_AUTO_SIZE.NONE`, all four insets 0. Set font name, size and color on every run, bullets included. Set `a:latin`, `a:ea` and `a:cs` on every run |
+| Tracking | Tracking in points is em times the size. `spc` on `a:rPr`, in hundredths of a point. Title slide title 1.35pt, `spc="135"`. Slide headline -0.63pt, `spc="-63"`. Set no other tracking. Type the capitals of the title slide title. Do not use the all-caps attribute |
+| Ground | White slides: background #FFFFFF. Dark slides: background #000000, plus a rectangle at x 0, y 7.45in, 13.333in wide, 0.05in tall, fill #C8C8C8, no line |
+| Headline | Text box at 0.83in, 0.67in, 10.0in by 1.28in. `Montserrat ExtraBold`, 42pt, #000000, line spacing 46.2pt, anchored top |
+| Body | `Montserrat`, 15pt, #23232A, line spacing 23.3pt |
+| Bullets | `a:buChar` U+2022 with `a:buFont typeface="Montserrat"`, `a:buClr` #000000, `marL` 0.33in, `indent` -0.33in, space before 9pt |
+| Rules | A line shape, 0.75pt, #E4E4E9 on white or #1F1F1F on dark |
+| Table | `shapes.add_table` in the body zone. Set `a:tableStyleId` to `{2D5ABB26-0587-4C30-8999-92F81FD0307C}` and `firstRow` and `bandRow` to 0. On every cell write `a:lnL`, `a:lnR`, `a:lnT` and `a:lnB` in `a:tcPr`: `a:noFill` for no border, or `w` in EMU with a solid fill. 0.75pt is 9525. 1.5pt is 19050. Header cells: fill #E5E6EA, text #23232A, bottom border 1.5pt #000000, no other border. Body cells no fill, bottom border 0.75pt #E4E4E9, no other border. Header row height 0.49in, body rows 0.57in. Columns in proportion to content, summing to 11.67in |
+| Chart | In the chart box of the chart layout. Series colors from `reference/data-color.md`, in order. One quantity is one series, in series color 1. `chart.value_axis.visible = False`. `plot.has_data_labels = True`, `plot.data_labels.number_format = '#,##0'`, `plot.data_labels.number_format_is_linked = False` |
+| Footer | Logo picture at x 0.83in, 2.1in wide, centered on the 0.35in row at y 6.73in. Page number text box at 10.5in, 6.73in, 2.0in by 0.35in, right-aligned, anchored middle. Static text, the bare slide number |
+
+### Google Docs
+
+Build the `.docx` with python-docx, then upload with conversion. Conversion was tested on a live file. Each row is what it does and the rule that follows.
+
+| What conversion does | Rule |
+|---|---|
+| Exact line spacing in points lands about three times too far apart. Google Docs has proportional line spacing only | Line spacing is a multiple. `paragraph_format.line_spacing = 1.35`, a float, with `line_spacing_rule = WD_LINE_SPACING.MULTIPLE`. Never `EXACTLY`, never a point value |
+| A full-bleed band is impossible. A header table with a negative indent loses its cell padding | A band is a table at text-block width with indent 0, and only on a designed document the person asked for. A working-doc has no band |
+| Right tab stops are lost | A left and right footer is a two-cell borderless table. A working-doc footer is one left-aligned line |
+| Two tables with nothing between them merge, and the second loses its column widths | One empty paragraph between adjacent tables |
+| A table pokes about 9pt into the left margin | Table indent equal to the left cell padding, set explicitly: `w:tblInd` with `w:w="120"` and `w:type="dxa"` in `w:tblPr` |
+| Line heights run taller than in Word, so a page that fits in Word can spill onto a second | Budget to 90 percent of a page |
+| `Montserrat SemiBold` and `Montserrat ExtraBold` survive as real faces | Name the family, bold off. A working-doc needs neither |
+| Text boxes, floating images, section breaks and columns do not convert cleanly | Use none. Place the logo inline |
+
+**Working-doc.** Section 7 holds the values.
+
+| Rule | How |
+|---|---|
+| Page | Letter, portrait, all four margins `Inches(0.75)`. One section |
+| Styles | Set `Title`, `Heading 1`, `Heading 2` and `Normal` to the section 7 values and use them. Set the color on every style. Remove `w:pBdr` from `Title`. `Heading 1` and `Heading 2` keep with next |
+| Fonts | `Montserrat` on every style and every run, in `w:ascii`, `w:hAnsi`, `w:eastAsia` and `w:cs`. Remove every theme font attribute. Weight 700 is bold on. Do not name `Montserrat SemiBold` |
+| Line spacing | `Title`, `Heading 1`, `Heading 2`: 1.15. `Normal` and the list styles: 1.35. Always a float with the rule `MULTIPLE` |
+| Logo | The first paragraph. `run.add_picture(path, width=Inches(1.7))`, inline, space after 12pt |
+| Meta line | A `Normal` paragraph, 10.5pt, #6D6D77, space after 12pt, with `w:pBdr` holding `w:bottom w:val="single" w:sz="6" w:space="6" w:color="E4E4E9"` |
+| Bullets | Styles `List Bullet` and `List Number`: left indent 0.25in, first line indent -0.25in, space after 3pt |
+| Table | `doc.add_table` with no table style, autofit off, column widths that sum to 6.92in. `w:tblInd w:w="120"`, so the left edge of the table sits on the left margin and the cell padding sits inside it. Cell margins 80 twentieths of a point top and bottom, 120 left and right. Header cells: shading E5E6EA, bold, bottom border `w:sz="6"` in 23232A. Body cells: bottom border `w:sz="6"` in E4E4E9, no other border. Cell paragraphs: space after 0. Number cells right-aligned |
+| Status cell | One bold run in the alert text color: U+25A0, U+00A0, then the word |
+| Between tables | One empty `Normal` paragraph |
+| Footer | `section.footer.paragraphs[0]`, left-aligned, 9pt, #6D6D77: the text, then a `PAGE` field. No table, no tab stop, no border. Same footer on every page |
+
+**A designed document in Google Docs.** Only when the person asks for a designed one-pager, report or memo as a Google Doc. Follow the Word rows above with these changes.
+
+| Named style | Role | Line spacing |
+|---|---|---|
+| Title | Headline, 30pt, bold | 1.0 |
+| Subtitle | Lead, 15pt | 1.27 |
+| Heading 1 | Section heading, 24pt, bold | 1.0 |
+| Heading 2 | Subhead, 18pt, Montserrat SemiBold, #000000 | 1.1 |
+| Normal text | Body, 12pt, 12pt after a paragraph | 1.31 |
+| Table text, 10.5pt | Cells | 1.27 |
+| Caption and footer, 9pt | Caption, footer | 1.2 |
+
+Each multiple is the leading in section 9 divided by the size and by 1.219, the natural line of Montserrat. The band is a two-cell table at the top of page 1, at text-block width, indent 0, cell fill #23232A, no borders. It cannot reach the page edge. The footer is a two-cell borderless table, never a tab stop.
+
+### Google Slides
+
+Build the `.pptx` with python-pptx as above, then upload with conversion. Page size 13.333 x 7.5in. The twelve layout names of section 8, each box at its x, y, width and height. Autofit off on every box.
+
+| What conversion does | Rule |
+|---|---|
+| Inherited bullet sizes shrink | Set the size on every run. Never rely on a placeholder or a list level for a size |
+| A chart gains a visible value axis | Delete it: `chart.value_axis.visible = False` |
+| Data labels lose their thousands separators | `plot.has_data_labels = True`, `plot.data_labels.number_format = '#,##0'`, `plot.data_labels.number_format_is_linked = False` |
+| A second series adds a legend and a second color to decode | One quantity is one series, in series color 1. Two series only when comparing two things |
+| `Montserrat SemiBold` and `Montserrat ExtraBold` survive as real faces | Name the family, bold off |
+
+Editing an existing Google Slides deck: use its own layouts, fonts, colors and positions. Section 8.
+
+### Google Sheets and Excel
+
+Section 14 holds the values. With openpyxl, then upload with conversion, or the same properties set in the sheet.
+
+| Rule | How |
+|---|---|
+| Font | `Font(name='Montserrat', size=10)` on every cell. Header, status and totals: `bold=True`. Never `Montserrat SemiBold`, never size 10.5 |
+| Header row | Row 2. `ws.freeze_panes = "A3"`. `PatternFill('solid', fgColor='E5E6EA')`, `Border(bottom=Side(style='thin', color='23232A'))` |
+| Freeze and filter | `ws.freeze_panes = 'A3'`, or `'B3'` when column A is the name or ID of the row. The filter covers the header row and the data, from row 2 down, never row 1 |
+| Columns | `ws.column_dimensions[letter].width` in characters: short code 11, number 14, date 15, status 18, owner 21, name 25, notes 45, which is 80px, 100px, 110px, 130px, 150px, 180px and 320px. Text cells `Alignment(wrap_text=True, vertical='top')`. Number cells `Alignment(horizontal='right')` |
+| Formats | `cell.number_format`: `'d mmm yyyy'`, `'#,##0'`, `'$#,##0'`, `'0%'` |
+| Status | `DataValidation(type='list', formula1='"■ Not started,■ On track,■ At risk,■ Blocked,■ Done"')` on the column. One conditional format per value sets the fill to the alert tint and the font to the alert text on tint, bold |
+| Due dates | One conditional format on the date column: the date is before `TODAY()` and the status of the row is not `■ Done`. Font color B0322B |
+| Logo and tabs | `ws.add_image(Image(path), "A1")` with the picture scaled to 150px wide, `ws.row_dimensions[1].height` set to 27.8 points. No `=IMAGE()`. No tab that was not asked for |
+| Totals row | The last row. Bold, `Border(top=Side(style='thin', color='23232A'))`. Every value a formula such as `=SUM(D3:D40)` |
+| Editing | Load the file, change only the cells asked for, save to the same file. Never rebuild the sheet from its values |
+
+### HTML
+
+The templates carry every rule as a class. Load `type-system.css`, then this kit’s `palette.css`, then `cobrand.css`.
+
+| Part | Class |
+|---|---|
+| Page | `.sheet`, with `--page-margin` set to 0.75in or 0.6in |
+| Band | `.doc-band`, `.doc-band-title` with `.bk-h2 .bk-caps`, `.doc-band-logo` |
+| To block | `.doc-to`, `.doc-to-row`, `.doc-to-label` |
+| Title block | `.doc-headline` with `.bk-h1`, `.doc-lead` with `.bk-body-lg` |
+| Meta row | `.doc-meta`, `.doc-meta-value` |
+| Headings | `.doc-h2` with `.bk-h2`, `.doc-h3` with `.bk-h3` |
+| Body | `.doc-p` with `.bk-body` |
+| Table | `.doc-table-wrap`, `.doc-caption`, `.doc-table`, `.num`, `.doc-status` with `.is-go`, `.is-warn`, `.is-stop` or `.is-info` |
+| Callout | `.doc-callout` |
+| Actions | `.doc-actions`, `.doc-actions-item`, `.doc-actions-n` |
+| Sign-off | `.doc-sign`, `.doc-sign-name`, `.doc-sign-contact` |
+| Footer | `.doc-footer` |
+| Lockup | `.ce-powered .ce-powered-light`, plus `.doc-lockup` in a report. `.ce-powered` alone on the closing slide. Each template sets the small document lockup over `cobrand.css` |
+| Working-doc | `.wdoc-logo`, `.wdoc-title`, `.wdoc-meta`, `.wdoc-h1`, `.wdoc-h2`, `.wdoc-p`, `.wdoc-list`, `.wdoc-li`, `.wdoc-table`, `.doc-status`, `.wdoc-footer`, `.wdoc-foot` |
+| Slide | `.slide`, plus `.slide-dark .bk-on-dark` on a dark slide |
+| Slide layouts | `.slide-title`, `.slide-divider`, `.slide-statement`, `.slide-text`, `.slide-two-column`, `.slide-chart-slide`, `.slide-table-slide`, `.slide-comparison`, `.slide-timeline`, `.slide-quote`, `.slide-summary`, `.slide-closing` |
+| Slide parts | `.slide-headline`, `.slide-body`, `.slide-cols`, `.slide-points`, `.slide-bullets`, `.slide-table`, `.slide-chart`, `.slide-steps`, `.slide-foot` |
+
+| Template | Type |
+|---|---|
+| [`templates/working-doc.html`](../templates/working-doc.html) | working-doc |
+| [`templates/memo.html`](../templates/memo.html) | memo |
+| [`templates/one-pager.html`](../templates/one-pager.html) | one-pager |
+| [`templates/document.html`](../templates/document.html) | report |
+| [`templates/deck.html`](../templates/deck.html) | deck, all twelve layouts |
+| [`snippets/header-band.html`](../snippets/header-band.html) | the band alone |
+| [`templates/internal-doc.html`](../templates/internal-doc.html) | The memo under its earlier file name. Same page as `templates/memo.html` |
+| [`Examples/ce-one-pager.html`](../Examples/ce-one-pager.html) | A filled one-pager. A reference, not a starting point |
+
+---
+
+## 12. Check before delivery
+
+Each line can be measured. A document that fails one is not finished.
+
+Lines 7, 8, 9, 12 and 13 describe a memo, a one-pager and a report. For a working-doc or a sheet, check its own section instead, 7 or 14, and these seven things: no band, the logo once at top left, a light table header, the one-line footer, no Powered by Collective Edge, no exact line spacing, and no two tables without a paragraph between them. For an edited file, check that nothing changed but what was asked.
+
+1. **Page count.** A one-pager is exactly 1 page. A memo is 1 page, 2 at most. An agenda and a status report are 1 page. A deck has one message per slide.
+2. **Page size and margins.** Letter, portrait, 0.75in margins, or 0.6in on a one-pager. Slides are 13.333 x 7.5in.
+3. **Nothing past the margins.** Only the band crosses a margin. No text box, table or picture ends outside the text block or the slide padding.
+4. **Fonts.** Every run is Montserrat, at 400, 600, 700 or 800. No italic. No fallback face in the file.
+5. **Sizes.** Every size is a step in section 9. Nothing in a document is under 9pt. Nothing on a slide is under 12pt. Slide body text is 15pt.
+6. **Budgets.** Every slot is inside its character, line and item limit. No text box has auto-fit or shrink-on-overflow switched on.
+7. **Band.** On page 1 only. Fill #23232A. Rule #C8C8C8, 2.25pt. Title on one line.
+8. **Logo.** Role `horizontal-on-dark` in the band, 2.125in wide, once.
+9. **Tables.** Header fill #E5E6EA, with a 1.5pt #000000 rule under the header row. Hairline under every row. No frame, no vertical rules, no zebra. Numbers right-aligned.
+10. **Color.** Status colors are the four alert colors and nothing else. Chart colors are the house data set. No brand color stands for a status.
+11. **Slides.** Content slides are white. Only title, divider and closing are #000000.
+12. **Lockup.** Absent. A Collective Edge document carries no Powered by lockup and no accent hue.
+13. **Footer.** On every page. Signature left, Page X of Y right, 9pt, the last line on the bottom margin.
+14. **Copy.** No em dash. Curly quotation marks. Headings in sentence case.
+
+---
+
+## 13. Other patterns
+
+| Need | Where |
+|---|---|
+| Chart colors and chart rules | [`reference/data-color.md`](data-color.md) |
+| Diagram and flowchart node colors | `diagramRoles` in [`tokens.json`](../tokens.json) |
+| Buttons, inputs and product UI | [`reference/ui.md`](ui.md) |
+| The type scale and its rules | [`reference/type-system.md`](type-system.md) |
+| Lockup CSS for sites and dashboards | [`snippets/cobrand.css`](../snippets/cobrand.css) |
+
+**Retired at this version.** The sub-banner under the band. The uppercase label above a heading. The row of large stat numerals. Uppercase table headers. The rule under a section heading. Where one of these appears in an existing file, leave it while editing that file and do not carry it into new work. Also retired: the generic branded document, which is now the working-doc. The band on a document that lives in Google Docs. Exact line spacing in a file that becomes a Google file. The stacked POWERED BY lockup at 2.125in in a document: the document lockup is one line at 1.25in. Powered by Collective Edge on a working-doc or a sheet.
+
+---
+
+## 14. Sheet
+
+A tracker, list or workbook in Google Sheets or Excel. Type `sheet`. A sheet carries one small logo, top left, and no lockup.
+
+| | |
+|---|---|
+| Layout | One table per tab. Row 1 is the logo row, row 2 is the header, data starts in row 3. No title text, no spacer row or column, no merged cells, no decorative color |
+| Tabs | Only the tabs that were asked for. No cover tab, no “How to use” tab |
+| Logo | The logo sits top left: role `horizontal-on-light`, the PNG, placed as a picture anchored to cell A1, 150px wide. Row 1 holds the logo and nothing else: 37px tall, no fill, no text, no merge. Insert it as an embedded picture (`ws.add_image` in openpyxl). Never use `=IMAGE()`: it returns `#REF!`. No lockup |
+| Font | Family `Montserrat`, 10pt, in every cell. Google Sheets sets whole point sizes only, so 10pt is the one size outside the scale of section 9. Never 10.5pt. Bold off or bold on, weights 400 and 700. Never name a weight family such as `Montserrat SemiBold` in a sheet: it falls back to Times New Roman |
+| Alignment | Text left. Numbers right |
+| Header row | Row 2. Weight 700, `--fg-1` #23232A, fill `--bg-surface-2` #E5E6EA, a 1pt `--fg-1` #23232A bottom border. Rows 1 and 2 frozen, filter on row 2 |
+| First column | Frozen when it is the name or ID of the row |
+| Columns | Wrap text columns and set their widths: short code 80px, number 100px, date 110px, status 130px, owner 150px, name 180px, notes 320px. Clip nothing. Row height automatic |
+| Dates | `d mmm yyyy` |
+| Numbers | Whole numbers `#,##0`. Money `$#,##0`, two decimals only when cents matter. Percent `0%` |
+| Status column | A dropdown: data validation from a fixed list. Each value is U+25A0, a space, then one or two words. No free text. Weight 700. Conditional formatting sets the color by value, never a hand fill |
+| Due dates | Only a column that holds a deadline, not a date of record such as a survey date. Conditional formatting turns a date in the past `--alert-stop-text` #B0322B, unless the status of the row is Done |
+| Notes | 120 characters at most. Longer context goes in a linked doc |
+| Totals row | Only when the sheet sums a column, such as a budget. At the bottom. Weight 700, a 1pt `--fg-1` #23232A top border. Formulas, never typed values |
+| Tab names | 20 characters at most, Title Case. No date unless the tab is a period |
+
+**Status colors.** The cell fill is the alert tint. The text is the alert text on tint. From `alert` in [`tokens.json`](../tokens.json).
+
+| Meaning | Fill | Text | Default word |
+|---|---|---|---|
+| Go | `--alert-go-tint` #DAF8DF | `--alert-go-on-tint` #1E7A4D | On track, Done |
+| Warn | `--alert-warn-tint` #FFEFDD | `--alert-warn-on-tint` #926603 | At risk |
+| Stop | `--alert-stop-tint` #FDE9E6 | `--alert-stop-on-tint` #B0322B | Blocked |
+| Info | `--alert-info-tint` #E3F0FF | `--alert-info-on-tint` #2A5A8C | Not started |
+
+Use the default words when the request names no statuses.
+
+**Editing an existing sheet.**
+
+- Never reorder or rename columns.
+- Never overwrite a formula with a value.
+- Keep validations, conditional formats, frozen panes and column widths.
+- New columns go at the right. New rows go at the bottom or where the sort order puts them.
+- Match the surrounding cell format.
+- A sheet that already has its own colors and layout keeps them.
+
+The build is in section 11, Google Sheets and Excel.

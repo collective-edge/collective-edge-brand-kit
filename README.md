@@ -1,180 +1,148 @@
+<p><picture><source media="(prefers-color-scheme: dark)" srcset="for-humans/logos/png/Collective-Edge-horizontal-white-1200w.png"><img src="for-humans/logos/png/Collective-Edge-horizontal-black-1200w.png" width="340" alt="Collective Edge"></picture></p>
+
 # Collective Edge brand kit
 
-<p><img src="for-humans/previews/horizontal-black.png" width="400" alt="Collective Edge logo on white"> <img src="for-humans/previews/horizontal-white.png" width="400" alt="Collective Edge logo on black"></p>
+Collective Edge is the holding and operating company behind Apex Paramedics and Royal Ambulance. This repository is the public source for the brand: logos, color, type and document layouts, with the rules for using them.
 
-The public source for the Collective Edge brand, and the home of the type system its operating companies share. Logos, colors, type and the rules for using them. Pick your door.
+**[Read the brand guidelines](https://collective-edge.github.io/collective-edge-brand-kit/)** · the whole standard on one page.
 
-| | **[For humans →](for-humans/)** | **[For agents →](for-agents/)** |
+## Start here
+
+| | For people | For agents |
 |---|---|---|
-| Who | Designers, agencies, printers, teammates | AI agents, and developers generating branded output |
-| What you get | Logos in SVG and PNG, the fonts, the colors, the rules. No install, no account, no git | CDN URLs, logo roles, color tokens, the full standard, validators |
-| Start with | [Download the pack](https://github.com/collective-edge/collective-edge-brand-kit/archive/refs/heads/main.zip), then open `for-humans` | [`for-agents/README.md`](for-agents/README.md), then [`SKILL.md`](SKILL.md) |
+| Who | Designers, agencies, printers, staff | An agent or a script that makes branded documents |
+| Open | [`for-humans/`](for-humans/) | [`for-agents/README.md`](for-agents/README.md), then [`SKILL.md`](SKILL.md) |
+| Get | [Download the pack](https://github.com/collective-edge/collective-edge-brand-kit/archive/refs/heads/main.zip). Logos, fonts and a plain guide in one zip | Asset URLs, logo roles, color tokens and layout rules in inches, points and hex |
 
 ## Grab a logo
 
-The file named for its ink goes on the opposite background. Full set, sizes and rules are in [`for-humans/`](for-humans/).
+Pick by the ground the logo sits on. The file named **black** goes on light. The file named **white** goes on dark. Use the SVG wherever the software takes it. Sizes, clear space and the rules are in [`for-humans/`](for-humans/#sizes-and-spacing).
 
-| | For light backgrounds | For dark backgrounds |
+| Lockup | On a light ground | On a dark ground |
 |---|---|---|
 | Horizontal | [SVG](for-humans/logos/svg/Collective-Edge-horizontal-black.svg) · [PNG](for-humans/logos/png/Collective-Edge-horizontal-black-1200w.png) | [SVG](for-humans/logos/svg/Collective-Edge-horizontal-white.svg) · [PNG](for-humans/logos/png/Collective-Edge-horizontal-white-1200w.png) |
 | Block mark | [SVG](for-humans/logos/svg/Collective-Edge-mark-black.svg) · [PNG](for-humans/logos/png/Collective-Edge-mark-black-512w.png) | [SVG](for-humans/logos/svg/Collective-Edge-mark-white.svg) · [PNG](for-humans/logos/png/Collective-Edge-mark-white-512w.png) |
-| Block mark · Royal co-brand | [SVG](for-humans/logos/svg/Collective-Edge-mark-black-royal.svg) · [PNG](for-humans/logos/png/Collective-Edge-mark-black-royal-512w.png) | [SVG](for-humans/logos/svg/Collective-Edge-mark-white-royal.svg) · [PNG](for-humans/logos/png/Collective-Edge-mark-white-royal-512w.png) |
-| Block mark · Apex co-brand | [SVG](for-humans/logos/svg/Collective-Edge-mark-black-apex.svg) · [PNG](for-humans/logos/png/Collective-Edge-mark-black-apex-512w.png) | [SVG](for-humans/logos/svg/Collective-Edge-mark-white-apex.svg) · [PNG](for-humans/logos/png/Collective-Edge-mark-white-apex-512w.png) |
+| Block mark · Royal Ambulance wedge | [SVG](for-humans/logos/svg/Collective-Edge-mark-black-royal.svg) · [PNG](for-humans/logos/png/Collective-Edge-mark-black-royal-512w.png) | [SVG](for-humans/logos/svg/Collective-Edge-mark-white-royal.svg) · [PNG](for-humans/logos/png/Collective-Edge-mark-white-royal-512w.png) |
+| Block mark · Apex Paramedics wedge | [SVG](for-humans/logos/svg/Collective-Edge-mark-black-apex.svg) · [PNG](for-humans/logos/png/Collective-Edge-mark-black-apex-512w.png) | [SVG](for-humans/logos/svg/Collective-Edge-mark-white-apex.svg) · [PNG](for-humans/logos/png/Collective-Edge-mark-white-apex-512w.png) |
+
+The wedge takes a partner's color only on a surface that partner is on. Each combination is its own file. Never recolor one by hand.
+
+## The system at a glance
+
+### Color
+
+No hue, ever. Black over graphite. There is no accent color. Emphasis comes from weight, size and the step between tiers.
+
+| | Name | Hex | Use |
+|---|---|---|---|
+| <img src="for-humans/previews/swatches/000000.png" width="18" alt=""> | Black | `#000000` | The hero and the title, divider and closing slides |
+| <img src="for-humans/previews/swatches/23232A.png" width="18" alt=""> | Graphite | `#23232A` | The header band. The same value sets body text |
+| <img src="for-humans/previews/swatches/4E4F58.png" width="18" alt=""> | Iron | `#4E4F58` | A filled block between band and surface |
+| <img src="for-humans/previews/swatches/C8C8C8.png" width="18" alt=""> | Fog | `#C8C8C8` | The wedge when Collective Edge stands alone. The rule under a band. Never text |
+| <img src="for-humans/previews/swatches/E5E6EA.png" width="18" alt=""> | Paper | `#E5E6EA` | Table header fill. Never text |
+| <img src="for-humans/previews/swatches/F0F1F4.png" width="18" alt=""> | Bone | `#F0F1F4` | Callout fills. Never text |
+| <img src="for-humans/previews/swatches/FFFFFF.png" width="18" alt=""> | White | `#FFFFFF` | The page. The default surface |
+
+Text, rules and borders come from one neutral family, the same in all three brands. Ink is `#23232A`. Green means good and nothing else. A brand color is never a status color. Chart colors come from the house data set.
+
+Every value: [`tokens.json`](tokens.json). Every rule: [`reference/brand.md`](reference/brand.md). Charts: [`reference/data-color.md`](reference/data-color.md).
+
+### Type
+
+Montserrat at 400, 600, 700 and 800. No italic. The scale is the same in all three brands.
+
+| Role | Print | Screen |
+|---|---|---|
+| Headline | 30pt | 40px |
+| Section heading | 24pt | 32px |
+| Subhead | 18pt | 24px |
+| Lead | 15pt | 20px |
+| Body | 12pt | 16px |
+| Table text | 10.5pt | 14px |
+| Caption and footer | 9pt | 12px |
+
+Every rule: [`reference/type-system.md`](reference/type-system.md). Every value: [`snippets/type-tokens.json`](snippets/type-tokens.json).
+
+### Documents
+
+Six types. Most requests change a file that already exists: keep its layout, styles and wording, and change only what was asked.
+
+| Type | For | Page | Body | Template |
+|---|---|---|---|---|
+| Working document | The default. Anything people keep editing in Google Docs or Word: agendas, plans, status reports, notes | US Letter, portrait, 0.75in margins | 10.5pt | [`templates/working-doc.html`](templates/working-doc.html) |
+| Sheet | Trackers and lists in Google Sheets or Excel | One table per tab, from A1 | 10pt | None |
+| Deck | Anything on a screen | 13.333 x 7.5in. 0.67in top, 0.83in left and right, 0.42in bottom | 15pt | [`templates/deck.html`](templates/deck.html) |
+| One-pager | A designed single page for an outside reader, as a PDF | US Letter, portrait, 0.6in margins, exactly one page | 12pt | [`templates/one-pager.html`](templates/one-pager.html) |
+| Report | A designed document of three pages or more, as a PDF | US Letter, portrait, 0.75in margins | 12pt | [`templates/document.html`](templates/document.html) |
+| Memo | Only when asked for by name | US Letter, portrait, 0.75in margins | 12pt | [`templates/memo.html`](templates/memo.html) |
+
+A working document is plain: the logo at top left, a title, no band. The band opens a one-pager, a report and a memo, which are made for PDF and print. Content slides are white. The dark ground is for the title, divider and closing slides. “Powered by Collective Edge” appears once, small, on every Apex Paramedics and Royal Ambulance PDF, deck and image. A working document and a sheet never carry it.
+
+Every rule: [`reference/layout.md`](reference/layout.md). The same values as data: [`documents.json`](documents.json).
 
 ## The house
 
-Three brands, one type system, the same layout in every kit.
+Three brands, one standard. The kits differ in color, logo and brand facts.
 
-| Brand | Kit | People | Agents |
-|---|---|---|---|
-| **Collective Edge · the parent** | this kit | [for-humans](for-humans/) | [for-agents](for-agents/) |
-| Apex Paramedics | [`apex-brand-kit`](https://github.com/collective-edge/apex-brand-kit) | [for-humans](https://github.com/collective-edge/apex-brand-kit/tree/main/for-humans) | [for-agents](https://github.com/collective-edge/apex-brand-kit/tree/main/for-agents) |
-| Royal Ambulance | [`royal-brand-kit`](https://github.com/collective-edge/royal-brand-kit) | [for-humans](https://github.com/collective-edge/royal-brand-kit/tree/main/for-humans) | [for-agents](https://github.com/collective-edge/royal-brand-kit/tree/main/for-agents) |
-
-## About this kit
-
-Cloud-hosted brand assets plus the `collective-edge-brand-guidelines` skill. Written for agents and humans: an agent loads `SKILL.md` and applies the brand on its own, and a person reads the same file start to finish and gets the same standard. Collective Edge is the parent of Apex Paramedics and Royal Ambulance. It runs monochrome, black to white with no hue of its own, sets everything in Montserrat with the CE block mark and the `CE │ COLLECTIVE EDGE` wordmark, and reaches most surfaces through the **“Powered by Collective Edge”** co-brand, where the Edge wedge takes the partner’s color.
-
-The kit runs on **house type system v1.0**, shared byte for byte with `apex-brand-kit` and `royal-brand-kit`. Type is the layer that makes the three read as one house. Only palette and logo differ between them.
-
-The kit is the CDN-hosted reflection of the CE Design System, written for agents and humans alike. Source of truth for the brand palette: the “Collective Edge Design System” project (claude.ai/design). Source of truth for type: `reference/type-system.md` in this repo. Source of truth for data color: `reference/data-color.md` and `snippets/data-color.css` in this repo, which originate here and are shared unchanged with Apex and Royal.
-
-**Default to the restrained white document treatment.** White canvas, hairline dividers, sentence-case headings, sparing display type. Black is a header band, a title slide or a section divider, never the reading surface of a document. The dark grain-wave hero belongs to marketing and title surfaces.
-
-**CE is monochrome. The color belongs to the partner.** CE rarely stands alone. It appears beside an operating company or that partner’s customer, and those surfaces carry color, the partner’s. There is no CE accent hue. Full rules: [`reference/brand.md`](reference/brand.md) section 4.
+| Brand | Guidelines | Repository |
+|---|---|---|
+| Collective Edge · the parent | [collective-edge.github.io/collective-edge-brand-kit](https://collective-edge.github.io/collective-edge-brand-kit/) | [`collective-edge-brand-kit`](https://github.com/collective-edge/collective-edge-brand-kit) |
+| Apex Paramedics | [collective-edge.github.io/apex-brand-kit](https://collective-edge.github.io/apex-brand-kit/) | [`apex-brand-kit`](https://github.com/collective-edge/apex-brand-kit) |
+| Royal Ambulance | [collective-edge.github.io/royal-brand-kit](https://collective-edge.github.io/royal-brand-kit/) | [`royal-brand-kit`](https://github.com/collective-edge/royal-brand-kit) |
 
 ## What is in here
 
 ```
 collective-edge-brand-kit/
-├── for-humans/                    Start here if you are a person. Logos, fonts, colors, rules. No install
-├── for-agents/                    Start here if you are an agent. URLs, roles, tokens, rules, on one page
-├── AGENTS.md                      Entry point an agent finds on its own. Points at the two files below it
-├── SKILL.md                       The brand standard. Everything an agent or a person needs every time
-├── reference/
-│   ├── data-color.md         # Chart and reporting color. Series, magnitude, polarity, direction. Shared
-│   ├── type-system.md             The house type standard. Identical in all three kits
-│   ├── brand.md                   Color, logo, co-brand, voice
-│   └── layout.md                  Copy-pasteable layout patterns
-├── snippets/
-│   ├── data-color.css        # The data color layer. Shared
-│   ├── type-system.css            The type layer. Identical in all three kits
-│   ├── palette.css                The Collective Edge palette. The only file that differs by brand
-│   ├── type-tokens.json           Machine-readable type scale
-│   ├── header-band.html           Drop-in header band
-│   ├── hero-dark.css              The grain-wave hero and title surface
-│   └── brand-base.css             DEPRECATED, pre-v1.0. Now a shim over the two stylesheets above
-├── templates/
-│   ├── document.html              Printable multi-section report
-│   ├── internal-doc.html          Memo and one-pager
-│   └── deck.html                  Slides, title through closing
-├── Examples/
-│   └── ce-one-pager.html          A filled reference, not a starting point
-├── scripts/
-│   ├── build-handoff.py           Renders the PNG logos, previews and color chips in for-humans/
-│   ├── validate.py                Mechanical check of generated HTML against the type standard
-│   └── check-sync.py              Confirms the shared files match across the three kits
-├── tokens.json                    Machine-readable color for python-pptx, python-docx, matplotlib, reportlab
-├── brands.json                    Registry resolving every brand in the house to its CDN root
-├── NEW-BRAND.md                   How to stand up a kit for a new operating company
-├── CONTRIBUTING.md                How to change this kit without breaking live work
-└── assets/
-    ├── fonts/                     Montserrat variable, woff2 and TTF
-    ├── logos/                     Six block marks and two horizontal lockups, SVG
-    ├── png/                       Raster derivatives. Never the master
-    ├── imagery/                   CE_Background, the grain wave. CE_Coach
-    └── colors.json                DEPRECATED, pre-v1.0. Superseded by tokens.json
+├── index.html        The guidelines page. Built by guidelines/build.py
+├── guidelines/       The page builder, its stylesheet, the brand copy and the preview image
+├── for-humans/       Logos, fonts, color chips and a plain guide. For people
+├── for-agents/       The shortest correct path for an agent
+├── AGENTS.md         Agent entry point
+├── SKILL.md          The standard in brief
+├── reference/        The full standard: brand, layout, type, data color, controls
+├── brands.json       Every brand in the house: CDN roots, logo roles, the co-brand lockup
+├── documents.json    The document types as data
+├── tokens.json       This brand's colors as hex and RGB
+├── snippets/         Stylesheets, type tokens and the header band
+├── templates/        Working document, deck, one-pager, report and memo
+├── Examples/         Filled references
+├── assets/           Logo masters, fonts and the hero imagery. Live CDN paths
+├── scripts/          The checks and the builders
+├── CONTRIBUTING.md   How to change this repository
+├── NEW-BRAND.md      How to stand up a kit for a new brand
+└── TRADEMARKS.md     What others may do with the names and logos
 ```
 
-## CDN base URL
+## Use it
 
-All assets serve from [jsDelivr](https://www.jsdelivr.com/) off the `main` branch.
+### Load
+
+Every file is public on jsDelivr. No auth, no install.
 
 ```
 https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/
 ```
 
-Append the path inside this repo to fetch any file.
+Colors are in `tokens.json`. Type is in `snippets/type-tokens.json`. Layouts are in `documents.json` and `reference/layout.md`. Logos resolve by role in `brands.json`. The stylesheet link tags for an HTML page are in [`for-agents/README.md`](for-agents/README.md).
 
-## Quick start, any HTML
-
-Load the type layer first, the palette second. That order matters.
-
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/palette.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/data-color.css">
-```
-
-For a PDF pipeline (weasyprint, wkhtmltopdf, Chrome print) inline the `@font-face` so the font embeds in the file. The snippet is in [`SKILL.md`](SKILL.md).
-
-Style through the `.bk-*` classes and the semantic `--fg-*`, `--bg-*` and `--border-*` variables. Reach for a raw `--ce-*` value only where the brand color is the point.
-
-## Install the skill
-
-Clone the kit into the skills directory your agent reads. The directory name differs by tool, so substitute your own.
+### Verify
 
 ```bash
-git clone https://github.com/collective-edge/collective-edge-brand-kit ~/skills/collective-edge-brand-guidelines
-```
-
-The agent picks up `SKILL.md` and applies the brand from then on. Working without one, open `SKILL.md` and follow it in order. To update:
-
-```bash
-cd ~/skills/collective-edge-brand-guidelines && git pull
-```
-
-## Verify before shipping
-
-```bash
+python3 scripts/check-sync.py
 python3 scripts/validate.py path/to/output.html
+python3 scripts/validate-palette.py --series
+python3 scripts/ui-audit.py path/to/output.html
 ```
 
-It checks no italic, the weight ladder, em tracking, body measure, text wrapping, codes in the mono face and micro-typography, and exits non-zero on a violation. `scripts/check-sync.py` confirms the shared files still match across the three kits.
+`check-sync.py` proves the shared files match the other two kits. `validate.py` checks type rules 1, 2, 5, 9, 10, 13 and 14 and check L1, retired logo artwork. `validate-palette.py` checks the chart colors. `ui-audit.py` measures a rendered page. No script reads a page the way a person does. Open the file and look.
 
-## Color reference
+### Versions
 
-Collective Edge has no color of its own. A single black-to-white ramp carries its documents, decks, chrome and body copy, and that restraint is the brand.
+`main` is live. The CDN serves it and the agent reads it on every request, so a change lands whole. Production material pins a tag in place of `@main`. [`CONTRIBUTING.md`](CONTRIBUTING.md) covers changes.
 
-> **CE stays monochrome. The color belongs to the partner.**
+### License and trademarks
 
-Color reaches a CE surface in four ways, none of them a CE hue. The Edge wedge in the mark, `#C8C8C8` when CE stands alone and the partner’s color on a co-brand surface. A partner’s palette leading a partner-led surface. A partner’s accent as the one functional hue on a CE-led product. Chart series chosen for legibility. The full machine-readable set is `tokens.json`.
+The names, logos and brand colors in this repository belong to Collective Edge. [`TRADEMARKS.md`](TRADEMARKS.md) says what others may do with them. Permission is by request.
 
-| Token | Hex | Use | On `#FFFFFF` |
-|---|---|---|---|
-| `--ce-white` | `#FFFFFF` | Document canvas, the default surface | |
-| `--ce-black` | `#000000` | Header bands, title slides, section dividers | |
-| `--ce-ink` | `#111111` | Body text on light | 18.88:1 |
-| `--ce-slate` | `#4A4A4A` | Secondary text | 8.86:1 |
-| `--ce-steel` | `#6E6E6E` | Tertiary text, metadata. The floor for text on white | 5.10:1 |
-| `--ce-mute` | `#9A9A9A` | Dimmed non-text marks. Never text, at any size | 2.81:1 |
-| `--ce-fog` | `#C8C8C8` | The Edge wedge when CE stands alone | 1.67:1 |
-| `--ce-mist` | `#E2E2E2` | Hairlines, dividers | 1.30:1 |
-
-## Co-branding
-
-CE rarely stands alone. Where its mark shares a surface with another brand, **“Powered by Collective Edge”** is on that surface too. Pick the mode by asking whose name is on the door.
-
-| | Mode A, partner led. The default | Mode B, CE led, partner accented |
-|---|---|---|
-| Whose surface | The partner’s own product or material | A CE product delivered to a partner or their customer |
-| Palette | The partner’s palette runs everything | CE gray ramp, plus the partner’s accent as the one hue |
-| What CE contributes | Structure and finish, no hue. Montserrat, hairlines, whitespace, tabular figures, the type scale | The whole system. Partner color marks state: active nav, live data, active filter. Not a chart series |
-| CE’s presence | The “Powered by” lockup under a hairline, plus the footer caption | The lockup leads the chain, `CE │ Apex Paramedics │ {Customer}` |
-
-**The wedge is the co-brand mechanism.** CE has no color of its own, so when CE co-brands it takes the partner’s into its own mark. The wedge is the one part that carries it: Royal `#572E72`, Apex `#FDB61C`. The block stays black or white and the letters stay the opposite. Every combination ships as a file, so never hand-recolor.
-
-```
-assets/logos/mark-black{,-royal,-apex}.svg   majority black, use on LIGHT
-assets/logos/mark-white{,-royal,-apex}.svg   majority white, use on DARK
-```
-
-Constants in both modes. Two marks, never merged, separated by the CE bar rendered as a 1px rule. The file matches the background on both sides, never a CSS recolor. The CE lockup stays at or above 120px wide. Partner hexes come from the partner’s own kit, [apex-brand-kit](https://github.com/collective-edge/apex-brand-kit) and [royal-brand-kit](https://github.com/collective-edge/royal-brand-kit), and where a bright brand color fails 3:1 as text you use that kit’s text-safe step. Apex gold `#FDB61C` measures 1.77:1 on white; its text-safe step `#B77808` measures 3.68:1 and holds only at 700 or at large sizes. Copy-pasteable lockups: [`reference/layout.md`](reference/layout.md) section 2.
-
-## Versioning
-
-`@main` serves the latest. Pin `@v1.1` in production HTML.
-
-## License
-
-Brand assets are property of Collective Edge. Use only for Collective Edge and partner-related materials.
+Montserrat is licensed under the SIL Open Font License, Version 1.1. The license text is in [`assets/fonts/OFL.txt`](assets/fonts/OFL.txt) and [`for-humans/fonts/OFL.txt`](for-humans/fonts/OFL.txt).

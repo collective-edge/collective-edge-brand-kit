@@ -3,20 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Collective Edge · Document template</title>
+<title>Collective Edge · Report template</title>
 
-<!-- Load order. type-system.css is identical in every kit and is served from the
-     Collective Edge kit. palette.css is the only stylesheet that differs by brand. -->
+<!-- REPORT. The spec is reference/layout.md section 6 and documents.json types.report.
+     A designed document for an outside reader, delivered as a PDF. The plain
+     document people keep editing is templates/working-doc.html.
+     US Letter, 0.75in margins, text block 7.0in, body measure 70 characters. Flows over pages.
+     Parts in order: band on page 1, title block, meta row, sections, lockup, footer on every page.
+
+     Load order. type-system.css and cobrand.css are identical in every kit and
+     are served from the Collective Edge kit. palette.css is the only stylesheet
+     that differs by brand. -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/palette.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/cobrand.css">
 
 <style>
 /* ---------- FONT ------------------------------------------------
-   The face and the rule that names it. Weight range is the house
-   ladder. type-system.css binds Montserrat through --font-sans, and
-   a print engine that resolves no network stylesheet leaves that
-   token undefined, so the fallback below is what names the face. */
+   type-system.css binds Montserrat through --font-sans. A print
+   engine that resolves no network stylesheet leaves that token
+   undefined, so this block names the face. */
 
 @font-face {
   font-family: "Montserrat";
@@ -29,288 +35,330 @@
 
 html, body { font-family: var(--font-sans, "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif); }
 
-/* ---------- PAGE ----------------------------------------------- */
+/* ---------- BRAND VALUES ----------------------------------------
+   With the palette link and the logo URLs, these are the only lines
+   that differ between the three kits. reference/layout.md section 2
+   lists them. */
 
-@page { size: letter; margin: 0.6in; }
+:root {
+  --doc-logo-band: 2.125in;
+  --doc-th-fill: var(--bg-surface-2);
+  --doc-th-text: var(--fg-1);
+  --doc-th-rule: var(--fg-accent);
+  --doc-th-tracking: 0em;
+}
+
+/* ---------- PAGE ------------------------------------------------
+   US Letter, portrait. 1px is 1/96in on screen and in print, so
+   every value below prints at its stated size. 4px = 3pt. */
+
+@page { size: letter; margin: 0; }
+
+:root {
+  --page-margin: 0.75in;
+  --fs-h1: 40px;
+  --fs-h2: 32px;
+}
 
 *, *::before, *::after { box-sizing: border-box; }
 
 html, body { background: var(--bg-surface); margin: 0; padding: 0; }
 
-.doc {
-  max-width: 8.5in;
+.sheet {
+  width: 8.5in;
+  min-height: 11in;
   margin: 32px auto;
   background: var(--bg-canvas);
-  border: 1px solid var(--border-1);
+  box-shadow: 0 0 0 1px var(--border-1);
+  display: flex;
+  flex-direction: column;
 }
 
-/* ---------- HEADER BAND ---------------------------------------- */
+/* ---------- BAND ------------------------------------------------
+   Edge to edge, 1.11in tall. The bottom 0.03in is the band rule. */
 
 .doc-band {
+  height: 107px;
+  flex: none;
   background: var(--bg-band);
-  padding: 32px 48px;
+  border-bottom: 3px solid var(--border-band-rule);
+  padding: 0 var(--page-margin);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 48px;
 }
-.doc-band-logo { width: 204px; height: auto; display: block; flex: none; }
+.doc-band-title { margin: 0; max-width: none; white-space: nowrap; }
+.doc-band-logo { width: var(--doc-logo-band); height: auto; display: block; flex: none; }
 
-/* ---------- SUB-BANNER ----------------------------------------- */
+/* ---------- BODY ------------------------------------------------ */
 
-.doc-subbanner {
-  background: var(--bg-surface);
+.doc-body { flex: 1; padding: 24px var(--page-margin) 0; }
+
+.doc-headline { margin: 0; max-width: none; }
+.doc-lead { margin: 16px 0 0; max-width: 640px; }
+
+.doc-meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 24px;
+  margin: 16px 0 0;
+  padding: 8px 0;
+  border-top: 1px solid var(--border-1);
   border-bottom: 1px solid var(--border-1);
-  padding: 12px 48px;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 24px;
 }
+.doc-meta p { margin: 0; }
+.doc-meta-value { font-weight: var(--weight-semibold, 600); color: var(--fg-1); max-width: 54ch; text-wrap: pretty; }
 
-/* ---------- PAGE BODY ------------------------------------------ */
-
-.doc-page { padding: 48px; }
-.doc-title { margin: 0 0 48px; }
-.doc-section { margin-top: 48px; }
-
-/* Rule 11. 48px above the head on .doc-section, 8px of padding plus 8px
-   of margin below it. 48 = 3 x 16. */
-.doc-section-head {
-  padding: 0 0 8px;
+.doc-to { margin: 0 0 24px; border-top: 1px solid var(--border-1); }
+.doc-to-row {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  padding: 8px 0;
   border-bottom: 1px solid var(--border-1);
-  margin: 0 0 8px;
 }
-.doc-section-body > * { margin-top: 0; margin-bottom: 0; }
-.doc-section-body > * + * { margin-top: 16px; }
+.doc-to-cell { margin: 0; }
+.doc-to-label { color: var(--fg-3); }
+
+.doc-h2 { margin: 48px 0 16px; }
+.doc-h3 { margin: 24px 0 8px; color: var(--fg-accent); text-wrap: balance; }
+.doc-p { margin: 0; }
+.doc-p + .doc-p { margin-top: 16px; }
 
 /* ---------- TABLE -----------------------------------------------
-   .bk-table th ships at --fs-caption, one step under these cells.
-   A caps header never sits below the body it labels, so it is
-   sized to --fs-body-sm here. */
+   Header fill by brand. Hairline under every row. No frame, no
+   vertical rule, no zebra. Text left, numbers right. */
 
-.doc-table { width: 100%; }
-.doc-table th { padding: 8px 16px 8px 0; border-bottom: 1px solid var(--border-2); color: var(--fg-2); font-size: var(--fs-body-sm); }
+.doc-table-wrap { margin: 8px 0 0; }
+.doc-table-gap { margin: 16px 0 0; }
+.doc-caption { margin: 0 0 8px; max-width: none; }
+.doc-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums lining-nums; }
+.doc-table th,
 .doc-table td {
-  padding: 8px 16px 8px 0;
-  border-bottom: 1px solid var(--border-1);
   font-size: var(--fs-body-sm);
   line-height: var(--lh-body-sm);
   letter-spacing: var(--tr-body-sm);
-  color: var(--fg-1);
+  text-align: left;
+  vertical-align: top;
 }
-.doc-table .num { text-align: right; padding-right: 0; padding-left: 16px; }
-.doc-table .sec { color: var(--fg-2); }
+.doc-table th {
+  font-weight: var(--weight-semibold, 600);
+  letter-spacing: calc(var(--tr-body-sm) + var(--doc-th-tracking));
+  padding: 8px 12px;
+  background: var(--doc-th-fill);
+  color: var(--doc-th-text);
+  border-bottom: 2px solid var(--doc-th-rule);
+}
+.doc-table td { font-weight: var(--weight-regular, 400); padding: 8px 12px; color: var(--fg-1); border-bottom: 1px solid var(--border-1); }
+.doc-table .num { text-align: right; }
+.doc-table .total td { font-weight: var(--weight-bold, 700); border-top: 1px solid var(--border-2); }
 
-/* ---------- STAT CALLOUT ---------------------------------------- */
+/* Status. An 8px square and the word, in the alert text color.
+   The word carries the meaning. */
+.doc-status { display: inline-flex; align-items: center; gap: 8px; font-weight: var(--weight-semibold, 600); white-space: nowrap; }
+.doc-status::before { content: ""; width: 8px; height: 8px; background: currentColor; flex: none; }
+.doc-status.is-go   { color: var(--alert-go-text); }
+.doc-status.is-warn { color: var(--alert-warn-text); }
+.doc-status.is-stop { color: var(--alert-stop-text); }
+.doc-status.is-info { color: var(--alert-info-text); }
 
-.doc-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+/* ---------- CALLOUT --------------------------------------------- */
 
-/* ---------- FOOTER ---------------------------------------------- */
+.doc-callout {
+  margin: 16px 0 0;
+  padding: 16px 20px;
+  background: var(--bg-surface);
+  border-top: 2px solid var(--fg-accent);
+}
+.doc-callout p { margin: 0; }
+
+/* ---------- ACTIONS --------------------------------------------- */
+
+.doc-actions { list-style: none; margin: 0; padding: 0; }
+.doc-actions-item {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  margin: 0;
+  padding: 8px 0;
+  border-top: 1px solid var(--border-1);
+}
+.doc-actions-item:last-child { border-bottom: 1px solid var(--border-1); }
+.doc-actions-n { font-weight: var(--weight-semibold, 600); color: var(--fg-accent); font-variant-numeric: tabular-nums lining-nums; }
+
+/* ---------- SIGN-OFF -------------------------------------------- */
+
+.doc-sign { margin: 32px 0 0; }
+.doc-sign p { margin: 0; }
+.doc-sign-name { font-weight: var(--weight-semibold, 600); max-width: 54ch; text-wrap: pretty; }
+.doc-sign-contact { color: var(--fg-3); max-width: 54ch; text-wrap: pretty; }
+
+/* ---------- FOOTER ----------------------------------------------
+   Inside the margins. The last line sits on the bottom margin. */
 
 .doc-footer {
-  border-top: 1px solid var(--border-1);
-  margin-top: 48px;
+  flex: none;
+  margin: 16px var(--page-margin) var(--page-margin);
   padding: 12px 0 0;
+  border-top: 1px solid var(--border-1);
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: flex-end;
   gap: 24px;
 }
+.doc-footer p { margin: 0; }
 
-/* ---------- CO-BRAND ---------------------------------------------
-   The mirror of "Powered by Collective Edge". This document already
-   carries the CE mark in the band, so the slot beneath the hairline
-   holds the operating company instead. Same class, same 204px, same
-   rule: the two marks ride beside each other, never inside each
-   other, and the hairline keeps them distinct. cobrand.css owns the
-   geometry. Swap the Apex lockup for whichever brand the document is
-   about, resolved from brands.json, never by guessing a filename. */
+/* ---------- LOCKUP ----------------------------------------------
+   Powered by Collective Edge. Once per document, operating
+   companies only. Small and quiet: the words at caption size, then
+   the Collective Edge logo at its 120px minimum, on one line.
+   cobrand.css draws the 204px site lockup. These rules set the
+   document lockup over it. */
 
-.doc-cobrand { margin-bottom: 0; }
+.ce-powered { display: flex; align-items: center; gap: 8px; }
+.ce-powered span { font-weight: var(--weight-regular, 400); letter-spacing: var(--tr-caption, 0.01em); text-transform: none; }
+.ce-powered img { width: 120px; }
+.doc-footer .ce-powered { margin: 0; padding: 0; border: 0; }
+.doc-lockup { margin: 24px 0 0; padding: 12px 0 0; }
 
-/* ---------- NARROW VIEWPORT -------------------------------------
-   The band and the stat grid stack rather than crush the measure. */
+/* ---------- NARROW SCREEN ---------------------------------------
+   Under 880px the sheet is fluid. Print never takes this block. */
 
-@media screen and (max-width: 720px) {
-  .doc { margin: 0; border: none; }
-  .doc-band { flex-direction: column; align-items: flex-start; gap: 24px; padding: 24px; }
-  .doc-band-logo { width: 168px; }
-  .doc-subbanner { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 24px; }
-  .doc-page { padding: 24px; }
-  .doc-stats { grid-template-columns: 1fr; }
-  .doc-footer { flex-direction: column; align-items: flex-start; gap: 8px; }
+@media screen and (max-width: 879px) {
+  :root {
+    --page-margin: 24px;
+    --fs-h1: clamp(28px, 3.2vw, 40px);
+    --fs-h2: clamp(24px, 2.4vw, 32px);
+  }
+  .sheet { width: auto; min-height: 0; margin: 0; box-shadow: none; }
+  .doc-band { height: auto; flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px var(--page-margin); }
+  .doc-band-title { white-space: normal; }
+  .doc-band-logo { max-width: 100%; }
+  .doc-meta { grid-template-columns: 1fr; row-gap: 8px; }
+  .doc-table-wrap { overflow-x: auto; }
+  .doc-footer { flex-direction: column; align-items: flex-start; gap: 16px; }
 }
 
-/* ---------- PRINT ------------------------------------------------
-   Point sizes for paper, carried over from the shared type layer so
-   the file prints correctly on its own. */
+/* ---------- PRINT -----------------------------------------------
+   A flowing document. The page carries the top and bottom margins,
+   .doc-body carries the side margins, so the band reaches both
+   edges on page 1. The footer is a margin box on every page:
+   signature left, page number right, 9pt, the last line on the
+   bottom margin. */
+
+@page {
+  size: letter;
+  margin: 0.75in 0 1.3in;
+  @bottom-left {
+    content: "Collective Edge · Operations report";
+    font: 400 9pt/1.45 "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    letter-spacing: 0.01em;
+    color: #6D6D77;
+    vertical-align: top;
+    margin: 0.24in 0 0 0.75in;
+    padding-top: 9pt;
+    border-top: 0.75pt solid #E4E4E9;
+  }
+  @bottom-right {
+    content: "Page " counter(page) " of " counter(pages);
+    font: 400 9pt/1.45 "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    letter-spacing: 0.01em;
+    color: #6D6D77;
+    vertical-align: top;
+    margin: 0.24in 0.75in 0 0;
+    padding-top: 9pt;
+    border-top: 0.75pt solid #E4E4E9;
+  }
+}
+@page :first { margin-top: 0; }
 
 @media print {
-  /* Without this the dark band prints white and its reversed type disappears. */
   *, *::before, *::after { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-
-  html, body { background: #FFFFFF; font-size: 12pt; line-height: var(--lh-body); }
-  .doc { max-width: none; margin: 0; border: none; }
-  .doc-band { padding: 24px 32px; }
-  .doc-subbanner { padding: 12px 32px; }
-  .doc-page { padding: 32px 32px 24px; }
-  .doc-band-logo { width: 168px; }
-
-  .bk-display-xl { font-size: 72pt; }
-  .bk-display-lg { font-size: 54pt; }
-  .bk-display-md { font-size: 42pt; }
-  .bk-h1         { font-size: 30pt; }
-  .bk-h2         { font-size: 24pt; }
-  .bk-h3         { font-size: 18pt; }
-  .bk-h4         { font-size: 15pt; }
-  .bk-body-lg    { font-size: 15pt; }
-  .bk-body       { font-size: 12pt; }
-  .bk-body-sm    { font-size: 10.5pt; }
-  .bk-caption,
-  .bk-eyebrow    { font-size: 9pt; }
-  .bk-stat       { font-size: 42pt; }
-  .doc-table th,
-  .doc-table td  { font-size: 10.5pt; }
-
-  p, li, dd, blockquote { orphans: 3; widows: 3; }
-  h1, h2, h3, h4, h5, h6 { break-after: avoid; page-break-after: avoid; }
-  table, figure, .bk-keep { break-inside: avoid; page-break-inside: avoid; }
-  .doc-section-head { break-inside: avoid; page-break-inside: avoid; break-after: avoid; page-break-after: avoid; }
-  .doc-stats, .doc-footer { break-inside: avoid; page-break-inside: avoid; }
-  /* The lockup is a mark, not decoration. It does not split. */
-  .ce-powered { break-inside: avoid; page-break-inside: avoid; }
-  .ce-powered span { font-size: 9pt; }
+  html, body { background: #FFFFFF; }
+  .sheet { display: block; width: auto; min-height: 0; margin: 0; box-shadow: none; }
+  .doc-footer { display: none; }
+  p, li { orphans: 3; widows: 3; }
+  h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+  table, .doc-table-wrap, .doc-callout, .doc-actions, .ce-powered { break-inside: avoid; page-break-inside: avoid; }
+  /* The lockup never sits alone on a page. */
+  .doc-lockup { break-before: avoid; page-break-before: avoid; }
 }
 </style>
 </head>
 <body>
+<article class="sheet">
 
-<article class="doc">
-
-  <!-- HEADER BAND -->
+  <!-- BAND · 8.5in by 1.11in · logo role horizontal-on-dark -->
   <header class="doc-band bk-on-dark">
-    <div>
-      <p class="bk-eyebrow" style="margin:0 0 8px;">OPERATIONS · CONFIDENTIAL</p>
-      <p class="bk-display-md bk-caps" style="margin:0;">TRANSPORT OPERATIONS</p>
-    </div>
-    <img class="doc-band-logo"
-         src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg"
-         alt="Collective Edge">
+    <p class="bk-h2 bk-caps doc-band-title">Operations report</p>
+    <img class="doc-band-logo" src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg" alt="Collective Edge">
   </header>
 
-  <!-- SUB-BANNER -->
-  <div class="doc-subbanner">
-    <p class="bk-eyebrow" style="margin:0;">QUARTERLY OPERATING REPORT</p>
-    <p class="bk-caption" style="margin:0;">Prepared for partner leadership</p>
-  </div>
+  <main class="doc-body">
 
-  <main class="doc-page">
+    <!-- TITLE BLOCK -->
+    <h1 class="bk-h1 doc-headline">One handoff form is ready for both companies.</h1>
+    <p class="bk-body-lg doc-lead">Apex Paramedics and Royal Ambulance tested a single one-page handoff form for six weeks. Handoff time fell at both. The form goes live on 1 December.</p>
 
-    <!-- TITLE -->
-    <div class="doc-title">
-      <p class="bk-eyebrow" style="margin:0 0 4px;">NETWORK PERFORMANCE</p>
-      <h1 class="bk-h1" style="margin:0 0 16px;">Interfacility volume moved into the discharge window.</h1>
-      <p class="bk-body" style="margin:0;">Three campuses now generate two thirds of the network’s discharge runs, and they generate them in a five-hour band. This report covers what shifted, what it cost in vehicle time, and the dispatch change that follows.</p>
+    <!-- META ROW -->
+    <div class="doc-meta">
+      <div><p class="bk-caption">For</p><p class="bk-body-sm doc-meta-value">Operations leads</p></div>
+      <div><p class="bk-caption">From</p><p class="bk-body-sm doc-meta-value">Collective Edge Operations</p></div>
+      <div><p class="bk-caption">Period</p><p class="bk-body-sm doc-meta-value">1 Oct to 11 Nov 2026</p></div>
     </div>
 
-    <!-- PROSE SECTION -->
-    <section class="doc-section">
-      <header class="doc-section-head">
-        <p class="bk-eyebrow" style="margin:0 0 4px;">WHERE THE TIME GOES</p>
-        <h2 class="bk-h2" style="margin:0;">What the quarter shows.</h2>
-      </header>
-      <div class="doc-section-body">
-        <p class="bk-body"><span class="bk-emphasis">Volume moved late.</span> Sixty-one percent of runs now originate between 11:00 and 16:00. Crews staged at the three highest-volume campuses absorbed the shift without an added vehicle.</p>
-        <p class="bk-body"><span class="bk-emphasis">Wait time is the constraint.</span> Median call to wheels held at 18&nbsp;min while bed-hold minutes at receiving facilities rose. Fleet size is not the limit.</p>
-        <p class="bk-body"><span class="bk-emphasis">Payer approval drives downtime.</span> A run held for approval averages 34&nbsp;min of idle vehicle time. The pre-approval queue closes that gap when the referring case manager files before the discharge order posts.</p>
-      </div>
-    </section>
+    <!-- SECTION -->
+    <h2 class="bk-h2 doc-h2">Summary.</h2>
+    <p class="bk-body doc-p">Crews at four stations used the one-page form in place of the three versions in use today. Each crew completed the form at the unit before leaving the station, and each supervisor signed once per shift.</p>
+    <p class="bk-body doc-p">Median handoff time fell by five minutes at Apex Paramedics and by four minutes at Royal Ambulance. No station reported a missed maintenance item during the test.</p>
 
-    <!-- TABLE SECTION -->
-    <section class="doc-section">
-      <header class="doc-section-head">
-        <p class="bk-eyebrow" style="margin:0 0 4px;">ORIGIN VOLUME</p>
-        <h2 class="bk-h2" style="margin:0;">Runs by origin facility.</h2>
-      </header>
-      <div class="doc-section-body">
-        <table class="bk-table doc-table">
-          <thead>
-            <tr>
-              <th>Origin facility</th>
-              <th>Contract</th>
-              <th>Service line</th>
-              <th class="num">Runs</th>
-              <th class="num">Median wait</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Mercy General</td>
-              <td><span class="bk-code">CE-IFT-0114</span></td>
-              <td class="sec">BLS discharge</td>
-              <td class="num">1,284</td>
-              <td class="num">22&nbsp;min</td>
-            </tr>
-            <tr>
-              <td>St. Vincent</td>
-              <td><span class="bk-code">CE-IFT-0227</span></td>
-              <td class="sec">Critical care</td>
-              <td class="num">412</td>
-              <td class="num">31&nbsp;min</td>
-            </tr>
-            <tr>
-              <td>Bayview Rehabilitation</td>
-              <td><span class="bk-code">CE-IFT-0338</span></td>
-              <td class="sec">Wheelchair</td>
-              <td class="num">968</td>
-              <td class="num">14&nbsp;min</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- STAT CALLOUT -->
-    <section class="doc-section">
-      <header class="doc-section-head">
-        <p class="bk-eyebrow" style="margin:0 0 4px;">QUARTER IN TOTAL</p>
-        <h2 class="bk-h2" style="margin:0;">Where the network landed.</h2>
-      </header>
-      <div class="doc-section-body">
-        <div class="doc-stats">
-          <div>
-            <p class="bk-eyebrow" style="margin:0 0 4px;">QUARTER RUNS</p>
-            <p class="bk-stat" style="margin:0;">2,664</p>
-          </div>
-          <div>
-            <p class="bk-eyebrow" style="margin:0 0 4px;">MEDIAN WAIT · MINUTES</p>
-            <p class="bk-stat" style="margin:0;">18</p>
-          </div>
-          <div>
-            <p class="bk-eyebrow" style="margin:0 0 4px;">ON-TIME ARRIVAL</p>
-            <p class="bk-stat" style="margin:0;">94%</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="doc-footer">
-      <span class="bk-caption">Collective Edge · Interfacility transport operations</span>
-      <span class="bk-caption bk-emphasis"><span class="bk-code">Rev.&nbsp;08.26</span></span>
-    </footer>
-
-    <!-- CO-BRAND, PARTNER SIDE · light ground, so the --border-1 hairline
-         and the partner's own on-light file. Label is --fg-3 #6E6E6E on
-         --bg-canvas #FFFFFF, 5.10:1. -->
-    <div class="ce-powered ce-powered-light doc-cobrand">
-      <span>Operating company</span>
-      <img src="https://cdn.jsdelivr.net/gh/collective-edge/apex-brand-kit@main/assets/logos/horizontal-color.svg"
-           alt="Apex Paramedics" width="204" height="86">
+    <!-- SECTION -->
+    <h2 class="bk-h2 doc-h2">Results.</h2>
+    <p class="bk-body doc-p">The table shows median handoff time in minutes for each station, before the test and during it.</p>
+    <div class="doc-table-wrap doc-table-gap">
+      <p class="bk-caption doc-caption">Median handoff, minutes. 1 October to 11 November 2026</p>
+      <table class="doc-table">
+        <thead>
+          <tr><th>Station</th><th>Company</th><th class="num">Three forms</th><th class="num">One form</th><th class="num">Change</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Station 2</td><td>Apex Paramedics</td><td class="num">14</td><td class="num">9</td><td class="num">−5</td></tr>
+          <tr><td>Station 4</td><td>Apex Paramedics</td><td class="num">15</td><td class="num">9</td><td class="num">−6</td></tr>
+          <tr><td>Hayward</td><td>Royal Ambulance</td><td class="num">12</td><td class="num">8</td><td class="num">−4</td></tr>
+          <tr><td>San Leandro</td><td>Royal Ambulance</td><td class="num">12</td><td class="num">9</td><td class="num">−3</td></tr>
+        </tbody>
+      </table>
     </div>
+    <h3 class="bk-h3 doc-h3">What crews reported.</h3>
+    <p class="bk-body doc-p">Crews asked for one change: a larger notes field. The published form carries it. Supervisors reported that one signature per shift removed a queue at shift change.</p>
+
+    <!-- SECTION -->
+    <h2 class="bk-h2 doc-h2">Risks.</h2>
+    <p class="bk-body doc-p">The form depends on a tablet template. Eleven units do not have it loaded. Systems loads the template on every unit by 26 November.</p>
+    <aside class="doc-callout"><p class="bk-body">A unit without a loaded tablet uses the printed form. The supervisor scans it at the end of the shift.</p></aside>
+
+    <!-- SECTION -->
+    <h2 class="bk-h2 doc-h2">Next steps.</h2>
+    <ol class="doc-actions">
+      <li class="bk-body doc-actions-item"><span class="doc-actions-n">1</span><span>Station leads brief every supervisor by 24 November.</span></li>
+      <li class="bk-body doc-actions-item"><span class="doc-actions-n">2</span><span>Systems loads the tablet template on every unit by 26 November.</span></li>
+      <li class="bk-body doc-actions-item"><span class="doc-actions-n">3</span><span>All crews hand off on the new form from the first shift on 1 December.</span></li>
+      <li class="bk-body doc-actions-item"><span class="doc-actions-n">4</span><span>Operations reviews handoff time again on 15 January 2027.</span></li>
+    </ol>
+
+    <!-- SECTION -->
+    <h2 class="bk-h2 doc-h2">Method.</h2>
+    <p class="bk-body doc-p">Handoff time is the interval between the outgoing crew opening the form and the supervisor signing it. Both times come from the tablet log. A handoff on the printed form is timed by the supervisor and entered at the end of the shift.</p>
+    <p class="bk-body doc-p">The four stations were chosen to cover both companies, day and night shifts, and the two busiest posts. Each station ran the three forms for two weeks, then the one form for six.</p>
+    <h3 class="bk-h3 doc-h3">Limits.</h3>
+    <p class="bk-body doc-p">Six weeks is one schedule rotation. The January review covers a second rotation and the holiday period.</p>
 
   </main>
+
+  <!-- FOOTER · screen only. In print the page margin boxes carry it on every page. -->
+  <footer class="doc-footer">
+    <p class="bk-caption">Collective Edge · Operations report</p>
+    <p class="bk-caption">Page 1 of 2</p>
+  </footer>
 
 </article>
 
