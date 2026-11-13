@@ -101,8 +101,8 @@
      hero, graphite is the band, the mid tone is a filled block,
      and two tints step the page: --bg-surface measures 1.13:1
      against white and --bg-surface-2 1.25:1, enough to read as
-     a step. A table header sits on --bg-surface-2 over a 2px
-     --fg-accent rule. --fg-3 measures 4.10:1 on --bg-surface-2;
+     a step. A table header sits on --bg-surface-2, with a 2px
+     --fg-accent rule under the header row. --fg-3 measures 4.10:1 on --bg-surface-2;
      set --fg-2 there. --fg-on-dark-3 measures 3.28:1 on --bg-mid;
      set --fg-on-dark-2 there, 6.01:1 */
   --bg-canvas:    #FFFFFF;

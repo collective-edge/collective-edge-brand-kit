@@ -1,21 +1,19 @@
-<!-- Collective Edge header band · type system v1.0
-     Drop into the top of any one-pager, report, deck or letterhead. Edit the eyebrow and the title.
-     Move the two link tags into <head> if the host document has one. Load order matters:
-     type-system.css is identical in every kit, palette.css is the only file that differs.
-     .bk-on-dark on the container drops display from 800 to 700 and adds 0.005em to every step
-     under it. Reversed type blooms optically, so the band sits one weight lighter than its
-     light-surface equivalent. Never restate the weight or the tracking inline.
-     Logo resolved by role: horizontal-on-dark. Never carry a filename across brands. -->
+<!-- Collective Edge header band · reference/layout.md section 3.1
+     Opens page 1 of every memo, one-pager, report and generic document.
+     8.5in wide, 1.11in tall. The bottom 0.03in is the band rule, --border-band-rule.
+     Title: .bk-h2 .bk-caps, one line, four words and 18 characters at most.
+     Logo: role horizontal-on-dark, 2.125in wide, once.
+     Left and right padding is the page margin: 0.75in, or 0.6in on a one-pager.
+     Move the two link tags into <head> if the host document has one. type-system.css is
+     identical in every kit. palette.css is the only stylesheet that differs by brand.
+     .bk-on-dark sets the title at 600 and adds 0.005em of tracking. Never restate either inline. -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/palette.css">
 
 <header class="bk-on-dark"
-        style="background:var(--bg-band); padding:32px 48px; display:flex; align-items:center; justify-content:space-between; gap:48px;">
-  <div>
-    <p class="bk-eyebrow" style="margin:0 0 8px;">INTERNAL · CONFIDENTIAL</p>
-    <p class="bk-display-md bk-caps" style="margin:0;">HOW WE OPERATE TOGETHER</p>
-  </div>
+        style="height:107px; background:var(--bg-band); border-bottom:3px solid var(--border-band-rule); padding:0 0.75in; display:flex; align-items:center; justify-content:space-between; gap:48px; box-sizing:border-box;">
+  <div class="bk-h2 bk-caps" style="margin:0; max-width:none; white-space:nowrap;">Memo</div>
   <img src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg"
        alt="Collective Edge"
-       style="width:204px; height:auto; display:block; flex:none;">
+       style="width:2.125in; height:auto; display:block; flex:none;">
 </header>

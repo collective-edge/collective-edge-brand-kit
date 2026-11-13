@@ -1,0 +1,307 @@
+{
+  "_comment": "Brand-specific copy for the guidelines page. guidelines/build.py reads this file with brands.json, tokens.json, snippets/type-tokens.json, snippets/palette.css and snippets/data-color.css, and writes index.html. No color value, token name, role or URL belongs here unless it sits inside a sentence: the build checks every hex and every token name in this file against the kit. Edit, then run python3 guidelines/build.py.",
+  "say": "Collective Edge is the holding and operating company behind Apex Paramedics and Royal Ambulance.",
+  "cover": {
+    "width": 612,
+    "nudge": -5,
+    "footWidth": 204
+  },
+  "bigPlate": {
+    "role": "horizontal-on-dark",
+    "ground": "--bg-inverse",
+    "width": 720,
+    "caption": "The primary lockup on true black. Black is kept for this plate and the title, divider and closing slides."
+  },
+  "logoLead": "Every lockup, on its correct ground. The black file goes on light. The white file goes on dark.",
+  "logoRowWidth": {
+    "horizontal": 204,
+    "mark": 64
+  },
+  "logoCopy": {
+    "horizontal-on-light": {
+      "name": "Horizontal",
+      "use": "Primary lockup on a light background."
+    },
+    "horizontal-on-dark": {
+      "name": "Horizontal",
+      "use": "Primary lockup on a dark background. The Powered by lockup uses this file at 204px."
+    },
+    "mark-on-light": {
+      "name": "Block mark",
+      "use": "Icon only, light background. Gray wedge, Collective Edge standing alone."
+    },
+    "mark-on-dark": {
+      "name": "Block mark",
+      "use": "Icon only, dark background. Gray wedge, Collective Edge standing alone."
+    }
+  },
+  "clearSpace": {
+    "role": "horizontal-on-light",
+    "viewBox": [
+      450,
+      75
+    ],
+    "art": [
+      3.7,
+      17.9,
+      446.2,
+      57.7
+    ],
+    "x": 39.8,
+    "scale": 0.84,
+    "unit": "the height of the Edge wedge"
+  },
+  "minimums": [
+    {
+      "role": "horizontal-on-light",
+      "label": "Horizontal"
+    },
+    {
+      "role": "mark-on-light",
+      "label": "Block mark"
+    }
+  ],
+  "logoNotes": [
+    "No stacked lockup ships. Use the horizontal lockup.",
+    "The file named for its ink goes on the opposite background.",
+    "Drawn fills are final. EDGE is #666666 on light and #CCCCCC on dark. The wedge is #CCCCCC in the lockup and #C8C8C8 in the block mark.",
+    "If the clear space is short, shrink the logo."
+  ],
+  "paletteHead": "Tier",
+  "palette": [
+    {
+      "tier": "hero",
+      "raw": "black",
+      "use": "The hero plate and the title, divider and closing slides.",
+      "never": "Never the reading surface of a document."
+    },
+    {
+      "tier": "band",
+      "raw": "graphite",
+      "use": "Header bands. The same value sets body text, as --fg-1."
+    },
+    {
+      "tier": "mid",
+      "raw": "iron",
+      "use": "The step between band and surface. White text on it measures 8.13:1."
+    },
+    {
+      "token": "--wedge-standalone",
+      "name": "Wedge",
+      "role": "Tier 4 · Fog",
+      "use": "The Edge wedge when standing alone. The rule under a band.",
+      "never": "Never text."
+    },
+    {
+      "tier": "surface2",
+      "raw": "paper",
+      "use": "Table header fill, with a 1.5pt (2px) #000000 rule under the header row.",
+      "never": "Never text."
+    },
+    {
+      "tier": "surface",
+      "raw": "bone",
+      "use": "Callout fill. 1.13:1 against white.",
+      "never": "Never text."
+    },
+    {
+      "tier": "canvas",
+      "raw": "white",
+      "use": "The document canvas. The default surface."
+    }
+  ],
+  "colorLead": "Collective Edge has no hue. It works in seven tiers from black to white, and the tiers are far enough apart to see.",
+  "colorNote": "No accent color. Emphasis comes from weight, size and the step between tiers. Black over graphite separates at display size only, so black is kept for display.",
+  "partner": {
+    "title": "With partners",
+    "lead": "Collective Edge rarely stands alone. On a partner surface the partner leads and Collective Edge appears once, as the Powered by Collective Edge lockup.",
+    "note": "Partner led is the default. The partner logo and palette lead. Collective Edge adds structure and finish, no hue. Once per surface.",
+    "plates": [
+      {
+        "ground": "light",
+        "brand": "apex",
+        "role": "horizontal-on-light",
+        "width": 132,
+        "label": "With Apex Paramedics",
+        "text": "On white. The lockup sits under a hairline, beside the partner mark."
+      },
+      {
+        "ground": "dark",
+        "brand": "royal",
+        "role": "horizontal-on-dark",
+        "width": 190,
+        "label": "With Royal Ambulance",
+        "text": "On the partner band. The white file, never a filter."
+      }
+    ],
+    "wedge": [
+      {
+        "label": "Alone",
+        "partner": null
+      },
+      {
+        "label": "With Royal Ambulance",
+        "partner": "royal"
+      },
+      {
+        "label": "With Apex Paramedics",
+        "partner": "apex"
+      }
+    ],
+    "wedgeNote": "Only the wedge takes a partner color, and only through the shipped mark files. This is the one place color enters a Collective Edge mark."
+  },
+  "rules": {
+    "use": [
+      "Default to the white document treatment.",
+      "Keep black for the hero plate and the title, divider and closing slides.",
+      "Set body text in #23232A on white and #DDDDE3 on a band. Headings on a band are #FFFFFF.",
+      "Add Powered by Collective Edge whenever the mark shares a surface with another brand.",
+      "Let only the wedge take a partner color, through the shipped mark files.",
+      "Match the logo file to the background."
+    ],
+    "avoid": [
+      "Do not add an accent hue to a Collective Edge surface.",
+      "Do not set text in #8A8B93, #C8C8C8 or #E4E4E9.",
+      "Do not recolor a logo or invert it with a CSS filter.",
+      "Do not force EDGE to full black or full white.",
+      "Do not split the block mark from the wordmark in the horizontal lockup.",
+      "Do not merge the mark with a partner mark.",
+      "Do not put two Collective Edge lockups on one surface.",
+      "Do not put the grain wave under body copy or on a document page."
+    ]
+  },
+  "character": [
+    "Restrained",
+    "Confident",
+    "Operational",
+    "Adult",
+    "A senior operator giving a direct briefing"
+  ],
+  "voice": [
+    "Plain words over jargon.",
+    "Short sentences, full stops. Headlines often end in a period.",
+    "We and you. Never the customer or users.",
+    "No emoji, no exclamation points, no rhetorical questions, no em dashes."
+  ],
+  "memo": {
+    "to": "Operations leads, Apex Paramedics and Royal Ambulance",
+    "frm": "Collective Edge Operations",
+    "re": "Supervisor briefing for the one-page handoff",
+    "ps": [
+      "The one-page handoff form goes live on 1 December. Every supervisor takes the briefing before then.",
+      "The briefing runs 20 minutes. It covers the four parts of the form, the single signature per shift and what to do when a tablet has no template loaded.",
+      "Station leads run the briefing. Operations supplies the slides and a printed copy of the form for each supervisor.",
+      "A supervisor who misses the briefing takes it with the station lead before the first shift on the new form. No supervisor signs a handoff without it."
+    ],
+    "acts": [
+      "Schedule the briefing for every supervisor by 24 November.",
+      "Send the attendance list to Operations the same day.",
+      "Report any unit without a loaded tablet to Systems."
+    ],
+    "sign": [
+      "Collective Edge Operations",
+      "operations@collective-edge.example"
+    ],
+    "foot": "Collective Edge · Internal"
+  },
+  "onePager": {
+    "band": "Shift handoff",
+    "h1": "Shift handoff moves to one page.",
+    "lead": "From 1 December, crews at both companies hand off on one form. It replaces the three in use today.",
+    "meta": [
+      [
+        "For",
+        "Operations leads"
+      ],
+      [
+        "From",
+        "Collective Edge Operations"
+      ],
+      [
+        "Date",
+        "13 November 2026"
+      ]
+    ],
+    "h2a": "What changes.",
+    "pa": "The form has four parts: status of the unit, open maintenance items, controlled substance count and notes for the next crew. Crews complete it at the unit before they leave the station. Supervisors sign once per shift, not once per unit.",
+    "h2b": "Rollout.",
+    "th": [
+      "Step",
+      "Owner",
+      "Date",
+      "Status"
+    ],
+    "rows": [
+      [
+        "Form published to both companies",
+        "Operations",
+        "17 Nov",
+        [
+          "go",
+          "Done"
+        ]
+      ],
+      [
+        "Supervisor briefing",
+        "Station leads",
+        "24 Nov",
+        [
+          "go",
+          "On track"
+        ]
+      ],
+      [
+        "Tablet template loaded",
+        "Systems",
+        "26 Nov",
+        [
+          "warn",
+          "At risk"
+        ]
+      ],
+      [
+        "First shift on the new form",
+        "All crews",
+        "1 Dec",
+        [
+          "info",
+          "Scheduled"
+        ]
+      ]
+    ],
+    "close": "Brief your supervisors by 24 November. Report any unit without a loaded tablet to Systems the same day.",
+    "foot": "Collective Edge · Internal"
+  },
+  "deck": {
+    "title": "Operations review",
+    "sub": "Third quarter 2026",
+    "date": "13 November 2026",
+    "h": "One form cut handoff time at both companies.",
+    "pts": [
+      "One page, four parts.",
+      "Completed at the unit, before the crew leaves.",
+      "Signed once per shift."
+    ],
+    "cap": "Median handoff, minutes",
+    "th": [
+      "Company",
+      "Three forms",
+      "One form"
+    ],
+    "rows": [
+      [
+        "Apex Paramedics",
+        "14",
+        "9"
+      ],
+      [
+        "Royal Ambulance",
+        "12",
+        "8"
+      ]
+    ]
+  },
+  "sampleDate": "13 November 2026",
+  "agentLine": "Collective Edge is the parent of Apex Paramedics and Royal Ambulance. It owns the house type system.",
+  "deckMarkWidth": 202
+}

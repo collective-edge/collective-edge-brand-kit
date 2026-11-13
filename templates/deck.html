@@ -5,19 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Collective Edge · Deck template</title>
 
-<!-- Load order. type-system.css is identical in every kit and is served from the
-     Collective Edge kit. palette.css is the only stylesheet that differs by brand. -->
+<!-- DECK. The spec is reference/layout.md section 8 and documents.json types.deck.
+     13.333in by 7.5in. Twelve layouts, in this order: title, divider, statement, text,
+     two-column, chart, table, comparison, timeline, quote, summary, closing.
+     Body 15pt, floor 12pt. Content slides are white. Title, divider and closing are dark.
+
+     Load order. type-system.css and cobrand.css are identical in every kit and
+     are served from the Collective Edge kit. palette.css is the only stylesheet
+     that differs by brand. -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/type-system.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/palette.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/hero-dark.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/cobrand.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/snippets/data-color.css">
 
 <style>
 /* ---------- FONT ------------------------------------------------
-   The face and the rule that names it. Weight range is the house
-   ladder. type-system.css binds Montserrat through --font-sans, and
-   a print engine that resolves no network stylesheet leaves that
-   token undefined, so the fallback below is what names the face. */
+   type-system.css binds Montserrat through --font-sans. A print
+   engine that resolves no network stylesheet leaves that token
+   undefined, so this block names the face. */
 
 @font-face {
   font-family: "Montserrat";
@@ -30,286 +35,475 @@
 
 html, body { font-family: var(--font-sans, "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif); }
 
+/* ---------- BRAND VALUES ----------------------------------------
+   With the palette link and the logo URLs, these are the only lines
+   that differ between the three kits. reference/layout.md section 2
+   lists them. */
+
+:root {
+  --slide-logo-title: 2.7in;
+  --slide-logo-foot: 2.1in;
+  --doc-th-fill: var(--bg-surface-2);
+  --doc-th-text: var(--fg-1);
+  --doc-th-rule: var(--fg-accent);
+  --doc-th-tracking: 0em;
+}
+
 /* ---------- PAGE ------------------------------------------------
-   16:9 at PowerPoint widescreen dimensions, so one slide is one
-   printed page with no scaling. */
+   13.333in by 7.5in. 1px is 1/96in on screen and in print, so a
+   slide is 1280px by 720px and every value prints at its stated
+   size. 4px = 3pt. */
 
 @page { size: 13.333in 7.5in; margin: 0; }
 
-:root { --slide-pad: 96px; }
+:root {
+  --fs-display-lg: 72px;
+  --fs-display-md: 56px;
+}
 
 *, *::before, *::after { box-sizing: border-box; }
 
 html, body { background: var(--bg-surface); margin: 0; padding: 0; }
 
-.deck {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
-  padding: 32px;
-  width: max-content;
-  margin: 0 auto;
-}
+.deck { display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 32px; }
 
+/* Padding: 0.67in top, 0.83in sides, 0.42in bottom. */
 .slide {
   position: relative;
   flex: none;
   width: 1280px;
   height: 720px;
+  padding: 64px 80px 40px;
   background: var(--bg-canvas);
-  border: 1px solid var(--border-1);
-  padding: var(--slide-pad);
-  overflow: hidden;
+  box-shadow: 0 0 0 1px var(--border-1);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
-/* Grain-wave hero. Collective Edge signature, title and divider
-   surfaces only. The scrim is what makes the type safe, see
-   snippets/hero-dark.css for the measured zones. */
-.slide-dark {
-  background: var(--ce-black) var(--hero-grain) center / cover no-repeat;
-  position: relative; isolation: isolate;
-}
-@media (min-resolution: 1.5dppx), print {
-  .slide-dark { background-image: var(--hero-grain-2x); }
-}
-.slide-dark::before {
-  content: ""; position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.15) 38%, rgba(0,0,0,0.72) 78%, rgba(0,0,0,0.82) 100%);
-}
-.slide-dark > * { position: relative; }
-/* --fg-on-dark-3 is #A3A4AC and disappears where the wave is bright.
-   On the grain treatment the eyebrow goes to --fg-on-dark-1, the caption
-   to --fg-on-dark-2, and nothing uses --fg-on-dark-3. */
-.slide-dark .bk-eyebrow { color: var(--fg-on-dark-1); }
-.slide-dark .bk-caption { color: var(--fg-on-dark-2); }
+/* Dark ground. Title, divider and closing only. The band rule is the
+   bottom 0.05in. */
+.slide-dark { background: var(--bg-inverse); box-shadow: inset 0 -5px 0 var(--border-band-rule); }
 
-.slide-logo { width: 268px; height: auto; display: block; flex: none; align-self: flex-end; }
-.slide-mark { width: 64px; height: auto; display: block; flex: none; align-self: flex-end; margin-bottom: auto; }
-.slide-num  { margin: 0 0 12px; }
-.slide-meta { margin: 0; }
+.slide-logo { width: var(--slide-logo-title); height: auto; display: block; flex: none; }
+.slide-stack { margin-top: auto; }
+.slide-stack > * { margin: 0; }
+.slide-title-text { max-width: none; }
+.slide-dark .slide-subtitle { margin-top: 16px; color: var(--fg-on-dark-2); max-width: none; text-wrap: balance; }
+.slide-dark .slide-number { margin-bottom: 16px; color: var(--fg-on-dark-3); font-variant-numeric: tabular-nums lining-nums; text-wrap: balance; }
+.slide-divider-title, .slide-closing-line { max-width: 960px; }
+.slide-contact { margin-top: 16px; }
+.slide-contact p { margin: 0; }
 
-/* ---------- SLIDE TYPES ----------------------------------------- */
+/* ---------- HEADLINE --------------------------------------------
+   42pt, two lines at most, 10in wide. The box holds two lines so
+   the body zone starts at y 2.53in on every slide. */
 
-/* Placement is measured, not taste. Upper-left is 1.8:1 against white and
-   middle-left is 2.0:1, so nothing reversed may sit there. The mark goes
-   right, the statement goes to the foot where the frame is the darkest part of the frame. */
-.slide-title   { justify-content: flex-end; gap: var(--space-6); }
-.slide-title .slide-logo { margin-bottom: auto; }
-.slide-divider { justify-content: flex-end; gap: var(--space-6); }
-.slide-divider .slide-mark { margin-bottom: auto; }
-.slide-content { justify-content: flex-start; }
-.slide-data    { justify-content: flex-start; }
-/* flex-end, not space-between. The wave's middle-left band measures 2.0:1
-   against white, so a statement stranded there is unreadable. Everything
-   reversed lands in the bottom third, the darkest part of the frame. */
-.slide-closing { justify-content: flex-end; gap: var(--space-6); }
-.slide-closing .slide-logo { margin-bottom: auto; }
+.slide-headline { margin: 0; min-height: 2.2em; max-width: 960px; color: var(--fg-accent); text-wrap: balance; }
+.slide-statement-text { margin: 0; max-width: 960px; color: var(--fg-accent); text-wrap: balance; }
+.slide-quote-text { margin: 0; max-width: 960px; text-wrap: balance; }
+.slide-support { margin: 32px 0 0; }
 
-/* The mirror of "Powered by Collective Edge". The CE mark already heads
-   this slide, so the slot beneath the hairline holds the operating
-   company. Same 204px slot, same hairline, and the two marks ride beside
-   each other rather than merging into one. cobrand.css owns the
-   geometry. The label sits at --fg-on-dark-3 #A3A4AC on the black
-   ground, 8.46:1. align-self holds the hairline to the width of the
-   lockup instead of letting it stretch across the slide, and the flex
-   gap above it is already --space-6, so the block's own margin-top
-   comes off. Swap the partner file for whichever brand the deck is
-   about, resolved from brands.json. */
-.slide-closing .ce-powered { align-self: flex-start; margin-top: 0; }
+/* ---------- BODY ZONE ------------------------------------------- */
 
-/* ---------- SECTION HEAD, LIGHT SLIDES -------------------------- */
-
-.slide-head {
-  padding: 0 0 12px;
-  border-bottom: 1px solid var(--border-1);
-  margin: 0 0 32px;
-  flex: none;
-}
+.slide-body { margin-top: 56px; flex: 1; min-height: 0; }
 .slide-body > * { margin-top: 0; margin-bottom: 0; }
-.slide-body > * + * { margin-top: 16px; }
+.slide-cols { display: grid; grid-template-columns: 1fr 1fr; column-gap: 64px; align-items: start; }
+.slide-cols-chart { display: grid; grid-template-columns: 720px 1fr; column-gap: 32px; align-items: start; }
 
-/* ---------- TABLE ------------------------------------------------
-   .bk-table th ships at --fs-caption, one step under these cells.
-   A caps header never sits below the body it labels, so it is
-   sized to --fs-body-sm here. */
+.slide-bullets { margin: 0; padding: 0 0 0 24px; max-width: 716px; }
+.slide-bullet { margin: 0; padding: 0 0 0 8px; }
+.slide-bullet + .slide-bullet { margin-top: 12px; }
+.slide-bullet::marker { color: var(--fg-accent); }
 
-.deck-table { width: 100%; }
-.deck-table th { padding: 8px 24px 8px 0; border-bottom: 1px solid var(--border-2); color: var(--fg-2); font-size: var(--fs-body-sm); }
-.deck-table td {
-  padding: 12px 24px 12px 0;
-  border-bottom: 1px solid var(--border-1);
-  font-size: var(--fs-body-sm);
-  line-height: var(--lh-body-sm);
-  letter-spacing: var(--tr-body-sm);
-  color: var(--fg-1);
+.slide-points { list-style: none; margin: 0; padding: 0; }
+.slide-point { margin: 0; padding: 16px 0; border-top: 1px solid var(--border-1); max-width: none; }
+.slide-point:last-child { border-bottom: 1px solid var(--border-1); }
+.slide-points-numbered .slide-point { display: grid; grid-template-columns: 48px minmax(0, 1fr); }
+.slide-points-n { color: var(--fg-accent); font-variant-numeric: tabular-nums lining-nums; }
+
+.slide-caption { margin: 0 0 8px; color: var(--fg-3); }
+.slide-source { margin: 12px 0 0; color: var(--fg-3); }
+
+/* ---------- TABLE -----------------------------------------------
+   15pt. Header fill by brand. Hairline under every row. */
+
+.slide-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums lining-nums; }
+.slide-table th,
+.slide-table td {
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-body-lg);
+  letter-spacing: var(--tr-body);
+  text-align: left;
+  vertical-align: top;
 }
-.deck-table .num { text-align: right; padding-right: 0; padding-left: 24px; }
-.deck-table .sec { color: var(--fg-2); }
+.slide-table th {
+  font-weight: var(--weight-semibold, 600);
+  letter-spacing: calc(var(--tr-body) + var(--doc-th-tracking));
+  padding: 8px 16px;
+  background: var(--doc-th-fill);
+  color: var(--doc-th-text);
+  border-bottom: 2px solid var(--doc-th-rule);
+}
+.slide-table td { font-weight: var(--weight-regular, 400); padding: 12px 16px; color: var(--fg-1); border-bottom: 1px solid var(--border-1); }
+.slide-table .num { text-align: right; }
 
-/* ---------- SLIDE FOOTER ----------------------------------------- */
+.slide-status { display: inline-flex; align-items: center; gap: 8px; font-weight: var(--weight-semibold, 600); white-space: nowrap; }
+.slide-status::before { content: ""; width: 12px; height: 12px; background: currentColor; flex: none; }
+.slide-status.is-go   { color: var(--alert-go-text); }
+.slide-status.is-warn { color: var(--alert-warn-text); }
+.slide-status.is-stop { color: var(--alert-stop-text); }
+.slide-status.is-info { color: var(--alert-info-text); }
+
+/* ---------- CHART -----------------------------------------------
+   Colors are the house data set, never a brand color. The baseline
+   is --data-baseline. The result is --series-1. */
+
+.slide-chart { margin: 0; }
+.slide-legend { display: flex; gap: 24px; margin: 0 0 12px; padding: 0; list-style: none; }
+.slide-legend-item { display: flex; align-items: center; gap: 8px; margin: 0; color: var(--fg-2); }
+.slide-legend-item::before { content: ""; width: 12px; height: 12px; flex: none; background: var(--data-baseline, #D0D0D6); }
+.slide-legend-item.is-result::before { background: var(--series-1, #2063e6); }
+.slide-bars { display: grid; grid-template-columns: max-content 1fr; column-gap: 16px; row-gap: 12px; align-items: center; }
+.slide-bars p { margin: 0; }
+.slide-bar-pair { display: grid; }
+.slide-bar { display: flex; align-items: center; gap: 8px; }
+.slide-bar span { display: block; height: 16px; background: var(--data-baseline, #D0D0D6); flex: none; }
+.slide-bar.is-result span { background: var(--series-1, #2063e6); }
+.slide-bar p { color: var(--fg-2); font-variant-numeric: tabular-nums lining-nums; }
+.slide-bar.is-result p { color: var(--fg-1); font-weight: var(--weight-semibold, 600); }
+
+/* ---------- COMPARISON AND TIMELINE ----------------------------- */
+
+.slide-col-label { margin: 0 0 16px; padding: 0 0 12px; border-bottom: 2px solid var(--fg-accent); max-width: none; text-wrap: balance; }
+.slide-steps { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; column-gap: 32px; }
+.slide-step { border-top: 2px solid var(--fg-accent); padding: 16px 0 0; }
+.slide-step p { margin: 0; }
+.slide-step-date { font-weight: var(--weight-semibold, 600); color: var(--fg-accent); max-width: 54ch; text-wrap: pretty; }
+.slide-step-title { margin: 8px 0; text-wrap: balance; }
+
+.slide-attrib { margin: 32px 0 0; color: var(--fg-2); }
+
+/* ---------- FOOTER ----------------------------------------------
+   Rule at y 6.56in. Row at y 6.73in, 0.35in tall. Logo left, page
+   number right. Dark slides carry text only. */
 
 .slide-foot {
-  position: absolute;
-  left: var(--slide-pad);
-  right: var(--slide-pad);
-  bottom: 48px;
+  flex: none;
+  margin-top: auto;
+  padding-top: 16px;
+  min-height: 51px;
+  border-top: 1px solid var(--border-1);
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   gap: 24px;
 }
+.slide-body + .slide-foot { margin-top: 24px; }
+.slide-foot p { margin: 0; color: var(--fg-3); font-variant-numeric: tabular-nums lining-nums; }
+.slide-foot-logo { width: var(--slide-logo-foot); height: auto; display: block; flex: none; }
+.slide-dark .slide-foot { margin-top: 56px; border-top-color: var(--border-on-dark); }
+.slide-dark .slide-foot p { color: var(--fg-on-dark-3); }
+.slide-closing .slide-foot { margin-top: 92px; }
 
-/* ---------- PRINT -------------------------------------------------
-   One slide per landscape page. Point sizes carried over from the
-   shared type layer so the file prints correctly on its own. */
+/* ---------- LOCKUP ----------------------------------------------
+   Powered by Collective Edge. Closing slide only, bottom left,
+   operating companies only. cobrand.css owns the rule, the label
+   and the 204px logo. */
+
+.slide-closing .ce-powered { margin-top: 56px; }
+
+/* ---------- NARROW SCREEN ---------------------------------------
+   Under 1344px a slide is fluid. Print never takes this block. */
+
+@media screen and (max-width: 1343px) {
+  :root {
+    --fs-display-lg: clamp(38px, 6.0vw, 72px);
+    --fs-display-md: clamp(32px, 4.6vw, 56px);
+  }
+  .deck { display: block; padding: 0; }
+  .slide { width: auto; height: auto; padding: 32px 24px 24px; box-shadow: none; border-bottom: 1px solid var(--border-1); }
+  .slide-dark { min-height: 56.25vw; border-bottom: 0; }
+  .slide-logo, .slide-foot-logo { max-width: 100%; }
+  .slide-headline { min-height: 0; }
+  .slide-body { margin-top: 32px; }
+  .slide-cols, .slide-cols-chart { grid-template-columns: minmax(0, 1fr); row-gap: 32px; }
+  .slide-steps { grid-auto-flow: row; row-gap: 24px; }
+  .slide-table-wrap { overflow-x: auto; }
+  .slide-bars { grid-template-columns: minmax(0, 1fr); row-gap: 8px; }
+  .slide-foot, .slide-dark .slide-foot, .slide-closing .slide-foot { margin-top: 32px; }
+  .slide-closing .ce-powered { margin-top: 32px; }
+}
+
+/* ---------- PRINT -----------------------------------------------
+   One slide is one landscape page. */
 
 @media print {
-  /* Without this the dark band prints white and its reversed type disappears. */
   *, *::before, *::after { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-
-  html, body { background: #FFFFFF; font-size: 12pt; line-height: var(--lh-body); }
-  .deck { gap: 0; padding: 0; width: auto; margin: 0; }
-  .slide { width: 13.333in; height: 7.5in; border: none; break-after: page; page-break-after: always; }
+  html, body { background: #FFFFFF; }
+  .deck { display: block; padding: 0; }
+  .slide { width: 13.333in; height: 7.5in; break-after: page; page-break-after: always; }
+  .slide:not(.slide-dark) { box-shadow: none; }
   .slide:last-child { break-after: auto; page-break-after: auto; }
-
-  .bk-display-xl { font-size: 72pt; }
-  .bk-display-lg { font-size: 54pt; }
-  .bk-display-md { font-size: 42pt; }
-  .bk-h1         { font-size: 30pt; }
-  .bk-h2         { font-size: 24pt; }
-  .bk-h3         { font-size: 18pt; }
-  .bk-h4         { font-size: 15pt; }
-  .bk-body-lg    { font-size: 15pt; }
-  .bk-body       { font-size: 12pt; }
-  .bk-body-sm    { font-size: 10.5pt; }
-  .bk-caption,
-  .bk-eyebrow    { font-size: 9pt; }
-  .bk-stat       { font-size: 42pt; }
-  .deck-table th,
-  .deck-table td { font-size: 10.5pt; }
-
-  p, li, dd, blockquote { orphans: 3; widows: 3; }
-  h1, h2, h3, h4, h5, h6 { break-after: avoid; page-break-after: avoid; }
-  table, figure, .bk-keep { break-inside: avoid; page-break-inside: avoid; }
 }
 </style>
 </head>
 <body>
+<main class="deck">
 
-<div class="deck">
-
-  <!-- 1. TITLE -->
+  <!-- 1 · TITLE · dark · uppercase, four words at most -->
   <section class="slide slide-dark slide-title bk-on-dark">
-    <img class="slide-logo"
-         src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg"
-         alt="Collective Edge">
-    <div>
-      <p class="bk-eyebrow" style="margin:0 0 8px;">OPERATING REVIEW</p>
-      <h1 class="bk-display-lg bk-caps" style="margin:0;">INTERFACILITY TRANSPORT</h1>
+    <img class="slide-logo" src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg" alt="Collective Edge">
+    <div class="slide-stack">
+      <h1 class="bk-display-lg bk-caps slide-title-text">Operations review</h1>
+      <p class="bk-h3 slide-subtitle">Third quarter 2026</p>
     </div>
-    <p class="bk-caption slide-meta">Q3 2026 · Prepared for partner leadership</p>
+    <div class="slide-foot">
+      <p class="bk-body">Collective Edge</p>
+      <p class="bk-body">13 November 2026</p>
+    </div>
   </section>
 
-  <!-- 2. SECTION DIVIDER -->
+  <!-- 2 · DIVIDER · dark · no logo -->
   <section class="slide slide-dark slide-divider bk-on-dark">
-    <img class="slide-mark"
-         src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/mark-white.svg"
-         alt="Collective Edge">
-    <div>
-      <p class="bk-eyebrow slide-num bk-tnum">02</p>
-      <h2 class="bk-display-md bk-caps" style="margin:0;">ORIGIN VOLUME</h2>
+    <div class="slide-stack">
+      <p class="bk-h3 slide-number">01</p>
+      <h2 class="bk-display-md slide-divider-title">The handoff form</h2>
     </div>
     <div class="slide-foot">
-      <span class="bk-caption">Collective Edge · Interfacility transport operations</span>
+      <p class="bk-body">Collective Edge</p>
+      <p class="bk-body">2</p>
     </div>
   </section>
 
-  <!-- 3. CONTENT -->
-  <section class="slide slide-content">
-    <header class="slide-head">
-      <p class="bk-eyebrow" style="margin:0 0 4px;">WHERE THE TIME GOES</p>
-      <h2 class="bk-h2" style="margin:0;">What the quarter shows.</h2>
-    </header>
+  <!-- 3 · STATEMENT · one sentence, four lines at most -->
+  <section class="slide slide-statement">
+    <h2 class="bk-display-md slide-statement-text">Three handoff forms became one, and crews got five minutes back.</h2>
+    <p class="bk-body-lg slide-support">Tested at four stations across both companies from 1 October to 11 November.</p>
+    <div class="slide-foot">
+      <img class="slide-foot-logo" src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg" alt="Collective Edge">
+      <p class="bk-body">3</p>
+    </div>
+  </section>
+
+  <!-- 4 · TEXT · headline and one column, five bullets at most -->
+  <section class="slide slide-text">
+    <h2 class="bk-display-md slide-headline">The form asks for four things.</h2>
     <div class="slide-body">
-      <p class="bk-body"><span class="bk-emphasis">Volume moved late.</span> Sixty-one percent of runs now originate between 11:00 and 16:00. Crews staged at the three highest-volume campuses absorbed the shift without an added vehicle.</p>
-      <p class="bk-body"><span class="bk-emphasis">Wait time is the constraint.</span> Median call to wheels held at 18&nbsp;min while bed-hold minutes at receiving facilities rose. Fleet size is not the limit.</p>
-      <p class="bk-body"><span class="bk-emphasis">Payer approval drives downtime.</span> A run held for approval averages 34&nbsp;min of idle vehicle time. The pre-approval queue closes that gap when the referring case manager files before the discharge order posts.</p>
+      <ul class="slide-bullets">
+        <li class="bk-body-lg slide-bullet">Status of the unit, with fuel and mileage.</li>
+        <li class="bk-body-lg slide-bullet">Open maintenance items.</li>
+        <li class="bk-body-lg slide-bullet">Controlled substance count.</li>
+        <li class="bk-body-lg slide-bullet">Notes for the next crew.</li>
+      </ul>
     </div>
     <div class="slide-foot">
-      <span class="bk-caption">Collective Edge · Interfacility transport operations</span>
-      <span class="bk-caption bk-emphasis bk-tnum">03</span>
+      <img class="slide-foot-logo" src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg" alt="Collective Edge">
+      <p class="bk-body">4</p>
     </div>
   </section>
 
-  <!-- 4. DATA -->
-  <section class="slide slide-data">
-    <header class="slide-head">
-      <p class="bk-eyebrow" style="margin:0 0 4px;">ORIGIN VOLUME</p>
-      <h2 class="bk-h2" style="margin:0;">Runs by origin facility.</h2>
-    </header>
+  <!-- 5 · TWO-COLUMN · three key points beside one table -->
+  <section class="slide slide-two-column">
+    <h2 class="bk-display-md slide-headline">One form cut handoff time at both companies.</h2>
+    <div class="slide-body slide-cols">
+      <ul class="slide-points">
+        <li class="bk-h3 slide-point">One page, four parts.</li>
+        <li class="bk-h3 slide-point">Completed at the unit, before the crew leaves.</li>
+        <li class="bk-h3 slide-point">Signed once per shift.</li>
+      </ul>
+      <div class="slide-table-wrap">
+        <p class="bk-body slide-caption">Median handoff, minutes</p>
+        <table class="slide-table">
+          <thead><tr><th>Company</th><th class="num">Three forms</th><th class="num">One form</th></tr></thead>
+          <tbody>
+            <tr><td>Apex Paramedics</td><td class="num">14</td><td class="num">9</td></tr>
+            <tr><td>Royal Ambulance</td><td class="num">12</td><td class="num">8</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="slide-foot">
+      <img class="slide-foot-logo" src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg" alt="Collective Edge">
+      <p class="bk-body">5</p>
+    </div>
+  </section>
+
+  <!-- 6 · CHART · one chart, house data colors, notes at right -->
+  <section class="slide slide-chart-slide">
+    <h2 class="bk-display-md slide-headline">Handoff time fell at every station.</h2>
+    <div class="slide-body slide-cols-chart">
+      <figure class="slide-chart">
+        <p class="bk-body slide-caption">Median handoff, minutes</p>
+        <ul class="slide-legend">
+          <li class="bk-body slide-legend-item">Three forms</li>
+          <li class="bk-body slide-legend-item is-result">One form</li>
+        </ul>
+        <div class="slide-bars">
+          <p class="bk-body-lg">Station 2</p>
+          <div class="slide-bar-pair">
+            <div class="slide-bar"><span style="width:78%"></span><p class="bk-body">14</p></div>
+            <div class="slide-bar is-result"><span style="width:50%"></span><p class="bk-body">9</p></div>
+          </div>
+          <p class="bk-body-lg">Station 4</p>
+          <div class="slide-bar-pair">
+            <div class="slide-bar"><span style="width:84%"></span><p class="bk-body">15</p></div>
+            <div class="slide-bar is-result"><span style="width:50%"></span><p class="bk-body">9</p></div>
+          </div>
+          <p class="bk-body-lg">Hayward</p>
+          <div class="slide-bar-pair">
+            <div class="slide-bar"><span style="width:67%"></span><p class="bk-body">12</p></div>
+            <div class="slide-bar is-result"><span style="width:45%"></span><p class="bk-body">8</p></div>
+          </div>
+          <p class="bk-body-lg">San Leandro</p>
+          <div class="slide-bar-pair">
+            <div class="slide-bar"><span style="width:67%"></span><p class="bk-body">12</p></div>
+            <div class="slide-bar is-result"><span style="width:50%"></span><p class="bk-body">9</p></div>
+          </div>
+        </div>
+        <p class="bk-body slide-source">Source: handoff logs, 1 October to 11 November 2026.</p>
+      </figure>
+      <ul class="slide-points">
+        <li class="bk-body-lg slide-point">Station 4 gained the most.</li>
+        <li class="bk-body-lg slide-point">No station got slower.</li>
+        <li class="bk-body-lg slide-point">Night and day shifts moved together.</li>
+      </ul>
+    </div>
+    <div class="slide-foot">
+      <img class="slide-foot-logo" src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg" alt="Collective Edge">
+      <p class="bk-body">6</p>
+    </div>
+  </section>
+
+  <!-- 7 · TABLE · one table, five body rows at 15pt -->
+  <section class="slide slide-table-slide">
+    <h2 class="bk-display-md slide-headline">Four steps remain before 1 December.</h2>
     <div class="slide-body">
-      <table class="bk-table deck-table">
-        <thead>
-          <tr>
-            <th>Origin facility</th>
-            <th>Contract</th>
-            <th>Service line</th>
-            <th class="num">Runs</th>
-            <th class="num">Median wait</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Mercy General</td>
-            <td><span class="bk-code">CE-IFT-0114</span></td>
-            <td class="sec">BLS discharge</td>
-            <td class="num">1,284</td>
-            <td class="num">22&nbsp;min</td>
-          </tr>
-          <tr>
-            <td>St. Vincent</td>
-            <td><span class="bk-code">CE-IFT-0227</span></td>
-            <td class="sec">Critical care</td>
-            <td class="num">412</td>
-            <td class="num">31&nbsp;min</td>
-          </tr>
-          <tr>
-            <td>Bayview Rehabilitation</td>
-            <td><span class="bk-code">CE-IFT-0338</span></td>
-            <td class="sec">Wheelchair</td>
-            <td class="num">968</td>
-            <td class="num">14&nbsp;min</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="slide-table-wrap">
+        <p class="bk-body slide-caption">Rollout plan</p>
+        <table class="slide-table">
+          <thead><tr><th>Step</th><th>Owner</th><th>Date</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Form published to both companies</td><td>Operations</td><td>17 Nov</td><td><span class="slide-status is-go">Done</span></td></tr>
+            <tr><td>Supervisor briefing</td><td>Station leads</td><td>24 Nov</td><td><span class="slide-status is-go">On track</span></td></tr>
+            <tr><td>Tablet template loaded</td><td>Systems</td><td>26 Nov</td><td><span class="slide-status is-warn">At risk</span></td></tr>
+            <tr><td>First shift on the new form</td><td>All crews</td><td>1 Dec</td><td><span class="slide-status is-info">Scheduled</span></td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="slide-foot">
-      <span class="bk-caption">Collective Edge · Interfacility transport operations</span>
-      <span class="bk-caption bk-emphasis bk-tnum">04</span>
+      <img class="slide-foot-logo" src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg" alt="Collective Edge">
+      <p class="bk-body">7</p>
     </div>
   </section>
 
-  <!-- 5. CLOSING -->
+  <!-- 8 · COMPARISON · two columns, four bullets each at most -->
+  <section class="slide slide-comparison">
+    <h2 class="bk-display-md slide-headline">The new form asks for less and records more.</h2>
+    <div class="slide-body slide-cols">
+      <div>
+        <p class="bk-h3 slide-col-label">Three forms</p>
+        <ul class="slide-bullets">
+          <li class="bk-body-lg slide-bullet">A different layout at each company.</li>
+          <li class="bk-body-lg slide-bullet">Signed once per unit.</li>
+          <li class="bk-body-lg slide-bullet">Completed at the supervisor desk.</li>
+          <li class="bk-body-lg slide-bullet">Maintenance items on a separate sheet.</li>
+        </ul>
+      </div>
+      <div>
+        <p class="bk-h3 slide-col-label">One form</p>
+        <ul class="slide-bullets">
+          <li class="bk-body-lg slide-bullet">The same page at both companies.</li>
+          <li class="bk-body-lg slide-bullet">Signed once per shift.</li>
+          <li class="bk-body-lg slide-bullet">Completed at the unit.</li>
+          <li class="bk-body-lg slide-bullet">Maintenance items on the same page.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="slide-foot">
+      <img class="slide-foot-logo" src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg" alt="Collective Edge">
+      <p class="bk-body">8</p>
+    </div>
+  </section>
+
+  <!-- 9 · TIMELINE · three to five steps -->
+  <section class="slide slide-timeline">
+    <h2 class="bk-display-md slide-headline">Every crew is on the new form by 1 December.</h2>
+    <div class="slide-body">
+      <div class="slide-steps">
+        <div class="slide-step">
+          <p class="bk-body-lg slide-step-date">17 November</p>
+          <p class="bk-h3 slide-step-title">Form published</p>
+          <p class="bk-body-lg">Both companies receive the final page.</p>
+        </div>
+        <div class="slide-step">
+          <p class="bk-body-lg slide-step-date">24 November</p>
+          <p class="bk-h3 slide-step-title">Briefings done</p>
+          <p class="bk-body-lg">Station leads brief every supervisor.</p>
+        </div>
+        <div class="slide-step">
+          <p class="bk-body-lg slide-step-date">26 November</p>
+          <p class="bk-h3 slide-step-title">Tablets loaded</p>
+          <p class="bk-body-lg">Systems loads the template on every unit.</p>
+        </div>
+        <div class="slide-step">
+          <p class="bk-body-lg slide-step-date">1 December</p>
+          <p class="bk-h3 slide-step-title">Go live</p>
+          <p class="bk-body-lg">First shift hands off on the new form.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-foot">
+      <img class="slide-foot-logo" src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg" alt="Collective Edge">
+      <p class="bk-body">9</p>
+    </div>
+  </section>
+
+  <!-- 10 · QUOTE · curly quotation marks, 120 characters at most -->
+  <section class="slide slide-quote">
+    <blockquote class="bk-display-md slide-quote-text">“I sign once and I know every unit is covered.”</blockquote>
+    <p class="bk-body-lg slide-attrib"><span class="bk-emphasis">Shift supervisor</span>, Apex Paramedics, Station 4</p>
+    <div class="slide-foot">
+      <img class="slide-foot-logo" src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg" alt="Collective Edge">
+      <p class="bk-body">10</p>
+    </div>
+  </section>
+
+  <!-- 11 · SUMMARY · four takeaways at most -->
+  <section class="slide slide-summary">
+    <h2 class="bk-display-md slide-headline">What to take away.</h2>
+    <div class="slide-body">
+      <ol class="slide-points slide-points-numbered">
+        <li class="bk-h3 slide-point"><span class="slide-points-n">1</span><span>One form replaces three on 1 December.</span></li>
+        <li class="bk-h3 slide-point"><span class="slide-points-n">2</span><span>Handoff time fell at every test station.</span></li>
+        <li class="bk-h3 slide-point"><span class="slide-points-n">3</span><span>Eleven units still need the tablet template.</span></li>
+        <li class="bk-h3 slide-point"><span class="slide-points-n">4</span><span>Supervisors take the briefing by 24 November.</span></li>
+      </ol>
+    </div>
+    <div class="slide-foot">
+      <img class="slide-foot-logo" src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-black.svg" alt="Collective Edge">
+      <p class="bk-body">11</p>
+    </div>
+  </section>
+
+  <!-- 12 · CLOSING · dark -->
   <section class="slide slide-dark slide-closing bk-on-dark">
-    <img class="slide-logo"
-         src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg"
-         alt="Collective Edge">
-    <div>
-      <p class="bk-eyebrow" style="margin:0 0 8px;">WHAT CHANGES NEXT</p>
-      <h2 class="bk-display-md bk-caps" style="margin:0;">CONFIRM THE BED FIRST</h2>
+    <img class="slide-logo" src="https://cdn.jsdelivr.net/gh/collective-edge/collective-edge-brand-kit@main/assets/logos/horizontal-white.svg" alt="Collective Edge">
+    <div class="slide-stack">
+      <h2 class="bk-display-md slide-closing-line">Questions go to Operations.</h2>
+      <div class="slide-contact">
+        <p class="bk-body-lg">operations@collective-edge.example</p>
+        <p class="bk-body-lg">collective-edge.co</p>
+      </div>
     </div>
-    <p class="bk-caption slide-meta">Dispatch confirms the receiving bed before it assigns a crew.</p>
-    <div class="ce-powered">
-      <span>Operating company</span>
-      <img src="https://cdn.jsdelivr.net/gh/collective-edge/apex-brand-kit@main/assets/logos/horizontal-white.svg"
-           alt="Apex Paramedics" width="204" height="86">
+    <div class="slide-foot">
+      <p class="bk-body">Collective Edge</p>
+      <p class="bk-body">13 November 2026</p>
     </div>
   </section>
 
-</div>
+</main>
 
 </body>
 </html>
