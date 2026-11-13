@@ -77,6 +77,7 @@ collective-edge-brand-kit/
 ├── tokens.json                    Machine-readable color for python-pptx, python-docx, matplotlib, reportlab
 ├── brands.json                    Registry resolving every brand in the house to its CDN root
 ├── NEW-BRAND.md                   How to stand up a kit for a new operating company
+├── CONTRIBUTING.md                How to change this kit without breaking live work
 └── assets/
     ├── fonts/                     Montserrat variable, woff2 and TTF
     ├── logos/                     Six block marks and two horizontal lockups, SVG
